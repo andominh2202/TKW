@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang hướng dẫn trực quan toàn diện về thẻ HTML, đường dẫn file paths, CSS selectors (.class, #id, :hover), mô hình hộp Box Model và độ ưu tiên specificity.">
+  <title>Cẩm Nang Trực Quan: Thẻ HTML, Đường Dẫn & CSS Selectors | DevCraft WebLab</title>
+  
+  <link rel="stylesheet" href="assets/css/hub-style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Phong cách riêng cho trang cẩm nang trực quan */
+    .handbook-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+
+    .handbook-hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .topic-card {
+      background: rgba(20, 27, 45, 0.75);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(14px);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-glass);
+      padding-bottom: 18px;
+    }
+
+    .topic-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-pink) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .topic-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .topic-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Live Interactive Demo Box */
+    .demo-sandbox {
+      background: #090d16;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .demo-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .demo-grid-2 { grid-template-columns: 1fr; }
+      .topic-card { padding: 24px 18px; }
+    }
+
+    .code-preview-pane {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    .visual-result-pane {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* Bảng tra cứu thẻ trực quan */
+    .tags-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.92rem;
+    }
+
+    .tags-table th, .tags-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .tags-table th {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .tags-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .tag-chip {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+    }
+
+    /* Mô Phỏng Cây Thư Mục Trực Quan */
+    .tree-simulator {
+      background: #090d16;
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .path-interactive-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .path-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-glass);
+      color: var(--text-white);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .path-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--primary);
+    }
+
+    .path-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .path-result-box {
+      background: #0f172a;
+      border-left: 4px solid var(--success);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+
+    /* CSS Selectors Interactive Lab */
+    .selector-highlight-arena {
+      background: #090d16;
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .selector-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .sel-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .sel-btn:hover, .sel-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .mock-webpage {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .target-highlighted {
+      outline: 3px solid #ef4444 !important;
+      background-color: #fee2e2 !important;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.5) !important;
+      transition: all 0.2s ease;
+    }
+
+    /* Đấu trường Specificity */
+    .specificity-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #090d16;
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+
+    .rank-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-top-right"></div>
+
+  <!-- Navbar -->
+  <nav class="hub-nav">
+    <div class="container nav-content">
+      <a href="index.html" class="hub-brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <span class="brand-name">DevCraft<span class="brand-tag">Cẩm Nang</span></span>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="guide-link-btn" title="Trở về WebLab Studio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Trang Chủ WebLab</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="handbook-wrapper">
+
+    <!-- Header Hero -->
+    <header class="handbook-hero">
+      <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 14px; border-radius: 9999px; font-weight: 700; font-size: 0.82rem;">DÀNH CHO NGƯỜI MỚI BẮT ĐẦU TỪ SỐ 0</span>
+      <h1 class="hero-title" style="margin-top: 14px;">Cẩm Nang Trực Quan: Thẻ HTML, Đường Dẫn & CSS Selectors</h1>
+      <p class="hero-desc">Hiểu bản chất từng thẻ HTML, bí quyết viết đường dẫn file không bao giờ lỗi, và làm chủ các cấp độ bộ chọn CSS (.class, #id, :hover).</p>
+    </header>
+
+    <!-- ========================================================================= -->
+    <!-- PHẦN 1: CÁC THẺ HTML CƠ BẢN VÀ DEMO TRỰC QUAN                             -->
+    <!-- ========================================================================= -->
+    <section class="topic-card">
+      <div class="topic-header">
+        <div class="topic-icon">🏷️</div>
+        <div>
+          <h2 class="topic-title">1. Bảng Thẻ HTML Cốt Lõi & Kết Quả Trực Quan</h2>
+          <p class="topic-subtitle">Phân biệt thẻ có đóng mở vs thẻ tự đóng, nhìn thấy tận mắt từng thẻ hiển thị ra sao.</p>
+        </div>
+      </div>
+
+      <p style="margin-bottom: 16px; color: #cbd5e1;">Mọi trang web đều được tạo nên từ các thẻ HTML. Hãy quan sát bảng tra cứu nhanh dưới đây:</p>
+
+      <table class="tags-table">
+        <thead>
+          <tr>
+            <th>Tên thẻ</th>
+            <th>Loại thẻ</th>
+            <th>Mục đích sử dụng</th>
+            <th>Code mẫu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag-chip">&lt;h1&gt; ... &lt;h6&gt;</span></td>
+            <td>Thẻ cặp (Có đóng)</td>
+            <td>Tiêu đề các cấp (`h1` to nhất, `h6` nhỏ nhất)</td>
+            <td><code>&lt;h1&gt;Tiêu đề trang&lt;/h1&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;p&gt;</span></td>
+            <td>Thẻ cặp</td>
+            <td>Đoạn văn bản thông thường</td>
+            <td><code>&lt;p&gt;Nội dung văn bản...&lt;/p&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;a&gt;</span></td>
+            <td>Thẻ cặp</td>
+            <td>Tạo đường link bấm vào để nhảy trang (href)</td>
+            <td><code>&lt;a href="https://..."&gt;Bấm vào đây&lt;/a&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;img&gt;</span></td>
+            <td><strong>Thẻ tự đóng</strong> (Không có &lt;/img&gt;)</td>
+            <td>Chèn hình ảnh (src = nguồn ảnh, alt = mô tả)</td>
+            <td><code>&lt;img src="avatar.jpg" alt="Ảnh"&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;button&gt;</span></td>
+            <td>Thẻ cặp</td>
+            <td>Nút bấm tương tác</td>
+            <td><code>&lt;button&gt;Đăng Ký&lt;/button&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;input&gt;</span></td>
+            <td><strong>Thẻ tự đóng</strong></td>
+            <td>Ô nhập văn bản, mật khẩu, checkbox...</td>
+            <td><code>&lt;input type="text" placeholder="Nhập tên"&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;div&gt;</span></td>
+            <td>Thẻ cặp (Khối Block)</td>
+            <td>Chiếc hộp rỗng dùng để gom nhiều thẻ con lại</td>
+            <td><code>&lt;div class="card"&gt;...&lt;/div&gt;</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag-chip">&lt;span&gt;</span></td>
+            <td>Thẻ cặp (Nội tuyến Inline)</td>
+            <td>Gom một vài chữ trong câu để đổi màu riêng</td>
+            <td><code>Giá: &lt;span class="gia"&gt;50k&lt;/span&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Demo So Sánh Block vs Inline -->
+      <div class="demo-sandbox">
+        <h3 style="font-size: 1.1rem; color: #818cf8; margin-bottom: 8px;">💡 Điểm khác biệt quan trọng: Thẻ Khối (&lt;div&gt;, &lt;p&gt;) vs Thẻ Nội Tuyến (&lt;span&gt;, &lt;a&gt;)</h3>
+        <div class="demo-grid-2">
+          <div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;"><strong>Thẻ Khối (Block):</strong> Luôn tự động xuống dòng và chiếm trọn 100% bề ngang.</p>
+            <div style="background: rgba(99, 102, 241, 0.2); border: 1px solid #6366f1; padding: 10px; border-radius: 6px; margin-bottom: 6px;">&lt;div&gt; Hộp 1 (Chiếm cả dòng) &lt;/div&gt;</div>
+            <div style="background: rgba(99, 102, 241, 0.2); border: 1px solid #6366f1; padding: 10px; border-radius: 6px;">&lt;div&gt; Hộp 2 (Tự rớt xuống dòng mới) &lt;/div&gt;</div>
+          </div>
+          <div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;"><strong>Thẻ Nội Tuyến (Inline):</strong> Đứng cùng nhau trên 1 hàng, chỉ chiếm đúng độ dài chữ.</p>
+            <div style="padding: 10px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 6px;">
+              Đoạn văn có <span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px;">&lt;span&gt; Chữ 1 &lt;/span&gt;</span> và <span style="background: #ec4899; color: white; padding: 2px 6px; border-radius: 4px;">&lt;span&gt; Chữ 2 &lt;/span&gt;</span> nằm chung 1 hàng!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PHẦN 2: BÍ QUYẾT VIẾT ĐƯỜNG DẪN (PATH) KHÔNG BAO GIỜ LỖI                  -->
+    <!-- ========================================================================= -->
+    <section class="topic-card">
+      <div class="topic-header">
+        <div class="topic-icon">🧭</div>
+        <div>
+          <h2 class="topic-title">2. Bản Đồ Đường Dẫn (File Paths) - Không Bao Giờ Mất Ảnh/CSS</h2>
+          <p class="topic-subtitle">Nguyên tắc "Đứng từ file HTML hiện tại để nhìn sang file cần gọi".</p>
+        </div>
+      </div>
+
+      <div class="tree-simulator">
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Bấm chọn tình huống bên dưới để xem đường dẫn viết như thế nào là chính xác:</p>
+
+        <div class="path-interactive-selector">
+          <button class="path-btn active" onclick="simulatePath(1)">Tình huống 1: Cùng chung 1 thư mục</button>
+          <button class="path-btn" onclick="simulatePath(2)">Tình huống 2: Đi vào thư mục con</button>
+          <button class="path-btn" onclick="simulatePath(3)">Tình huống 3: Nhảy lùi ra ngoài thư mục cha (../)</button>
+        </div>
+
+        <div class="demo-grid-2">
+          <!-- Cây thư mục mô phỏng -->
+          <div class="code-preview-pane" id="folderTreePreview">
+📁 TKW (Thư mục gốc)
+├── 📄 index.html
+├── 📁 assets/
+│   └── 📁 css/
+│       └── 🎨 hub-style.css
+└── 📁 bai-01-profile-card/
+    └── 📁 solution/
+        ├── 📄 index.html  <-- [BẠN ĐANG ĐỨNG TẠI ĐÂY]
+        └── 🎨 style.css   <-- [CẦN GỌI FILE NÀY]
+          </div>
+
+          <!-- Lời giải & Mã lệnh tương ứng -->
+          <div class="path-result-box" id="pathExplanationBox">
+            <h4 style="color: #10b981; margin-bottom: 6px;" id="pathTitle">Tình huống 1: Hai file nằm cạnh nhau</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 10px;" id="pathDesc">File <code>style.css</code> nằm cùng thư mục <code>solution/</code> với file <code>index.html</code>. Ta chỉ cần viết thẳng tên file!</p>
+            <div class="code-preview-pane" id="pathCodeSnippet">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PHẦN 3: BỘ CHỌN CSS: THẺ, .CLASS, #ID VÀ CÁC QUAN HỆ CẤP BẬC              -->
+    <!-- ========================================================================= -->
+    <section class="topic-card">
+      <div class="topic-header">
+        <div class="topic-icon">🎯</div>
+        <div>
+          <h2 class="topic-title">3. Bộ Chọn CSS (Selectors): Thẻ, .Class, #ID & Quan Hệ</h2>
+          <p class="topic-subtitle">Bấm vào từng nút bộ chọn bên dưới để xem phần tử tương ứng trên trang web mẫu phát sáng!</p>
+        </div>
+      </div>
+
+      <div class="selector-highlight-arena">
+        <!-- Nút chọn bộ chọn -->
+        <div class="selector-buttons">
+          <button class="sel-btn active" onclick="testSelector('all-p')">p (Tất cả thẻ đoạn văn)</button>
+          <button class="sel-btn" onclick="testSelector('class-card')">.card (Chọn theo Class)</button>
+          <button class="sel-btn" onclick="testSelector('class-highlight')">.highlight (Nhiều thẻ chung class)</button>
+          <button class="sel-btn" onclick="testSelector('id-btn')">#btnSpecial (Chọn theo ID duy nhất)</button>
+          <button class="sel-btn" onclick="testSelector('descendant')">.card button (Con cháu bên trong)</button>
+        </div>
+
+        <!-- Khung trang web mẫu để kiểm thử -->
+        <div class="mock-webpage" id="mockWebpage">
+          <h3 style="margin-bottom: 12px; color: #1e1b4b;">Trang Web Thử Nghiệm Bộ Chọn</h3>
+          
+          <p id="mockP1" class="mock-elem">Đây là đoạn văn 1 (thẻ &lt;p&gt; bình thường).</p>
+          
+          <div id="mockCard" class="card mock-elem" style="border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; margin: 12px 0;">
+            <p id="mockP2" class="highlight mock-elem" style="font-weight: 600;">Đoạn văn 2 (nằm trong .card và có class .highlight)</p>
+            <button id="mockBtnCard" class="mock-elem" style="padding: 6px 14px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer;">Nút trong Card</button>
+          </div>
+
+          <p id="mockP3" class="highlight mock-elem">Đoạn văn 3 ở ngoài (cũng có class .highlight)</p>
+          
+          <button id="mockBtnId" class="mock-elem" style="padding: 8px 18px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 8px;">Nút có ID #btnSpecial</button>
+        </div>
+
+        <div class="code-preview-pane" id="selectorExplanation" style="margin-top: 14px;">
+// Bạn đang chọn: p
+// Tất cả các thẻ <p> trên trang đều được chọn và viền đỏ phát sáng!
+p {
+  color: red;
+}
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PHẦN 4: DẤU HAI CHẤM : (PSEUDO-CLASS) - TRẠNG THÁI TƯƠNG TÁC             -->
+    <!-- ========================================================================= -->
+    <section class="topic-card">
+      <div class="topic-header">
+        <div class="topic-icon">⚡</div>
+        <div>
+          <h2 class="topic-title">4. Dấu Hai Chấm `:` (Pseudo-classes) - Bắt Trọn Mọi Tương Tác</h2>
+          <p class="topic-subtitle">CSS không chỉ tĩnh, nó thay đổi khi người dùng rê chuột (:hover), click gõ (:focus), hay bấm giữ (:active).</p>
+        </div>
+      </div>
+
+      <div class="demo-grid-2">
+        <div class="code-preview-pane">
+/* 1. Khi RÊ CHUỘT VÀO: :hover */
+.nut-bam:hover {
+  background-color: #4f46e5;
+  transform: translateY(-3px);
+}
+
+/* 2. Khi BẤM GIỮ CHUỘT: :active */
+.nut-bam:active {
+  transform: scale(0.95);
+}
+
+/* 3. Khi CLICK GÕ CHỮ: :focus */
+input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+        </div>
+
+        <div class="visual-result-pane">
+          <div style="font-weight: 700; color: #a5b4fc;">Thử tương tác trực tiếp:</div>
+          
+          <!-- Thử nút hover và active -->
+          <button style="padding: 12px 24px; background: #6366f1; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s;" 
+                  onmouseover="this.style.background='#4f46e5'; this.style.transform='translateY(-3px)'"
+                  onmouseout="this.style.background='#6366f1'; this.style.transform='none'"
+                  onmousedown="this.style.transform='scale(0.95)'"
+                  onmouseup="this.style.transform='translateY(-3px)'">
+            Rê chuột & Bấm giữ tôi!
+          </button>
+
+          <!-- Thử ô input focus -->
+          <input type="text" placeholder="Click vào đây để thấy :focus viền phát sáng..." 
+                 style="padding: 12px 16px; border: 2px solid #475569; border-radius: 8px; background: #0f172a; color: white; outline: none; transition: all 0.2s;"
+                 onfocus="this.style.borderColor='#10b981'; this.style.boxShadow='0 0 0 4px rgba(16, 185, 129, 0.25)'"
+                 onblur="this.style.borderColor='#475569'; this.style.boxShadow='none'">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PHẦN 5: ĐẤU TRƯỜNG ĐỘ ƯU TIÊN (SPECIFICITY BATTLE)                        -->
+    <!-- ========================================================================= -->
+    <section class="topic-card">
+      <div class="topic-header">
+        <div class="topic-icon">👑</div>
+        <div>
+          <h2 class="topic-title">5. Đấu Trường Độ Ưu Tiên: Ai Mạnh Hơn Ai?</h2>
+          <p class="topic-subtitle">Khi 2 luật CSS cùng đổi màu một dòng chữ, trình duyệt sẽ nghe theo ai?</p>
+        </div>
+      </div>
+
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Bảng xếp hạng quyền lực từ mạnh nhất đến yếu nhất:</p>
+
+      <div class="specificity-card">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="rank-num" style="background: #ef4444;">1</div>
+          <div>
+            <strong style="color: #ef4444; font-size: 1.05rem;">!important</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Quyền lực tối thượng, ghi đè tất cả mọi quy tắc khác.</p>
+          </div>
+        </div>
+        <code>color: red !important;</code>
+      </div>
+
+      <div class="specificity-card">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="rank-num" style="background: #f59e0b;">2</div>
+          <div>
+            <strong style="color: #f59e0b; font-size: 1.05rem;">Inline Style (Style viết trực tiếp trên thẻ)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Viết trực tiếp vào thuộc tính của thẻ HTML.</p>
+          </div>
+        </div>
+        <code>&lt;p style="color: yellow;"&gt;</code>
+      </div>
+
+      <div class="specificity-card">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="rank-num" style="background: #6366f1;">3</div>
+          <div>
+            <strong style="color: #818cf8; font-size: 1.05rem;">#ID Selector (Dấu thăng)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Định danh cá nhân duy nhất, mạnh hơn mọi Class.</p>
+          </div>
+        </div>
+        <code>#tieu-de { color: blue; }</code>
+      </div>
+
+      <div class="specificity-card">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="rank-num" style="background: #10b981;">4</div>
+          <div>
+            <strong style="color: #34d399; font-size: 1.05rem;">.Class Selector (Dấu chấm)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Mặc đồng phục cho nhiều thẻ, mạnh hơn tên thẻ đơn thuần.</p>
+          </div>
+        </div>
+        <code>.chu-xanh { color: green; }</code>
+      </div>
+
+      <div class="specificity-card">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="rank-num" style="background: #64748b;">5</div>
+          <div>
+            <strong style="color: #94a3b8; font-size: 1.05rem;">Tên Thẻ (Tag Selector)</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Yếu nhất trong các loại bộ chọn cụ thể.</p>
+          </div>
+        </div>
+        <code>p { color: black; }</code>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // 1. Tương tác kiểm thử bộ chọn
+    function testSelector(type) {
+      document.querySelectorAll('.mock-elem').forEach(el => el.classList.remove('target-highlighted'));
+      document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+
+      const exp = document.getElementById('selectorExplanation');
+
+      if (type === 'all-p') {
+        document.getElementById('mockP1').classList.add('target-highlighted');
+        document.getElementById('mockP2').classList.add('target-highlighted');
+        document.getElementById('mockP3').classList.add('target-highlighted');
+        exp.textContent = `// 1. Chọn theo TÊN THẺ: p\n// Mọi thẻ <p> trên trang đều chịu tác động!\np {\n  color: red;\n}`;
+      } else if (type === 'class-card') {
+        document.getElementById('mockCard').classList.add('target-highlighted');
+        exp.textContent = `// 2. Chọn theo CLASS: .card (bắt đầu bằng dấu chấm .)\n// Chỉ thẻ nào có class="card" mới bị chọn.\n.card {\n  border-color: red;\n}`;
+      } else if (type === 'class-highlight') {
+        document.getElementById('mockP2').classList.add('target-highlighted');
+        document.getElementById('mockP3').classList.add('target-highlighted');
+        exp.textContent = `// 3. Chọn theo CLASS CHUNG: .highlight\n// Cả đoạn văn 2 (trong card) và đoạn văn 3 (ngoài card) cùng có class="highlight" nên cùng được chọn!\n.highlight {\n  font-weight: bold;\n}`;
+      } else if (type === 'id-btn') {
+        document.getElementById('mockBtnId').classList.add('target-highlighted');
+        exp.textContent = `// 4. Chọn theo ID: #btnSpecial (bắt đầu bằng dấu thăng #)\n// Chỉ duy nhất phần tử có id="btnSpecial" được chọn!\n#btnSpecial {\n  background: red;\n}`;
+      } else if (type === 'descendant') {
+        document.getElementById('mockBtnCard').classList.add('target-highlighted');
+        exp.textContent = `// 5. Quan hệ Con Cháu: .card button (cách nhau bởi khoảng trắng)\n// Chỉ chọn thẻ <button> nằm BÊN TRONG thẻ có class .card (không chọn nút bên ngoài!)\n.card button {\n  box-shadow: 0 0 10px red;\n}`;
+      }
+    }
+
+    // 2. Tương tác mô phỏng đường dẫn
+    function simulatePath(scenario) {
+      document.querySelectorAll('.path-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const tree = document.getElementById('folderTreePreview');
+      const title = document.getElementById('pathTitle');
+      const desc = document.getElementById('pathDesc');
+      const code = document.getElementById('pathCodeSnippet');
+
+      if (scenario === 1) {
+        tree.textContent = `📁 TKW/
+└── 📁 bai-01-profile-card/
+    └── 📁 solution/
+        ├── 📄 index.html  <-- [BẠN ĐANG ĐỨNG ĐÂY]
+        └── 🎨 style.css   <-- [CẦN GỌI FILE NÀY]`;
+        title.textContent = "Tình huống 1: Hai file nằm cùng thư mục";
+        desc.textContent = "Vì hai file nằm cùng trong thư mục solution/, bạn chỉ cần ghi thẳng tên file:";
+        code.textContent = `<link rel="stylesheet" href="style.css">`;
+      } else if (scenario === 2) {
+        tree.textContent = `📁 TKW/
+├── 📄 index.html  <-- [BẠN ĐANG ĐỨNG ĐÂY]
+└── 📁 assets/
+    └── 📁 css/
+        └── 🎨 hub-style.css <-- [CẦN GỌI FILE NÀY]`;
+        title.textContent = "Tình huống 2: Đi vào trong thư mục con";
+        desc.textContent = "Từ index.html ở thư mục gốc, muốn lấy file trong assets/css/ thì dùng dấu gạch chéo /:";
+        code.textContent = `<link rel="stylesheet" href="assets/css/hub-style.css">`;
+      } else if (scenario === 3) {
+        tree.textContent = `📁 TKW/
+├── 📁 assets/
+│   └── 🎨 hub-style.css <-- [CẦN GỌI FILE NÀY]
+└── 📁 bai-01-profile-card/
+    └── 📁 solution/
+        └── 📄 index.html <-- [BẠN ĐANG ĐỨNG ĐÂY]`;
+        title.textContent = "Tình huống 3: Nhảy lùi ra ngoài thư mục cha (../)";
+        desc.textContent = "Từ solution/ phải nhảy ra 1 cấp (..) đến bai-01, nhảy thêm 1 cấp (..) ra TKW gốc, rồi mới đi vào assets/:";
+        code.textContent = `<link rel="stylesheet" href="../../assets/hub-style.css">`;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,6 +1,10 @@
 # 🎓 BÀI HỌC NHẬP MÔN THIẾT KẾ WEB (HTML & CSS)
 ### Dành cho người mới bắt đầu từ con số 0
 
+> [!TIP]
+> 🌐 **Xem phiên bản Web trực quan tương tác tại**: [bai-hoc-nhap-mon.html](bai-hoc-nhap-mon.html)
+> (Bao gồm bảng tra cứu thẻ, mô phỏng đường dẫn file và kiểm thử bộ chọn CSS trực tiếp trên màn hình!)
+
 Tài liệu này giải thích chi tiết, dễ hiểu nhất về:
 1. **Các thẻ HTML cơ bản & quy tắc đóng mở**.
 2. **Cách viết đường dẫn (Path) đúng chuẩn (không bao giờ bị mất ảnh hay mất CSS)**.

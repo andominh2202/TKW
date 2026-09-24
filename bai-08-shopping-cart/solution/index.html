@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 08 - DevCraft Store & Smart Cart (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Thanh Header Cửa Hàng -->
+  <header class="store-navbar">
+    <div class="navbar-inner">
+      <a href="#" class="store-logo">
+        <span class="logo-gem">✦</span>
+        <span class="logo-title">DevCraft Gear</span>
+      </a>
+
+      <div class="nav-right">
+        <!-- Nút Kích Hoạt Giỏ Hàng -->
+        <button id="cartTrigger" class="cart-trigger-btn" aria-label="Mở giỏ hàng">
+          <div class="cart-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="headerCartBadge" class="badge-count">0</span>
+          </div>
+          <span class="trigger-label">Giỏ hàng (<span id="headerCartTotal">0 ₫</span>)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Danh mục Sản Phẩm -->
+  <main class="store-main">
+    <div class="store-container">
+      
+      <div class="store-hero-banner">
+        <div class="banner-tag">Ưu Đãi Lập Trình Viên</div>
+        <h1 class="banner-title">Góc Làm Việc Công Nghệ Chuẩn Pro</h1>
+        <p class="banner-desc">Nhập mã <code>GIAM10</code> giảm 10% hoặc <code>GIAM20</code> cho đơn từ 5.000.000₫.</p>
+      </div>
+
+      <div class="products-section">
+        <div class="section-top">
+          <h2 class="section-title">Sản Phẩm Đang Thịnh Hành</h2>
+          <span class="item-count-text">Hiển thị 6 sản phẩm</span>
+        </div>
+
+        <div id="productsGrid" class="products-grid">
+          <!-- Render bởi script.js -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Ngăn Kéo Giỏ Hàng Trượt (Slide-in Cart Drawer) -->
+  <div id="cartDrawerBackdrop" class="cart-drawer-backdrop hidden">
+    <aside class="cart-drawer-panel" id="cartDrawerPanel">
+      
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h3>Giỏ Hàng Của Bạn</h3>
+          <span class="drawer-count-badge" id="drawerCountBadge">0 món</span>
+        </div>
+        <button id="btnCloseDrawer" class="btn-close-drawer" aria-label="Đóng giỏ hàng">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Danh sách món hàng -->
+      <div id="cartItemsContainer" class="drawer-body">
+        <!-- Render danh sách giỏ hàng qua JS -->
+      </div>
+
+      <!-- Footer tính toán tổng tiền -->
+      <div class="drawer-footer">
+        
+        <!-- Voucher -->
+        <div class="voucher-form">
+          <input type="text" id="voucherInput" class="voucher-input" placeholder="Mã giảm giá (GIAM10, GIAM20)" autocomplete="off">
+          <button id="btnApplyVoucher" class="btn-apply-voucher">Áp dụng</button>
+        </div>
+        <div id="voucherNotice" class="voucher-notice hidden"></div>
+
+        <!-- Bảng tính tiền -->
+        <div class="bill-summary">
+          <div class="bill-row">
+            <span>Tạm tính hàng hóa:</span>
+            <strong id="billSubtotal">0 ₫</strong>
+          </div>
+          <div class="bill-row bill-discount">
+            <span>Khuyến mãi giảm:</span>
+            <strong id="billDiscount">- 0 ₫</strong>
+          </div>
+          <div class="bill-row">
+            <span>Phí vận chuyển:</span>
+            <span class="free-shipping-tag">Miễn phí toàn quốc</span>
+          </div>
+          <div class="bill-divider"></div>
+          <div class="bill-row total-row">
+            <span>Tổng thanh toán:</span>
+            <strong id="billTotal" class="final-price">0 ₫</strong>
+          </div>
+        </div>
+
+        <button id="btnCheckout" class="btn-checkout">
+          <span>Tiến Hành Đặt Hàng</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Popup Thông Báo Đặt Hàng Thành Công -->
+  <div id="orderSuccessModal" class="success-modal-overlay hidden">
+    <div class="success-modal-card">
+      <div class="success-badge-icon">✓</div>
+      <h2>Đặt Hàng Thành Công!</h2>
+      <p class="order-id-text">Mã đơn hàng: <strong id="orderIdText">#DCG-9842</strong></p>
+      <p class="success-message">Cảm ơn bạn đã lựa chọn DevCraft Gear. Nhân viên chăm sóc khách hàng sẽ liên hệ xác nhận đơn trong 15 phút tới.</p>
+      <button id="btnCloseSuccessModal" class="btn-primary-close">Tiếp Tục Mua Sắm</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 02 - Modern Contact Form (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="page-container">
+    <div class="form-card">
+      
+      <header class="form-header">
+        <h1 class="form-title">Liên Hệ Với Chúng Tôi</h1>
+        <p class="form-desc">Hãy để lại lời nhắn, chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
+      </header>
+
+      <!-- TODO 1: Tạo thẻ <form> bao bọc toàn bộ các trường nhập liệu -->
+      <form class="contact-form" action="#" method="POST">
+        
+        <!-- Hàng 2 cột: Họ và Tên -->
+        <!-- TODO 2: Thiết lập class .form-row để chia 2 cột bằng Flexbox hoặc Grid -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName" class="form-label">Họ & Tên đệm *</label>
+            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nguyễn Văn" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="form-label">Tên *</label>
+            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="An" required>
+          </div>
+        </div>
+
+        <!-- Trường Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">Địa chỉ Email *</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required>
+        </div>
+
+        <!-- Trường Chủ đề (Select) -->
+        <div class="form-group">
+          <label for="subject" class="form-label">Chủ đề quan tâm</label>
+          <div class="select-wrapper">
+            <select id="subject" name="subject" class="form-select">
+              <option value="" disabled selected>-- Chọn chủ đề --</option>
+              <option value="project">Tư vấn thiết kế website</option>
+              <option value="support">Hỗ trợ kỹ thuật</option>
+              <option value="partner">Hợp tác kinh doanh</option>
+              <option value="other">Ý kiến đóng góp khác</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Trường Lời nhắn (Textarea) -->
+        <div class="form-group">
+          <label for="message" class="form-label">Nội dung tin nhắn *</label>
+          <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Hãy mô tả chi tiết yêu cầu của bạn..." required></textarea>
+        </div>
+
+        <!-- Checkbox Điều khoản -->
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="terms" name="terms" class="custom-checkbox" required>
+          <label for="terms" class="checkbox-label">
+            Tôi đồng ý với <a href="#" class="terms-link">Chính sách bảo mật</a> và điều khoản dịch vụ.
+          </label>
+        </div>
+
+        <!-- Nút Gửi -->
+        <button type="submit" class="btn-submit">
+          <span>Gửi Tin Nhắn</span>
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>

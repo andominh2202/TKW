@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 03 - Pricing Table (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="pricing-container">
+    
+    <header class="pricing-header">
+      <div class="badge-pill">Bảng Giá Minh Bạch</div>
+      <h1 class="title">Đầu Tư Xứng Tầm Cho Website Của Bạn</h1>
+      <p class="description">Chọn gói phù hợp với quy mô dự án. Dễ dàng nâng cấp hoặc chuyển đổi bất cứ khi nào bạn muốn.</p>
+
+      <!-- Toggle chuyển đổi Tháng / Năm -->
+      <div class="billing-toggle-container">
+        <span class="billing-label active" id="monthlyLabel">Thanh toán theo tháng</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="billingToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="billing-label" id="yearlyLabel">
+          Thanh toán theo năm
+          <span class="save-tag">Tiết kiệm 20%</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Lưới 3 cột card -->
+    <div class="pricing-grid">
+      
+      <!-- Gói 1: Starter -->
+      <div class="pricing-card">
+        <div class="card-top">
+          <span class="tier-tag">Cơ bản</span>
+          <h2 class="plan-name">Gói Starter</h2>
+          <p class="plan-desc">Phù hợp hoàn hảo cho cá nhân, freelancer xây dựng portfolio hoặc blog cá nhân.</p>
+          <div class="price-box">
+            <span class="currency">₫</span>
+            <span class="amount" data-monthly="99.000" data-yearly="79.000">99.000</span>
+            <span class="period">/ tháng</span>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>1 Website</strong> tiêu chuẩn</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>10 GB</strong> Dung lượng SSD</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Băng thông không giới hạn</span>
+          </li>
+          <li class="feature-item disabled">
+            <svg class="icon cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>Tên miền quốc tế miễn phí</span>
+          </li>
+          <li class="feature-item disabled">
+            <svg class="icon cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>Hỗ trợ ưu tiên 24/7</span>
+          </li>
+        </ul>
+
+        <button class="btn btn-secondary">Bắt Đầu Dùng Thử</button>
+      </div>
+
+      <!-- Gói 2: Pro (Nổi bật nhất) -->
+      <div class="pricing-card popular">
+        <div class="popular-ribbon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          GÓI PHỔ BIẾN NHẤT
+        </div>
+
+        <div class="card-top">
+          <span class="tier-tag highlight">Khuyên dùng</span>
+          <h2 class="plan-name">Gói Pro</h2>
+          <p class="plan-desc">Lựa chọn số 1 cho các doanh nghiệp vừa & nhỏ, cửa hàng bán hàng trực tuyến.</p>
+          <div class="price-box">
+            <span class="currency">₫</span>
+            <span class="amount" data-monthly="249.000" data-yearly="199.000">249.000</span>
+            <span class="period">/ tháng</span>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>5 Websites</strong> chuẩn SEO</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>50 GB</strong> Dung lượng NVMe siêu tốc</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Chứng chỉ SSL trọn đời miễn phí</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Tặng tên miền .com / .net 1 năm</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hỗ trợ kỹ thuật 24/7 qua Livechat</span>
+          </li>
+        </ul>
+
+        <button class="btn btn-primary">Nâng Cấp Gói Pro Ngay</button>
+      </div>
+
+      <!-- Gói 3: Enterprise -->
+      <div class="pricing-card">
+        <div class="card-top">
+          <span class="tier-tag">Doanh nghiệp</span>
+          <h2 class="plan-name">Gói Enterprise</h2>
+          <p class="plan-desc">Dành cho tập đoàn, nền tảng thương mại quy mô lớn cần hiệu năng tối đa.</p>
+          <div class="price-box">
+            <span class="currency">₫</span>
+            <span class="amount" data-monthly="699.000" data-yearly="559.000">699.000</span>
+            <span class="period">/ tháng</span>
+          </div>
+        </div>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>Không giới hạn</strong> Website</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>200 GB</strong> Ổ cứng Dedicated NVMe</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Sao lưu dữ liệu tự động theo giờ</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Hạ tầng chịu tải 1.000.000 user</span>
+          </li>
+          <li class="feature-item">
+            <svg class="icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Kỹ sư trưởng đồng hành 1-1 riêng</span>
+          </li>
+        </ul>
+
+        <button class="btn btn-secondary">Liên Hệ Doanh Nghiệp</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Logic Toggle Tháng / Năm
+    const toggle = document.getElementById('billingToggle');
+    const monthlyLabel = document.getElementById('monthlyLabel');
+    const yearlyLabel = document.getElementById('yearlyLabel');
+    const amounts = document.querySelectorAll('.amount');
+
+    toggle.addEventListener('change', () => {
+      const isYearly = toggle.checked;
+      if (isYearly) {
+        yearlyLabel.classList.add('active');
+        monthlyLabel.classList.remove('active');
+        amounts.forEach(el => el.textContent = el.getAttribute('data-yearly'));
+      } else {
+        monthlyLabel.classList.add('active');
+        yearlyLabel.classList.remove('active');
+        amounts.forEach(el => el.textContent = el.getAttribute('data-monthly'));
+      }
+    });
+  </script>
+
+</body>
+</html>

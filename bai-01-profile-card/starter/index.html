@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 01 - Profile Card (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TODO 1: Tạo thẻ <article class="profile-card"> bao bọc toàn bộ thẻ -->
+  <main class="page-wrapper">
+    <article class="profile-card">
+      
+      <!-- TODO 2: Phần ảnh đại diện và thông tin cơ bản -->
+      <header class="card-header">
+        <div class="avatar-wrapper">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="avatar">
+        </div>
+        <h1 class="user-name">Lê Minh Anh</h1>
+        <p class="user-role">Frontend Web Developer</p>
+      </header>
+
+      <!-- TODO 3: Phần tiểu sử (Bio) -->
+      <p class="user-bio">
+        Đam mê xây dựng các giao diện web hiện đại, tối ưu trải nghiệm người dùng và yêu thích hiệu ứng CSS mượt mà.
+      </p>
+
+      <!-- TODO 4: Phần chỉ số thống kê (Stats) -->
+      <div class="stats-container">
+        <div class="stat-item">
+          <span class="stat-value">28</span>
+          <span class="stat-label">Dự án</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">4.2k</span>
+          <span class="stat-label">Theo dõi</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">4.9 ★</span>
+          <span class="stat-label">Đánh giá</span>
+        </div>
+      </div>
+
+      <!-- TODO 5: Danh sách kỹ năng (Skills badges) -->
+      <div class="skills-section">
+        <h2 class="section-title">Kỹ năng cốt lõi</h2>
+        <ul class="skills-list">
+          <!-- Hãy thêm các thẻ <li> chứa tên kỹ năng: HTML5, CSS3, JavaScript, Responsive, Git -->
+          <li class="skill-badge">HTML5</li>
+          <li class="skill-badge">CSS3</li>
+          <li class="skill-badge">JavaScript</li>
+          <li class="skill-badge">Responsive</li>
+        </ul>
+      </div>
+
+      <!-- TODO 6: Các nút hành động (Buttons) -->
+      <footer class="card-actions">
+        <button class="btn btn-primary">Theo dõi</button>
+        <button class="btn btn-secondary">Nhắn tin</button>
+      </footer>
+
+    </article>
+  </main>
+
+</body>
+</html>

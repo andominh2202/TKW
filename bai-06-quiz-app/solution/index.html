@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 06 - Web Dev Quiz Master (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="quiz-container">
+    <div class="quiz-card">
+      
+      <!-- Thanh thời gian chạy liên tục (Animated Timer Line) -->
+      <div class="timer-line-container">
+        <div id="timerProgress" class="timer-line-fill"></div>
+      </div>
+
+      <!-- Màn hình chơi Quiz -->
+      <section id="quizScreen" class="quiz-body">
+        
+        <!-- Header thông tin -->
+        <header class="quiz-header">
+          <div class="question-tracker">
+            <span class="badge-pill" id="questionBadge">Câu 1/6</span>
+            <span class="quiz-topic">Chuyên đề: Thiết Kế Web Toàn Diện</span>
+          </div>
+
+          <div class="timer-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="timerNumber">15s</span>
+          </div>
+        </header>
+
+        <!-- Tiêu đề câu hỏi -->
+        <div class="question-box">
+          <h2 id="questionText" class="question-title">Đang chuẩn bị câu hỏi...</h2>
+        </div>
+
+        <!-- Các lựa chọn trả lời (Render qua JS) -->
+        <div id="optionsList" class="options-container"></div>
+
+        <!-- Khung giải thích chi tiết (Hiển thị sau khi chọn) -->
+        <div id="explanationBox" class="explanation-box hidden">
+          <div class="explanation-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <strong>Giải thích kiến thức:</strong>
+          </div>
+          <p id="explanationText" class="explanation-content"></p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="quiz-footer">
+          <div class="current-score-tag">
+            Điểm hiện tại: <strong id="liveScore">0</strong>
+          </div>
+          <button id="btnNext" class="btn-next hidden">
+            <span>Câu Tiếp Theo</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </footer>
+
+      </section>
+
+      <!-- Màn hình Tổng Kết Kết Quả -->
+      <section id="resultScreen" class="result-body hidden">
+        <div class="trophy-badge" id="trophyEmoji">🏆</div>
+        <h2 class="result-title">Hoàn Thành Thử Thách!</h2>
+        <p class="result-subtitle">Bạn đã hoàn tất tất cả câu hỏi trong bài kiểm tra Thiết Kế Web.</p>
+
+        <div class="score-card-summary">
+          <div class="score-circle">
+            <span class="score-num" id="finalScoreVal">5</span>
+            <span class="score-total" id="finalTotalVal">/6</span>
+          </div>
+          <div class="score-details">
+            <div class="detail-row">
+              <span>Độ chính xác:</span>
+              <strong id="accuracyPercent">83%</strong>
+            </div>
+            <div class="detail-row">
+              <span>Đánh giá:</span>
+              <strong id="rankTitle" class="rank-highlight">Chuyên Gia Web</strong>
+            </div>
+          </div>
+        </div>
+
+        <p class="feedback-msg" id="feedbackMessage"></p>
+
+        <div class="result-actions">
+          <button id="btnRestart" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <span>Làm Lại Bài Thi</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

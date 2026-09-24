@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 07 - Filter Gallery & Lightbox Pro (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="gallery-wrapper">
+    <!-- Header -->
+    <header class="gallery-header">
+      <div class="badge-pill">Thư Viện Nhiếp Ảnh</div>
+      <h1 class="gallery-title">Bộ Sưu Tập Thị Giác Kỹ Thuật Số</h1>
+      <p class="gallery-desc">Khám phá các tác phẩm nhiếp ảnh độ phân giải cao được phân loại theo từng chủ đề đặc sắc.</p>
+
+      <!-- Thanh bộ lọc -->
+      <div class="filter-controls">
+        <button class="filter-btn active" data-category="all">
+          <span>Tất cả</span>
+          <span class="count-tag" id="countAll">8</span>
+        </button>
+        <button class="filter-btn" data-category="nature">
+          <span>Thiên nhiên</span>
+          <span class="count-tag" id="countNature">3</span>
+        </button>
+        <button class="filter-btn" data-category="architecture">
+          <span>Kiến trúc</span>
+          <span class="count-tag" id="countArch">3</span>
+        </button>
+        <button class="filter-btn" data-category="tech">
+          <span>Công nghệ</span>
+          <span class="count-tag" id="countTech">2</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Lưới ảnh Responsive Grid -->
+    <div id="galleryGrid" class="gallery-grid">
+      <!-- Sẽ được render bởi script.js -->
+    </div>
+  </main>
+
+  <!-- Cửa sổ Lightbox Toàn Màn Hình -->
+  <div id="lightboxOverlay" class="lightbox-overlay hidden" role="dialog" aria-modal="true">
+    
+    <!-- Thanh điều khiển trên cùng -->
+    <div class="lightbox-topbar">
+      <div class="lightbox-counter" id="lightboxCounter">Ảnh 1 / 8</div>
+      <div class="topbar-actions">
+        <button id="btnFullscreen" class="control-btn" title="Toàn màn hình">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        </button>
+        <button id="btnCloseLightbox" class="control-btn" title="Đóng (Esc)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Nút sang trái & sang phải -->
+    <button id="btnPrev" class="lightbox-nav-arrow arrow-left" aria-label="Xem ảnh trước">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+
+    <div class="lightbox-main">
+      <div class="image-stage">
+        <img id="lightboxMainImg" src="" alt="Ảnh chi tiết" class="main-photo">
+      </div>
+      <div class="lightbox-info">
+        <span class="info-badge" id="lightboxCategory">Danh mục</span>
+        <h3 class="info-title" id="lightboxTitle">Tiêu đề ảnh</h3>
+        <p class="info-desc" id="lightboxDesc">Mô tả tác phẩm</p>
+      </div>
+    </div>
+
+    <button id="btnNext" class="lightbox-nav-arrow arrow-right" aria-label="Xem ảnh kế tiếp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <!-- Phím tắt gợi ý phía chân trang -->
+    <div class="keyboard-hints">
+      <span><kbd>Esc</kbd> Đóng</span>
+      <span><kbd>←</kbd> Ảnh trước</span>
+      <span><kbd>→</kbd> Ảnh sau</span>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

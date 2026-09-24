@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 05 - To-Do List Pro (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="app-container">
+    <div class="todo-card">
+      
+      <!-- Header -->
+      <header class="card-header">
+        <div class="header-top">
+          <div class="logo-group">
+            <div class="logo-icon">✓</div>
+            <div>
+              <h1 class="app-title">Nhiệm Vụ Hôm Nay</h1>
+              <p class="current-date" id="currentDateDisplay">Thứ Năm, 24 Tháng 9</p>
+            </div>
+          </div>
+          <span class="task-counter-badge" id="counterBadge">3 việc</span>
+        </div>
+
+        <!-- Thanh tiến độ hoàn thành (Progress Bar) -->
+        <div class="progress-wrapper">
+          <div class="progress-info">
+            <span class="progress-label">Tiến độ hoàn thành</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Form nhập việc mới -->
+      <form id="todoForm" class="todo-form">
+        <div class="input-group">
+          <input type="text" id="todoInput" class="todo-input" placeholder="Viết việc bạn cần làm rồi nhấn Enter..." autocomplete="off">
+          <button type="submit" class="btn-add" id="btnAdd">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Thêm</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Bộ lọc -->
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">Tất cả (<span id="allCount">0</span>)</button>
+          <button class="filter-btn" data-filter="active">Đang làm (<span id="activeCount">0</span>)</button>
+          <button class="filter-btn" data-filter="completed">Đã xong (<span id="completedCount">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Danh sách Todos -->
+      <ul id="todoList" class="todo-list">
+        <!-- Render bởi script.js -->
+      </ul>
+
+      <!-- Trạng thái trống (Empty State) khi không có việc -->
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">🎉</div>
+        <h3>Tuyệt vời! Không còn việc nào tồn đọng</h3>
+        <p>Hãy thêm nhiệm vụ mới để bắt đầu một ngày làm việc hiệu quả.</p>
+      </div>
+
+      <!-- Footer điều khiển -->
+      <footer class="card-footer">
+        <span class="footer-info" id="footerInfo">Còn 0 việc chưa hoàn thành</span>
+        <button id="clearCompletedBtn" class="btn-clear-completed">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          Dọn việc đã xong
+        </button>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

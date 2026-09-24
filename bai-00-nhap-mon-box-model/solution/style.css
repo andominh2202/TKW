@@ -1,0 +1,249 @@
+/* ==========================================================================
+   BÀI 00: TƯƠNG TÁC TRỰC QUAN BOX MODEL (SOLUTION CSS)
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0b0f19;
+  color: #f8fafc;
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.lesson-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.desc {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+code {
+  background: #1e293b;
+  color: #facc15;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.demo-section {
+  background: #141b2d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #818cf8;
+  margin-bottom: 16px;
+}
+
+.section-hint {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+/* Panel điều khiển Slider */
+.controls-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+  .controls-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.slider-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slider-control label {
+  font-size: 0.92rem;
+  color: #e2e8f0;
+}
+
+.slider-control label span {
+  color: #facc15;
+  font-weight: 800;
+}
+
+.slider-control input[type="range"] {
+  width: 100%;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+.slider-control small {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* Khu vực hiển thị Box Model */
+.sandbox-area {
+  background: #090d16;
+  border: 2px dashed #334155;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.my-box {
+  background-color: #fef08a; /* Vùng PADDING màu vàng nhạt */
+  border: 4px solid #3b82f6;  /* Đường viền BORDER màu xanh dương */
+  border-radius: 10px;
+  transition: padding 0.1s ease, margin 0.1s ease;
+}
+
+.box-1 {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.box-2 {
+  padding: 20px;
+}
+
+.box-content {
+  background-color: #ffffff; /* Ruột CONTENT màu trắng */
+  color: #0f172a;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box-content strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+  color: #1e1b4b;
+}
+
+.box-content p {
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+/* Phần 2: Buttons Comparison */
+.buttons-comparison {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  background: #090d16;
+  padding: 28px;
+  border-radius: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-example {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-bad {
+  background: #ef4444;
+  color: white;
+  border: 1px solid #b91c1c;
+  padding: 0; /* KHÔNG PADDING */
+  font-size: 14px;
+  cursor: pointer;
+  height: 24px;
+  width: fit-content;
+}
+
+.btn-good {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px; /* PADDING CHUẨN */
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: fit-content;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  transition: all 0.25s ease;
+}
+
+.btn-good:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn-example small {
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+/* Phần 3: Flexbox Parent */
+.flex-parent {
+  background: #090d16;
+  border: 2px dashed #6366f1;
+  border-radius: 14px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-child {
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 16px 28px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}

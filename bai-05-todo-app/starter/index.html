@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 05 - To-Do List App (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="todo-app-container">
+    <div class="todo-card">
+      
+      <!-- Tiêu đề App -->
+      <header class="app-header">
+        <h1 class="app-title">Danh Sách Việc Cần Làm</h1>
+        <p class="app-subtitle">Quản lý mục tiêu hàng ngày hiệu quả</p>
+      </header>
+
+      <!-- Form nhập việc mới -->
+      <form id="todoForm" class="todo-input-form">
+        <input type="text" id="todoInput" class="todo-input" placeholder="Bạn cần làm gì hôm nay?..." autocomplete="off">
+        <button type="submit" class="btn-add">Thêm</button>
+      </form>
+
+      <!-- Bộ lọc (Tabs) -->
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">Tất cả</button>
+        <button class="tab-btn" data-filter="active">Đang làm</button>
+        <button class="tab-btn" data-filter="completed">Đã xong</button>
+      </div>
+
+      <!-- Danh sách việc cần làm (render động bởi JS) -->
+      <ul id="todoList" class="todo-list">
+        <!-- Các thẻ <li> sẽ được render vào đây từ JavaScript -->
+      </ul>
+
+      <!-- Chân trang thống kê & Xóa việc đã xong -->
+      <footer class="app-footer">
+        <span id="itemsLeft" class="items-left">Còn 0 việc cần làm</span>
+        <button id="clearCompletedBtn" class="btn-clear">Xóa việc đã xong</button>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

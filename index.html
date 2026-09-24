@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nền tảng học thiết kế web tương tác từ cơ bản tới nâng cao: HTML5, CSS3, JavaScript với phòng thí nghiệm trực quan, code playground và bài tập thực chiến.">
+  <title>DevCraft WebLab | Học Thiết Kế Web Tương Tác (HTML • CSS • JS)</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/hub-style.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Đốm sáng Neon trang trí nền -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-top-right"></div>
+
+  <!-- Thanh Topbar Điều Hướng -->
+  <nav class="hub-nav">
+    <div class="container nav-content">
+      <a href="#" class="hub-brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <span class="brand-name">DevCraft<span class="brand-tag">WebLab</span></span>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="BAI_HOC_NHAP_MON.md" class="guide-link-btn" title="Hướng dẫn thẻ, đường dẫn, CSS selectors từ con số 0" style="background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>🌱 Lý Thuyết Nhập Môn</span>
+        </a>
+        <a href="HUONG_DAN_HOC.md" class="guide-link-btn" title="Đọc cẩm nang và lộ trình học">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span>Bảng Tra Cứu Cú Pháp</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- THANH CHUYỂN ĐỔI CHẾ ĐỘ HỌC CHÍNH (3 TABS) -->
+  <div class="main-tabs-wrapper">
+    <div class="container">
+      <div class="main-tabs-list">
+        <button class="main-tab-btn active" data-tab="tabLabs">
+          <span>🧪 1. Thí Nghiệm Trực Quan (Labs)</span>
+        </button>
+        <button class="main-tab-btn" data-tab="tabPlayground">
+          <span>💻 2. Code Playground (Tự Gõ Thử)</span>
+        </button>
+        <button class="main-tab-btn" data-tab="tabExercises">
+          <span>📚 3. Kho 9 Bài Tập Thực Chiến</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phần Hero Giới Thiệu -->
+  <header class="hero-hub">
+    <div class="container">
+      <div class="hero-pill">
+        <span>🚀 Học Trực Quan • Kéo Thả • Thấy Ngay Kết Quả</span>
+      </div>
+      <h1 class="hero-title">
+        Nền Tảng Học Thiết Kế Web <br>
+        <span class="gradient-text">HTML5 • CSS3 • JavaScript</span>
+      </h1>
+      <p class="hero-desc">
+        Học từ bản chất: Kéo thanh trượt để hiểu Margin/Padding, đổi nút bấm để hiểu bố cục Flexbox, gõ code thử nghiệm và làm các bài tập từ cơ bản đến nâng cao.
+      </p>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 1: 🧪 PHÒNG THÍ NGHIỆM TRỰC QUAN (INTERACTIVE LABS)                   -->
+  <!-- ========================================================================= -->
+  <section id="tabLabs" class="tab-view-content active labs-section">
+    <div class="container">
+      
+      <!-- MODULE 1: CSS BOX MODEL STUDIO -->
+      <div class="lab-module-card">
+        <header class="lab-header">
+          <span class="lab-badge">Phần 1 • Nền Tảng CSS</span>
+          <h2 class="lab-title">Mô Hình Hộp (CSS Box Model Studio)</h2>
+          <p class="lab-desc">Kéo các thanh trượt bên dưới để nhìn thấy tận mắt chiếc hộp co giãn, phân biệt rõ ràng <strong>Padding</strong> (vàng), <strong>Border</strong> (xanh) và <strong>Margin</strong> (cam).</p>
+        </header>
+
+        <div class="interactive-studio-grid">
+          <!-- Cột thanh trượt điều khiển -->
+          <div class="controls-column">
+            
+            <div class="control-item">
+              <div class="control-header">
+                <label>Độ rộng (Width):</label>
+                <span id="labWidthVal" class="control-val">280px</span>
+              </div>
+              <input type="range" id="labWidthInput" class="slider-input" min="180" max="400" value="280">
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Padding (Đệm trong):</label>
+                <span id="labPadVal" class="control-val">24px</span>
+              </div>
+              <input type="range" id="labPadInput" class="slider-input" min="0" max="60" value="24">
+              <small style="color: var(--text-muted); font-size: 0.75rem;">➔ Làm phồng hộp to ra từ chữ đến viền</small>
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Margin (Lề ngoài):</label>
+                <span id="labMarVal" class="control-val">24px</span>
+              </div>
+              <input type="range" id="labMarInput" class="slider-input" min="0" max="50" value="24">
+              <small style="color: var(--text-muted); font-size: 0.75rem;">➔ Đẩy chiếc hộp cách xa thế giới bên ngoài</small>
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Độ dày viền (Border Width):</label>
+                <span id="labBorVal" class="control-val">4px</span>
+              </div>
+              <input type="range" id="labBorInput" class="slider-input" min="0" max="12" value="4">
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Bo tròn góc (Border Radius):</label>
+                <span id="labRadVal" class="control-val">12px</span>
+              </div>
+              <input type="range" id="labRadInput" class="slider-input" min="0" max="40" value="12">
+            </div>
+
+          </div>
+
+          <!-- Cột mô phỏng trực quan & mã code xuất ra -->
+          <div class="stage-column">
+            
+            <div class="visual-canvas">
+              <!-- Lớp Margin (Màu cam) -->
+              <div id="simMarginBox" class="sim-margin-box">
+                <!-- Lớp Padding & Border (Màu vàng & xanh) -->
+                <div id="simPaddingBox" class="sim-padding-box">
+                  <!-- Lớp Content (Màu trắng) -->
+                  <div id="simContentBox" class="sim-content-box">
+                    📦 CONTENT (Nội dung)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Khung xuất mã CSS -->
+            <div class="code-output-card">
+              <div class="code-output-header">
+                <span>MÃ NGUỒN CSS TỰ ĐỘNG SINH RA:</span>
+              </div>
+              <pre class="code-output-body" id="boxModelCodeOutput"></pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 2: FLEXBOX BỐ CỤC STUDIO -->
+      <div class="lab-module-card">
+        <header class="lab-header">
+          <span class="lab-badge">Phần 2 • Bố Cục Hiện Đại</span>
+          <h2 class="lab-title">Flexbox Bố Cục Studio (Dàn Hàng & Căn Giữa)</h2>
+          <p class="lab-desc">Bấm vào các nút bấm để điều khiển cách các khối con sắp xếp, căn giữa hoặc chia đều khoảng cách.</p>
+        </header>
+
+        <div class="interactive-studio-grid">
+          
+          <div class="controls-column">
+            
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Căn ngang (justify-content):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-justify="center">center</button>
+                <button class="choice-btn" data-justify="flex-start">flex-start</button>
+                <button class="choice-btn" data-justify="flex-end">flex-end</button>
+                <button class="choice-btn" data-justify="space-between">space-between</button>
+                <button class="choice-btn" data-justify="space-around">space-around</button>
+              </div>
+            </div>
+
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Căn dọc (align-items):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-align="center">center</button>
+                <button class="choice-btn" data-align="flex-start">flex-start</button>
+                <button class="choice-btn" data-align="flex-end">flex-end</button>
+                <button class="choice-btn" data-align="stretch">stretch</button>
+              </div>
+            </div>
+
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Hướng xếp (flex-direction):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-direction="row">row (ngang)</button>
+                <button class="choice-btn" data-direction="column">column (dọc)</button>
+              </div>
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Khoảng cách (gap):</label>
+                <span id="labGapVal" class="control-val">16px</span>
+              </div>
+              <input type="range" id="labGapSlider" class="slider-input" min="0" max="40" value="16">
+            </div>
+
+          </div>
+
+          <div class="stage-column">
+            
+            <div class="visual-canvas">
+              <div id="labFlexContainer" class="flex-live-stage" style="width: 100%;">
+                <div class="flex-item-block">1</div>
+                <div class="flex-item-block">2</div>
+                <div class="flex-item-block">3</div>
+              </div>
+            </div>
+
+            <div class="code-output-card">
+              <div class="code-output-header">
+                <span>MÃ NGUỒN CSS BỐ CỤC:</span>
+              </div>
+              <pre class="code-output-body" id="flexCodeOutput"></pre>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODULE 3: JAVASCRIPT DOM STUDIO -->
+      <div class="lab-module-card">
+        <header class="lab-header">
+          <span class="lab-badge">Phần 3 • Tương Tác JavaScript</span>
+          <h2 class="lab-title">JavaScript DOM Tương Tác Studio</h2>
+          <p class="lab-desc">Bấm vào các nút hành động bên dưới để quan sát cách JavaScript thay đổi giao diện HTML & CSS theo thời gian thực.</p>
+        </header>
+
+        <div class="dom-interactive-board">
+          
+          <!-- Bảng nút bấm thao tác -->
+          <div class="dom-buttons-panel">
+            <button class="dom-action-btn" onclick="runDomAction('changeColor')">
+              <span>🎨 1. Đổi Màu Viền Ngẫu Nhiên</span>
+              <code>element.style.borderColor</code>
+            </button>
+
+            <button class="dom-action-btn" onclick="runDomAction('changeText')">
+              <span>✏️ 2. Đổi Nội Dung Chữ</span>
+              <code>element.textContent</code>
+            </button>
+
+            <button class="dom-action-btn" onclick="runDomAction('toggleShake')">
+              <span>📳 3. Thêm Class Rung Rinh</span>
+              <code>classList.toggle('shake')</code>
+            </button>
+
+            <button class="dom-action-btn" onclick="runDomAction('countUp')">
+              <span>➕ 4. Bộ Đếm Số Lượng (+1)</span>
+              <code>count++</code>
+            </button>
+          </div>
+
+          <!-- Khu vực phần tử bị tác động -->
+          <div class="dom-target-stage">
+            <div id="domTargetBox" class="dom-target-element">
+              <h3 id="domTargetTitle" style="margin-bottom: 8px;">Tôi là phần tử HTML</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Đang lắng nghe lệnh JavaScript</p>
+              <div style="font-size: 1.8rem; font-weight: 800; color: #10b981;" id="domTargetCount">0</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Khung giải thích dòng code JS vừa chạy -->
+        <div class="code-output-card" style="margin-top: 20px;">
+          <div class="code-output-header">
+            <span>DÒNG LỆNH JAVASCRIPT VỪA THỰC THI:</span>
+          </div>
+          <pre class="code-output-body" id="domCodeLog" style="color: #4ade80;">// Bấm một trong 4 nút ở trên để xem mã JavaScript tương ứng chạy tại đây...</pre>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 2: 💻 LIVE CODE PLAYGROUND (TỰ GÕ & THỬ NGHIỆM TRỰC TIẾP)             -->
+  <!-- ========================================================================= -->
+  <section id="tabPlayground" class="tab-view-content playground-section">
+    <div class="container">
+      
+      <div class="playground-card">
+        
+        <!-- Thanh công cụ Playground -->
+        <header class="playground-topbar">
+          <div class="template-selector-group">
+            <span style="font-weight: 700; font-size: 0.9rem;">Chọn bài mẫu:</span>
+            <select id="templateSelect" class="template-select">
+              <option value="profileCard">1. Thẻ Card Cá Nhân (HTML + CSS)</option>
+              <option value="neonButton">2. Nút Bấm Hiệu Ứng Neon Hover</option>
+              <option value="interactiveCounter">3. Bộ Đếm Số Tương Tác (HTML + CSS + JS)</option>
+            </select>
+          </div>
+
+          <div class="playground-actions">
+            <button id="btnResetCode" class="btn-pg btn-pg-reset">Tải Lại Mẫu</button>
+            <button id="btnRunCode" class="btn-pg btn-pg-run">Chạy Mã Code (Run) ⚡</button>
+          </div>
+        </header>
+
+        <!-- Khung chia đôi: Editor bên trái, Preview bên phải -->
+        <div class="playground-split">
+          
+          <!-- Cột Soạn Thảo Code (Editor) -->
+          <div class="editor-pane">
+            <div class="editor-tabs-bar">
+              <button class="editor-tab-btn active" data-lang="html">HTML</button>
+              <button class="editor-tab-btn" data-lang="css">CSS</button>
+              <button class="editor-tab-btn" data-lang="js">JavaScript</button>
+            </div>
+
+            <textarea id="editorHtml" class="code-textarea active" spellcheck="false" placeholder="Viết HTML tại đây..."></textarea>
+            <textarea id="editorCss" class="code-textarea" spellcheck="false" placeholder="Viết CSS tại đây..."></textarea>
+            <textarea id="editorJs" class="code-textarea" spellcheck="false" placeholder="Viết JavaScript tại đây..."></textarea>
+          </div>
+
+          <!-- Cột Xem Kết Quả Chạy (Live Preview) -->
+          <div class="preview-pane">
+            <iframe id="playgroundOutput" class="live-output-frame" title="Live Playground Output"></iframe>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 3: 📚 KHO BÀI TẬP THỰC CHIẾN (9 BÀI TẬP ĐỘC LẬP TỪ SỐ 0)             -->
+  <!-- ========================================================================= -->
+  <section id="tabExercises" class="tab-view-content">
+    
+    <!-- Thanh Bộ Lọc & Tìm Kiếm Bài Tập -->
+    <section class="controls-section">
+      <div class="container">
+        <div class="controls-card">
+          
+          <div class="filter-group">
+            <button class="level-filter-btn active" data-level="all">Tất cả bài tập (9)</button>
+            <button class="level-filter-btn" data-level="basic">🟢 Nhập môn & Cơ bản (3)</button>
+            <button class="level-filter-btn" data-level="medium">🟡 Trung cấp (2)</button>
+            <button class="level-filter-btn" data-level="advanced">🔴 Nâng cao JS (4)</button>
+          </div>
+
+          <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Tìm theo tên bài, Flexbox, LocalStorage..." autocomplete="off">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Lưới Hiển Thị Các Thẻ Bài Tập -->
+    <section class="exercises-section">
+      <div class="container">
+        <div id="exercisesGrid" class="exercises-grid">
+          <!-- Render động qua assets/js/hub-script.js -->
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ================= LIVE PREVIEW MODAL (DÀNH CHO BÀI TẬP) ================= -->
+  <div id="previewModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="preview-container">
+      
+      <div class="preview-toolbar">
+        <div class="preview-title-group">
+          <span class="preview-title" id="previewModalTitle">Bài Tập</span>
+          
+          <div class="mode-switcher">
+            <button id="modeSolutionBtn" class="mode-btn active">Lời Giải Chuẩn</button>
+            <button id="modeStarterBtn" class="mode-btn">Mã Khung (Starter)</button>
+          </div>
+        </div>
+
+        <div class="device-controls">
+          <button class="device-btn active" data-view="desktop" title="Màn hình Desktop">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </button>
+          <button class="device-btn" data-view="tablet" title="Màn hình Tablet (768px)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          </button>
+          <button class="device-btn" data-view="mobile" title="Màn hình Mobile (390px)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="toolbar-actions">
+          <a id="btnOpenNewTab" href="#" target="_blank" class="btn-open-tab" title="Mở trang trong tab riêng">
+            <span>Mở Tab Riêng</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button id="btnClosePreview" class="btn-close-modal" aria-label="Đóng">&times;</button>
+        </div>
+      </div>
+
+      <div class="frame-stage">
+        <iframe id="previewIframe" src="about:blank" class="preview-iframe" title="Exercise Preview"></iframe>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= README MODAL ================= -->
+  <div id="readmeModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="readme-modal-card">
+      <div class="readme-header">
+        <h3 id="readmeModalTitle" class="readme-title">Đề Bài Chi Tiết</h3>
+        <button id="btnCloseReadme" class="btn-close-modal" aria-label="Đóng">&times;</button>
+      </div>
+      <div id="readmeModalBody" class="readme-body"></div>
+    </div>
+  </div>
+
+  <!-- Script điều khiển -->
+  <script src="assets/js/hub-script.js"></script>
+</body>
+</html>

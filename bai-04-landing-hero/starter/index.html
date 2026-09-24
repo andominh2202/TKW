@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 04 - Landing Page Hero (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TODO 1: Xây dựng thanh điều hướng Header dính trên cùng -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevCraft</span>
+      </a>
+
+      <!-- Menu máy tính -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#features" class="nav-link">Tính năng</a>
+        <a href="#pricing" class="nav-link">Bảng giá</a>
+        <a href="#docs" class="nav-link">Tài liệu</a>
+        <a href="#about" class="nav-link">Về chúng tôi</a>
+      </nav>
+
+      <!-- Nút hành động bên phải -->
+      <div class="nav-actions">
+        <a href="#" class="btn btn-primary">Bắt Đầu Ngay</a>
+        <!-- Nút Menu 3 sọc cho mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TODO 2: Xây dựng khu vực Hero Section -->
+  <main class="hero-section">
+    <div class="hero-container">
+      
+      <!-- Cột trái: Văn bản & Nút bấm -->
+      <div class="hero-content">
+        <div class="hero-badge">🚀 Nền tảng thiết kế web thế hệ mới</div>
+        <h1 class="hero-title">
+          Xây dựng website chuẩn chất lượng <span class="gradient-text">nhanh gấp 5 lần</span>
+        </h1>
+        <p class="hero-desc">
+          Công cụ tối ưu dành riêng cho các lập trình viên hiện đại. Tích hợp sẵn bộ thành phần UI chuẩn SEO, đáp ứng mọi màn hình và dễ dàng mở rộng.
+        </p>
+        
+        <div class="hero-cta-group">
+          <a href="#" class="btn btn-primary btn-lg">Khám Phá Miễn Phí</a>
+          <a href="#" class="btn btn-secondary btn-lg">
+            <span>▶</span> Xem Video Demo
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="social-proof">
+          <p class="proof-text">Được tin dùng bởi hơn <strong>10.000+</strong> nhà phát triển web tại Việt Nam</p>
+        </div>
+      </div>
+
+      <!-- Cột phải: Khối hình ảnh / Mô phỏng cửa sổ Code -->
+      <div class="hero-visual">
+        <div class="mockup-window">
+          <div class="window-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="window-title">App.jsx</span>
+          </div>
+          <div class="window-body">
+            <pre><code><span class="code-keyword">import</span> { UI } <span class="code-keyword">from</span> <span class="code-string">'@devcraft/core'</span>;
+
+<span class="code-comment">// Tối ưu trải nghiệm lập trình viên</span>
+<span class="code-function">function</span> <span class="code-func-name">renderAwesomeWeb</span>() {
+  <span class="code-keyword">return</span> &lt;<span class="code-tag">MasterPiece</span> responsive=<span class="code-string">"true"</span> /&gt;;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Bật tắt menu trên điện thoại
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

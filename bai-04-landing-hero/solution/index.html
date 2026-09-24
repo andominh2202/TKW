@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 04 - Landing Page Hero (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Đốm sáng nền Neon phía sau (Background Glow) -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <!-- Header Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <span class="logo-text">DevCraft<span class="dot-accent">.</span></span>
+      </a>
+
+      <!-- Menu máy tính -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#features" class="nav-link active">Tính năng</a>
+        <a href="#showcase" class="nav-link">Dự án mẫu</a>
+        <a href="#pricing" class="nav-link">Bảng giá</a>
+        <a href="#docs" class="nav-link">Tài liệu</a>
+        <a href="#blog" class="nav-link">Bài viết</a>
+      </nav>
+
+      <!-- Nút hành động -->
+      <div class="nav-actions">
+        <a href="#login" class="nav-link-login">Đăng nhập</a>
+        <a href="#get-started" class="btn btn-primary">Bắt Đầu Ngay</a>
+        <!-- Nút Menu di động -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-container">
+      
+      <!-- Cột Nội Dung Bên Trái -->
+      <div class="hero-content">
+        
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          <span>DevCraft 2.0 Ra Mắt</span>
+          <span class="badge-arrow">→</span>
+        </div>
+
+        <h1 class="hero-title">
+          Kiến tạo trải nghiệm Web hiện đại <span class="gradient-text">đột phá & thần tốc</span>
+        </h1>
+
+        <p class="hero-desc">
+          Bộ công cụ và thành phần UI chuẩn SEO tối tân, giúp bạn xây dựng ứng dụng web mượt mà, tối ưu hiệu năng và thu hút khách hàng ngay từ giây đầu tiên.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#start" class="btn btn-primary btn-lg">
+            <span>Dùng Thử Miễn Phí 14 Ngày</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+          <button class="btn btn-secondary btn-lg" id="btnPlayDemo">
+            <span class="play-icon">▶</span>
+            <span>Xem Video Demo</span>
+          </button>
+        </div>
+
+        <!-- Social Proof & Review -->
+        <div class="social-proof">
+          <div class="avatar-stack">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="User 1" class="stack-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" alt="User 2" class="stack-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="User 3" class="stack-avatar">
+            <div class="stack-avatar plus">+5k</div>
+          </div>
+          <div class="proof-info">
+            <div class="stars">★★★★★</div>
+            <p class="proof-text">Được <strong>15.000+ lập trình viên</strong> đánh giá 4.9/5</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cột Mô Phỏng Card Giao Diện Bên Phải -->
+      <div class="hero-visual">
+        <div class="visual-wrapper">
+          
+          <!-- Thẻ trôi nổi: Hiệu năng -->
+          <div class="floating-badge badge-perf">
+            <div class="perf-icon">⚡</div>
+            <div>
+              <div class="perf-score">100/100</div>
+              <div class="perf-label">Google Lighthouse</div>
+            </div>
+          </div>
+
+          <!-- Thẻ trôi nổi: Tốc độ tải trang -->
+          <div class="floating-badge badge-speed">
+            <div class="speed-icon">🚀</div>
+            <div>
+              <div class="perf-score">0.28s</div>
+              <div class="perf-label">Thời gian tải trang</div>
+            </div>
+          </div>
+
+          <!-- Cửa sổ IDE Code Mockup -->
+          <div class="code-window">
+            <div class="window-header">
+              <div class="window-buttons">
+                <span class="btn-dot close"></span>
+                <span class="btn-dot minimize"></span>
+                <span class="btn-dot maximize"></span>
+              </div>
+              <span class="tab-title">HeroSection.tsx</span>
+              <span class="file-status">Đã biên dịch ✓</span>
+            </div>
+
+            <div class="window-code">
+              <pre><code><span class="token-import">import</span> { ModernApp, Theme } <span class="token-import">from</span> <span class="token-string">'@devcraft/ui'</span>;
+
+<span class="token-comment">// Khởi tạo trang web đỉnh cao với CSS3</span>
+<span class="token-keyword">export default function</span> <span class="token-func">WebMaster</span>() {
+  <span class="token-keyword">return</span> (
+    &lt;<span class="token-tag">ModernApp</span> 
+      theme=<span class="token-string">"dark-glass"</span>
+      performance=<span class="token-num">100</span>
+      responsive={<span class="token-keyword">true</span>}
+    &gt;
+      &lt;<span class="token-tag">StunningHero</span> title=<span class="token-string">"Thiết Kế Web Pro"</span> /&gt;
+    &lt;/<span class="token-tag">ModernApp</span>&gt;
+  );
+}</code></pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Xử lý nút mở menu trên mobile
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Cuộn trang làm mờ thanh menu
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Xem video demo
+    document.getElementById('btnPlayDemo').addEventListener('click', () => {
+      alert('Đang mở video giới thiệu DevCraft! (Mô phỏng popup video)');
+    });
+  </script>
+
+</body>
+</html>

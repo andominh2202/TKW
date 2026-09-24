@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 06 - Quiz Web App (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="quiz-container">
+    <div class="quiz-card">
+      
+      <!-- 1. Màn hình làm bài câu hỏi -->
+      <section id="quizScreen">
+        <!-- Header: Số câu và Đồng hồ đếm ngược -->
+        <header class="quiz-header">
+          <span id="questionCount" class="badge">Câu 1/5</span>
+          <div class="timer-box">
+            <span>⏱ Còn:</span>
+            <strong id="timerText">15s</strong>
+          </div>
+        </header>
+
+        <!-- Tiêu đề câu hỏi -->
+        <h2 id="questionTitle" class="question-title">Đang tải câu hỏi...</h2>
+
+        <!-- Danh sách các nút lựa chọn phương án -->
+        <div id="optionsContainer" class="options-grid">
+          <!-- JS sẽ tạo các nút button phương án vào đây -->
+        </div>
+
+        <!-- Nút sang câu tiếp theo -->
+        <footer class="quiz-footer">
+          <button id="nextBtn" class="btn-next hidden">Câu Tiếp Theo →</button>
+        </footer>
+      </section>
+
+      <!-- 2. Màn hình kết quả (ẩn ban đầu) -->
+      <section id="resultScreen" class="result-screen hidden">
+        <div class="result-icon">🏆</div>
+        <h2>Hoàn Thành Bài Thi!</h2>
+        <p class="score-text">Bạn đã đạt <span id="finalScore">0</span>/<span id="totalQuestions">5</span> điểm</p>
+        <p id="scoreFeedback" class="feedback-text">Cố gắng thêm nhé!</p>
+        <button id="restartBtn" class="btn-restart">Làm Lại Từ Đầu</button>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

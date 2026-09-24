@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 07 - Filter Gallery & Lightbox (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="gallery-wrapper">
+    <header class="gallery-header">
+      <h1 class="title">Bộ Sưu Tập Nhiếp Ảnh Nghệ Thuật</h1>
+      <p class="subtitle">Khám phá vẻ đẹp thế giới qua từng góc máy</p>
+
+      <!-- Các nút lọc danh mục -->
+      <div class="filter-controls">
+        <button class="filter-btn active" data-category="all">Tất cả</button>
+        <button class="filter-btn" data-category="nature">Thiên nhiên</button>
+        <button class="filter-btn" data-category="architecture">Kiến trúc</button>
+        <button class="filter-btn" data-category="tech">Công nghệ</button>
+      </div>
+    </header>
+
+    <!-- Lưới ảnh (Grid) -->
+    <div id="galleryGrid" class="gallery-grid">
+      <!-- Sẽ được hiển thị bởi JavaScript -->
+    </div>
+  </main>
+
+  <!-- Cửa sổ phóng to ảnh Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal hidden">
+    <button id="closeBtn" class="close-btn" aria-label="Đóng">&times;</button>
+    <button id="prevBtn" class="nav-btn prev-btn" aria-label="Ảnh trước">&#10094;</button>
+    
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Ảnh phóng to" class="lightbox-image">
+      <div class="lightbox-caption">
+        <h3 id="captionTitle">Tiêu đề ảnh</h3>
+        <p id="captionCategory">Danh mục</p>
+      </div>
+    </div>
+
+    <button id="nextBtn" class="nav-btn next-btn" aria-label="Ảnh tiếp theo">&#10095;</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

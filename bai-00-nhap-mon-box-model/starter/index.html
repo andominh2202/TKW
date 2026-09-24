@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 00 - Thực Hành Box Model, Margin & Padding (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="container">
+    
+    <header class="lesson-header">
+      <span class="badge">Bài Tập Khởi Động Số 00</span>
+      <h1>Làm Quen Thẻ, Bố Cục & Phân Biệt Margin vs Padding</h1>
+      <p class="desc">Hãy mở file <code>style.css</code> bên cạnh và làm theo các hướng dẫn <code>TODO:</code> để cảm nhận sự thay đổi ngay trên màn hình.</p>
+    </header>
+
+    <!-- PHẦN 1: THỬ NGHIỆM PADDING VÀ MARGIN TRỰC QUAN -->
+    <section class="demo-section">
+      <h2 class="section-title">1. Phân Biệt Padding (Đệm Trong) & Margin (Lề Ngoài)</h2>
+      <p class="section-hint">Hộp màu vàng là <strong>vùng đệm Padding</strong>, viền xanh là <strong>Border</strong>, vùng màu cam bên ngoài là <strong>Margin</strong>.</p>
+
+      <div class="sandbox-area">
+        
+        <!-- Hộp số 1 -->
+        <!-- TODO 1: Mở style.css chỉnh padding và margin cho .box-1 -->
+        <div class="my-box box-1">
+          <div class="box-content">
+            <strong>Hộp Số 1</strong>
+            <p>Chữ này nằm trong vùng Content. Padding sẽ làm cho hộp này phồng to ra.</p>
+          </div>
+        </div>
+
+        <!-- Hộp số 2 -->
+        <!-- TODO 2: Mở style.css chỉnh margin-top để hộp 2 bị hộp 1 đẩy xuống -->
+        <div class="my-box box-2">
+          <div class="box-content">
+            <strong>Hộp Số 2</strong>
+            <p>Hộp này nằm ngay dưới hộp 1. Khoảng cách giữa 2 hộp được tạo bởi Margin.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHẦN 2: THỰC HÀNH TẠO NÚT BẤM CHUẨN UI BẰNG PADDING -->
+    <section class="demo-section">
+      <h2 class="section-title">2. Tại Sao Nút Bấm Phải Dùng Padding?</h2>
+      <p class="section-hint">Nút xấu bên trái không có padding (chữ dính sát mép viền). Hãy làm cho nút bên phải đẹp lên bằng cách thêm padding!</p>
+
+      <div class="buttons-comparison">
+        
+        <!-- Nút chưa có padding (rất xấu, chữ dính viền) -->
+        <div class="btn-example">
+          <button class="btn-bad">Chưa có padding</button>
+          <small>❌ Chữ dính sát mép viền, khó bấm</small>
+        </div>
+
+        <!-- Nút cần thêm padding và bo tròn -->
+        <!-- TODO 3: Mở style.css chỉnh sửa class .btn-good -->
+        <div class="btn-example">
+          <button class="btn-good">Đã có Padding Chuẩn</button>
+          <small>✅ Thoáng đãng, êm mắt, dễ bấm trên điện thoại</small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHẦN 3: BỐ CỤC CĂN GIỮA BẰNG FLEXBOX -->
+    <section class="demo-section">
+      <h2 class="section-title">3. Bố Cục Thần Thánh: Căn Giữa Hoàn Hảo (Flexbox)</h2>
+      <p class="section-hint">Chỉ cần 3 dòng lệnh CSS trên thẻ cha, chiếc hộp bên dưới sẽ tự động nhảy vào chính giữa.</p>
+
+      <!-- Khung cha -->
+      <!-- TODO 4: Mở style.css thêm display: flex; justify-content: center; align-items: center cho .flex-parent -->
+      <div class="flex-parent">
+        <div class="flex-child">
+          🎯 Tôi được căn giữa hoàn hảo!
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

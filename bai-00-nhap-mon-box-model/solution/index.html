@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 00 - Tương Tác Trực Quan Box Model (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="container">
+    
+    <header class="lesson-header">
+      <span class="badge">Lời Giải Chuẩn & Phòng Thí Nghiệm</span>
+      <h1>Khám Phá Bản Chất Box Model, Margin & Padding</h1>
+      <p class="desc">Kéo các thanh trượt bên dưới để nhìn thấy tận mắt cách <strong>Padding</strong> làm phồng hộp và <strong>Margin</strong> đẩy các phần tử khác ra xa.</p>
+    </header>
+
+    <!-- PHÒNG THÍ NGHIỆM TRỰC QUAN TƯƠNG TÁC -->
+    <section class="demo-section">
+      <h2 class="section-title">1. Bảng Điều Khiển Thanh Trượt (Interactive Box Model)</h2>
+      
+      <!-- Bộ điều khiển Slider -->
+      <div class="controls-panel">
+        <div class="slider-control">
+          <label for="padSlider">
+            <strong>Padding (Đệm trong):</strong> <span id="padValue">24px</span>
+          </label>
+          <input type="range" id="padSlider" min="0" max="60" value="24">
+          <small>➔ Làm tăng khoảng cách từ ruột chữ tới đường viền xanh</small>
+        </div>
+
+        <div class="slider-control">
+          <label for="marSlider">
+            <strong>Margin (Lề dưới):</strong> <span id="marValue">24px</span>
+          </label>
+          <input type="range" id="marSlider" min="0" max="60" value="24">
+          <small>➔ Đẩy Hộp Số 2 lùi xa xuống bên dưới</small>
+        </div>
+      </div>
+
+      <!-- Khu vực hiển thị kết quả -->
+      <div class="sandbox-area">
+        
+        <!-- Hộp 1 -->
+        <div id="interactiveBox" class="my-box box-1">
+          <div class="box-content">
+            <strong>Hộp Số 1 (Đang điều khiển)</strong>
+            <p>Vùng màu vàng bao quanh chính là <strong>Padding</strong>. Viền xanh là <strong>Border</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Hộp 2 -->
+        <div class="my-box box-2">
+          <div class="box-content">
+            <strong>Hộp Số 2</strong>
+            <p>Vùng màu sọc cam ở giữa 2 hộp chính là khoảng cách <strong>Margin</strong> đẩy ra.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHẦN 2: NÚT BẤM CHUẨN UI/UX -->
+    <section class="demo-section">
+      <h2 class="section-title">2. So Sánh Nút Bấm Có Padding vs Không Có Padding</h2>
+      <div class="buttons-comparison">
+        <div class="btn-example">
+          <button class="btn-bad">Không có Padding</button>
+          <small>❌ Chữ dính viền, trông thô thiển</small>
+        </div>
+        <div class="btn-example">
+          <button class="btn-good">Có Padding (12px 24px) + Hover</button>
+          <small>✅ Cân đối, chuẩn hiện đại, có hover nổi lên</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: CĂN GIỮA VỚI FLEXBOX -->
+    <section class="demo-section">
+      <h2 class="section-title">3. Căn Giữa Bằng Flexbox</h2>
+      <p class="section-hint">Thẻ cha có: <code>display: flex; justify-content: center; align-items: center;</code></p>
+      <div class="flex-parent">
+        <div class="flex-child">
+          🎯 Căn chính giữa hoàn hảo không cần tính toán tọa độ!
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Logic thanh trượt tương tác thời gian thực
+    const padSlider = document.getElementById('padSlider');
+    const marSlider = document.getElementById('marSlider');
+    const padValue = document.getElementById('padValue');
+    const marValue = document.getElementById('marValue');
+    const interactiveBox = document.getElementById('interactiveBox');
+
+    padSlider.addEventListener('input', (e) => {
+      const val = e.target.value + 'px';
+      padValue.textContent = val;
+      interactiveBox.style.padding = val;
+    });
+
+    marSlider.addEventListener('input', (e) => {
+      const val = e.target.value + 'px';
+      marValue.textContent = val;
+      interactiveBox.style.marginBottom = val;
+    });
+  </script>
+
+</body>
+</html>

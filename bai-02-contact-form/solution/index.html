@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 02 - Modern Contact Form (Lời Giải Chuẩn)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="page-container">
+    <div class="form-card">
+      
+      <!-- Thông báo gửi thành công (ẩn mặc định) -->
+      <div id="successAlert" class="alert-success hidden">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <div>
+          <h4>Gửi thông điệp thành công!</h4>
+          <p>Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi qua email sớm nhất.</p>
+        </div>
+      </div>
+
+      <header class="form-header">
+        <div class="badge-pill">Liên hệ hợp tác</div>
+        <h1 class="form-title">Bắt Đầu Dự Án Của Bạn</h1>
+        <p class="form-desc">Hãy chia sẻ ý tưởng của bạn, đội ngũ chuyên gia của chúng tôi sẵn sàng đồng hành và hiện thực hóa mục tiêu.</p>
+      </header>
+
+      <form id="contactForm" class="contact-form" novalidate>
+        
+        <!-- Hàng Họ & Tên -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName" class="form-label">Họ & Tên đệm <span class="required-star">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nguyễn Văn" required>
+            </div>
+            <span class="error-msg" id="firstNameError">Vui lòng nhập họ đệm</span>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName" class="form-label">Tên <span class="required-star">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Anh" required>
+            </div>
+            <span class="error-msg" id="lastNameError">Vui lòng nhập tên</span>
+          </div>
+        </div>
+
+        <!-- Hàng Email & Số điện thoại -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email" class="form-label">Địa chỉ Email <span class="required-star">*</span></label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required>
+            </div>
+            <span class="error-msg" id="emailError">Email không đúng định dạng</span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="0987 654 321">
+            </div>
+          </div>
+        </div>
+
+        <!-- Chủ đề liên hệ -->
+        <div class="form-group">
+          <label for="service" class="form-label">Dịch vụ bạn đang tìm kiếm</label>
+          <div class="select-wrapper">
+            <select id="service" name="service" class="form-select">
+              <option value="web-dev">Thiết kế & Lập trình Website hiện đại</option>
+              <option value="ui-ux">Thiết kế Giao diện UI/UX Figma</option>
+              <option value="ecommerce">Phát triển Nền tảng Thương mại Điện tử</option>
+              <option value="consulting">Tư vấn Giải pháp Kỹ thuật & Tối ưu SEO</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Lời nhắn -->
+        <div class="form-group">
+          <label for="message" class="form-label">Chi tiết yêu cầu dự án <span class="required-star">*</span></label>
+          <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Hãy mô tả sơ lược về mục tiêu, ngân sách dự kiến hoặc thời hạn bạn mong muốn hoàn thành..." required></textarea>
+          <span class="error-msg" id="messageError">Vui lòng nhập nội dung tin nhắn</span>
+        </div>
+
+        <!-- Checkbox điều khoản -->
+        <div class="form-checkbox-container">
+          <label class="custom-checkbox-wrapper">
+            <input type="checkbox" id="termsCheck" required>
+            <span class="checkbox-box">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span class="checkbox-text">
+              Tôi xác nhận thông tin cung cấp là chính xác và đồng ý với <a href="#">Điều khoản bảo mật</a>.
+            </span>
+          </label>
+          <span class="error-msg" id="termsError">Vui lòng tích đồng ý điều khoản</span>
+        </div>
+
+        <!-- Nút Gửi -->
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span>Gửi Tin Nhắn Đi</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successAlert = document.getElementById('successAlert');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // Kiểm tra họ
+      const firstName = document.getElementById('firstName');
+      const firstNameError = document.getElementById('firstNameError');
+      if (!firstName.value.trim()) {
+        firstName.classList.add('invalid');
+        firstNameError.classList.add('visible');
+        isValid = false;
+      } else {
+        firstName.classList.remove('invalid');
+        firstNameError.classList.remove('visible');
+      }
+
+      // Kiểm tra tên
+      const lastName = document.getElementById('lastName');
+      const lastNameError = document.getElementById('lastNameError');
+      if (!lastName.value.trim()) {
+        lastName.classList.add('invalid');
+        lastNameError.classList.add('visible');
+        isValid = false;
+      } else {
+        lastName.classList.remove('invalid');
+        lastNameError.classList.remove('visible');
+      }
+
+      // Kiểm tra email
+      const email = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email.value.trim())) {
+        email.classList.add('invalid');
+        emailError.classList.add('visible');
+        isValid = false;
+      } else {
+        email.classList.remove('invalid');
+        emailError.classList.remove('visible');
+      }
+
+      // Kiểm tra message
+      const message = document.getElementById('message');
+      const messageError = document.getElementById('messageError');
+      if (!message.value.trim()) {
+        message.classList.add('invalid');
+        messageError.classList.add('visible');
+        isValid = false;
+      } else {
+        message.classList.remove('invalid');
+        messageError.classList.remove('visible');
+      }
+
+      // Kiểm tra checkbox
+      const termsCheck = document.getElementById('termsCheck');
+      const termsError = document.getElementById('termsError');
+      if (!termsCheck.checked) {
+        termsError.classList.add('visible');
+        isValid = false;
+      } else {
+        termsError.classList.remove('visible');
+      }
+
+      if (isValid) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Đang gửi...</span>';
+
+        setTimeout(() => {
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Gửi Tin Nhắn Đi</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`;
+          successAlert.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          setTimeout(() => {
+            successAlert.classList.add('hidden');
+          }, 5000);
+        }, 1000);
+      }
+    });
+  </script>
+
+</body>
+</html>

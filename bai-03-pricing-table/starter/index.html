@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 03 - Pricing Table (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="pricing-container">
+    
+    <!-- Tiêu đề trang -->
+    <header class="pricing-header">
+      <p class="subtitle">Bảng Giá Linh Hoạt</p>
+      <h1 class="title">Chọn Gói Dịch Vụ Phù Hợp</h1>
+      <p class="description">Dễ dàng nâng cấp hoặc hủy bất kỳ lúc nào. Không phí ẩn.</p>
+    </header>
+
+    <!-- TODO 1: Tạo lưới 3 cột chứa các thẻ giá (pricing cards) -->
+    <div class="pricing-grid">
+      
+      <!-- Card 1: Gói Cơ Bản -->
+      <div class="pricing-card">
+        <h2 class="plan-name">Cơ Bản (Starter)</h2>
+        <p class="plan-desc">Dành cho cá nhân bắt đầu xây dựng blog hoặc portfolio.</p>
+        <div class="price-box">
+          <span class="currency">₫</span>
+          <span class="amount">99.000</span>
+          <span class="period">/ tháng</span>
+        </div>
+        <ul class="features-list">
+          <li class="feature-item">1 Website chuẩn SEO</li>
+          <li class="feature-item">5GB Dung lượng lưu trữ SSD</li>
+          <li class="feature-item">Băng thông không giới hạn</li>
+          <li class="feature-item disabled">Tên miền miễn phí 1 năm</li>
+          <li class="feature-item disabled">Hỗ trợ kỹ thuật 24/7</li>
+        </ul>
+        <button class="btn btn-outline">Bắt Đầu Miễn Phí</button>
+      </div>
+
+      <!-- Card 2: Gói Chuyên Nghiệp (Khuyên dùng) -->
+      <!-- TODO 2: Thêm class .popular để làm nổi bật card này -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">Khuyên Dùng ★</div>
+        <h2 class="plan-name">Chuyên Nghiệp (Pro)</h2>
+        <p class="plan-desc">Lựa chọn lý tưởng cho các doanh nghiệp vừa và nhỏ.</p>
+        <div class="price-box">
+          <span class="currency">₫</span>
+          <span class="amount">249.000</span>
+          <span class="period">/ tháng</span>
+        </div>
+        <ul class="features-list">
+          <li class="feature-item">5 Websites chuẩn SEO</li>
+          <li class="feature-item">50GB Dung lượng NVMe tốc độ cao</li>
+          <li class="feature-item">Chứng chỉ bảo mật SSL miễn phí</li>
+          <li class="feature-item">Tên miền quốc tế miễn phí 1 năm</li>
+          <li class="feature-item">Hỗ trợ ưu tiên 24/7</li>
+        </ul>
+        <button class="btn btn-primary">Đăng Ký Gói Pro</button>
+      </div>
+
+      <!-- Card 3: Gói Doanh Nghiệp -->
+      <div class="pricing-card">
+        <h2 class="plan-name">Doanh Nghiệp (Enterprise)</h2>
+        <p class="plan-desc">Giải pháp tối đa hóa hiệu năng và bảo mật cấp cao.</p>
+        <div class="price-box">
+          <span class="currency">₫</span>
+          <span class="amount">699.000</span>
+          <span class="period">/ tháng</span>
+        </div>
+        <ul class="features-list">
+          <li class="feature-item">Không giới hạn Website</li>
+          <li class="feature-item">Dung lượng ổ cứng không giới hạn</li>
+          <li class="feature-item">IP Riêng & Sao lưu mỗi ngày</li>
+          <li class="feature-item">Tối ưu tốc độ chuyên sâu</li>
+          <li class="feature-item">Chuyên viên hỗ trợ riêng 1-1</li>
+        </ul>
+        <button class="btn btn-outline">Liên Hệ Tư Vấn</button>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

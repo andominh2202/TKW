@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 08 - Mini Shopping Cart (Starter)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Thanh điều hướng và nút Giỏ Hàng -->
+  <header class="shop-header">
+    <div class="header-container">
+      <a href="#" class="shop-logo">🛒 TechStore</a>
+      <button id="openCartBtn" class="cart-trigger-btn">
+        <span>Giỏ Hàng</span>
+        <span id="cartCountBadge" class="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Lưới danh sách sản phẩm -->
+  <main class="shop-main">
+    <div class="main-container">
+      <h1 class="page-title">Phụ Kiện Công Nghệ Bán Chạy</h1>
+      <div id="productGrid" class="product-grid">
+        <!-- Render bởi JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Ngăn kéo Giỏ Hàng (Slide-in Cart Drawer) -->
+  <div id="cartOverlay" class="cart-overlay hidden">
+    <div class="cart-drawer">
+      
+      <header class="drawer-header">
+        <h2>Giỏ Hàng Của Bạn</h2>
+        <button id="closeCartBtn" class="close-drawer-btn">&times;</button>
+      </header>
+
+      <!-- Danh sách món hàng trong giỏ -->
+      <div id="cartItemsList" class="drawer-body">
+        <!-- Render bởi JavaScript -->
+      </div>
+
+      <!-- Footer tính tiền -->
+      <footer class="drawer-footer">
+        <div class="coupon-box">
+          <input type="text" id="couponInput" placeholder="Mã giảm giá (ví dụ: GIAM10)">
+          <button id="applyCouponBtn" class="btn-coupon">Áp dụng</button>
+        </div>
+
+        <div class="price-summary">
+          <div class="summary-line">
+            <span>Tạm tính:</span>
+            <strong id="subtotalVal">0 ₫</strong>
+          </div>
+          <div class="summary-line discount-line">
+            <span>Giảm giá:</span>
+            <strong id="discountVal">0 ₫</strong>
+          </div>
+          <div class="summary-line total-line">
+            <span>Tổng cộng:</span>
+            <strong id="totalVal">0 ₫</strong>
+          </div>
+        </div>
+
+        <button id="checkoutBtn" class="btn-checkout">Thanh Toán Ngay</button>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

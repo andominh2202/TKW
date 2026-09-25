@@ -222,7 +222,7 @@ function renderFinalResults() {
   } else {
     trophyEmoji.textContent = '📚';
     rankTitle.textContent = 'Người Mới Bắt Đầu';
-    feedbackMessage.textContent = 'Đừng lo lắng! Hãy đọc tài liệu trong file HUONG_DAN_HOC.md và thử lại nhé!';
+    feedbackMessage.textContent = 'Đừng lo lắng! Hãy mở trang Bảng Tra Cứu (bang-tra-cuu.html) ôn lại và thử lại nhé!';
   }
 }
 

@@ -1,6 +1,8 @@
 # 📘 CẨM NANG HỌC & LUYỆN TẬP THIẾT KẾ WEB (TKW)
 ### HTML5 • CSS3 • JAVASCRIPT CĂN BẢN ĐẾN THỰC CHIẾN
 
+> 🌟 **GIAO DIỆN WEB TƯƠNG TÁC:** Mở trực tiếp trang web [bang-tra-cuu.html](bang-tra-cuu.html) để sử dụng **Bảng Tra Cứu Trực Quan** có tính năng tìm kiếm tức thời, sao chép code 1-chạm và thử nghiệm Flexbox/Grid sống động!
+
 Chào mừng bạn đến với bộ tài liệu và bài tập thực hành Thiết Kế Web! Tài liệu này giúp bạn định hình lộ trình, phương pháp học tập hiệu quả cùng các bảng tra cứu cú pháp quan trọng nhất.
 
 ---

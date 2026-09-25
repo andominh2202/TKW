@@ -178,22 +178,54 @@ volumeSlider.addEventListener('input', (e) => {
 // 5. PLAYLIST DRAWER
 function renderPlaylistItems() {
   if (!playlistList) return;
-  playlistList.innerHTML = playlist.map((track, i) => `
-    <li class="playlist-item ${i === currentTrackIndex ? 'active' : ''}" onclick="selectTrack(${i})">
-      <img src="${track.cover}" alt="Cover" class="pl-cover">
-      <div class="pl-info">
-        <span class="pl-title">${track.title}</span>
-        <span class="pl-artist">${track.artist}</span>
-      </div>
-      <span>${i === currentTrackIndex && isPlaying ? '🔊' : ''}</span>
-    </li>
-  `).join('');
+  playlistList.innerHTML = '';
+  playlist.forEach((track, i) => {
+    const li = document.createElement('li');
+    li.className = `playlist-item ${i === currentTrackIndex ? 'active' : ''}`;
+    li.setAttribute('data-index', i);
+
+    const img = document.createElement('img');
+    img.src = track.cover;
+    img.alt = `${track.title} Cover`;
+    img.className = 'pl-cover';
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'pl-info';
+
+    const titleSpan = document.createElement('span');
+    titleSpan.className = 'pl-title';
+    titleSpan.textContent = track.title;
+
+    const artistSpan = document.createElement('span');
+    artistSpan.className = 'pl-artist';
+    artistSpan.textContent = track.artist;
+
+    infoDiv.appendChild(titleSpan);
+    infoDiv.appendChild(artistSpan);
+
+    const statusSpan = document.createElement('span');
+    statusSpan.textContent = (i === currentTrackIndex && isPlaying) ? '🔊' : '';
+
+    li.appendChild(img);
+    li.appendChild(infoDiv);
+    li.appendChild(statusSpan);
+
+    playlistList.appendChild(li);
+  });
 }
 
-window.selectTrack = function(index) {
-  loadTrack(index);
-  playAudio();
-};
+// Event delegation thay vì inline onclick
+if (playlistList) {
+  playlistList.addEventListener('click', (e) => {
+    const item = e.target.closest('.playlist-item');
+    if (!item) return;
+    const index = Number(item.getAttribute('data-index'));
+    if (!isNaN(index)) {
+      loadTrack(index);
+      playAudio();
+    }
+  });
+}
 
 btnTogglePlaylist.addEventListener('click', () => {
   playlistDrawer.classList.toggle('hidden');
@@ -201,6 +233,13 @@ btnTogglePlaylist.addEventListener('click', () => {
 
 btnClosePlaylist.addEventListener('click', () => {
   playlistDrawer.classList.add('hidden');
+});
+
+// Đóng drawer khi nhấn phím Escape
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && playlistDrawer && !playlistDrawer.classList.contains('hidden')) {
+    playlistDrawer.classList.add('hidden');
+  }
 });
 
 // Khởi tạo ban đầu

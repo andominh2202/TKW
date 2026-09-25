@@ -33,10 +33,10 @@
 
           <!-- Mục 2: Dropdown Thường -->
           <li class="nav-item has-dropdown">
-            <a href="#" class="nav-link">
+            <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
               <span>Sản Phẩm</span>
-              <span class="arrow">▾</span>
-            </a>
+              <span class="arrow" aria-hidden="true">▾</span>
+            </button>
             <div class="dropdown-menu single-dropdown">
               <a href="#" class="dropdown-link">
                 <span class="item-icon">💻</span>
@@ -64,10 +64,10 @@
 
           <!-- Mục 3: MEGA MENU NHIỀU CỘT -->
           <li class="nav-item has-megamenu">
-            <a href="#" class="nav-link active">
+            <button class="nav-link dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
               <span>Khóa Học &amp; Đào Tạo</span>
-              <span class="arrow">▾</span>
-            </a>
+              <span class="arrow" aria-hidden="true">▾</span>
+            </button>
             
             <div class="dropdown-menu mega-menu-box">
               <div class="mega-grid">
@@ -136,7 +136,7 @@
       </div>
 
       <!-- Nút Hamburger Mobile -->
-      <button id="btnOpenDrawer" class="hamburger-btn" aria-label="Mở Menu Mobile">
+      <button id="btnOpenDrawer" class="hamburger-btn" aria-label="Mở Menu Mobile" aria-expanded="false" aria-controls="mobileDrawer">
         <span></span>
         <span></span>
         <span></span>
@@ -146,7 +146,7 @@
   </header>
 
   <!-- NGĂN KÉO OFFCANVAS DRAWER (TRÊN MOBILE) -->
-  <aside id="mobileDrawer" class="mobile-drawer">
+  <aside id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu điều hướng mobile">
     <div class="drawer-header">
       <div class="drawer-brand">
         <span class="brand-badge">⚡</span>
@@ -161,7 +161,7 @@
         
         <!-- Accordion Mobile 1 -->
         <li class="drawer-accordion">
-          <button class="accordion-trigger">
+          <button class="accordion-trigger" aria-expanded="false">
             <span>Sản Phẩm</span>
             <span class="acc-icon">+</span>
           </button>
@@ -174,7 +174,7 @@
 
         <!-- Accordion Mobile 2 -->
         <li class="drawer-accordion">
-          <button class="accordion-trigger active">
+          <button class="accordion-trigger active" aria-expanded="true">
             <span>Khóa Học</span>
             <span class="acc-icon">-</span>
           </button>

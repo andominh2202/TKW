@@ -200,16 +200,30 @@ if (btnToggleHistory) {
 
 function renderHistory(history) {
   if (!historyList) return;
-  if (history.length === 0) {
-    historyList.innerHTML = '<p class="empty-hist">Chưa có phép tính nào</p>';
+  historyList.innerHTML = '';
+  if (!history || history.length === 0) {
+    const emptyP = document.createElement('p');
+    emptyP.className = 'empty-hist';
+    emptyP.textContent = 'Chưa có phép tính nào';
+    historyList.appendChild(emptyP);
     return;
   }
-  historyList.innerHTML = history.slice(0, 10).map(item => `
-    <div class="history-item">
-      <div class="hist-exp">${item.expression} =</div>
-      <div class="hist-res">${item.result}</div>
-    </div>
-  `).join('');
+  history.slice(0, 10).forEach(item => {
+    const itemEl = document.createElement('div');
+    itemEl.className = 'history-item';
+
+    const expDiv = document.createElement('div');
+    expDiv.className = 'hist-exp';
+    expDiv.textContent = `${item.expression} =`;
+
+    const resDiv = document.createElement('div');
+    resDiv.className = 'hist-res';
+    resDiv.textContent = String(item.result);
+
+    itemEl.appendChild(expDiv);
+    itemEl.appendChild(resDiv);
+    historyList.appendChild(itemEl);
+  });
 }
 
 if (btnClearHistory) {

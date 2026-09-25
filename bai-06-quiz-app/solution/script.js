@@ -123,11 +123,17 @@ function displayQuestion() {
   q.options.forEach((optText, index) => {
     const item = document.createElement('button');
     item.className = 'option-item';
-    item.innerHTML = `
-      <span class="option-prefix">${prefixes[index]}</span>
-      <span class="option-text">${optText}</span>
-    `;
 
+    const prefixSpan = document.createElement('span');
+    prefixSpan.className = 'option-prefix';
+    prefixSpan.textContent = prefixes[index] || '';
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'option-text';
+    textSpan.textContent = optText;
+
+    item.appendChild(prefixSpan);
+    item.appendChild(textSpan);
     item.addEventListener('click', () => onSelectOption(index));
     optionsList.appendChild(item);
   });

@@ -100,12 +100,24 @@ body {
   padding: 10px 14px;
   border-radius: 8px;
   transition: all 0.2s ease;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
 }
 
 .nav-link:hover,
-.nav-link.active {
+.nav-link:focus-visible,
+.nav-link.active,
+.nav-item.is-open > .nav-link {
   color: white;
   background: rgba(255, 255, 255, 0.05);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .arrow {
@@ -113,7 +125,9 @@ body {
   transition: transform 0.2s ease;
 }
 
-.nav-item:hover .arrow {
+.nav-item:hover .arrow,
+.nav-item:focus-within .arrow,
+.nav-item.is-open .arrow {
   transform: rotate(180deg);
 }
 
@@ -134,8 +148,10 @@ body {
   z-index: 90;
 }
 
-/* Khi di chuột vào nav-item thì hiện menu */
-.nav-item:hover .dropdown-menu {
+/* Khi di chuột, focus hoặc mở bằng bàn phím thì hiện menu */
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu,
+.nav-item.is-open .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

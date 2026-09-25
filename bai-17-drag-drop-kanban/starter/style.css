@@ -1,0 +1,42 @@
+/* CSS Khung Starter Bài 17 */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #0b101b;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.column {
+  flex: 1;
+  background: #141c2e;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 400px;
+}
+
+.lane {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 300px;
+}
+
+.card {
+  background: #1c263c;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: grab;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card.dragging {
+  opacity: 0.4;
+}

@@ -1,0 +1,607 @@
+/* ==========================================================
+   BÀI 09: TRANG BÁO ĐIỆN TỬ SEMANTIC BLOG - STYLE CHUẨN MỰC
+   ========================================================== */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  --bg-page: #0b0f19;
+  --bg-card: #131b2e;
+  --bg-card-hover: #1e2942;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-active: #6366f1;
+  
+  --text-main: #f1f5f9;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent: #38bdf8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 1. Header Điều Hướng */
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+}
+
+.brand-logo {
+  font-size: 1.5rem;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--accent);
+}
+
+/* 2. Bố Cục Chính 2 Cột */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  padding: 48px 0 80px;
+}
+
+/* 3. Bài Viết Chính */
+.post-article {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.category-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.read-time {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.post-title {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.author-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 32px;
+}
+
+.author-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+}
+
+.author-name {
+  display: block;
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
+.post-dates {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+/* Figure & Captions */
+.post-figure {
+  margin: 0 0 32px 0;
+}
+
+.post-cover-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.post-caption {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Post Content */
+.post-body p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.lead-text {
+  font-size: 1.2rem !important;
+  color: #e2e8f0;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.post-section {
+  margin-top: 36px;
+}
+
+.post-section h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 16px 0 24px 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+}
+
+.feature-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.08);
+  color: #38bdf8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Blockquote */
+.post-quote {
+  background: rgba(99, 102, 241, 0.08);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+
+.post-quote p {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #e0e7ff;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.post-quote cite {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #a5b4fc;
+  font-style: normal;
+  display: block;
+}
+
+/* Podcast Widget */
+.podcast-section {
+  margin: 32px 0;
+}
+
+.podcast-card {
+  background: #182238;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.podcast-icon {
+  font-size: 2.2rem;
+  background: rgba(56, 189, 248, 0.1);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.podcast-details {
+  flex: 1;
+}
+
+.podcast-details h4 {
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.podcast-details p {
+  font-size: 0.85rem !important;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.native-audio {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* FAQ Details/Summary */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.faq-item {
+  background: #182238;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.faq-item[open] {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.faq-title {
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+  list-style: none; /* Ẩn mũi tên mặc định */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-title::-webkit-details-marker {
+  display: none;
+}
+
+.faq-title::after {
+  content: "▾";
+  font-size: 1.2rem;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-title::after {
+  transform: rotate(180deg);
+}
+
+.faq-content {
+  padding: 0 20px 20px 20px;
+  color: var(--text-body);
+  font-size: 0.95rem;
+}
+
+.faq-content p {
+  margin: 0;
+}
+
+/* Post Footer */
+.post-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.tag-pill {
+  background: rgba(255, 255, 255, 0.05);
+  color: #38bdf8;
+  padding: 4px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tag-pill:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+/* 4. Aside Sidebar */
+.post-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.widget-title {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.author-bio {
+  text-align: center;
+}
+
+.sidebar-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.sidebar-author-name {
+  color: var(--text-main);
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.sidebar-author-role {
+  color: #818cf8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.sidebar-bio-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.btn-follow {
+  width: 100%;
+  padding: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-follow:hover {
+  background: var(--primary-hover);
+}
+
+/* Related Posts */
+.related-list {
+  list-style: none;
+}
+
+.related-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.related-item:last-child {
+  border-bottom: none;
+}
+
+.related-num {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 800;
+  opacity: 0.8;
+}
+
+.related-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 4px;
+  transition: color 0.2s;
+}
+
+.related-link:hover {
+  color: var(--accent);
+}
+
+.related-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Newsletter */
+.newsletter-widget {
+  text-align: center;
+}
+
+.newsletter-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.newsletter-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.newsletter-input:focus {
+  border-color: var(--accent);
+}
+
+.newsletter-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.newsletter-btn:hover {
+  background: #0369a1;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 30px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  .post-article {
+    padding: 24px;
+  }
+  .post-title {
+    font-size: 1.7rem;
+  }
+  .site-nav ul {
+    display: none; /* Đơn giản hóa trên mobile cho bài tập semantic */
+  }
+}

@@ -1,0 +1,59 @@
+/* CSS Khung Starter Bài 10 */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 40px 20px;
+}
+
+.dashboard-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dashboard-header h1 {
+  color: #f8fafc;
+  margin-bottom: 8px;
+}
+
+/* TODO: Thiết lập cuộn khung bảng max-height và overflow */
+.table-responsive-container {
+  max-height: 350px;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.financial-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* TODO: Thiết lập Sticky Header: position: sticky; top: 0; */
+.financial-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #1e293b;
+  color: white;
+  padding: 14px 16px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.financial-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* TODO: Thêm màu xen kẽ nth-child(even) */
+.financial-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.financial-table tfoot th,
+.financial-table tfoot td {
+  background-color: #111a2d;
+  color: #38bdf8;
+  font-weight: bold;
+  padding: 14px 16px;
+}

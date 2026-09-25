@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 09: Trang Báo Điện Tử Đa Phương Tiện (HTML5 Semantic Blog)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header Điều Hướng -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand">
+        <span class="brand-logo">📰</span>
+        <span class="brand-name">TechChronicle</span>
+      </a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#" class="active">Công Nghệ</a></li>
+          <li><a href="#">Lập Trình Web</a></li>
+          <li><a href="#">Thiết Kế UI/UX</a></li>
+          <li><a href="#">Podcast</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Khung Thân Chính Bố Cục 2 Cột -->
+  <main class="container main-layout">
+    
+    <!-- Cột Bài Viết Chính -->
+    <article class="post-article">
+      <header class="post-header">
+        <div class="category-meta">
+          <span class="badge">Xu Hướng Web 2026</span>
+          <span class="read-time">⏱️ 6 phút đọc</span>
+        </div>
+        <h1 class="post-title">Kỷ Nguyên Thiết Kế Web Hiện Đại: Khi HTML5 Semantic Trở Lại Ngai Vàng</h1>
+        
+        <div class="author-bar">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Tác giả Minh Anh" class="author-avatar">
+          <div class="author-info">
+            <span class="author-name">Lê Minh Anh</span>
+            <div class="post-dates">
+              <span>Xuất bản: <time datetime="2026-09-25">25 Tháng 9, 2026</time></span>
+              <span class="dot">•</span>
+              <span>Cập nhật: <time datetime="2026-09-25T10:30">10:30 Hôm nay</time></span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Ảnh bìa và chú thích -->
+      <figure class="post-figure">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Màn hình lập trình web hiện đại" class="post-cover-img">
+        <figcaption class="post-caption">
+          <span>📷 Không gian làm việc lập trình viên Frontend hiện đại. Ảnh chụp bởi Markus Spiske trên Unsplash.</span>
+        </figcaption>
+      </figure>
+
+      <!-- Nội dung các section -->
+      <div class="post-body">
+        <p class="lead-text">
+          Trong nhiều năm qua, lập trình viên đã quá quen thuộc với việc tạo ra những trang web dày đặc các khối <code>&lt;div&gt;</code> vô tận. Tuy nhiên, với sự phát triển của công nghệ trợ năng và thuật toán tìm kiếm thế hệ mới, các thẻ ngữ nghĩa <strong>HTML5 Semantic</strong> đang khẳng định lại vị thế tối quan trọng của mình.
+        </p>
+
+        <section class="post-section">
+          <h2>1. Bản Chất Của Thẻ Ngữ Nghĩa (Semantic HTML)</h2>
+          <p>
+            Thẻ ngữ nghĩa là những thẻ mà chỉ cần đọc tên, cả con người lẫn máy tính (Search Engines, Screen Readers) đều hiểu ngay vai trò của nội dung bên trong nó:
+          </p>
+          <ul class="feature-list">
+            <li><code>&lt;article&gt;</code>: Đại diện cho một bài viết hoàn chỉnh, có tính độc lập cao.</li>
+            <li><code>&lt;aside&gt;</code>: Chứa nội dung phụ bổ trợ như thanh bên, gợi ý liên quan hoặc trích dẫn tác giả.</li>
+            <li><code>&lt;figure&gt;</code> &amp; <code>&lt;figcaption&gt;</code>: Ghép đôi hình ảnh hoặc sơ đồ với chú thích minh họa chuẩn mực.</li>
+            <li><code>&lt;time&gt;</code>: Cung cấp thời gian đọc được cho máy tính qua thuộc tính <code>datetime</code>.</li>
+          </ul>
+        </section>
+
+        <!-- Trích dẫn Blockquote -->
+        <blockquote class="post-quote">
+          <p>“Một trang web không chỉ để con người nhìn bằng mắt, mà còn để các thiết bị đọc bằng tai và thuật toán hiểu bằng cấu trúc dữ liệu.”</p>
+          <cite>— Tim Berners-Lee, Cha đẻ World Wide Web</cite>
+        </blockquote>
+
+        <!-- Trình phát âm thanh Podcast -->
+        <section class="podcast-section">
+          <div class="podcast-card">
+            <div class="podcast-icon">🎙️</div>
+            <div class="podcast-details">
+              <h4>Nghe Bản Thu Âm Podcast Bài Viết Này</h4>
+              <p>Thời lượng: 5 phút 20 giây • Giọng đọc AI tự nhiên</p>
+              <audio controls class="native-audio">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Trình duyệt của bạn không hỗ trợ phát âm thanh trực tiếp.
+              </audio>
+            </div>
+          </div>
+        </section>
+
+        <section class="post-section">
+          <h2>2. FAQ: Câu Hỏi Thường Gặp Về HTML Semantic</h2>
+          <p>Bấm vào từng câu hỏi dưới đây để mở xem câu trả lời (Được xây dựng 100% bằng thẻ native <code>&lt;details&gt;</code> và <code>&lt;summary&gt;</code> không cần 1 dòng JavaScript):</p>
+          
+          <div class="faq-container">
+            <details class="faq-item" open>
+              <summary class="faq-title">Dùng &lt;div&gt; thay vì &lt;section&gt; có làm hỏng giao diện không?</summary>
+              <div class="faq-content">
+                <p>Về mặt hình ảnh thì không, CSS vẫn có thể định dạng đẹp như nhau. Nhưng về mặt SEO (thứ hạng Google) và Trợ năng (Accessibility cho người khiếm thị), dùng &lt;div&gt; làm mất đi cấu trúc phân cấp tài liệu.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-title">Khi nào nên dùng &lt;article&gt; và khi nào dùng &lt;section&gt;?</summary>
+              <div class="faq-content">
+                <p><strong>&lt;article&gt;</strong> dùng khi khối nội dung đó có thể đứng độc lập (như một bài báo, một status Facebook, một thẻ sản phẩm). Còn <strong>&lt;section&gt;</strong> dùng để chia các chương, các phần mục con bên trong trang hoặc bên trong một bài viết lớn.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-title">Thẻ &lt;time&gt; có tác dụng gì trong thực tế?</summary>
+              <div class="faq-content">
+                <p>Nó cho phép máy tìm kiếm biết chính xác ngày giờ bài viết được cập nhật để hiển thị trên kết quả tìm kiếm Google (ví dụ: "Đăng 2 giờ trước").</p>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer bài viết: Tag & Share -->
+      <footer class="post-footer">
+        <div class="tags-group">
+          <span class="tag-label">Chủ đề liên quan:</span>
+          <a href="#" class="tag-pill">#HTML5</a>
+          <a href="#" class="tag-pill">#SemanticWeb</a>
+          <a href="#" class="tag-pill">#WebAccessibility</a>
+          <a href="#" class="tag-pill">#SEO</a>
+        </div>
+      </footer>
+    </article>
+
+    <!-- Thanh Bên (Aside Sidebar) -->
+    <aside class="post-sidebar">
+      
+      <!-- Box tác giả -->
+      <div class="sidebar-widget author-widget">
+        <h3 class="widget-title">Về Tác Giả</h3>
+        <div class="author-bio">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=140&q=80" alt="Avatar tác giả" class="sidebar-avatar">
+          <h4 class="sidebar-author-name">Lê Minh Anh</h4>
+          <p class="sidebar-author-role">Chuyên gia Frontend &amp; Web Standards</p>
+          <p class="sidebar-bio-text">Đam mê chia sẻ kiến thức thiết kế web chuẩn SEO, semantic và trải nghiệm người dùng tối ưu.</p>
+          <button class="btn-follow">Theo Dõi Tác Giả</button>
+        </div>
+      </div>
+
+      <!-- Box bài viết liên quan -->
+      <div class="sidebar-widget related-widget">
+        <h3 class="widget-title">Bài Viết Cùng Chuyên Mục</h3>
+        <ul class="related-list">
+          <li class="related-item">
+            <span class="related-num">01</span>
+            <div class="related-info">
+              <a href="#" class="related-link">Mô Hình Hộp Box Model: Giải Mã Padding vs Margin</a>
+              <time datetime="2026-09-20" class="related-time">20 Th9, 2026</time>
+            </div>
+          </li>
+          <li class="related-item">
+            <span class="related-num">02</span>
+            <div class="related-info">
+              <a href="#" class="related-link">Bố Cục Bảng Giá Đỉnh Cao Bằng CSS Grid 3 Cột</a>
+              <time datetime="2026-09-22" class="related-time">22 Th9, 2026</time>
+            </div>
+          </li>
+          <li class="related-item">
+            <span class="related-num">03</span>
+            <div class="related-info">
+              <a href="#" class="related-link">Tạo Hiệu Ứng Kính Mờ Glassmorphism Bằng CSS Mới Nhất</a>
+              <time datetime="2026-09-24" class="related-time">24 Th9, 2026</time>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Box Newsletter -->
+      <div class="sidebar-widget newsletter-widget">
+        <div class="newsletter-icon">📬</div>
+        <h3 class="widget-title">Đăng Ký Nhận Bản Tin</h3>
+        <p class="newsletter-sub">Nhận các bài viết chuyên sâu về thiết kế web mỗi tuần.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký!');">
+          <input type="email" placeholder="Nhập email của bạn..." required class="newsletter-input">
+          <button type="submit" class="newsletter-btn">Đăng Ký Ngay</button>
+        </form>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 TechChronicle. Lập trình bằng HTML5 Semantic chuẩn quốc tế.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

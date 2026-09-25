@@ -61,7 +61,7 @@
           <span>💻 2. Code Playground (Tự Gõ Thử)</span>
         </button>
         <button class="main-tab-btn" data-tab="tabExercises">
-          <span>📚 3. Kho 9 Bài Tập Thực Chiến</span>
+          <span>📚 3. Kho 19 Bài Tập Thực Chiến</span>
         </button>
       </div>
     </div>
@@ -78,7 +78,7 @@
         <span class="gradient-text">HTML5 • CSS3 • JavaScript</span>
       </h1>
       <p class="hero-desc">
-        Học từ bản chất: Kéo thanh trượt để hiểu Margin/Padding, đổi nút bấm để hiểu bố cục Flexbox, gõ code thử nghiệm và làm các bài tập từ cơ bản đến nâng cao.
+        Học từ bản chất: Kéo thanh trượt để hiểu Box Model, đổi bố cục Flexbox &amp; CSS Grid 2 chiều, thử nghiệm Animation &amp; Async/Await với các ví dụ trực quan sinh động.
       </p>
     </div>
   </header>
@@ -177,7 +177,7 @@
       <div class="lab-module-card">
         <header class="lab-header">
           <span class="lab-badge">Phần 2 • Bố Cục Hiện Đại</span>
-          <h2 class="lab-title">Flexbox Bố Cục Studio (Dàn Hàng & Căn Giữa)</h2>
+          <h2 class="lab-title">Flexbox Bố Cục Studio (Dàn Hàng &amp; Căn Giữa)</h2>
           <p class="lab-desc">Bấm vào các nút bấm để điều khiển cách các khối con sắp xếp, căn giữa hoặc chia đều khoảng cách.</p>
         </header>
 
@@ -251,7 +251,7 @@
         <header class="lab-header">
           <span class="lab-badge">Phần 3 • Tương Tác JavaScript</span>
           <h2 class="lab-title">JavaScript DOM Tương Tác Studio</h2>
-          <p class="lab-desc">Bấm vào các nút hành động bên dưới để quan sát cách JavaScript thay đổi giao diện HTML & CSS theo thời gian thực.</p>
+          <p class="lab-desc">Bấm vào các nút hành động bên dưới để quan sát cách JavaScript thay đổi giao diện HTML &amp; CSS theo thời gian thực.</p>
         </header>
 
         <div class="dom-interactive-board">
@@ -298,6 +298,170 @@
           <pre class="code-output-body" id="domCodeLog" style="color: #4ade80;">// Bấm một trong 4 nút ở trên để xem mã JavaScript tương ứng chạy tại đây...</pre>
         </div>
 
+      </div>
+
+      <!-- MODULE 4: CSS GRID 2D BỐ CỤC STUDIO (DÀNH CHO CHỦ ĐỀ KHÓ) -->
+      <div class="lab-module-card" id="labGridStudio">
+        <header class="lab-header">
+          <span class="lab-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">Phần 4 • CSS Grid 2 Chiều Trực Quan</span>
+          <h2 class="lab-title">CSS Grid 2D Studio (Chia Cột Đa Tầng)</h2>
+          <p class="lab-desc">Giải quyết bài toán bố cục 2 chiều phức tạp: Thử nghiệm các chế độ cột <code>1fr 1fr</code>, <code>repeat(3, 1fr)</code>, và <code>auto-fit minmax()</code>.</p>
+        </header>
+
+        <div class="interactive-studio-grid">
+          <div class="controls-column">
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Cấu trúc cột (grid-template-columns):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-grid-cols="repeat(3, 1fr)">3 Cột Đều (3fr)</button>
+                <button class="choice-btn" data-grid-cols="repeat(2, 1fr)">2 Cột Đều (2fr)</button>
+                <button class="choice-btn" data-grid-cols="1fr 2fr 1fr">Sidebar + Main</button>
+                <button class="choice-btn" data-grid-cols="repeat(auto-fit, minmax(120px, 1fr))">Auto-fit Minmax</button>
+              </div>
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Khoảng cách giữa các ô (gap):</label>
+                <span id="labGridGapVal" class="control-val">16px</span>
+              </div>
+              <input type="range" id="labGridGapSlider" class="slider-input" min="0" max="40" value="16">
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Số lượng ô phần tử con:</label>
+                <span id="labGridItemCountVal" class="control-val">6 ô</span>
+              </div>
+              <input type="range" id="labGridItemCountSlider" class="slider-input" min="3" max="9" value="6">
+            </div>
+          </div>
+
+          <div class="stage-column">
+            <div class="visual-canvas">
+              <div id="labGridContainer" class="grid-live-stage">
+                <div class="grid-item-cell">1</div>
+                <div class="grid-item-cell">2</div>
+                <div class="grid-item-cell">3</div>
+                <div class="grid-item-cell">4</div>
+                <div class="grid-item-cell">5</div>
+                <div class="grid-item-cell">6</div>
+              </div>
+            </div>
+
+            <div class="code-output-card">
+              <div class="code-output-header">
+                <span>MÃ NGUỒN CSS GRID:</span>
+              </div>
+              <pre class="code-output-body" id="gridCodeOutput"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 5: CSS ANIMATION & KEYFRAMES STUDIO -->
+      <div class="lab-module-card" id="labAnimStudio">
+        <header class="lab-header">
+          <span class="lab-badge" style="background: rgba(217, 70, 239, 0.2); color: #f472b6; border-color: rgba(217, 70, 239, 0.4);">Phần 5 • Chuyển Động &amp; Keyframes</span>
+          <h2 class="lab-title">CSS Animation &amp; Keyframes Studio</h2>
+          <p class="lab-desc">Trực quan hóa hoạt họa: Chọn kiểu chuyển động, kéo thanh trượt thời gian và quan sát từng khung hình.</p>
+        </header>
+
+        <div class="interactive-studio-grid">
+          <div class="controls-column">
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Kiểu hiệu ứng (@keyframes):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-anim="animBounce">Nhảy Bouncing</button>
+                <button class="choice-btn" data-anim="animPulse">Phát Sáng Pulse</button>
+                <button class="choice-btn" data-anim="animSpin">Xoay Tròn 360°</button>
+                <button class="choice-btn" data-anim="animFlip3D">Lật 3D Flip</button>
+              </div>
+            </div>
+
+            <div class="control-item">
+              <div class="control-header">
+                <label>Thời lượng chạy (animation-duration):</label>
+                <span id="labAnimDurVal" class="control-val">1.5s</span>
+              </div>
+              <input type="range" id="labAnimDurSlider" class="slider-input" min="0.3" max="4.0" step="0.1" value="1.5">
+            </div>
+
+            <div class="control-item">
+              <label style="font-weight: 700; margin-bottom: 4px;">Đường cong tốc độ (timing-function):</label>
+              <div class="flex-buttons-grid">
+                <button class="choice-btn active" data-timing="ease-in-out">ease-in-out</button>
+                <button class="choice-btn" data-timing="linear">linear (đều)</button>
+                <button class="choice-btn" data-timing="cubic-bezier(0.68, -0.55, 0.265, 1.55)">Nhún nhảy (Bouncy)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-column">
+            <div class="visual-canvas">
+              <div class="anim-live-stage">
+                <div id="animTargetElement" class="anim-target-element">🚀</div>
+              </div>
+            </div>
+
+            <div class="code-output-card">
+              <div class="code-output-header">
+                <span>MÃ NGUỒN CSS ANIMATION:</span>
+              </div>
+              <pre class="code-output-body" id="animCodeOutput"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 6: JAVASCRIPT ASYNC & FETCH SIMULATOR -->
+      <div class="lab-module-card" id="labAsyncStudio">
+        <header class="lab-header">
+          <span class="lab-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">Phần 6 • Bất Đồng Bộ Trong Thực Tế</span>
+          <h2 class="lab-title">JavaScript Async/Await &amp; Fetch API Simulator</h2>
+          <p class="lab-desc">Trực quan hóa luồng gọi mạng: Bấm nút để xem gói tin di chuyển từ Client đến Server, trạng thái <strong>Pending (Chờ)</strong> và trả lời <strong>Resolved / Rejected</strong>.</p>
+        </header>
+
+        <div class="async-simulator-stage">
+          <div class="async-pipeline">
+            <div class="async-node">
+              <h4>💻 Client (Browser)</h4>
+              <span>Giao diện người dùng</span>
+            </div>
+
+            <div class="async-wire">
+              <div id="asyncPacket" class="async-packet"></div>
+            </div>
+
+            <div class="async-node">
+              <h4>☁️ Cloud Server API</h4>
+              <span>Máy chủ dữ liệu</span>
+            </div>
+          </div>
+
+          <div class="async-status-bar">
+            <div>
+              <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 8px;">Trạng thái Promise:</span>
+              <span id="asyncStatePill" class="async-state-pill">IDLE (Sẵn sàng)</span>
+            </div>
+            
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <select id="asyncSimulationMode" style="background: #1e293b; color: white; border: 1px solid var(--border-glass); padding: 8px; border-radius: 6px; font-size: 0.85rem;">
+                <option value="success">Giả lập: Thành công (200 OK)</option>
+                <option value="error">Giả lập: Lỗi mạng (500 Error)</option>
+              </select>
+
+              <button id="btnTriggerAsync" class="btn-async-trigger">Gửi Request fetch() ⚡</button>
+            </div>
+          </div>
+
+          <div class="code-output-card" style="margin-top: 16px;">
+            <div class="code-output-header">
+              <span>CONSOLE &amp; DỮ LIỆU JSON PHẢN HỒI:</span>
+            </div>
+            <pre class="code-output-body" id="asyncConsoleLog" style="color: #38bdf8;">// Bấm nút "Gửi Request fetch()" ở trên để quan sát luồng Async/Await chạy thời gian thực...</pre>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -357,7 +521,7 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- TAB 3: 📚 KHO BÀI TẬP THỰC CHIẾN (9 BÀI TẬP ĐỘC LẬP TỪ SỐ 0)             -->
+  <!-- TAB 3: 📚 KHO BÀI TẬP THỰC CHIẾN (19 BÀI TẬP ĐỘC LẬP TỪ SỐ 0 ĐẾN NÂNG CAO)-->
   <!-- ========================================================================= -->
   <section id="tabExercises" class="tab-view-content">
     
@@ -366,11 +530,12 @@
       <div class="container">
         <div class="controls-card">
           
+          <!-- Hàng 1: Lọc theo Cấp Độ -->
           <div class="filter-group">
-            <button class="level-filter-btn active" data-level="all">Tất cả bài tập (9)</button>
-            <button class="level-filter-btn" data-level="basic">🟢 Nhập môn & Cơ bản (3)</button>
-            <button class="level-filter-btn" data-level="medium">🟡 Trung cấp (2)</button>
-            <button class="level-filter-btn" data-level="advanced">🔴 Nâng cao JS (4)</button>
+            <button class="level-filter-btn active" data-level="all">Tất cả cấp độ (19)</button>
+            <button class="level-filter-btn" data-level="basic">🟢 Nhập môn &amp; Cơ bản (5)</button>
+            <button class="level-filter-btn" data-level="medium">🟡 Trung cấp (5)</button>
+            <button class="level-filter-btn" data-level="advanced">🔴 Nâng cao (9)</button>
           </div>
 
           <div class="search-box">
@@ -378,10 +543,20 @@
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="searchInput" class="search-input" placeholder="Tìm theo tên bài, Flexbox, LocalStorage..." autocomplete="off">
+            <input type="text" id="searchInput" class="search-input" placeholder="Tìm theo tên bài, HTML, CSS Grid, Async API..." autocomplete="off">
           </div>
 
         </div>
+
+        <!-- Hàng 2: Lọc theo Môn Học -->
+        <div class="sub-filter-row" style="margin-top: 14px; padding: 0 4px;">
+          <span class="sub-filter-label">📚 Lọc theo môn học:</span>
+          <button class="tech-filter-btn active" data-tech="all">🌐 Tất cả môn (19)</button>
+          <button class="tech-filter-btn" data-tech="html">📄 HTML (5)</button>
+          <button class="tech-filter-btn" data-tech="css">🎨 CSS (7)</button>
+          <button class="tech-filter-btn" data-tech="js">⚡ JavaScript (9)</button>
+        </div>
+
       </div>
     </section>
 

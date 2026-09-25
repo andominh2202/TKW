@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 17: Kanban Kéo Thả</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header style="padding: 20px; text-align: center;">
+    <h1>Thực Hành HTML5 Drag & Drop Kanban</h1>
+    <p>Kéo thẻ công việc từ cột này sang cột khác</p>
+  </header>
+
+  <div class="board">
+    <!-- Cột 1 -->
+    <div class="column" id="colTodo">
+      <h3>Cần Làm</h3>
+      <div class="lane">
+        <!-- Thẻ kéo được cần có draggable="true" -->
+        <div class="card" draggable="true" id="c1">Công việc số 1</div>
+        <div class="card" draggable="true" id="c2">Công việc số 2</div>
+      </div>
+    </div>
+
+    <!-- Cột 2 -->
+    <div class="column" id="colDone">
+      <h3>Hoàn Thành</h3>
+      <div class="lane">
+        <div class="card" draggable="true" id="c3">Công việc số 3</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

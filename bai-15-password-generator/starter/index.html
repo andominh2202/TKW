@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 15: Trình Tạo Mật Khẩu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="card">
+    <h2>Trình Tạo Mật Khẩu</h2>
+    
+    <!-- Ô xuất mật khẩu -->
+    <div class="output-group">
+      <input type="text" id="pwdOutput" readonly placeholder="Mật khẩu...">
+      <button id="btnCopy">Copy</button>
+    </div>
+
+    <!-- Tùy chọn -->
+    <div class="options">
+      <div>
+        <label>Độ dài: <span id="lenVal">12</span></label>
+        <input type="range" id="lenSlider" min="6" max="24" value="12">
+      </div>
+      <div>
+        <input type="checkbox" id="chkUpper" checked>
+        <label for="chkUpper">Chữ hoa (A-Z)</label>
+      </div>
+      <div>
+        <input type="checkbox" id="chkLower" checked>
+        <label for="chkLower">Chữ thường (a-z)</label>
+      </div>
+      <div>
+        <input type="checkbox" id="chkNumbers" checked>
+        <label for="chkNumbers">Chữ số (0-9)</label>
+      </div>
+    </div>
+
+    <button id="btnGen" class="btn-gen">Tạo Mật Khẩu</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

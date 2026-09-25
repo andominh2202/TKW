@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 11: Hệ Thống Dark & Light Theme với CSS Variables</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Thanh Điều Hướng Có Nút Đổi Theme -->
+  <header class="app-header">
+    <div class="container nav-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Lumina<span class="logo-sub">UI</span></span>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Nút Switch Theme -->
+        <button id="themeToggleBtn" class="theme-switch-btn" aria-label="Đổi giao diện sáng/tối" title="Chuyển chế độ giao diện">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+          <span id="themeLabelText" class="theme-label">Giao diện: Tối</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Thân Trang Dashboard Trình Diễn Theme -->
+  <main class="container main-content">
+    
+    <div class="hero-card">
+      <div class="hero-badge">
+        <span>CSS Variables &amp; LocalStorage</span>
+      </div>
+      <h1 class="hero-title">Trải Nghiệm Hệ Thống Giao Diện Sáng / Tối Mượt Mà</h1>
+      <p class="hero-desc">
+        Toàn bộ màu nền, văn bản, độ bóng và đường viền được điều khiển bởi <code>CSS Custom Properties (:root)</code>. Nhấp vào nút ở góc trên để thấy sự chuyển đổi màu sắc êm ái mà không bị giật lag.
+      </p>
+    </div>
+
+    <!-- Lưới Card minh họa -->
+    <div class="cards-grid">
+      
+      <div class="feature-card">
+        <div class="card-icon blue">🎨</div>
+        <h3>CSS Custom Properties</h3>
+        <p>Khai báo <code>--bg-primary</code>, <code>--text-primary</code> ở <code>:root</code> và ghi đè lại trong bộ chọn <code>[data-theme="dark"]</code>.</p>
+        <div class="code-chip">var(--bg-card)</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-icon green">💾</div>
+        <h3>Ghi Nhớ LocalStorage</h3>
+        <p>Lưu trạng thái vào trình duyệt để khi người dùng tải lại trang hoặc mở tab mới, giao diện vẫn giữ nguyên lựa chọn yêu thích.</p>
+        <div class="code-chip">localStorage.setItem()</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-icon purple">🌓</div>
+        <h3>Tự Động Theo Hệ Thống</h3>
+        <p>Hỗ trợ kiểm tra <code>prefers-color-scheme</code> để tự động chuyển sang Dark Mode nếu máy tính người dùng đang bật Dark Mode.</p>
+        <div class="code-chip">window.matchMedia()</div>
+      </div>
+
+    </div>
+
+    <!-- Khung xem trước các biến CSS đang hoạt động -->
+    <div class="inspect-box">
+      <h3>🔍 Thông Số Biến CSS Hiện Tại:</h3>
+      <div class="token-row">
+        <span>Màu Nền (--bg-primary):</span>
+        <code id="tokenBg">#0b0f19</code>
+      </div>
+      <div class="token-row">
+        <span>Màu Card (--bg-card):</span>
+        <code id="tokenCard">#131b2e</code>
+      </div>
+      <div class="token-row">
+        <span>Màu Chữ (--text-primary):</span>
+        <code id="tokenText">#f8fafc</code>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

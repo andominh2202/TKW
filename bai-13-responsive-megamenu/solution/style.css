@@ -1,0 +1,517 @@
+/* ==========================================================
+   BÀI 13: RESPONSIVE MEGA MENU & OFFCANVAS MOBILE DRAWER
+   ========================================================== */
+
+:root {
+  --bg-page: #0b0f19;
+  --bg-nav: rgba(11, 15, 25, 0.95);
+  --bg-dropdown: #131b2e;
+  --bg-hover: #1c263f;
+  --border-nav: rgba(255, 255, 255, 0.08);
+  
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --cyan: #38bdf8;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 1. Header & Main Navbar */
+.main-navbar {
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border-nav);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 80;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.brand-badge {
+  background: var(--primary);
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: block;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.arrow {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover .arrow {
+  transform: rotate(180deg);
+}
+
+/* 2. Dropdown Chung */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-dropdown);
+  border: 1px solid var(--border-nav);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  pointer-events: none;
+  z-index: 90;
+}
+
+/* Khi di chuột vào nav-item thì hiện menu */
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Dropdown Đơn */
+.single-dropdown {
+  width: 290px;
+  padding: 10px;
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.dropdown-link:hover {
+  background: var(--bg-hover);
+}
+
+.item-icon {
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.dropdown-link strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.dropdown-link small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: block;
+}
+
+/* 3. MEGA MENU NHIỀU CỘT */
+.has-megamenu {
+  position: static; /* Để megamenu căn theo .nav-inner */
+}
+
+.mega-menu-box {
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 28px;
+  margin-top: 10px;
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 280px;
+  gap: 32px;
+}
+
+.mega-col-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-nav);
+}
+
+.mega-item {
+  display: block;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: background 0.2s;
+}
+
+.mega-item:hover {
+  background: var(--bg-hover);
+}
+
+.mega-item strong {
+  display: block;
+  color: white;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.mega-item span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.mega-promo-card {
+  background: linear-gradient(145deg, #1e1b4b, #111827);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.promo-tag {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.mega-promo-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.mega-promo-card p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.btn-promo {
+  width: 100%;
+  padding: 8px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* CTA buttons */
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-login {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.btn-login:hover {
+  color: white;
+}
+
+.btn-signup {
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.btn-signup:hover {
+  background: var(--primary-hover);
+}
+
+.btn-signup.full {
+  display: block;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger-btn span {
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* 4. OFFCANVAS DRAWER & BACKDROP */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: #101626;
+  border-right: 1px solid var(--border-nav);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-drawer.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-nav);
+}
+
+.drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.btn-close-drawer {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.drawer-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.drawer-menu-list {
+  list-style: none;
+}
+
+.drawer-link {
+  display: block;
+  padding: 12px 0;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.acc-icon {
+  font-size: 1.2rem;
+  color: var(--cyan);
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px 0 10px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 6px 0;
+}
+
+.accordion-content.open {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordion-content a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 6px 0;
+}
+
+.accordion-content a:hover {
+  color: white;
+}
+
+.drawer-cta {
+  margin-top: 30px;
+}
+
+/* Page Demo */
+.page-content {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero-demo-box {
+  background: #131b2e;
+  border: 1px solid var(--border-nav);
+  border-radius: 20px;
+  padding: 60px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pill-note {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--cyan);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.hero-demo-box h1 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.hero-demo-box p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* 5. RESPONSIVE BREAKPOINT < 880px */
+@media (max-width: 880px) {
+  .desktop-nav,
+  .nav-cta-group {
+    display: none;
+  }
+  .hamburger-btn {
+    display: flex;
+  }
+}

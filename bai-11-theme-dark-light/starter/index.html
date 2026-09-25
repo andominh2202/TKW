@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 11: Dark & Light Theme</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="container nav-content">
+      <h2>LuminaUI</h2>
+      <!-- Nút đổi theme -->
+      <button id="themeToggleBtn" class="theme-switch-btn">
+        <span id="themeLabelText">Đổi Giao Diện 🌓</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="hero-card">
+      <h1>Thực Hành CSS Variables & LocalStorage</h1>
+      <p>Bấm nút trên thanh điều hướng để đổi màu nền và màu chữ toàn trang.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="feature-card">
+        <h3>Thẻ Thông Tin 1</h3>
+        <p>Sử dụng biến CSS var(--bg-card) để màu thẻ tự động chuyển đổi theo theme.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Thẻ Thông Tin 2</h3>
+        <p>Sử dụng biến CSS var(--text-primary) cho tiêu đề để đảm bảo độ tương phản.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

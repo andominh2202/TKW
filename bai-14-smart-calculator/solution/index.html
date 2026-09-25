@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 14: Máy Tính Cầm Tay Thông Minh (Smart Calculator)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="calculator-app">
+    
+    <!-- Khung Máy Tính -->
+    <div class="calculator-card">
+      
+      <!-- Thanh Topbar -->
+      <div class="calc-topbar">
+        <span class="calc-brand">CALC-99 PRO</span>
+        <button id="btnToggleHistory" class="btn-history-toggle" title="Xem lịch sử tính toán">⏱️ Lịch sử</button>
+      </div>
+
+      <!-- Màn Hình Hiển Thị -->
+      <div class="calc-screen">
+        <div id="prevOperand" class="screen-previous"></div>
+        <div id="currOperand" class="screen-current">0</div>
+      </div>
+
+      <!-- Bàn Phím Số 4 Cột -->
+      <div class="keypad-grid">
+        <button class="key-btn action-key" data-action="all-clear">AC</button>
+        <button class="key-btn action-key" data-action="delete">⌫</button>
+        <button class="key-btn action-key" data-action="percent">%</button>
+        <button class="key-btn op-key" data-op="÷">÷</button>
+
+        <button class="key-btn num-key" data-num="7">7</button>
+        <button class="key-btn num-key" data-num="8">8</button>
+        <button class="key-btn num-key" data-num="9">9</button>
+        <button class="key-btn op-key" data-op="×">×</button>
+
+        <button class="key-btn num-key" data-num="4">4</button>
+        <button class="key-btn num-key" data-num="5">5</button>
+        <button class="key-btn num-key" data-num="6">6</button>
+        <button class="key-btn op-key" data-op="-">-</button>
+
+        <button class="key-btn num-key" data-num="1">1</button>
+        <button class="key-btn num-key" data-num="2">2</button>
+        <button class="key-btn num-key" data-num="3">3</button>
+        <button class="key-btn op-key" data-op="+">+</button>
+
+        <button class="key-btn num-key" data-action="toggle-sign">±</button>
+        <button class="key-btn num-key" data-num="0">0</button>
+        <button class="key-btn num-key" data-num=".">.</button>
+        <button class="key-btn equals-key" data-action="calculate">=</button>
+      </div>
+
+    </div>
+
+    <!-- Ngăn Kéo Lịch Sử Tính Toán -->
+    <div id="historyDrawer" class="history-card hidden">
+      <div class="history-header">
+        <h3>Lịch Sử Phép Tính</h3>
+        <button id="btnClearHistory" class="btn-clear-hist">Xóa</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <p class="empty-hist">Chưa có phép tính nào</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="keyboard-guide">
+    <span>💡 <strong>Mẹo:</strong> Bạn có thể dùng trực tiếp bàn phím máy tính (Các số 0-9, +, -, *, /, Enter, Backspace, Esc).</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

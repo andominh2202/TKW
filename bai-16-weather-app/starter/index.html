@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 16: Ứng Dụng Thời Tiết API</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="weather-box">
+    <h1>Ứng Dụng Thời Tiết Async/Await</h1>
+    
+    <!-- Form tìm kiếm -->
+    <div class="search-row">
+      <input type="text" id="cityInput" placeholder="Nhập tên thành phố (vd: Hanoi)...">
+      <button id="btnSearch">Tìm</button>
+    </div>
+
+    <!-- Thông báo đang tải -->
+    <div id="loading" class="hidden">Đang tải dữ liệu từ API...</div>
+
+    <!-- Thẻ kết quả -->
+    <div id="resultCard" class="card">
+      <h2 id="cityName">Hà Nội</h2>
+      <div class="temp"><span id="tempVal">28</span>°C</div>
+      <p id="condition">Trời quang đãng</p>
+      <p>Sức gió: <span id="windVal">10</span> km/h</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

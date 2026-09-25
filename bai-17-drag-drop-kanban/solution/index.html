@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 17: Bảng Quản Lý Công Việc Kanban Kéo Thả (HTML5 Drag & Drop)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="kanban-app">
+    
+    <!-- Topbar Bảng Dự Án -->
+    <header class="kanban-topbar">
+      <div class="project-info">
+        <span class="project-badge">⚡ Sprint 24</span>
+        <h1 class="project-title">Bảng Công Việc Dự Án Frontend 2026</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <button id="btnQuickAdd" class="btn-new-task">+ Tạo Thẻ Mới</button>
+      </div>
+    </header>
+
+    <!-- Hướng dẫn tương tác -->
+    <div class="instruction-banner">
+      <span>🖱️ <strong>Kéo &amp; Thả:</strong> Bấm giữ chuột vào một thẻ bất kỳ và kéo sang các cột khác để cập nhật trạng thái. Dữ liệu tự động lưu vào LocalStorage.</span>
+    </div>
+
+    <!-- KHUNG 3 CỘT KANBAN -->
+    <main class="kanban-board">
+      
+      <!-- CỘT 1: CẦN LÀM (TO DO) -->
+      <div class="kanban-column" data-status="todo">
+        <div class="column-header">
+          <div class="col-title-wrap">
+            <span class="status-dot dot-todo"></span>
+            <h3>Cần Thực Hiện</h3>
+          </div>
+          <span class="card-count" id="countTodo">2</span>
+        </div>
+
+        <div class="cards-lane" id="laneTodo">
+          <!-- Card 1 -->
+          <div class="kanban-card" draggable="true" id="card-1">
+            <div class="card-tags">
+              <span class="tag tag-design">UI Design</span>
+              <span class="priority high">Cao</span>
+            </div>
+            <h4 class="card-title">Thiết kế mẫu màu Dark Mode cho Landing Page</h4>
+            <p class="card-desc">Tạo bộ biến CSS Custom Properties :root đồng bộ toàn trang.</p>
+            <div class="card-footer">
+              <div class="assignee">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Avatar">
+                <span>Minh Anh</span>
+              </div>
+              <span class="due-date">📅 28 Th9</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="kanban-card" draggable="true" id="card-2">
+            <div class="card-tags">
+              <span class="tag tag-frontend">Frontend</span>
+              <span class="priority medium">Vừa</span>
+            </div>
+            <h4 class="card-title">Viết bài học Semantic Blog với thẻ &lt;article&gt;</h4>
+            <p class="card-desc">Bổ sung thẻ audio podcast và details/summary cho mục FAQ.</p>
+            <div class="card-footer">
+              <div class="assignee">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" alt="Avatar">
+                <span>Tuấn Kiệt</span>
+              </div>
+              <span class="due-date">📅 30 Th9</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-add-card" onclick="openAddTaskModal('todo')">+ Thêm công việc...</button>
+      </div>
+
+      <!-- CỘT 2: ĐANG THỰC HIỆN (IN PROGRESS) -->
+      <div class="kanban-column" data-status="inprogress">
+        <div class="column-header">
+          <div class="col-title-wrap">
+            <span class="status-dot dot-progress"></span>
+            <h3>Đang Thực Hiện</h3>
+          </div>
+          <span class="card-count" id="countProgress">1</span>
+        </div>
+
+        <div class="cards-lane" id="laneProgress">
+          <!-- Card 3 -->
+          <div class="kanban-card" draggable="true" id="card-3">
+            <div class="card-tags">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="priority high">Gấp</span>
+            </div>
+            <h4 class="card-title">Tích hợp Open-Meteo API cho App Thời Tiết</h4>
+            <p class="card-desc">Xử lý async/await, khối try catch và màn hình loading spinner.</p>
+            <div class="card-footer">
+              <div class="assignee">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Avatar">
+                <span>Hoàng Yến</span>
+              </div>
+              <span class="due-date text-urgent">🔥 Hôm nay</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-add-card" onclick="openAddTaskModal('inprogress')">+ Thêm công việc...</button>
+      </div>
+
+      <!-- CỘT 3: HOÀN THÀNH (DONE) -->
+      <div class="kanban-column" data-status="done">
+        <div class="column-header">
+          <div class="col-title-wrap">
+            <span class="status-dot dot-done"></span>
+            <h3>Đã Hoàn Thành</h3>
+          </div>
+          <span class="card-count" id="countDone">1</span>
+        </div>
+
+        <div class="cards-lane" id="laneDone">
+          <!-- Card 4 -->
+          <div class="kanban-card" draggable="true" id="card-4">
+            <div class="card-tags">
+              <span class="tag tag-css">CSS Grid</span>
+              <span class="priority low">Thấp</span>
+            </div>
+            <h4 class="card-title">Xây dựng Bảng Doanh Thu Tài Chính</h4>
+            <p class="card-desc">Hoàn tất Sticky table header và cuộn ngang responsive trên di động.</p>
+            <div class="card-footer">
+              <div class="assignee">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt="Avatar">
+                <span>Bảo Long</span>
+              </div>
+              <span class="due-date text-done">✅ Đã duyệt</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-add-card" onclick="openAddTaskModal('done')">+ Thêm công việc...</button>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Modal Thêm Thẻ Mới -->
+  <div id="addModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Thêm Thẻ Công Việc Mới</h3>
+        <button id="btnCloseModal" class="btn-close">&times;</button>
+      </div>
+      <form id="addCardForm" class="modal-body">
+        <input type="hidden" id="targetColumnStatus" value="todo">
+        
+        <div class="form-group">
+          <label for="taskTitle">Tiêu đề công việc:</label>
+          <input type="text" id="taskTitle" required placeholder="Nhập tên việc cần làm...">
+        </div>
+
+        <div class="form-group">
+          <label for="taskDesc">Mô tả chi tiết:</label>
+          <textarea id="taskDesc" rows="2" placeholder="Ghi chú thêm về việc này..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskTag">Phân loại:</label>
+            <select id="taskTag">
+              <option value="Frontend">Frontend</option>
+              <option value="UI Design">UI Design</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="CSS Grid">CSS Grid</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="taskPriority">Độ ưu tiên:</label>
+            <select id="taskPriority">
+              <option value="Cao">Cao</option>
+              <option value="Vừa">Vừa</option>
+              <option value="Thấp">Thấp</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btnCancelModal" class="btn-cancel">Hủy</button>
+          <button type="submit" class="btn-submit-task">Thêm Vào Bảng 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 18: Trình Phát Nhạc Mini (HTML5 Audio API & Playlist)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Khung Máy Phát Nhạc Glassmorphism -->
+  <div class="player-container">
+    
+    <!-- Topbar điều khiển playlist -->
+    <header class="player-topbar">
+      <span class="player-pill">🎵 HTML5 Audio API</span>
+      <button id="btnTogglePlaylist" class="btn-playlist-toggle" title="Danh sách bài hát">☰ Playlist</button>
+    </header>
+
+    <!-- Đĩa Nhạc Vinyl Quay Tròn -->
+    <div class="vinyl-stage">
+      <div id="vinylDisc" class="vinyl-disc">
+        <img id="trackCover" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="Cover Art" class="cover-art">
+        <div class="vinyl-center-hole"></div>
+      </div>
+    </div>
+
+    <!-- Thông Tin Bài Hát -->
+    <div class="track-info">
+      <h2 id="trackTitle" class="track-title">Chill Vibes &amp; Code</h2>
+      <p id="trackArtist" class="track-artist">SoundHelix Melody 1</p>
+    </div>
+
+    <!-- Thanh Tiến Độ Scrub Bar -->
+    <div class="progress-section">
+      <div id="progressTrack" class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <div class="time-row">
+        <span id="currentTimeText">00:00</span>
+        <span id="durationTimeText">00:00</span>
+      </div>
+    </div>
+
+    <!-- Bộ Nút Điều Khiển Chính -->
+    <div class="player-controls">
+      <button id="btnShuffle" class="ctrl-btn sub-btn" title="Xáo trộn ngẫu nhiên">🔀</button>
+      <button id="btnPrev" class="ctrl-btn" title="Bài trước">⏮️</button>
+      <button id="btnPlayPause" class="ctrl-btn play-main-btn" title="Phát / Dừng">▶</button>
+      <button id="btnNext" class="ctrl-btn" title="Bài tiếp">⏭️</button>
+      <button id="btnRepeat" class="ctrl-btn sub-btn" title="Lặp lại bài">🔁</button>
+    </div>
+
+    <!-- Thanh Âm Lượng -->
+    <div class="volume-row">
+      <span class="volume-icon">🔊</span>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.8" class="volume-slider">
+    </div>
+
+    <!-- Ngăn Kéo Danh Sách Phát (Playlist Drawer) -->
+    <div id="playlistDrawer" class="playlist-drawer hidden">
+      <div class="playlist-header">
+        <h3>Danh Sách Phát</h3>
+        <button id="btnClosePlaylist" class="btn-close-pl">&times;</button>
+      </div>
+      <ul id="playlistList" class="playlist-list">
+        <!-- Render động qua script.js -->
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

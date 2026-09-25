@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 16: Ứng Dụng Thời Tiết Live API (Async/Await & Fetch)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Đốm sáng nền -->
+  <div class="glow-bg"></div>
+
+  <div class="weather-app">
+    
+    <!-- Header Tìm Kiếm -->
+    <header class="app-header">
+      <div class="header-pill">
+        <span>🌐 Open-Meteo Live API • Async/Await</span>
+      </div>
+      <h1>Dự Báo Thời Tiết Thời Gian Thực</h1>
+    </header>
+
+    <!-- Khung Tìm Kiếm -->
+    <form id="searchForm" class="search-form">
+      <div class="search-input-wrap">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cityInput" placeholder="Nhập tên thành phố (Hà Nội, Tokyo, Paris, New York...)" autocomplete="off">
+      </div>
+      <button type="submit" id="btnSearch" class="btn-search">Tìm Kiếm 🔍</button>
+    </form>
+
+    <!-- Nút chọn nhanh thành phố phổ biến -->
+    <div class="quick-cities">
+      <span>Gợi ý:</span>
+      <button type="button" class="city-chip active" data-city="Hanoi">Hà Nội</button>
+      <button type="button" class="city-chip" data-city="Ho Chi Minh City">TP. Hồ Chí Minh</button>
+      <button type="button" class="city-chip" data-city="Da Nang">Đà Nẵng</button>
+      <button type="button" class="city-chip" data-city="Tokyo">Tokyo</button>
+      <button type="button" class="city-chip" data-city="London">London</button>
+    </div>
+
+    <!-- Khung Báo Lỗi -->
+    <div id="errorCard" class="error-card hidden">
+      <div class="error-icon">⚠️</div>
+      <div class="error-text">
+        <strong id="errorTitle">Không tìm thấy địa điểm</strong>
+        <p id="errorDesc">Vui lòng kiểm tra lại chính tả tên thành phố.</p>
+      </div>
+    </div>
+
+    <!-- Khung Loading Spinner -->
+    <div id="loadingCard" class="loading-card hidden">
+      <div class="spinner"></div>
+      <p>Đang gửi Request <code>fetch()</code> đến máy chủ khí tượng...</p>
+    </div>
+
+    <!-- THẺ HIỂN THỊ THỜI TIẾT CHÍNH -->
+    <div id="weatherDisplayCard" class="weather-card">
+      
+      <div class="card-topbar">
+        <div class="location-group">
+          <span class="location-pin">📍</span>
+          <h2 id="cityName" class="city-title">Hà Nội</h2>
+          <span id="countryName" class="country-tag">Việt Nam</span>
+        </div>
+        <span id="currentTime" class="time-stamp">Cập nhật: Vừa xong</span>
+      </div>
+
+      <div class="main-weather-row">
+        <div class="weather-icon-box">
+          <span id="weatherEmoji" class="weather-big-emoji">⛅</span>
+        </div>
+        <div class="temp-group">
+          <div class="temp-number">
+            <span id="tempValue">28</span><span class="temp-unit">°C</span>
+          </div>
+          <span id="weatherCondition" class="condition-text">Có Mây Rải Rác</span>
+        </div>
+      </div>
+
+      <!-- Lưới 3 thông số chi tiết -->
+      <div class="weather-metrics-grid">
+        <div class="metric-card">
+          <span class="metric-icon">💨</span>
+          <div>
+            <span class="metric-label">Tốc Độ Gió</span>
+            <strong id="windSpeed" class="metric-val">14.2 km/h</strong>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-icon">💧</span>
+          <div>
+            <span class="metric-label">Độ Ẩm Tương Đối</span>
+            <strong id="humidityVal" class="metric-val">76%</strong>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-icon">🧭</span>
+          <div>
+            <span class="metric-label">Hướng Gió</span>
+            <strong id="windDir" class="metric-val">Đông Nam (120°)</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khung hiển thị API Code đang chạy -->
+      <div class="api-log-box">
+        <div class="api-log-header">
+          <span>📡 URL API ĐÃ GỌI (ASYNC FETCH):</span>
+        </div>
+        <code id="apiLogUrl">https://api.open-meteo.com/v1/forecast?...</code>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

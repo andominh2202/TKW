@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 09: Trang Báo Điện Tử Semantic</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TODO 1: Dùng thẻ <header> và <nav> cho phần điều hướng -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand">📰 TechChronicle</a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#">Công Nghệ</a></li>
+          <li><a href="#">Lập Trình Web</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TODO 2: Dùng thẻ <main> chứa bố cục 2 cột (Article và Aside) -->
+  <main class="container main-layout">
+    
+    <!-- TODO 3: Dùng thẻ <article> bọc bài viết chính -->
+    <article class="post-article">
+      
+      <!-- TODO 4: Thẻ <header> bên trong article và thẻ <time> -->
+      <header class="post-header">
+        <span class="badge">Xu Hướng Web 2026</span>
+        <h1 class="post-title">Kỷ Nguyên Thiết Kế Web Hiện Đại: HTML5 Semantic</h1>
+        <!-- TODO: Thêm thẻ time datetime="2026-09-25" -->
+        <p>Xuất bản ngày 25 Tháng 9, 2026</p>
+      </header>
+
+      <!-- TODO 5: Dùng thẻ <figure> và <figcaption> cho ảnh bìa -->
+      <div class="post-figure">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Ảnh minh họa" class="post-cover-img">
+        <!-- Thay div này bằng thẻ <figcaption> -->
+        <div class="post-caption">Ảnh chụp bởi Markus Spiske trên Unsplash</div>
+      </div>
+
+      <div class="post-body">
+        <p class="lead-text">
+          Hãy thay thế các thẻ div thông thường bằng các thẻ ngữ nghĩa HTML5 để tối ưu hóa SEO và hỗ trợ người dùng khiếm thị...
+        </p>
+
+        <!-- TODO 6: Dùng thẻ <section> chia các phần mục -->
+        <section class="post-section">
+          <h2>1. Thẻ Ngữ Nghĩa Là Gì?</h2>
+          <p>Nội dung giới thiệu về semantic...</p>
+        </section>
+
+        <!-- TODO 7: Dùng thẻ <blockquote> cho trích dẫn -->
+        <blockquote class="post-quote">
+          <p>“Web là dành cho tất cả mọi người.”</p>
+          <cite>— Tim Berners-Lee</cite>
+        </blockquote>
+
+        <!-- TODO 8: Dùng thẻ native <details> và <summary> cho FAQ -->
+        <section class="post-section">
+          <h2>2. FAQ Thường Gặp</h2>
+          <details class="faq-item">
+            <summary class="faq-title">Câu hỏi thường gặp số 1?</summary>
+            <p class="faq-content">Câu trả lời xuất hiện khi người dùng bấm vào tiêu đề summary.</p>
+          </details>
+        </section>
+      </div>
+
+    </article>
+
+    <!-- TODO 9: Dùng thẻ <aside> cho thanh bên -->
+    <aside class="post-sidebar">
+      <div class="sidebar-widget">
+        <h3>Về Tác Giả</h3>
+        <p>Lê Minh Anh - Frontend Developer</p>
+      </div>
+    </aside>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 15: Trình Tạo Mật Khẩu An Toàn & Đánh Giá Độ Mạnh</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Toast Thông Báo Đã Copy -->
+  <div id="copyToast" class="toast-message">
+    <span>✅ Đã sao chép mật khẩu vào bộ nhớ tạm!</span>
+  </div>
+
+  <div class="generator-card">
+    
+    <header class="card-header">
+      <div class="shield-badge">🛡️ CyberShield</div>
+      <h1>Trình Tạo Mật Khẩu An Toàn</h1>
+      <p>Sinh mật khẩu ngẫu nhiên theo chuẩn mã hóa và đo độ mạnh thời gian thực.</p>
+    </header>
+
+    <!-- Khung Hiển Thị Mật Khẩu -->
+    <div class="password-display-box">
+      <input type="text" id="passwordOutput" class="password-input" readonly placeholder="Mật khẩu sẽ hiện tại đây...">
+      <div class="display-actions">
+        <button id="btnRefresh" class="icon-action-btn" title="Tạo mật khẩu khác" aria-label="Làm mới">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </button>
+        <button id="btnCopy" class="icon-action-btn copy-btn" title="Sao chép mật khẩu" aria-label="Sao chép">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Thanh Đo Độ Mạnh (Strength Meter) -->
+    <div class="strength-meter-wrap">
+      <div class="strength-header">
+        <span class="strength-label">Độ an toàn:</span>
+        <span id="strengthText" class="strength-status">Chưa xác định</span>
+      </div>
+      <div class="meter-bar-track">
+        <div id="meterBarFill" class="meter-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- Bộ Điều Khiển Tùy Chọn -->
+    <div class="controls-panel">
+      
+      <!-- Độ dài ký tự -->
+      <div class="control-row">
+        <div class="label-with-val">
+          <label for="lengthSlider">Độ dài ký tự:</label>
+          <span id="lengthVal" class="badge-val">16</span>
+        </div>
+        <input type="range" id="lengthSlider" min="6" max="32" value="16" class="range-slider">
+      </div>
+
+      <!-- Các Checkbox Tùy Chọn -->
+      <div class="checkbox-list">
+        
+        <label class="custom-checkbox">
+          <input type="checkbox" id="chkUpper" checked>
+          <span class="checkmark"></span>
+          <span class="cb-text">Bao gồm chữ HOA (A-Z)</span>
+        </label>
+
+        <label class="custom-checkbox">
+          <input type="checkbox" id="chkLower" checked>
+          <span class="checkmark"></span>
+          <span class="cb-text">Bao gồm chữ thường (a-z)</span>
+        </label>
+
+        <label class="custom-checkbox">
+          <input type="checkbox" id="chkNumbers" checked>
+          <span class="checkmark"></span>
+          <span class="cb-text">Bao gồm chữ số (0-9)</span>
+        </label>
+
+        <label class="custom-checkbox">
+          <input type="checkbox" id="chkSymbols" checked>
+          <span class="checkmark"></span>
+          <span class="cb-text">Bao gồm ký tự đặc biệt (!@#$%^&amp;*)</span>
+        </label>
+
+      </div>
+
+      <!-- Nút Tạo Mật Khẩu -->
+      <button id="btnGenerate" class="btn-generate-main">
+        <span>Tạo Mật Khẩu Mới ⚡</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

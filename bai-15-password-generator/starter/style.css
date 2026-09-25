@@ -1,0 +1,62 @@
+/* CSS Khung Starter Bài 15 */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #0b0f19;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: #131b2e;
+  padding: 30px;
+  border-radius: 16px;
+  width: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.output-group {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.output-group input {
+  flex: 1;
+  background: #080d16;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+}
+
+.output-group button {
+  background: #38bdf8;
+  color: #0b0f19;
+  border: none;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.btn-gen {
+  width: 100%;
+  padding: 12px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}

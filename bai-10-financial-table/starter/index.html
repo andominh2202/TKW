@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 10: Bảng Dữ Liệu Báo Cáo Tài Chính</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <header class="dashboard-header">
+      <h1>Báo Cáo Doanh Thu Dự Án</h1>
+      <p>Thực hành tạo thẻ bảng chuẩn thead, tbody, tfoot và sticky header</p>
+    </header>
+
+    <div class="table-card">
+      <div class="table-responsive-container">
+        
+        <!-- TODO 1: Tạo thẻ <table> và <caption> -->
+        <table class="financial-table">
+          <caption>Báo Cáo Doanh Thu Từng Dự Án (USD)</caption>
+          
+          <!-- TODO 2: Tạo thẻ <thead> với thuộc tính scope="col" cho mỗi <th> -->
+          <thead>
+            <tr>
+              <th scope="col">Mã DA</th>
+              <th scope="col">Khách Hàng</th>
+              <th scope="col">Doanh Thu Q1</th>
+              <th scope="col">Doanh Thu Q2</th>
+              <th scope="col">Trạng Thái</th>
+            </tr>
+          </thead>
+
+          <!-- TODO 3: Thẻ <tbody> chứa các hàng dữ liệu <tr> và <td> -->
+          <tbody>
+            <tr>
+              <td>#PRJ-101</td>
+              <td>Tập đoàn VinTech</td>
+              <td>$24,000</td>
+              <td>$28,500</td>
+              <td>Đã Thanh Toán</td>
+            </tr>
+            <tr>
+              <td>#PRJ-102</td>
+              <td>Sàn TMĐT NovaMall</td>
+              <td>$18,000</td>
+              <td>$22,000</td>
+              <td>Đã Thanh Toán</td>
+            </tr>
+            <tr>
+              <td>#PRJ-103</td>
+              <td>Hãng Hàng Không SkyAir</td>
+              <td>$12,000</td>
+              <td>$15,000</td>
+              <td>Đang Quyết Toán</td>
+            </tr>
+          </tbody>
+
+          <!-- TODO 4: Thẻ <tfoot> sử dụng colspan="2" cho ô tiêu đề Tổng Cộng -->
+          <tfoot>
+            <tr>
+              <th colspan="2">TỔNG CỘNG:</th>
+              <td>$54,000</td>
+              <td>$65,500</td>
+              <td>-</td>
+            </tr>
+          </tfoot>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

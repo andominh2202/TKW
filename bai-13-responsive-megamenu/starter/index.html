@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 13: Responsive Mega Menu & Offcanvas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Backdrop mờ -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+  <header class="main-navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">OmniNav</a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li><a href="#">Trang Chủ</a></li>
+          
+          <!-- TODO 1: Tạo Dropdown hover -->
+          <li class="has-dropdown">
+            <a href="#">Sản Phẩm ▾</a>
+            <div class="dropdown-menu">
+              <a href="#">Web App Studio</a>
+              <a href="#">Mobile SDK</a>
+            </div>
+          </li>
+
+          <li><a href="#">Bảng Giá</a></li>
+        </ul>
+      </nav>
+
+      <!-- TODO 2: Nút Hamburger Mobile -->
+      <button id="btnOpenDrawer" class="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- TODO 3: Ngăn kéo Offcanvas -->
+  <aside id="mobileDrawer" class="mobile-drawer">
+    <div class="drawer-header">
+      <h3>Menu</h3>
+      <button id="btnCloseDrawer">✕</button>
+    </div>
+    <div class="drawer-body">
+      <a href="#" class="drawer-link">Trang Chủ</a>
+      <a href="#" class="drawer-link">Sản Phẩm</a>
+      <a href="#" class="drawer-link">Bảng Giá</a>
+    </div>
+  </aside>
+
+  <main style="padding: 60px 20px; text-align: center;">
+    <h1>Thực Hành Mega Menu & Offcanvas Drawer</h1>
+    <p>Thử co giãn màn hình dưới 800px để kiểm tra menu trượt mobile.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

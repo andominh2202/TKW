@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 13: Menu Đa Cấp & Ngăn Kéo Offcanvas Mobile</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Backdrop che mờ khi mở ngăn kéo mobile -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+  <!-- Thanh Điều Hướng Chính -->
+  <header class="main-navbar">
+    <div class="container nav-inner">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="nav-brand">
+        <span class="brand-badge">⚡</span>
+        <span class="brand-text">OmniNav</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">Trang Chủ</a>
+          </li>
+
+          <!-- Mục 2: Dropdown Thường -->
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <span>Sản Phẩm</span>
+              <span class="arrow">▾</span>
+            </a>
+            <div class="dropdown-menu single-dropdown">
+              <a href="#" class="dropdown-link">
+                <span class="item-icon">💻</span>
+                <div>
+                  <strong>Web App Studio</strong>
+                  <small>Công cụ thiết kế giao diện đám mây</small>
+                </div>
+              </a>
+              <a href="#" class="dropdown-link">
+                <span class="item-icon">📱</span>
+                <div>
+                  <strong>Mobile SDK</strong>
+                  <small>Bộ thư viện native cho iOS &amp; Android</small>
+                </div>
+              </a>
+              <a href="#" class="dropdown-link">
+                <span class="item-icon">🔒</span>
+                <div>
+                  <strong>Cloud Security</strong>
+                  <small>Bảo vệ API và chứng thực người dùng</small>
+                </div>
+              </a>
+            </div>
+          </li>
+
+          <!-- Mục 3: MEGA MENU NHIỀU CỘT -->
+          <li class="nav-item has-megamenu">
+            <a href="#" class="nav-link active">
+              <span>Khóa Học &amp; Đào Tạo</span>
+              <span class="arrow">▾</span>
+            </a>
+            
+            <div class="dropdown-menu mega-menu-box">
+              <div class="mega-grid">
+                
+                <!-- Cột 1: Lập trình Frontend -->
+                <div class="mega-col">
+                  <h4 class="mega-col-title">🎨 Frontend Mastery</h4>
+                  <a href="#" class="mega-item">
+                    <strong>HTML5 &amp; CSS3 Hiện Đại</strong>
+                    <span>Semantic, Flexbox, CSS Grid &amp; Animation</span>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <strong>JavaScript Tương Tác DOM</strong>
+                    <span>ES6+, Async/Await, Web APIs</span>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <strong>React &amp; Next.js 15</strong>
+                    <span>Server Components, State Management</span>
+                  </a>
+                </div>
+
+                <!-- Cột 2: Lập trình Backend -->
+                <div class="mega-col">
+                  <h4 class="mega-col-title">⚙️ Backend &amp; Cloud</h4>
+                  <a href="#" class="mega-item">
+                    <strong>Node.js &amp; Express RESTful</strong>
+                    <span>Xây dựng API bảo mật và xác thực JWT</span>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <strong>Cơ Sở Dữ Liệu PostgreSQL</strong>
+                    <span>Truy vấn tối ưu, ORM Prisma</span>
+                  </a>
+                  <a href="#" class="mega-item">
+                    <strong>Docker &amp; CI/CD Pipelines</strong>
+                    <span>Triển khai tự động lên máy chủ đám mây</span>
+                  </a>
+                </div>
+
+                <!-- Cột 3: Banner Nổi Bật -->
+                <div class="mega-col mega-banner-col">
+                  <div class="mega-promo-card">
+                    <span class="promo-tag">🔥 Đang Tuyển Sinh</span>
+                    <h4>Bootcamp Fullstack 2026</h4>
+                    <p>Cam kết đầu ra, thực chiến 10 dự án thực tế.</p>
+                    <button class="btn-promo">Nhận Lộ Trình Ngay</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Bảng Giá</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Liên Hệ</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nút hành động Desktop -->
+      <div class="nav-cta-group">
+        <a href="#" class="btn-login">Đăng Nhập</a>
+        <a href="#" class="btn-signup">Dùng Thử Miễn Phí</a>
+      </div>
+
+      <!-- Nút Hamburger Mobile -->
+      <button id="btnOpenDrawer" class="hamburger-btn" aria-label="Mở Menu Mobile">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- NGĂN KÉO OFFCANVAS DRAWER (TRÊN MOBILE) -->
+  <aside id="mobileDrawer" class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="brand-badge">⚡</span>
+        <span class="brand-text">OmniNav</span>
+      </div>
+      <button id="btnCloseDrawer" class="btn-close-drawer" aria-label="Đóng Menu">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <ul class="drawer-menu-list">
+        <li><a href="#" class="drawer-link">Trang Chủ</a></li>
+        
+        <!-- Accordion Mobile 1 -->
+        <li class="drawer-accordion">
+          <button class="accordion-trigger">
+            <span>Sản Phẩm</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <a href="#">💻 Web App Studio</a>
+            <a href="#">📱 Mobile SDK</a>
+            <a href="#">🔒 Cloud Security</a>
+          </div>
+        </li>
+
+        <!-- Accordion Mobile 2 -->
+        <li class="drawer-accordion">
+          <button class="accordion-trigger active">
+            <span>Khóa Học</span>
+            <span class="acc-icon">-</span>
+          </button>
+          <div class="accordion-content open">
+            <a href="#">🎨 HTML5 &amp; CSS3 Hiện Đại</a>
+            <a href="#">⚡ JavaScript DOM &amp; ES6</a>
+            <a href="#">⚛️ React &amp; Next.js</a>
+            <a href="#">⚙️ Node.js REST API</a>
+          </div>
+        </li>
+
+        <li><a href="#" class="drawer-link">Bảng Giá</a></li>
+        <li><a href="#" class="drawer-link">Liên Hệ</a></li>
+      </ul>
+
+      <div class="drawer-cta">
+        <a href="#" class="btn-signup full">Dùng Thử Miễn Phí</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Phần Demo Nội Dung Bên Dưới -->
+  <main class="container page-content">
+    <div class="hero-demo-box">
+      <span class="pill-note">Hover chuột vào mục "Sản Phẩm" hoặc "Khóa Học &amp; Đào Tạo"</span>
+      <h1>Mega Menu Đa Cấp &amp; Offcanvas Drawer</h1>
+      <p>Thử co nhỏ cửa sổ trình duyệt (dưới 840px) để xem nút Hamburger và ngăn kéo trượt ra từ mép trái màn hình mượt mà.</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

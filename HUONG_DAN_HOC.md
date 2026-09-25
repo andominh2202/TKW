@@ -20,18 +20,38 @@ Chào mừng bạn đến với bộ tài liệu và bài tập thực hành Thi
 
 ---
 
-## 🧭 2. LỘ TRÌNH 8 BÀI TẬP ĐỀ XUẤT
+## 🧭 2. LỘ TRÌNH 19 BÀI TẬP TOÀN DIỆN (TỪ SỐ 0 ĐẾN THỰC CHIẾN)
 
-| Bài | Tên bài tập | Cấp độ | Trọng tâm kiến thức |
+### 🟢 Phần 1: Nhập Môn & HTML/CSS Cơ Bản
+| Bài | Tên bài tập | Thư mục | Trọng tâm kiến thức |
 |---|---|---|---|
-| **01** | [Profile Card](file:///d:/TKW/bai-01-profile-card/) | 🟢 Cơ bản | Cấu trúc thẻ HTML semantic, CSS Box Model, Flexbox căn giữa, border-radius, box-shadow |
-| **02** | [Modern Contact Form](file:///d:/TKW/bai-02-contact-form/) | 🟢 Cơ bản | Thẻ form, input, select, textarea, pseudo-classes (`:focus`, `:hover`), responsive 2 cột |
-| **03** | [Pricing Table](file:///d:/TKW/bai-03-pricing-table/) | 🟡 Trung cấp | CSS Grid, hiệu ứng hover card 3D lift, badge nổi bật, nút bấm gradient |
-| **04** | [Landing Page Hero](file:///d:/TKW/bai-04-landing-hero/) | 🟡 Trung cấp | Responsive Navbar (mobile menu), căn chỉnh layout banner, typography, call-to-action |
-| **05** | [To-Do List App](file:///d:/TKW/bai-05-todo-app/) | 🔴 Nâng cao | DOM manipulation, `addEventListener`, lưu `localStorage`, bộ lọc trạng thái việc làm |
-| **06** | [Quiz Web App](file:///d:/TKW/bai-06-quiz-app/) | 🔴 Nâng cao | Quản lý state qua mảng Objects, đồng hồ đếm ngược `setInterval`, tính điểm, hiển thị kết quả |
-| **07** | [Filterable Gallery & Lightbox](file:///d:/TKW/bai-07-filter-gallery/) | 🔴 Nâng cao | Lọc ảnh theo danh mục, Modal popup phóng to ảnh, sự kiện bàn phím (phím ESC) |
-| **08** | [Mini E-commerce Cart](file:///d:/TKW/bai-08-shopping-cart/) | 🔴 Nâng cao | Quản lý mảng giỏ hàng, tăng/giảm số lượng, tính tổng tiền, mã voucher giảm giá |
+| **00** | [Khởi Động: Box Model](file:///d:/TKW/bai-00-nhap-mon-box-model/) | `bai-00-nhap-mon-box-model` | Margin vs Padding, thẻ HTML cơ bản, 3 dòng Flexbox căn giữa |
+| **01** | [Profile Card Cá Nhân](file:///d:/TKW/bai-01-profile-card/) | `bai-01-profile-card` | Cấu trúc semantic, avatar tròn `border-radius: 50%`, đổ bóng đa tầng |
+| **02** | [Modern Contact Form](file:///d:/TKW/bai-02-contact-form/) | `bai-02-contact-form` | Form nhập liệu, input, focus viền sáng, custom checkbox, 2 cột responsive |
+| **09** | [Semantic Blog Đa Phương Tiện](file:///d:/TKW/bai-09-semantic-blog/) | `bai-09-semantic-blog` | Thẻ ngữ nghĩa `article`, `aside`, `figure`, `time`, `audio`, `details/summary` |
+| **10** | [Bảng Báo Cáo Tài Chính](file:///d:/TKW/bai-10-financial-table/) | `bai-10-financial-table` | Thẻ bảng `thead`, `tbody`, `tfoot`, gộp ô `colspan/rowspan`, Sticky Table Header |
+
+### 🟡 Phần 2: Trung Cấp - Bố Cục & Kỹ Thuật CSS Hiện Đại
+| Bài | Tên bài tập | Thư mục | Trọng tâm kiến thức |
+|---|---|---|---|
+| **03** | [Bảng Báo Giá Pricing Table](file:///d:/TKW/bai-03-pricing-table/) | `bai-03-pricing-table` | CSS Grid 3 cột, card Pro ruy-băng, toggle Tháng / Năm |
+| **04** | [Landing Page Header & Hero](file:///d:/TKW/bai-04-landing-hero/) | `bai-04-landing-hero` | Sticky Navbar kính mờ, mobile menu hamburger, layout banner |
+| **11** | [Theme Dark & Light Mode](file:///d:/TKW/bai-11-theme-dark-light/) | `bai-11-theme-dark-light` | Biến CSS `:root`, `var(--...)`, công tắc chuyển theme, nhớ `localStorage` |
+| **12** | [CSS Animation & Thẻ 3D Tilt](file:///d:/TKW/bai-12-css-animation-3d/) | `bai-12-css-animation-3d` | `@keyframes`, lật thẻ 3D `perspective rotateY`, neon glow, skeleton shimmer |
+| **13** | [Responsive Mega Menu](file:///d:/TKW/bai-13-responsive-megamenu/) | `bai-13-responsive-megamenu` | Dropdown menu hover, Mega Menu 3 cột, ngăn kéo trượt Offcanvas Drawer |
+
+### 🔴 Phần 3: Nâng Cao - Lập Trình JavaScript & Tương Tác
+| Bài | Tên bài tập | Thư mục | Trọng tâm kiến thức |
+|---|---|---|---|
+| **14** | [Máy Tính Cầm Tay Thông Minh](file:///d:/TKW/bai-14-smart-calculator/) | `bai-14-smart-calculator` | Xử lý chuỗi và số học, sự kiện bàn phím máy tính `keydown`, lịch sử phép tính |
+| **15** | [Trình Tạo Mật Khẩu An Toàn](file:///d:/TKW/bai-15-password-generator/) | `bai-15-password-generator` | Thuật toán sinh chuỗi ngẫu nhiên, đo độ mạnh Regex, Clipboard API, Toast |
+| **05** | [To-Do App Quản Lý Việc](file:///d:/TKW/bai-05-todo-app/) | `bai-05-todo-app` | CRUD thao tác DOM, lưu `localStorage`, bộ lọc trạng thái, progress bar |
+| **06** | [Quiz Web App Trắc Nghiệm](file:///d:/TKW/bai-06-quiz-app/) | `bai-06-quiz-app` | Quản lý state mảng Objects, timer đếm ngược `setInterval`, tính điểm số |
+| **07** | [Filter Gallery & Lightbox](file:///d:/TKW/bai-07-filter-gallery/) | `bai-07-filter-gallery` | Lọc ảnh theo danh mục, Modal xem ảnh lớn, phím tắt Esc/mũi tên |
+| **08** | [Mini E-commerce Cart](file:///d:/TKW/bai-08-shopping-cart/) | `bai-08-shopping-cart` | Giỏ hàng mua sắm, slide drawer, tăng giảm số lượng, mã voucher, checkout |
+| **16** | [Dự Báo Thời Tiết Live API](file:///d:/TKW/bai-16-weather-app/) | `bai-16-weather-app` | Bất đồng bộ `async/await`, gọi `fetch()` REST API, loading spinner, try...catch |
+| **17** | [Kanban Board Kéo Thả](file:///d:/TKW/bai-17-drag-drop-kanban/) | `bai-17-drag-drop-kanban` | HTML5 Drag & Drop API (`dragstart`, `dragover`, `drop`), đồng bộ LocalStorage |
+| **18** | [Trình Phát Nhạc Mini](file:///d:/TKW/bai-18-music-audio-player/) | `bai-18-music-audio-player` | HTML5 Audio API (`play`, `pause`, `currentTime`), tua bài hát, đĩa vinyl quay |
 
 ---
 

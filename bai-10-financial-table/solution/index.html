@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 10: Bảng Dữ Liệu Báo Cáo Tài Chính (Advanced HTML Table)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    
+    <header class="dashboard-header">
+      <div class="header-left">
+        <span class="report-badge">📊 Báo Cáo Quý</span>
+        <h1>Bảng Doanh Thu & Tiến Độ Dự Án Năm 2026</h1>
+        <p class="subtitle">Dữ liệu tài chính hợp nhất từ 4 quý, hỗ trợ Sticky Header và tính toán tổng kết.</p>
+      </div>
+
+      <div class="header-stats">
+        <div class="stat-pill">
+          <span class="stat-label">Tổng Doanh Thu</span>
+          <span class="stat-val">$328,500</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Dự Án Hoàn Thành</span>
+          <span class="stat-val text-green">85%</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Khung bọc có thanh cuộn ngang/dọc và Sticky Header -->
+    <div class="table-card">
+      <div class="table-responsive-container">
+        <table class="financial-table">
+          <caption>Báo Cáo Chi Tiết Doanh Thu Từng Dự Án (Đơn vị tính: USD)</caption>
+          
+          <thead>
+            <tr>
+              <th scope="col" class="sticky-col">Mã Dự Án</th>
+              <th scope="col">Tên Khách Hàng</th>
+              <th scope="col">Phân Loại</th>
+              <th scope="col" class="num-header">Quý 1</th>
+              <th scope="col" class="num-header">Quý 2</th>
+              <th scope="col" class="num-header">Quý 3</th>
+              <th scope="col" class="num-header">Quý 4</th>
+              <th scope="col" class="num-header total-col">Tổng Năm</th>
+              <th scope="col" class="center-header">Trạng Thái</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="code-font sticky-col">#PRJ-101</td>
+              <td class="client-name">
+                <span class="client-icon">🏢</span>
+                <strong>Tập đoàn VinTech</strong>
+              </td>
+              <td>Phần Mềm Web</td>
+              <td class="num-val">$24,000</td>
+              <td class="num-val">$28,500</td>
+              <td class="num-val">$32,000</td>
+              <td class="num-val">$35,000</td>
+              <td class="num-val total-col">$119,500</td>
+              <td class="center-val"><span class="status-badge paid">Đã Thanh Toán</span></td>
+            </tr>
+
+            <tr>
+              <td class="code-font sticky-col">#PRJ-102</td>
+              <td class="client-name">
+                <span class="client-icon">🛍️</span>
+                <strong>Sàn TMĐT NovaMall</strong>
+              </td>
+              <td>E-commerce</td>
+              <td class="num-val">$18,000</td>
+              <td class="num-val">$22,000</td>
+              <td class="num-val">$25,000</td>
+              <td class="num-val">$19,500</td>
+              <td class="num-val total-col">$84,500</td>
+              <td class="center-val"><span class="status-badge paid">Đã Thanh Toán</span></td>
+            </tr>
+
+            <tr>
+              <td class="code-font sticky-col">#PRJ-103</td>
+              <td class="client-name">
+                <span class="client-icon">✈️</span>
+                <strong>Hãng Hàng Không SkyAir</strong>
+              </td>
+              <td>App Di Động</td>
+              <td class="num-val">$12,000</td>
+              <td class="num-val">$15,000</td>
+              <td class="num-val">$18,500</td>
+              <td class="num-val">$14,000</td>
+              <td class="num-val total-col">$59,500</td>
+              <td class="center-val"><span class="status-badge pending">Đang Quyết Toán</span></td>
+            </tr>
+
+            <tr>
+              <td class="code-font sticky-col">#PRJ-104</td>
+              <td class="client-name">
+                <span class="client-icon">🏥</span>
+                <strong>Bệnh Viện Đa Khoa MedCare</strong>
+              </td>
+              <td>Cổng Quản Trị</td>
+              <td class="num-val">$8,500</td>
+              <td class="num-val">$10,000</td>
+              <td class="num-val">$12,000</td>
+              <td class="num-val">$9,500</td>
+              <td class="num-val total-col">$40,000</td>
+              <td class="center-val"><span class="status-badge paid">Đã Thanh Toán</span></td>
+            </tr>
+
+            <tr>
+              <td class="code-font sticky-col">#PRJ-105</td>
+              <td class="client-name">
+                <span class="client-icon">🎓</span>
+                <strong>Đại Học Công Nghệ Global</strong>
+              </td>
+              <td>Hệ Thống LMS</td>
+              <td class="num-val">$5,000</td>
+              <td class="num-val">$6,500</td>
+              <td class="num-val">$7,000</td>
+              <td class="num-val">$6,500</td>
+              <td class="num-val total-col">$25,000</td>
+              <td class="center-val"><span class="status-badge overdue">Quá Hạn 7 Ngày</span></td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="3" class="tfoot-label sticky-col">TỔNG CỘNG TOÀN CÔNG TY</th>
+              <td class="num-val tfoot-val">$67,500</td>
+              <td class="num-val tfoot-val">$82,000</td>
+              <td class="num-val tfoot-val">$94,500</td>
+              <td class="num-val tfoot-val">$84,500</td>
+              <td class="num-val tfoot-val grand-total">$328,500</td>
+              <td class="center-val text-green font-bold">100% Khớp</td>
+            </tr>
+          </tfoot>
+
+        </table>
+      </div>
+    </div>
+
+    <!-- Hướng dẫn kỹ thuật tra cứu -->
+    <div class="notes-panel">
+      <h3>💡 Các kỹ thuật HTML/CSS quan trọng áp dụng trong bài này:</h3>
+      <div class="notes-grid">
+        <div class="note-box">
+          <strong>1. thead &amp; th position: sticky</strong>
+          <p>Giữ cho dòng tiêu đề luôn nằm ở đỉnh khung hình khi cuộn dọc bảng dài.</p>
+        </div>
+        <div class="note-box">
+          <strong>2. tfoot &amp; colspan="3"</strong>
+          <p>Gộp 3 cột Mã DA + Tên Khách Hàng + Phân Loại thành 1 ô duy nhất để ghi chữ TỔNG CỘNG.</p>
+        </div>
+        <div class="note-box">
+          <strong>3. scope="col" &amp; scope="row"</strong>
+          <p>Hỗ trợ người khiếm thị sử dụng Screen Reader biết ô nào là tiêu đề của cột hay dòng.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

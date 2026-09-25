@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Bài 14: Máy Tính Cầm Tay</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="calculator-card">
+    <div class="calc-screen">
+      <div id="screen" class="screen-current">0</div>
+    </div>
+
+    <!-- Bàn phím máy tính 4 cột -->
+    <div class="keypad-grid">
+      <button class="btn" onclick="clearScreen()">AC</button>
+      <button class="btn" onclick="deleteDigit()">⌫</button>
+      <button class="btn" onclick="chooseOp('/')">÷</button>
+      <button class="btn" onclick="chooseOp('*')">×</button>
+
+      <button class="btn" onclick="appendNum('7')">7</button>
+      <button class="btn" onclick="appendNum('8')">8</button>
+      <button class="btn" onclick="appendNum('9')">9</button>
+      <button class="btn" onclick="chooseOp('-')">-</button>
+
+      <button class="btn" onclick="appendNum('4')">4</button>
+      <button class="btn" onclick="appendNum('5')">5</button>
+      <button class="btn" onclick="appendNum('6')">6</button>
+      <button class="btn" onclick="chooseOp('+')">+</button>
+
+      <button class="btn" onclick="appendNum('1')">1</button>
+      <button class="btn" onclick="appendNum('2')">2</button>
+      <button class="btn" onclick="appendNum('3')">3</button>
+      <button class="btn btn-equals" onclick="compute()">=</button>
+
+      <button class="btn" onclick="appendNum('0')" style="grid-column: span 2;">0</button>
+      <button class="btn" onclick="appendNum('.')">.</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

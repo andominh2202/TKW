@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 12: Phòng Thí Nghiệm CSS Animation & Hiệu Ứng 3D</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container studio-container">
+    
+    <header class="studio-header">
+      <span class="studio-pill">✨ CSS Animation Mastery</span>
+      <h1>Phòng Thí Nghiệm Chuyển Động & Hiệu Ứng 3D</h1>
+      <p>Khám phá sức mạnh của @keyframes, transform: perspective, rotate3d và hiệu ứng ánh sáng thuần CSS không dùng JavaScript.</p>
+    </header>
+
+    <div class="effects-grid">
+      
+      <!-- HIỆU ỨNG 1: THẺ 3D FLIP CARD -->
+      <div class="effect-card-wrapper">
+        <span class="effect-tag">1. 3D Card Flip (Hover chuột)</span>
+        
+        <div class="flip-card">
+          <div class="flip-inner">
+            <!-- Mặt trước -->
+            <div class="flip-face flip-front">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Cyberpunk Abstract" class="front-img">
+              <div class="front-content">
+                <span class="front-badge">VIP Pass</span>
+                <h3>Cyber Nexus 2026</h3>
+                <p>Di chuột qua để xem mặt sau ➔</p>
+              </div>
+            </div>
+
+            <!-- Mặt sau -->
+            <div class="flip-face flip-back">
+              <div class="back-content">
+                <span class="back-id">#ID-884920</span>
+                <h3>Thông Tin Thẻ VIP</h3>
+                <div class="stat-list">
+                  <div class="stat-row">
+                    <span>Quyền truy cập:</span>
+                    <strong>Toàn khu vực AI</strong>
+                  </div>
+                  <div class="stat-row">
+                    <span>Hiệu lực:</span>
+                    <strong>31/12/2026</strong>
+                  </div>
+                  <div class="stat-row">
+                    <span>Cấp độ:</span>
+                    <strong class="text-gold">Kim Cương ★★★</strong>
+                  </div>
+                </div>
+                <button class="btn-scan">Quét Mã QR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIỆU ỨNG 2: NEON PULSE & FLOATING ORB -->
+      <div class="effect-card-wrapper">
+        <span class="effect-tag">2. Neon Glow & Floating Orb</span>
+        
+        <div class="neon-orb-stage">
+          <div class="floating-orb">
+            <div class="orb-core">
+              <span>⚡</span>
+            </div>
+            <div class="pulse-ring ring-1"></div>
+            <div class="pulse-ring ring-2"></div>
+            <div class="pulse-ring ring-3"></div>
+          </div>
+          <p class="orb-caption">Hoạt họa bồng bềnh <code>@keyframes float</code> &amp; sóng xung kích</p>
+        </div>
+      </div>
+
+      <!-- HIỆU ỨNG 3: SKELETON SHIMMER LOADING -->
+      <div class="effect-card-wrapper">
+        <span class="effect-tag">3. Skeleton Shimmer Loader</span>
+        
+        <div class="skeleton-card">
+          <div class="skeleton skeleton-banner"></div>
+          <div class="skeleton-body">
+            <div class="skeleton skeleton-avatar"></div>
+            <div class="skeleton-lines">
+              <div class="skeleton skeleton-title"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text short"></div>
+            </div>
+          </div>
+          <p class="skeleton-caption">Vệt sáng quét qua bằng <code>linear-gradient</code> &amp; <code>translateX()</code></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

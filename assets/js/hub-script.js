@@ -1,22 +1,26 @@
 // ======================================================
 // DEVCRAFT WEBLAB - NỀN TẢNG HỌC THIẾT KẾ WEB TƯƠNG TÁC
-// Logic Thí Nghiệm Trực Quan, Code Playground & Kho Bài Tập
+// Hệ Thống 19 Bài Tập Toàn Diện (HTML • CSS • JavaScript)
+// & 6 Phòng Thí Nghiệm Trực Quan Chuyên Sâu
 // ======================================================
 
 // ======================================================
-// 1. DỮ LIỆU KHO BÀI TẬP (9 BÀI TẬP TỪ SỐ 0 ĐẾN SHOPPING CART)
+// 1. DỮ LIỆU KHO 19 BÀI TẬP THỰC CHIẾN (TỪ SỐ 0 ĐẾN NÂNG CAO)
 // ======================================================
 const exercises = [
+  // --- PHẦN 1: 🟢 NHẬP MÔN & CƠ BẢN (5 BÀI) ---
   {
     id: 0,
     num: "BÀI 00",
     title: "Khởi Động: Làm Quen Thẻ, Bố Cục, Margin & Padding",
     level: "basic",
     levelText: "🟢 Nhập môn",
+    tech: "css",
     desc: "Hiểu sâu bản chất CSS Box Model (Content - Padding - Border - Margin), kéo thanh trượt nhìn hộp phồng to và học 3 dòng Flexbox căn giữa.",
     tags: ["CSS Box Model", "Margin vs Padding", "Thẻ HTML Cơ Bản", "Border Radius", "Flexbox Căn Giữa"],
     starterUrl: "bai-00-nhap-mon-box-model/starter/index.html",
     solutionUrl: "bai-00-nhap-mon-box-model/solution/index.html",
+    labLink: "labBoxModel",
     readmeContent: `
       <h2>Mục Tiêu Bài 00 (Khởi Động)</h2>
       <p>Dành riêng cho người mới bắt đầu từ số 0 để hiểu bản chất hình học của mọi thẻ web (mô hình hộp Box Model).</p>
@@ -36,10 +40,12 @@ const exercises = [
     title: "Thẻ Thông Tin Cá Nhân (Profile Card)",
     level: "basic",
     levelText: "🟢 Cơ bản",
+    tech: "css",
     desc: "Căn giữa thẻ Card hoàn hảo bằng Flexbox, bo góc ảnh avatar hình tròn (50%), hiệu ứng đổ bóng đa tầng và các badge kỹ năng mềm mại.",
     tags: ["HTML5 Semantic", "CSS Box Model", "Flexbox Center", "Border Radius", "Box Shadow"],
     starterUrl: "bai-01-profile-card/starter/index.html",
     solutionUrl: "bai-01-profile-card/solution/index.html",
+    labLink: "labFlexContainer",
     readmeContent: `
       <h2>Mục Tiêu Bài 01</h2>
       <p>Nắm vững mô hình hộp (Box Model), căn giữa phần tử ra giữa màn hình bằng CSS Flexbox và thiết lập góc bo tròn, đổ bóng hiện đại.</p>
@@ -51,6 +57,7 @@ const exercises = [
     title: "Form Liên Hệ Hiện Đại (Modern Contact Form)",
     level: "basic",
     levelText: "🟢 Cơ bản",
+    tech: "html",
     desc: "Thiết kế form chuẩn trợ năng, tùy biến focus viền phát sáng (:focus-visible), custom checkbox và layout 2 cột tự chuyển thành 1 cột trên mobile.",
     tags: ["HTML Form", "Input Styling", "Focus Glow", "Custom Checkbox", "Responsive Grid"],
     starterUrl: "bai-02-contact-form/starter/index.html",
@@ -58,15 +65,65 @@ const exercises = [
     readmeContent: `<h2>Mục Tiêu Bài 02</h2><p>Thiết kế form nhập liệu chuyên nghiệp, viền phát sáng và responsive.</p>`
   },
   {
+    id: 9,
+    num: "BÀI 09",
+    title: "Trang Báo Điện Tử Đa Phương Tiện (Semantic Blog)",
+    level: "basic",
+    levelText: "🟢 Cơ bản",
+    tech: "html",
+    desc: "Cấu trúc chuẩn SEO với thẻ ngữ nghĩa HTML5: article, aside, figure, figcaption, time, audio podcast và khối FAQ native details/summary.",
+    tags: ["HTML5 Semantic", "article & aside", "figure & figcaption", "audio tag", "details & summary"],
+    starterUrl: "bai-09-semantic-blog/starter/index.html",
+    solutionUrl: "bai-09-semantic-blog/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 09 (HTML5 Semantic)</h2>
+      <p>Học cách phân cấp ngữ nghĩa chuẩn quốc tế, giúp Google SEO nhận diện bài viết và Screen Reader hỗ trợ người khiếm thị đọc chuẩn xác.</p>
+      <h3>Thẻ mới trong bài:</h3>
+      <ul>
+        <li><code>&lt;article&gt;</code>: Khung bài viết độc lập.</li>
+        <li><code>&lt;aside&gt;</code>: Thanh bên nội dung phụ và thông tin tác giả.</li>
+        <li><code>&lt;figure&gt; &amp; &lt;figcaption&gt;</code>: Chèn ảnh kèm chú thích nguồn ảnh.</li>
+        <li><code>&lt;time datetime="..."&gt;</code>: Thời gian định dạng ISO cho máy tìm kiếm.</li>
+        <li><code>&lt;details&gt; &amp; &lt;summary&gt;</code>: FAQ đóng mở không cần JavaScript.</li>
+      </ul>
+    `
+  },
+  {
+    id: 10,
+    num: "BÀI 10",
+    title: "Bảng Dữ Liệu Báo Cáo Tài Chính (Advanced Tables)",
+    level: "basic",
+    levelText: "🟢 Cơ bản",
+    tech: "html",
+    desc: "Xây dựng bảng doanh thu phức tạp: thead, tbody, tfoot, colspan gộp cột, rowspan, scope trợ năng và kỹ thuật CSS Sticky Header khi cuộn dài.",
+    tags: ["HTML Tables", "thead & tbody & tfoot", "colspan & rowspan", "Sticky Header", "Responsive Table"],
+    starterUrl: "bai-10-financial-table/starter/index.html",
+    solutionUrl: "bai-10-financial-table/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 10 (HTML Tables Chuyên Sâu)</h2>
+      <p>Làm chủ cấu trúc bảng dữ liệu, gộp ô và kỹ thuật Sticky Header cố định tiêu đề khi người dùng cuộn xem báo cáo.</p>
+      <h3>Thuộc tính trọng tâm:</h3>
+      <ul>
+        <li><code>colspan="3"</code>: Gộp 3 cột thành 1 ô ở hàng tổng kết tfoot.</li>
+        <li><code>scope="col" / scope="row"</code>: Thuộc tính trợ năng cho Screen Readers.</li>
+        <li><code>position: sticky; top: 0;</code>: Giữ hàng thead dính ở đỉnh bảng.</li>
+      </ul>
+    `
+  },
+
+  // --- PHẦN 2: 🟡 TRUNG CẤP (5 BÀI) ---
+  {
     id: 3,
     num: "BÀI 03",
     title: "Bảng Báo Giá Dịch Vụ (Pricing Table)",
     level: "medium",
     levelText: "🟡 Trung cấp",
+    tech: "css",
     desc: "Chia 3 cột cân xứng bằng CSS Grid, làm nổi bật gói Khuyên Dùng (Pro) với ruy-băng badge và tích hợp công tắc chuyển đổi tháng/năm.",
     tags: ["CSS Grid", "Popular Ribbon", "Toggle Switch", "Hover 3D Lift", "Feature Checklist"],
     starterUrl: "bai-03-pricing-table/starter/index.html",
     solutionUrl: "bai-03-pricing-table/solution/index.html",
+    labLink: "labGridStudio",
     readmeContent: `<h2>Mục Tiêu Bài 03</h2><p>Ứng dụng CSS Grid chia 3 cột và công tắc thanh toán tháng/năm.</p>`
   },
   {
@@ -75,6 +132,7 @@ const exercises = [
     title: "Landing Page Header & Hero Section",
     level: "medium",
     levelText: "🟡 Trung cấp",
+    tech: "css",
     desc: "Thanh điều hướng dính cố định (Sticky) hiệu ứng kính mờ, menu Hamburger mượt mà trên mobile và khu vực Hero banner cực kỳ ấn tượng.",
     tags: ["Sticky Header", "Glassmorphism", "Mobile Hamburger", "Hero Layout", "Typography"],
     starterUrl: "bai-04-landing-hero/starter/index.html",
@@ -82,11 +140,95 @@ const exercises = [
     readmeContent: `<h2>Mục Tiêu Bài 04</h2><p>Xây dựng Landing Page Header & Hero chuẩn responsive.</p>`
   },
   {
+    id: 11,
+    num: "BÀI 11",
+    title: "Hệ Thống Giao Diện Sáng / Tối (Dark & Light Theme)",
+    level: "medium",
+    levelText: "🟡 Trung cấp",
+    tech: "css",
+    desc: "Quản trị toàn bộ màu sắc bằng biến CSS (:root), công tắc đổi giao diện chuyển màu êm ái và lưu lựa chọn vào LocalStorage.",
+    tags: ["CSS Variables :root", "Dark Mode", "LocalStorage State", "prefers-color-scheme", "Smooth Transition"],
+    starterUrl: "bai-11-theme-dark-light/starter/index.html",
+    solutionUrl: "bai-11-theme-dark-light/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 11 (Theme System Hiện Đại)</h2>
+      <p>Xây dựng hệ thống đổi màu sáng/tối chuyên nghiệp chuẩn các web lớn (GitHub, Youtube) qua CSS Custom Properties.</p>
+    `
+  },
+  {
+    id: 12,
+    num: "BÀI 12",
+    title: "CSS Animation & Hiệu Ứng Thẻ 3D Tilt (Keyframes)",
+    level: "medium",
+    levelText: "🟡 Trung cấp",
+    tech: "css",
+    desc: "Làm chủ chuyển động CSS với @keyframes, thẻ lật 2 mặt 3D bằng perspective, quả cầu phát sáng Neon Pulse và khung chờ Skeleton Shimmer.",
+    tags: ["CSS @keyframes", "3D Perspective", "rotateY Flip Card", "Neon Glow Pulse", "Skeleton Shimmer"],
+    starterUrl: "bai-12-css-animation-3d/starter/index.html",
+    solutionUrl: "bai-12-css-animation-3d/solution/index.html",
+    labLink: "labAnimStudio",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 12 (Animation & 3D)</h2>
+      <p>Làm chủ không gian 3D và các hoạt ảnh chuyển động CSS thuần túy.</p>
+    `
+  },
+  {
+    id: 13,
+    num: "BÀI 13",
+    title: "Menu Đa Cấp & Ngăn Kéo Offcanvas (Mega Menu)",
+    level: "medium",
+    levelText: "🟡 Trung cấp",
+    tech: "css",
+    desc: "Thanh điều hướng thương mại điện tử: Submenu dropdown khi hover, Mega Menu chia 3 cột danh mục và ngăn kéo trượt ra từ mép trái mobile.",
+    tags: ["Responsive Nav", "Mega Menu 3 Columns", "Dropdown Hover", "Offcanvas Drawer", "Backdrop Blur"],
+    starterUrl: "bai-13-responsive-megamenu/starter/index.html",
+    solutionUrl: "bai-13-responsive-megamenu/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 13 (Mega Menu & Offcanvas)</h2>
+      <p>Thiết kế hệ thống điều hướng phức tạp cho web lớn, hỗ trợ mobile slide drawer hoàn hảo.</p>
+    `
+  },
+
+  // --- PHẦN 3: 🔴 NÂNG CAO JAVASCRIPT (9 BÀI) ---
+  {
+    id: 14,
+    num: "BÀI 14",
+    title: "Máy Tính Cầm Tay Thông Minh (Smart Calculator)",
+    level: "advanced",
+    levelText: "🔴 Nâng cao",
+    tech: "js",
+    desc: "Ứng dụng máy tính hoàn chỉnh: xử lý số thập phân, phần trăm, đổi dấu ±, bắt phím bàn phím vật lý (0-9, Enter, Backspace) và lưu lịch sử.",
+    tags: ["JavaScript Class", "Math Calculation", "Keyboard Events (keydown)", "History Stack", "Edge Cases"],
+    starterUrl: "bai-14-smart-calculator/starter/index.html",
+    solutionUrl: "bai-14-smart-calculator/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 14 (JavaScript Logic Máy Tính)</h2>
+      <p>Xây dựng logic tính toán chặt chẽ, xử lý trường hợp chia cho 0, dấu thập phân và bàn phím máy tính.</p>
+    `
+  },
+  {
+    id: 15,
+    num: "BÀI 15",
+    title: "Trình Tạo Mật Khẩu An Toàn & Đánh Giá Độ Mạnh",
+    level: "advanced",
+    levelText: "🔴 Nâng cao",
+    tech: "js",
+    desc: "Thuật toán sinh chuỗi ngẫu nhiên tùy biến (hoa, thường, số, ký tự đặc biệt), đo độ mạnh thời gian thực bằng Regex và sao chép Clipboard 1-click.",
+    tags: ["Password Generator", "Regex Pattern", "Entropy Strength Meter", "Clipboard API", "Toast Notifications"],
+    starterUrl: "bai-15-password-generator/starter/index.html",
+    solutionUrl: "bai-15-password-generator/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 15 (Bảo Mật & Clipboard)</h2>
+      <p>Thuật toán sinh mật khẩu ngẫu nhiên và đo độ an toàn theo 4 cấp bậc màu sắc.</p>
+    `
+  },
+  {
     id: 5,
     num: "BÀI 05",
     title: "Ứng Dụng Quản Lý Công Việc (To-Do App)",
     level: "advanced",
     levelText: "🔴 Nâng cao",
+    tech: "js",
     desc: "Toàn bộ chu trình CRUD: thêm việc, gạch hoàn thành, xóa, sửa văn bản, lọc trạng thái, thanh tiến độ % và lưu trữ vĩnh viễn vào LocalStorage.",
     tags: ["JavaScript DOM", "LocalStorage", "CRUD Operations", "Filter Tabs", "Progress Bar"],
     starterUrl: "bai-05-todo-app/starter/index.html",
@@ -99,6 +241,7 @@ const exercises = [
     title: "Ứng Dụng Trắc Nghiệm Tính Điểm (Quiz Web App)",
     level: "advanced",
     levelText: "🔴 Nâng cao",
+    tech: "js",
     desc: "Hệ thống trắc nghiệm kiến thức Web với bộ đếm ngược 15s/câu, thanh thời gian chạy liên tục, khung giải thích chi tiết và bảng tổng kết phân hạng.",
     tags: ["State Management", "Timer setInterval", "Array of Objects", "Instant Feedback", "Rank Summary"],
     starterUrl: "bai-06-quiz-app/starter/index.html",
@@ -111,6 +254,7 @@ const exercises = [
     title: "Bộ Sưu Tập Ảnh Có Bộ Lọc & Lightbox",
     level: "advanced",
     levelText: "🔴 Nâng cao",
+    tech: "js",
     desc: "Lưới ảnh phong cách hiện đại với bộ lọc danh mục (Thiên nhiên, Kiến trúc, Công nghệ) và cửa sổ phóng to Lightbox toàn màn hình có điều hướng phím bàn phím.",
     tags: ["Image Grid", "Category Filter", "Modal Lightbox", "Keyboard Nav (Esc, ←, →)", "Fullscreen API"],
     starterUrl: "bai-07-filter-gallery/starter/index.html",
@@ -123,11 +267,61 @@ const exercises = [
     title: "Giỏ Hàng Mua Sắm Mini (Mini E-commerce Cart)",
     level: "advanced",
     levelText: "🔴 Nâng cao",
+    tech: "js",
     desc: "Cửa hàng phụ kiện công nghệ hoàn chỉnh: thêm vào giỏ, ngăn kéo trượt (Slide-in Drawer), tăng giảm số lượng, nhập mã voucher giảm giá và thanh toán.",
     tags: ["E-commerce Logic", "Cart Drawer", "Price Calculator", "Voucher System", "Toast & Modals"],
     starterUrl: "bai-08-shopping-cart/starter/index.html",
     solutionUrl: "bai-08-shopping-cart/solution/index.html",
     readmeContent: `<h2>Mục Tiêu Bài 08</h2><p>Xây dựng hệ thống giỏ hàng và thanh toán e-commerce mini.</p>`
+  },
+  {
+    id: 16,
+    num: "BÀI 16",
+    title: "Dự Báo Thời Tiết Live API (Async/Await & Fetch)",
+    level: "advanced",
+    levelText: "🔴 Nâng cao",
+    tech: "js",
+    desc: "Gọi Open-Meteo REST API lấy dữ liệu khí tượng thực tế: xử lý Promise, async/await, bắt lỗi mạng try...catch, loading spinner và chip thành phố nhanh.",
+    tags: ["Async / Await", "Fetch API", "Open-Meteo REST API", "Loading Spinner", "Try Catch Handling"],
+    starterUrl: "bai-16-weather-app/starter/index.html",
+    solutionUrl: "bai-16-weather-app/solution/index.html",
+    labLink: "labAsyncStudio",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 16 (Gọi Mạng Bất Đồng Bộ API)</h2>
+      <p>Kỹ năng quan trọng nhất cho lập trình Frontend: gọi API, xử lý vòng đời Loading / Success / Error bằng async/await.</p>
+    `
+  },
+  {
+    id: 17,
+    num: "BÀI 17",
+    title: "Bảng Kanban Kéo Thả (HTML5 Drag & Drop API)",
+    level: "advanced",
+    levelText: "🔴 Nâng cao",
+    tech: "js",
+    desc: "Bảng quản lý công việc Jira/Trello: sự kiện dragstart, dragover, drop, kéo thả di chuyển thẻ giữa 3 cột To-Do, In Progress, Done và lưu LocalStorage.",
+    tags: ["HTML5 Drag & Drop", "dragstart & drop", "Kanban Columns", "Task Modal", "LocalStorage Sync"],
+    starterUrl: "bai-17-drag-drop-kanban/starter/index.html",
+    solutionUrl: "bai-17-drag-drop-kanban/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 17 (Kéo Thả Phần Tử Drag & Drop)</h2>
+      <p>Ứng dụng native HTML5 Drag and Drop API xây dựng bảng Kanban tương tác chuyên nghiệp.</p>
+    `
+  },
+  {
+    id: 18,
+    num: "BÀI 18",
+    title: "Trình Phát Nhạc Mini (HTML5 Audio API & Playlist)",
+    level: "advanced",
+    levelText: "🔴 Nâng cao",
+    tech: "js",
+    desc: "App nghe nhạc Spotify thu nhỏ: new Audio(), thanh tiến độ tua bài hát scrub bar, đĩa than vinyl quay khi phát, danh sách phát Playlist và âm lượng.",
+    tags: ["HTML5 Audio API", "Time Scrub Bar", "Vinyl Spin Animation", "Playlist Management", "Volume Control"],
+    starterUrl: "bai-18-music-audio-player/starter/index.html",
+    solutionUrl: "bai-18-music-audio-player/solution/index.html",
+    readmeContent: `
+      <h2>Mục Tiêu Bài 18 (Xử Lý Âm Thanh Audio API)</h2>
+      <p>Quản lý luồng phát nhạc, tua bài hát theo thời gian thực và đồng bộ hoạt ảnh đĩa than.</p>
+    `
   }
 ];
 
@@ -155,8 +349,23 @@ function initMainTabs() {
   });
 }
 
+// Chuyển tới một Lab cụ thể trong Tab 1
+window.goToLab = function(labElementId) {
+  const tabLabsBtn = document.querySelector('[data-tab="tabLabs"]');
+  if (tabLabsBtn) tabLabsBtn.click();
+
+  setTimeout(() => {
+    const el = document.getElementById(labElementId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.style.outline = '2px solid #38bdf8';
+      setTimeout(() => el.style.outline = '', 2000);
+    }
+  }, 100);
+};
+
 // ======================================================
-// 3. 🧪 PHÒNG THÍ NGHIỆM TRỰC QUAN (INTERACTIVE LABS)
+// 3. 🧪 PHÒNG THÍ NGHIỆM TRỰC QUAN (6 INTERACTIVE LABS)
 // ======================================================
 function initInteractiveLabs() {
   // A. BOX MODEL STUDIO
@@ -191,14 +400,12 @@ function initInteractiveLabs() {
     borValText.textContent = `${bor}px`;
     widthValText.textContent = `${w}px`;
 
-    // Cập nhật lên phần tử mô phỏng
     simMarginBox.style.padding = `${mar}px`;
     simPaddingBox.style.padding = `${pad}px`;
     simPaddingBox.style.borderRadius = `${rad}px`;
     simPaddingBox.style.borderWidth = `${bor}px`;
     simPaddingBox.style.width = `${w}px`;
 
-    // Sinh mã CSS
     boxModelCodeOutput.textContent = `.chiec-hop {
   width: ${w}px;
   padding: ${pad}px;          /* Đệm trong: làm phồng hộp */
@@ -299,7 +506,7 @@ function initInteractiveLabs() {
       colorIdx = (colorIdx + 1) % colors.length;
       const c = colors[colorIdx];
       domTarget.style.borderColor = c;
-      domTarget.style.backgroundColor = c + '22'; // 15% opacity
+      domTarget.style.backgroundColor = c + '22';
       domCodeLog.textContent = `// 1. Đổi màu viền và màu nền bằng Javascript
 const box = document.getElementById('targetBox');
 box.style.borderColor = '${c}';
@@ -324,6 +531,180 @@ let count = ${clickCounter};
 document.getElementById('counter').textContent = count;`;
     }
   };
+
+  // D. MODULE 4: CSS GRID 2D STUDIO
+  const labGridContainer = document.getElementById('labGridContainer');
+  const gridCodeOutput = document.getElementById('gridCodeOutput');
+  const gridColBtns = document.querySelectorAll('[data-grid-cols]');
+  const gridGapSlider = document.getElementById('labGridGapSlider');
+  const gridGapVal = document.getElementById('labGridGapVal');
+  const gridItemCountSlider = document.getElementById('labGridItemCountSlider');
+  const gridItemCountVal = document.getElementById('labGridItemCountVal');
+
+  let currentGridCols = 'repeat(3, 1fr)';
+  let currentGridGap = '16';
+  let currentItemCount = 6;
+
+  function updateGridStudio() {
+    if (!labGridContainer) return;
+    labGridContainer.style.gridTemplateColumns = currentGridCols;
+    labGridContainer.style.gap = `${currentGridGap}px`;
+
+    // Render số lượng ô
+    labGridContainer.innerHTML = '';
+    for (let i = 1; i <= currentItemCount; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'grid-item-cell';
+      cell.textContent = i;
+      labGridContainer.appendChild(cell);
+    }
+
+    if (gridCodeOutput) {
+      gridCodeOutput.textContent = `.khung-luoi-grid {
+  display: grid;
+  grid-template-columns: ${currentGridCols};
+  gap: ${currentGridGap}px;
+}`;
+    }
+  }
+
+  gridColBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      gridColBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentGridCols = btn.getAttribute('data-grid-cols');
+      updateGridStudio();
+    });
+  });
+
+  if (gridGapSlider) {
+    gridGapSlider.addEventListener('input', (e) => {
+      currentGridGap = e.target.value;
+      if (gridGapVal) gridGapVal.textContent = `${currentGridGap}px`;
+      updateGridStudio();
+    });
+  }
+
+  if (gridItemCountSlider) {
+    gridItemCountSlider.addEventListener('input', (e) => {
+      currentItemCount = parseInt(e.target.value, 10);
+      if (gridItemCountVal) gridItemCountVal.textContent = `${currentItemCount} ô`;
+      updateGridStudio();
+    });
+  }
+  updateGridStudio();
+
+  // E. MODULE 5: CSS ANIMATION & KEYFRAMES STUDIO
+  const animTarget = document.getElementById('animTargetElement');
+  const animCodeOutput = document.getElementById('animCodeOutput');
+  const animBtns = document.querySelectorAll('[data-anim]');
+  const timingBtns = document.querySelectorAll('[data-timing]');
+  const animDurSlider = document.getElementById('labAnimDurSlider');
+  const animDurVal = document.getElementById('labAnimDurVal');
+
+  let currentAnim = 'animBounce';
+  let currentDur = '1.5';
+  let currentTiming = 'ease-in-out';
+
+  function updateAnimStudio() {
+    if (!animTarget) return;
+    animTarget.style.animation = `${currentAnim} ${currentDur}s ${currentTiming} infinite`;
+
+    if (animCodeOutput) {
+      animCodeOutput.textContent = `@keyframes ${currentAnim} {
+  /* Các khung hình chuyển động... */
+}
+
+.phan-tu {
+  animation-name: ${currentAnim};
+  animation-duration: ${currentDur}s;
+  animation-timing-function: ${currentTiming};
+  animation-iteration-count: infinite;
+}`;
+    }
+  }
+
+  animBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      animBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentAnim = btn.getAttribute('data-anim');
+      updateAnimStudio();
+    });
+  });
+
+  timingBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      timingBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTiming = btn.getAttribute('data-timing');
+      updateAnimStudio();
+    });
+  });
+
+  if (animDurSlider) {
+    animDurSlider.addEventListener('input', (e) => {
+      currentDur = e.target.value;
+      if (animDurVal) animDurVal.textContent = `${currentDur}s`;
+      updateAnimStudio();
+    });
+  }
+  updateAnimStudio();
+
+  // F. MODULE 6: JAVASCRIPT ASYNC & FETCH API SIMULATOR
+  const btnTriggerAsync = document.getElementById('btnTriggerAsync');
+  const asyncPacket = document.getElementById('asyncPacket');
+  const asyncStatePill = document.getElementById('asyncStatePill');
+  const asyncSimulationMode = document.getElementById('asyncSimulationMode');
+  const asyncConsoleLog = document.getElementById('asyncConsoleLog');
+
+  if (btnTriggerAsync) {
+    btnTriggerAsync.addEventListener('click', () => {
+      const mode = asyncSimulationMode.value;
+      btnTriggerAsync.disabled = true;
+      asyncPacket.classList.add('flying');
+
+      asyncStatePill.className = 'async-state-pill pending';
+      asyncStatePill.textContent = '⏳ PENDING (Đang gửi request & chờ server...)';
+
+      asyncConsoleLog.textContent = `// 1. Gửi lệnh fetch()
+console.log('Sending GET request to https://api.example.com/data...');
+const promise = fetch('/api/data'); // Trạng thái ban đầu: PENDING`;
+
+      setTimeout(() => {
+        asyncPacket.classList.remove('flying');
+        btnTriggerAsync.disabled = false;
+
+        if (mode === 'success') {
+          asyncStatePill.className = 'async-state-pill resolved';
+          asyncStatePill.textContent = '✅ RESOLVED (200 OK - Nhận JSON thành công)';
+          asyncConsoleLog.textContent = `// 2. Server phản hồi thành công 200 OK:
+const response = await fetch('/api/data');
+const data = await response.json();
+
+console.log('Kết quả nhận về:', {
+  status: 200,
+  message: "Success",
+  users: [
+    { id: 1, name: "Minh Anh", role: "Frontend Dev" },
+    { id: 2, name: "Tuấn Kiệt", role: "Backend Dev" }
+  ]
+});`;
+        } else {
+          asyncStatePill.className = 'async-state-pill rejected';
+          asyncStatePill.textContent = '❌ REJECTED (500 Error - Bắt lỗi trong catch)';
+          asyncConsoleLog.textContent = `// 3. Xảy ra lỗi kết nối mạng (Bắt trong catch block):
+try {
+  const response = await fetch('/api/data');
+  if (!response.ok) throw new Error('Máy chủ gặp sự cố (500 Internal Error)');
+} catch (error) {
+  console.error('Bắt lỗi thành công:', error.message);
+  alert('Không thể tải dữ liệu, vui lòng thử lại sau!');
+}`;
+        }
+      }, 1800);
+    });
+  }
 }
 
 // ======================================================
@@ -448,104 +829,97 @@ const codeTemplates = {
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 #countText {
-  font-size: 48px;
+  font-size: 3rem;
+  margin: 16px 0;
   color: #10b981;
-  margin: 10px 0 20px;
 }
-button {
+.actions button {
+  padding: 8px 16px;
+  margin: 0 6px;
+  border-radius: 6px;
+  border: none;
   background: #374151;
   color: white;
-  border: none;
-  padding: 10px 18px;
-  margin: 0 6px;
-  border-radius: 8px;
-  font-size: 16px;
   cursor: pointer;
   font-weight: bold;
-}
-button:hover { background: #4b5563; }`,
-    js: `let count = 0;
-const text = document.getElementById('countText');
+}`,
+    js: `let c = 0;
 document.getElementById('btnPlus').addEventListener('click', () => {
-  count++;
-  text.textContent = count;
+  c++;
+  document.getElementById('countText').textContent = c;
 });
 document.getElementById('btnMinus').addEventListener('click', () => {
-  count--;
-  text.textContent = count;
+  c--;
+  document.getElementById('countText').textContent = c;
 });`
   }
 };
 
 function initLivePlayground() {
-  const htmlEditor = document.getElementById('editorHtml');
-  const cssEditor = document.getElementById('editorCss');
-  const jsEditor = document.getElementById('editorJs');
-  const outputFrame = document.getElementById('playgroundOutput');
   const templateSelect = document.getElementById('templateSelect');
+  const editorHtml = document.getElementById('editorHtml');
+  const editorCss = document.getElementById('editorCss');
+  const editorJs = document.getElementById('editorJs');
+  const editorTabs = document.querySelectorAll('.editor-tab-btn');
+  const textareas = document.querySelectorAll('.code-textarea');
+  const outputFrame = document.getElementById('playgroundOutput');
   const btnRun = document.getElementById('btnRunCode');
   const btnReset = document.getElementById('btnResetCode');
-  const editorTabBtns = document.querySelectorAll('.editor-tab-btn');
 
-  // Chuyển tab HTML / CSS / JS trong Playground
-  editorTabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      editorTabBtns.forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.code-textarea').forEach(t => t.classList.remove('active'));
-
-      btn.classList.add('active');
-      const lang = btn.getAttribute('data-lang');
-      const target = document.getElementById(`editor${lang.charAt(0).toUpperCase() + lang.slice(1)}`);
-      if (target) target.classList.add('active');
-    });
-  });
-
-  // Tải template mẫu
   function loadTemplate(tplKey) {
-    const tpl = codeTemplates[tplKey] || codeTemplates.profileCard;
-    if (htmlEditor) htmlEditor.value = tpl.html;
-    if (cssEditor) cssEditor.value = tpl.css;
-    if (jsEditor) jsEditor.value = tpl.js;
+    const tpl = codeTemplates[tplKey];
+    if (!tpl) return;
+    if (editorHtml) editorHtml.value = tpl.html;
+    if (editorCss) editorCss.value = tpl.css;
+    if (editorJs) editorJs.value = tpl.js;
     updatePlaygroundPreview();
   }
 
-  window.updatePlaygroundPreview = function() {
-    if (!outputFrame || !htmlEditor) return;
-    const html = htmlEditor.value;
-    const css = cssEditor.value;
-    const js = jsEditor.value;
+  function updatePlaygroundPreview() {
+    if (!outputFrame) return;
+    const html = editorHtml ? editorHtml.value : '';
+    const css = editorCss ? editorCss.value : '';
+    const js = editorJs ? editorJs.value : '';
 
-    const source = `
+    const combined = `
       <!DOCTYPE html>
       <html>
-      <head>
-        <meta charset="UTF-8">
-        <style>
-          * { box-sizing: border-box; }
-          ${css}
-        </style>
-      </head>
-      <body>
-        ${html}
-        <script>
-          try {
-            ${js}
-          } catch(err) {
-            console.error(err);
-          }
-        <\/script>
-      </body>
+        <head>
+          <meta charset="UTF-8">
+          <style>${css}</style>
+        </head>
+        <body>
+          ${html}
+          <script>${js}<\/script>
+        </body>
       </html>
     `;
 
-    outputFrame.srcdoc = source;
-  };
+    const doc = outputFrame.contentDocument || outputFrame.contentWindow.document;
+    doc.open();
+    doc.write(combined);
+    doc.close();
+  }
 
-  // Cập nhật khi nhấn Run hoặc sau khi dừng gõ 500ms
+  // Chuyển tab HTML / CSS / JS trong Editor
+  editorTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      editorTabs.forEach(b => b.classList.remove('active'));
+      textareas.forEach(t => t.classList.remove('active'));
+
+      btn.classList.add('active');
+      const lang = btn.getAttribute('data-lang');
+      if (lang === 'html' && editorHtml) editorHtml.classList.add('active');
+      if (lang === 'css' && editorCss) editorCss.classList.add('active');
+      if (lang === 'js' && editorJs) editorJs.classList.add('active');
+    });
+  });
+
+  // Tự động cập nhật sau 500ms khi gõ
   let debounceTimeout = null;
-  [htmlEditor, cssEditor, jsEditor].forEach(ed => {
-    if (ed) {
-      ed.addEventListener('input', () => {
+  [editorHtml, editorCss, editorJs].forEach(ta => {
+    if (ta) {
+      ta.addEventListener('input', () => {
         clearTimeout(debounceTimeout);
         debounceTimeout = setTimeout(updatePlaygroundPreview, 500);
       });
@@ -561,21 +935,22 @@ function initLivePlayground() {
     templateSelect.addEventListener('change', (e) => loadTemplate(e.target.value));
   }
 
-  // Khởi tạo template ban đầu
   loadTemplate('profileCard');
 }
 
 // ======================================================
-// 5. 📚 KHO BÀI TẬP (9 BÀI TẬP VÀ MODAL PREVIEW)
+// 5. 📚 KHO 19 BÀI TẬP (MODAL PREVIEW & BỘ LỌC ĐA NĂNG)
 // ======================================================
 let currentFilter = 'all';
+let currentTechFilter = 'all';
 let currentSearch = '';
 let activeModalExercise = null;
 let currentPreviewMode = 'solution';
 
 function initExercisesSection() {
   const exercisesGrid = document.getElementById('exercisesGrid');
-  const filterBtns = document.querySelectorAll('.level-filter-btn');
+  const levelFilterBtns = document.querySelectorAll('.level-filter-btn');
+  const techFilterBtns = document.querySelectorAll('.tech-filter-btn');
   const searchInput = document.getElementById('searchInput');
 
   // Modals
@@ -599,12 +974,24 @@ function initExercisesSection() {
 
     const filtered = exercises.filter(item => {
       const matchLevel = currentFilter === 'all' || item.level === currentFilter;
+      const matchTech = currentTechFilter === 'all' || item.tech === currentTechFilter;
       const query = currentSearch.toLowerCase();
       const matchSearch = item.title.toLowerCase().includes(query) ||
                           item.desc.toLowerCase().includes(query) ||
                           item.tags.some(t => t.toLowerCase().includes(query));
-      return matchLevel && matchSearch;
+      return matchLevel && matchTech && matchSearch;
     });
+
+    if (filtered.length === 0) {
+      exercisesGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+          <h3 style="color: white; margin-bottom: 6px;">Không tìm thấy bài tập phù hợp</h3>
+          <p style="color: var(--text-muted);">Thử xóa bớt từ khóa tìm kiếm hoặc chọn bộ lọc "Tất cả".</p>
+        </div>
+      `;
+      return;
+    }
 
     filtered.forEach(ex => {
       const card = document.createElement('div');
@@ -613,6 +1000,12 @@ function initExercisesSection() {
       let badgeClass = 'badge-basic';
       if (ex.level === 'medium') badgeClass = 'badge-medium';
       if (ex.level === 'advanced') badgeClass = 'badge-advanced';
+
+      const labButtonHtml = ex.labLink ? `
+        <button class="btn-action" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);" onclick="goToLab('${ex.labLink}')" title="Mở phòng thí nghiệm trực quan cho chủ đề này">
+          <span>👁️ Thí Nghiệm</span>
+        </button>
+      ` : '';
 
       card.innerHTML = `
         <div class="card-top">
@@ -630,16 +1023,17 @@ function initExercisesSection() {
         <div class="card-actions-grid">
           <button class="btn-action demo" onclick="openLivePreview(${ex.id}, 'solution')">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <span>Chạy Thử Demo</span>
+            <span>Demo Lời Giải</span>
           </button>
           <button class="btn-action starter" onclick="openLivePreview(${ex.id}, 'starter')">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            <span>Khung Starter</span>
+            <span>Mã Khung</span>
           </button>
           <button class="btn-action readme" onclick="openReadmeModal(${ex.id})">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             <span>Đề Bài</span>
           </button>
+          ${labButtonHtml}
         </div>
       `;
       exercisesGrid.appendChild(card);
@@ -702,7 +1096,23 @@ function initExercisesSection() {
     const ex = exercises.find(e => e.id === exerciseId);
     if (!ex) return;
     readmeModalTitle.textContent = `${ex.num}: ${ex.title}`;
-    readmeModalBody.innerHTML = ex.readmeContent;
+
+    let visualLabBanner = '';
+    if (ex.labLink) {
+      visualLabBanner = `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong style="color: #38bdf8; display: block; font-size: 0.95rem;">💡 Có Ví Dụ Trực Quan Cho Bài Này!</strong>
+            <span style="font-size: 0.85rem; color: #cbd5e1;">Nếu thấy khái niệm khó hiểu, hãy bấm nút bên cạnh để mở phòng thí nghiệm tương tác.</span>
+          </div>
+          <button style="background: #0284c7; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer;" onclick="document.getElementById('btnCloseReadme').click(); goToLab('${ex.labLink}');">
+            Mở Thí Nghiệm Trực Quan ➔
+          </button>
+        </div>
+      `;
+    }
+
+    readmeModalBody.innerHTML = visualLabBanner + ex.readmeContent;
     readmeModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   };
@@ -714,12 +1124,22 @@ function initExercisesSection() {
     });
   }
 
-  // Lọc
-  filterBtns.forEach(btn => {
+  // Lọc theo Cấp Độ
+  levelFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      levelFilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFilter = btn.getAttribute('data-level');
+      renderCards();
+    });
+  });
+
+  // Lọc theo Môn Học
+  techFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      techFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTechFilter = btn.getAttribute('data-tech');
       renderCards();
     });
   });

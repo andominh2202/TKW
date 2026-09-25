@@ -1150,3 +1150,249 @@ body {
 .readme-body h2 { color: var(--primary-light); }
 .readme-body p, .readme-body ul { margin-bottom: 14px; color: #cbd5e1; }
 .readme-body ul { padding-left: 20px; }
+
+/* ======================================================
+   CÁC MODULE PHÒNG THÍ NGHIỆM TRỰC QUAN MỚI (LABS CHUYÊN SÂU)
+   ====================================================== */
+
+/* Bộ lọc phân loại công nghệ (HTML / CSS / JS) */
+.sub-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.sub-filter-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.tech-filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tech-filter-btn:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tech-filter-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* 1. CSS GRID LIVE STAGE */
+.grid-live-stage {
+  display: grid;
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(56, 189, 248, 0.4);
+  transition: all 0.3s ease;
+}
+
+.grid-item-cell {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  min-height: 60px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+/* 2. ANIMATION LIVE STAGE */
+.anim-live-stage {
+  width: 100%;
+  height: 200px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.anim-target-element {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+  transform-origin: center;
+}
+
+/* Keyframes cho Animation Studio */
+@keyframes animBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-50px) scale(1.1); }
+}
+
+@keyframes animPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(6, 182, 212, 0.4); }
+  50% { transform: scale(1.25); box-shadow: 0 0 35px rgba(99, 102, 241, 0.9); }
+}
+
+@keyframes animSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes animFlip3D {
+  0% { transform: perspective(400px) rotateY(0deg); }
+  50% { transform: perspective(400px) rotateY(180deg); }
+  100% { transform: perspective(400px) rotateY(360deg); }
+}
+
+/* 3. ASYNC / FETCH API SIMULATOR */
+.async-simulator-stage {
+  width: 100%;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+.async-pipeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 24px;
+  padding: 0 10px;
+}
+
+.async-node {
+  background: #1e293b;
+  border: 1px solid var(--border-glass);
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 5;
+  width: 140px;
+}
+
+.async-node h4 {
+  font-size: 0.95rem;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.async-node span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.async-wire {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  margin: 0 16px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.async-packet {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  display: none;
+}
+
+.async-packet.flying {
+  display: block;
+  animation: packetFly 1.5s linear infinite;
+}
+
+@keyframes packetFly {
+  0% { left: 0%; transform: scale(0.8); }
+  50% { left: 50%; transform: scale(1.2); }
+  100% { left: 100%; transform: scale(0.8); }
+}
+
+.async-status-bar {
+  background: #090d16;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.async-state-pill {
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.async-state-pill.pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.async-state-pill.resolved {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.async-state-pill.rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.btn-async-trigger {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-async-trigger:hover {
+  background: var(--primary-dark);
+}
+

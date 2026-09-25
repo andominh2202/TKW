@@ -241,11 +241,11 @@ function syncCartUI() {
       itemEl.className = 'cart-item';
       itemEl.setAttribute('data-id', item.id);
       itemEl.innerHTML = `
-        <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+        <img class="cart-item-img">
         <div class="cart-item-info">
           <div class="cart-item-header">
-            <h4 class="cart-item-title">${item.title}</h4>
-            <button class="btn-remove-item" title="Xóa món này" data-action="remove" aria-label="Xóa ${item.title}">
+            <h4 class="cart-item-title"></h4>
+            <button class="btn-remove-item" title="Xóa món này" data-action="remove">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -262,6 +262,17 @@ function syncCartUI() {
           </div>
         </div>
       `;
+
+      const imgEl = itemEl.querySelector('.cart-item-img');
+      if (imgEl) {
+        imgEl.src = item.img || '';
+        imgEl.alt = item.title || 'Sản phẩm';
+      }
+      const titleEl = itemEl.querySelector('.cart-item-title');
+      if (titleEl) titleEl.textContent = item.title;
+      const removeBtn = itemEl.querySelector('.btn-remove-item');
+      if (removeBtn) removeBtn.setAttribute('aria-label', `Xóa ${item.title}`);
+
       cartItemsContainer.appendChild(itemEl);
     });
   }

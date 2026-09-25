@@ -150,9 +150,9 @@ function renderCart() {
       const div = document.createElement('div');
       div.className = 'cart-item';
       div.innerHTML = `
-        <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+        <img class="cart-item-img">
         <div class="cart-item-info">
-          <h4 class="cart-item-title">${item.title}</h4>
+          <h4 class="cart-item-title"></h4>
           <p class="cart-item-price">${formatCurrency(item.price)}</p>
           <div class="qty-control">
             <button class="qty-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
@@ -161,6 +161,14 @@ function renderCart() {
           </div>
         </div>
       `;
+      const img = div.querySelector('.cart-item-img');
+      if (img) {
+        img.src = item.img || '';
+        img.alt = item.title || 'Sản phẩm';
+      }
+      const titleEl = div.querySelector('.cart-item-title');
+      if (titleEl) titleEl.textContent = item.title;
+
       cartItemsList.appendChild(div);
     });
   }

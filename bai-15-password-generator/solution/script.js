@@ -117,22 +117,22 @@ function evaluateStrength(pwd) {
   if (/[^A-Za-z0-9]/.test(pwd)) score++;
 
   if (score <= 2) {
-    strengthText.textContent = '🔴 Yếu (Chưa đủ tiêu chí bảo mật)';
+    strengthText.textContent = '🔴 Yếu (Chưa đạt đủ tiêu chí độ dài & đa dạng ký tự)';
     strengthText.style.color = '#ef4444';
     meterBarFill.style.width = '25%';
     meterBarFill.style.backgroundColor = '#ef4444';
   } else if (score === 3) {
-    strengthText.textContent = '🟡 Trung Bình (Khá an toàn cho tài khoản thường)';
+    strengthText.textContent = '🟡 Trung Bình (Đạt mức cơ bản theo tiêu chí hiện tại)';
     strengthText.style.color = '#f59e0b';
     meterBarFill.style.width = '55%';
     meterBarFill.style.backgroundColor = '#f59e0b';
   } else if (score === 4) {
-    strengthText.textContent = '🟢 Mạnh (Đạt chuẩn bảo mật khuyến nghị)';
+    strengthText.textContent = '🟢 Mạnh (Đáp ứng tiêu chí khuyến nghị về độ dài & ký tự)';
     strengthText.style.color = '#10b981';
     meterBarFill.style.width = '80%';
     meterBarFill.style.backgroundColor = '#10b981';
   } else {
-    strengthText.textContent = '💎 Rất Mạnh (theo các tiêu chí hiện tại)';
+    strengthText.textContent = '💎 Rất Mạnh (Đạt mức tối đa theo các tiêu chí hiện tại)';
     strengthText.style.color = '#38bdf8';
     meterBarFill.style.width = '100%';
     meterBarFill.style.backgroundColor = '#38bdf8';

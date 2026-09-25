@@ -191,7 +191,7 @@
         <div class="newsletter-icon">📬</div>
         <h3 class="widget-title">Đăng Ký Nhận Bản Tin</h3>
         <p class="newsletter-sub">Nhận các bài viết chuyên sâu về thiết kế web mỗi tuần.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký!');">
+        <form class="newsletter-form">
           <input type="email" placeholder="Nhập email của bạn..." required class="newsletter-input">
           <button type="submit" class="newsletter-btn">Đăng Ký Ngay</button>
         </form>
@@ -207,5 +207,11 @@
     </div>
   </footer>
 
+  <script>
+    document.querySelector('.newsletter-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Cảm ơn bạn đã đăng ký nhận bản tin công nghệ!');
+    });
+  </script>
 </body>
 </html>

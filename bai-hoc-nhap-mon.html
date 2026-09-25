@@ -261,7 +261,36 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 0.9rem;
+    /* Nút & ô nhập tương tác giả lập Pseudo-classes */
+    .demo-interactive-btn {
+      padding: 12px 24px;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .demo-interactive-btn:hover {
+      background: #4f46e5;
+      transform: translateY(-3px);
+    }
+    .demo-interactive-btn:active {
+      transform: scale(0.95);
+    }
+    .demo-interactive-input {
+      padding: 12px 16px;
+      border: 2px solid #475569;
+      border-radius: 8px;
+      background: #0f172a;
+      color: white;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .demo-interactive-input:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
     }
   </style>
 </head>
@@ -412,9 +441,9 @@
         <p style="color: var(--text-muted); margin-bottom: 16px;">Bấm chọn tình huống bên dưới để xem đường dẫn viết như thế nào là chính xác:</p>
 
         <div class="path-interactive-selector">
-          <button class="path-btn active" onclick="simulatePath(1)">Tình huống 1: Cùng chung 1 thư mục</button>
-          <button class="path-btn" onclick="simulatePath(2)">Tình huống 2: Đi vào thư mục con</button>
-          <button class="path-btn" onclick="simulatePath(3)">Tình huống 3: Nhảy lùi ra ngoài thư mục cha (../)</button>
+          <button class="path-btn active" data-scenario="1">Tình huống 1: Cùng chung 1 thư mục</button>
+          <button class="path-btn" data-scenario="2">Tình huống 2: Đi vào thư mục con</button>
+          <button class="path-btn" data-scenario="3">Tình huống 3: Nhảy lùi ra ngoài thư mục cha (../)</button>
         </div>
 
         <div class="demo-grid-2">
@@ -456,11 +485,11 @@
       <div class="selector-highlight-arena">
         <!-- Nút chọn bộ chọn -->
         <div class="selector-buttons">
-          <button class="sel-btn active" onclick="testSelector('all-p')">p (Tất cả thẻ đoạn văn)</button>
-          <button class="sel-btn" onclick="testSelector('class-card')">.card (Chọn theo Class)</button>
-          <button class="sel-btn" onclick="testSelector('class-highlight')">.highlight (Nhiều thẻ chung class)</button>
-          <button class="sel-btn" onclick="testSelector('id-btn')">#btnSpecial (Chọn theo ID duy nhất)</button>
-          <button class="sel-btn" onclick="testSelector('descendant')">.card button (Con cháu bên trong)</button>
+          <button class="sel-btn active" data-sel-type="all-p">p (Tất cả thẻ đoạn văn)</button>
+          <button class="sel-btn" data-sel-type="class-card">.card (Chọn theo Class)</button>
+          <button class="sel-btn" data-sel-type="class-highlight">.highlight (Nhiều thẻ chung class)</button>
+          <button class="sel-btn" data-sel-type="id-btn">#btnSpecial (Chọn theo ID duy nhất)</button>
+          <button class="sel-btn" data-sel-type="descendant">.card button (Con cháu bên trong)</button>
         </div>
 
         <!-- Khung trang web mẫu để kiểm thử -->
@@ -524,20 +553,13 @@ input:focus {
         <div class="visual-result-pane">
           <div style="font-weight: 700; color: #a5b4fc;">Thử tương tác trực tiếp:</div>
           
-          <!-- Thử nút hover và active -->
-          <button style="padding: 12px 24px; background: #6366f1; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s;" 
-                  onmouseover="this.style.background='#4f46e5'; this.style.transform='translateY(-3px)'"
-                  onmouseout="this.style.background='#6366f1'; this.style.transform='none'"
-                  onmousedown="this.style.transform='scale(0.95)'"
-                  onmouseup="this.style.transform='translateY(-3px)'">
-            Rê chuột & Bấm giữ tôi!
+          <!-- Thử nút hover và active bằng CSS nguyên bản -->
+          <button class="demo-interactive-btn">
+            Rê chuột &amp; Bấm giữ tôi!
           </button>
 
-          <!-- Thử ô input focus -->
-          <input type="text" placeholder="Click vào đây để thấy :focus viền phát sáng..." 
-                 style="padding: 12px 16px; border: 2px solid #475569; border-radius: 8px; background: #0f172a; color: white; outline: none; transition: all 0.2s;"
-                 onfocus="this.style.borderColor='#10b981'; this.style.boxShadow='0 0 0 4px rgba(16, 185, 129, 0.25)'"
-                 onblur="this.style.borderColor='#475569'; this.style.boxShadow='none'">
+          <!-- Thử ô input focus bằng CSS nguyên bản -->
+          <input type="text" placeholder="Click vào đây để thấy :focus viền phát sáng..." class="demo-interactive-input">
         </div>
       </div>
     </section>
@@ -616,42 +638,47 @@ input:focus {
 
   <script>
     // 1. Tương tác kiểm thử bộ chọn
-    function testSelector(type) {
+    function testSelector(type, targetBtn) {
       document.querySelectorAll('.mock-elem').forEach(el => el.classList.remove('target-highlighted'));
       document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = targetBtn || document.querySelector(`.sel-btn[data-sel-type="${type}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
 
       const exp = document.getElementById('selectorExplanation');
+      if (!exp) return;
 
       if (type === 'all-p') {
-        document.getElementById('mockP1').classList.add('target-highlighted');
-        document.getElementById('mockP2').classList.add('target-highlighted');
-        document.getElementById('mockP3').classList.add('target-highlighted');
+        document.getElementById('mockP1')?.classList.add('target-highlighted');
+        document.getElementById('mockP2')?.classList.add('target-highlighted');
+        document.getElementById('mockP3')?.classList.add('target-highlighted');
         exp.textContent = `// 1. Chọn theo TÊN THẺ: p\n// Mọi thẻ <p> trên trang đều chịu tác động!\np {\n  color: red;\n}`;
       } else if (type === 'class-card') {
-        document.getElementById('mockCard').classList.add('target-highlighted');
+        document.getElementById('mockCard')?.classList.add('target-highlighted');
         exp.textContent = `// 2. Chọn theo CLASS: .card (bắt đầu bằng dấu chấm .)\n// Chỉ thẻ nào có class="card" mới bị chọn.\n.card {\n  border-color: red;\n}`;
       } else if (type === 'class-highlight') {
-        document.getElementById('mockP2').classList.add('target-highlighted');
-        document.getElementById('mockP3').classList.add('target-highlighted');
+        document.getElementById('mockP2')?.classList.add('target-highlighted');
+        document.getElementById('mockP3')?.classList.add('target-highlighted');
         exp.textContent = `// 3. Chọn theo CLASS CHUNG: .highlight\n// Cả đoạn văn 2 (trong card) và đoạn văn 3 (ngoài card) cùng có class="highlight" nên cùng được chọn!\n.highlight {\n  font-weight: bold;\n}`;
       } else if (type === 'id-btn') {
-        document.getElementById('mockBtnId').classList.add('target-highlighted');
+        document.getElementById('mockBtnId')?.classList.add('target-highlighted');
         exp.textContent = `// 4. Chọn theo ID: #btnSpecial (bắt đầu bằng dấu thăng #)\n// Chỉ duy nhất phần tử có id="btnSpecial" được chọn!\n#btnSpecial {\n  background: red;\n}`;
       } else if (type === 'descendant') {
-        document.getElementById('mockBtnCard').classList.add('target-highlighted');
+        document.getElementById('mockBtnCard')?.classList.add('target-highlighted');
         exp.textContent = `// 5. Quan hệ Con Cháu: .card button (cách nhau bởi khoảng trắng)\n// Chỉ chọn thẻ <button> nằm BÊN TRONG thẻ có class .card (không chọn nút bên ngoài!)\n.card button {\n  box-shadow: 0 0 10px red;\n}`;
       }
     }
 
     // 2. Tương tác mô phỏng đường dẫn
-    function simulatePath(scenario) {
+    function simulatePath(scenario, targetBtn) {
       document.querySelectorAll('.path-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      const activeBtn = targetBtn || document.querySelector(`.path-btn[data-scenario="${scenario}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
 
       const tree = document.getElementById('folderTreePreview');
       const title = document.getElementById('pathTitle');
       const desc = document.getElementById('pathDesc');
       const code = document.getElementById('pathCodeSnippet');
+      if (!tree || !title || !desc || !code) return;
 
       if (scenario === 1) {
         tree.textContent = `📁 TKW/
@@ -674,15 +701,33 @@ input:focus {
       } else if (scenario === 3) {
         tree.textContent = `📁 TKW/
 ├── 📁 assets/
-│   └── 🎨 hub-style.css <-- [CẦN GỌI FILE NÀY]
+│   └── 📁 css/
+│       └── 🎨 hub-style.css <-- [CẦN GỌI FILE NÀY]
 └── 📁 bai-01-profile-card/
     └── 📁 solution/
         └── 📄 index.html <-- [BẠN ĐANG ĐỨNG ĐÂY]`;
         title.textContent = "Tình huống 3: Nhảy lùi ra ngoài thư mục cha (../)";
-        desc.textContent = "Từ solution/ phải nhảy ra 1 cấp (..) đến bai-01, nhảy thêm 1 cấp (..) ra TKW gốc, rồi mới đi vào assets/:";
-        code.textContent = `<link rel="stylesheet" href="../../assets/hub-style.css">`;
+        desc.textContent = "Từ solution/ phải nhảy ra 1 cấp (..) đến bai-01, nhảy thêm 1 cấp (..) ra TKW gốc, rồi mới đi vào assets/css/:";
+        code.textContent = `<link rel="stylesheet" href="../../assets/css/hub-style.css">`;
       }
     }
+
+    // Gán sự kiện sạch bằng JavaScript không phụ thuộc biến toàn cục event
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.path-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sc = parseInt(btn.getAttribute('data-scenario') || '1', 10);
+          simulatePath(sc, btn);
+        });
+      });
+
+      document.querySelectorAll('.sel-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const t = btn.getAttribute('data-sel-type') || 'all-p';
+          testSelector(t, btn);
+        });
+      });
+    });
   </script>
 
 </body>

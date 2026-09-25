@@ -11,7 +11,7 @@ btnPlay.addEventListener('click', () => {
     audio.pause();
     btnPlay.textContent = '▶';
   } else {
-    audio.play();
+    audio.play().catch(err => console.log('Chờ tương tác để phát audio:', err));
     btnPlay.textContent = '⏸';
   }
   isPlaying = !isPlaying;

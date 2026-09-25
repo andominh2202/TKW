@@ -159,6 +159,15 @@ audio.addEventListener('ended', () => {
   }
 });
 
+// Xử lý lỗi tải file audio
+audio.addEventListener('error', (e) => {
+  console.warn('Lỗi tải file âm thanh:', e);
+  pauseAudio();
+  if (trackTitle) {
+    trackTitle.textContent = `${playlist[currentTrackIndex]?.title || 'Bài hát'} (Lỗi nguồn phát)`;
+  }
+});
+
 // Toggle Shuffle & Repeat
 btnShuffle.addEventListener('click', () => {
   isShuffle = !isShuffle;

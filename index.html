@@ -261,22 +261,22 @@
           
           <!-- Bảng nút bấm thao tác -->
           <div class="dom-buttons-panel">
-            <button class="dom-action-btn" onclick="runDomAction('changeColor')">
+            <button class="dom-action-btn" data-dom-action="changeColor">
               <span>🎨 1. Đổi Màu Viền Ngẫu Nhiên</span>
               <code>element.style.borderColor</code>
             </button>
 
-            <button class="dom-action-btn" onclick="runDomAction('changeText')">
+            <button class="dom-action-btn" data-dom-action="changeText">
               <span>✏️ 2. Đổi Nội Dung Chữ</span>
               <code>element.textContent</code>
             </button>
 
-            <button class="dom-action-btn" onclick="runDomAction('toggleShake')">
+            <button class="dom-action-btn" data-dom-action="toggleShake">
               <span>📳 3. Thêm Class Rung Rinh</span>
               <code>classList.toggle('shake')</code>
             </button>
 
-            <button class="dom-action-btn" onclick="runDomAction('countUp')">
+            <button class="dom-action-btn" data-dom-action="countUp">
               <span>➕ 4. Bộ Đếm Số Lượng (+1)</span>
               <code>count++</code>
             </button>

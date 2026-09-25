@@ -11,6 +11,7 @@ const exercises = [
   // --- PHẦN 1: 🟢 NHẬP MÔN & CƠ BẢN (5 BÀI) ---
   {
     id: 0,
+    learningOrder: 1,
     num: "BÀI 00",
     title: "Khởi Động: Làm Quen Thẻ, Bố Cục, Margin & Padding",
     level: "basic",
@@ -36,6 +37,7 @@ const exercises = [
   },
   {
     id: 1,
+    learningOrder: 2,
     num: "BÀI 01",
     title: "Thẻ Thông Tin Cá Nhân (Profile Card)",
     level: "basic",
@@ -53,6 +55,7 @@ const exercises = [
   },
   {
     id: 2,
+    learningOrder: 3,
     num: "BÀI 02",
     title: "Form Liên Hệ Hiện Đại (Modern Contact Form)",
     level: "basic",
@@ -66,6 +69,7 @@ const exercises = [
   },
   {
     id: 9,
+    learningOrder: 4,
     num: "BÀI 09",
     title: "Trang Báo Điện Tử Đa Phương Tiện (Semantic Blog)",
     level: "basic",
@@ -90,6 +94,7 @@ const exercises = [
   },
   {
     id: 10,
+    learningOrder: 5,
     num: "BÀI 10",
     title: "Bảng Dữ Liệu Báo Cáo Tài Chính (Advanced Tables)",
     level: "basic",
@@ -114,6 +119,7 @@ const exercises = [
   // --- PHẦN 2: 🟡 TRUNG CẤP (5 BÀI) ---
   {
     id: 3,
+    learningOrder: 6,
     num: "BÀI 03",
     title: "Bảng Báo Giá Dịch Vụ (Pricing Table)",
     level: "medium",
@@ -128,6 +134,7 @@ const exercises = [
   },
   {
     id: 4,
+    learningOrder: 7,
     num: "BÀI 04",
     title: "Landing Page Header & Hero Section",
     level: "medium",
@@ -141,6 +148,7 @@ const exercises = [
   },
   {
     id: 11,
+    learningOrder: 8,
     num: "BÀI 11",
     title: "Hệ Thống Giao Diện Sáng / Tối (Dark & Light Theme)",
     level: "medium",
@@ -157,6 +165,7 @@ const exercises = [
   },
   {
     id: 12,
+    learningOrder: 9,
     num: "BÀI 12",
     title: "CSS Animation & Hiệu Ứng Thẻ 3D Tilt (Keyframes)",
     level: "medium",
@@ -174,6 +183,7 @@ const exercises = [
   },
   {
     id: 13,
+    learningOrder: 10,
     num: "BÀI 13",
     title: "Menu Đa Cấp & Ngăn Kéo Offcanvas (Mega Menu)",
     level: "medium",
@@ -192,6 +202,7 @@ const exercises = [
   // --- PHẦN 3: 🔴 NÂNG CAO JAVASCRIPT (9 BÀI) ---
   {
     id: 14,
+    learningOrder: 11,
     num: "BÀI 14",
     title: "Máy Tính Cầm Tay Thông Minh (Smart Calculator)",
     level: "advanced",
@@ -208,6 +219,7 @@ const exercises = [
   },
   {
     id: 15,
+    learningOrder: 12,
     num: "BÀI 15",
     title: "Trình Tạo Mật Khẩu An Toàn & Đánh Giá Độ Mạnh",
     level: "advanced",
@@ -224,6 +236,7 @@ const exercises = [
   },
   {
     id: 5,
+    learningOrder: 13,
     num: "BÀI 05",
     title: "Ứng Dụng Quản Lý Công Việc (To-Do App)",
     level: "advanced",
@@ -237,6 +250,7 @@ const exercises = [
   },
   {
     id: 6,
+    learningOrder: 14,
     num: "BÀI 06",
     title: "Ứng Dụng Trắc Nghiệm Tính Điểm (Quiz Web App)",
     level: "advanced",
@@ -250,6 +264,7 @@ const exercises = [
   },
   {
     id: 7,
+    learningOrder: 15,
     num: "BÀI 07",
     title: "Bộ Sưu Tập Ảnh Có Bộ Lọc & Lightbox",
     level: "advanced",
@@ -263,6 +278,7 @@ const exercises = [
   },
   {
     id: 8,
+    learningOrder: 16,
     num: "BÀI 08",
     title: "Giỏ Hàng Mua Sắm Mini (Mini E-commerce Cart)",
     level: "advanced",
@@ -276,6 +292,7 @@ const exercises = [
   },
   {
     id: 16,
+    learningOrder: 17,
     num: "BÀI 16",
     title: "Dự Báo Thời Tiết Live API (Async/Await & Fetch)",
     level: "advanced",
@@ -293,6 +310,7 @@ const exercises = [
   },
   {
     id: 17,
+    learningOrder: 18,
     num: "BÀI 17",
     title: "Bảng Kanban Kéo Thả (HTML5 Drag & Drop API)",
     level: "advanced",
@@ -309,6 +327,7 @@ const exercises = [
   },
   {
     id: 18,
+    learningOrder: 19,
     num: "BÀI 18",
     title: "Trình Phát Nhạc Mini (HTML5 Audio API & Playlist)",
     level: "advanced",
@@ -531,6 +550,14 @@ let count = ${clickCounter};
 document.getElementById('counter').textContent = count;`;
     }
   };
+
+  // Lắng nghe sự kiện click cho các nút DOM Studio qua data-dom-action
+  document.querySelectorAll('[data-dom-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const act = btn.getAttribute('data-dom-action');
+      if (act) window.runDomAction(act);
+    });
+  });
 
   // D. MODULE 4: CSS GRID 2D STUDIO
   const labGridContainer = document.getElementById('labGridContainer');
@@ -1000,14 +1027,14 @@ function initExercisesSection() {
       if (ex.level === 'advanced') badgeClass = 'badge-advanced';
 
       const labButtonHtml = ex.labLink ? `
-        <button class="btn-action" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);" onclick="goToLab('${ex.labLink}')" title="Mở phòng thí nghiệm trực quan cho chủ đề này">
+        <button class="btn-action" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);" data-action="lab" data-lab="${ex.labLink}" title="Mở phòng thí nghiệm trực quan cho chủ đề này">
           <span>👁️ Thí Nghiệm</span>
         </button>
       ` : '';
 
       card.innerHTML = `
         <div class="card-top">
-          <span class="card-num">${ex.num}</span>
+          <span class="card-num" title="Bài tập #${ex.learningOrder}/19 theo lộ trình học">${ex.num}</span>
           <span class="level-badge ${badgeClass}">${ex.levelText}</span>
         </div>
 
@@ -1019,15 +1046,15 @@ function initExercisesSection() {
         </div>
 
         <div class="card-actions-grid">
-          <button class="btn-action demo" onclick="openLivePreview(${ex.id}, 'solution')">
+          <button class="btn-action demo" data-action="preview-solution" data-id="${ex.id}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             <span>Demo Lời Giải</span>
           </button>
-          <button class="btn-action starter" onclick="openLivePreview(${ex.id}, 'starter')">
+          <button class="btn-action starter" data-action="preview-starter" data-id="${ex.id}">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
             <span>Mã Khung</span>
           </button>
-          <button class="btn-action readme" onclick="openReadmeModal(${ex.id})">
+          <button class="btn-action readme" data-action="readme" data-id="${ex.id}">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             <span>Đề Bài</span>
           </button>
@@ -1035,6 +1062,26 @@ function initExercisesSection() {
         </div>
       `;
       exercisesGrid.appendChild(card);
+    });
+  }
+
+  // Event Delegation cho toàn bộ các nút trong lưới bài tập (thay vì inline onclick)
+  if (exercisesGrid) {
+    exercisesGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      const action = btn.getAttribute('data-action');
+      const id = Number(btn.getAttribute('data-id'));
+      if (action === 'preview-solution') {
+        openLivePreview(id, 'solution');
+      } else if (action === 'preview-starter') {
+        openLivePreview(id, 'starter');
+      } else if (action === 'readme') {
+        openReadmeModal(id);
+      } else if (action === 'lab') {
+        const lab = btn.getAttribute('data-lab');
+        if (lab && typeof window.goToLab === 'function') window.goToLab(lab);
+      }
     });
   }
 

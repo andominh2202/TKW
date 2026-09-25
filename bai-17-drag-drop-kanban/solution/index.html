@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <button class="btn-add-card" onclick="openAddTaskModal('todo')">+ Thêm công việc...</button>
+        <button class="btn-add-card" data-action="open-add" data-lane="todo">+ Thêm công việc...</button>
       </div>
 
       <!-- CỘT 2: ĐANG THỰC HIỆN (IN PROGRESS) -->
@@ -110,7 +110,7 @@
           </div>
         </div>
 
-        <button class="btn-add-card" onclick="openAddTaskModal('inprogress')">+ Thêm công việc...</button>
+        <button class="btn-add-card" data-action="open-add" data-lane="inprogress">+ Thêm công việc...</button>
       </div>
 
       <!-- CỘT 3: HOÀN THÀNH (DONE) -->
@@ -142,7 +142,7 @@
           </div>
         </div>
 
-        <button class="btn-add-card" onclick="openAddTaskModal('done')">+ Thêm công việc...</button>
+        <button class="btn-add-card" data-action="open-add" data-lane="done">+ Thêm công việc...</button>
       </div>
 
     </main>

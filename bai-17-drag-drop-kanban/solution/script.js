@@ -303,6 +303,14 @@ if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
 if (btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
 if (btnQuickAdd) btnQuickAdd.addEventListener('click', () => openAddTaskModal('todo'));
 
+// Lắng nghe sự kiện mở modal cho các nút thêm công việc tại từng cột
+document.querySelectorAll('[data-action="open-add"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lane = btn.getAttribute('data-lane') || 'todo';
+    openAddTaskModal(lane);
+  });
+});
+
 // Đóng modal khi bấm Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && addModal && !addModal.classList.contains('hidden')) {

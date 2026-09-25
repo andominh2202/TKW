@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nền tảng học thiết kế web tương tác từ cơ bản tới nâng cao: HTML5, CSS3, JavaScript với phòng thí nghiệm trực quan, code playground và bài tập thực chiến.">
-  <title>DevCraft WebLab | Học Thiết Kế Web Tương Tác (HTML • CSS • JS)</title>
-  
+  <meta name="description"
+    content="Nền tảng học thiết kế web tương tác từ cơ bản tới nâng cao: HTML5, CSS3, JavaScript với phòng thí nghiệm trực quan, code playground và bài tập thực chiến.">
+  <title>DevWeb Lab | Học Thiết Kế Web Tương Tác (HTML • CSS • JS)</title>
+
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/hub-style.css">
-  
+
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
   <!-- Đốm sáng Neon trang trí nền -->
@@ -31,7 +36,9 @@
       </a>
 
       <div class="nav-links">
-        <a href="bai-hoc-nhap-mon.html" class="guide-link-btn" title="Cẩm nang trực quan về thẻ, đường dẫn, CSS selectors từ con số 0" style="background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4);">
+        <a href="bai-hoc-nhap-mon.html" class="guide-link-btn"
+          title="Cẩm nang trực quan về thẻ, đường dẫn, CSS selectors từ con số 0"
+          style="background: rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="16" x2="12" y2="12"></line>
@@ -78,7 +85,8 @@
         <span class="gradient-text">HTML5 • CSS3 • JavaScript</span>
       </h1>
       <p class="hero-desc">
-        Học từ bản chất: Kéo thanh trượt để hiểu Box Model, đổi bố cục Flexbox &amp; CSS Grid 2 chiều, thử nghiệm Animation &amp; Async/Await với các ví dụ trực quan sinh động.
+        Học từ bản chất: Kéo thanh trượt để hiểu Box Model, đổi bố cục Flexbox &amp; CSS Grid 2 chiều, thử nghiệm
+        Animation &amp; Async/Await với các ví dụ trực quan sinh động.
       </p>
     </div>
   </header>
@@ -88,19 +96,20 @@
   <!-- ========================================================================= -->
   <section id="tabLabs" class="tab-view-content active labs-section">
     <div class="container">
-      
+
       <!-- MODULE 1: CSS BOX MODEL STUDIO -->
       <div class="lab-module-card">
         <header class="lab-header">
           <span class="lab-badge">Phần 1 • Nền Tảng CSS</span>
           <h2 class="lab-title">Mô Hình Hộp (CSS Box Model Studio)</h2>
-          <p class="lab-desc">Kéo các thanh trượt bên dưới để nhìn thấy tận mắt chiếc hộp co giãn, phân biệt rõ ràng <strong>Padding</strong> (vàng), <strong>Border</strong> (xanh) và <strong>Margin</strong> (cam).</p>
+          <p class="lab-desc">Kéo các thanh trượt bên dưới để nhìn thấy tận mắt chiếc hộp co giãn, phân biệt rõ ràng
+            <strong>Padding</strong> (vàng), <strong>Border</strong> (xanh) và <strong>Margin</strong> (cam).</p>
         </header>
 
         <div class="interactive-studio-grid">
           <!-- Cột thanh trượt điều khiển -->
           <div class="controls-column">
-            
+
             <div class="control-item">
               <div class="control-header">
                 <label>Độ rộng (Width):</label>
@@ -124,7 +133,8 @@
                 <span id="labMarVal" class="control-val">24px</span>
               </div>
               <input type="range" id="labMarInput" class="slider-input" min="0" max="50" value="24">
-              <small style="color: var(--text-muted); font-size: 0.75rem;">➔ Đẩy chiếc hộp cách xa thế giới bên ngoài</small>
+              <small style="color: var(--text-muted); font-size: 0.75rem;">➔ Đẩy chiếc hộp cách xa thế giới bên
+                ngoài</small>
             </div>
 
             <div class="control-item">
@@ -147,7 +157,7 @@
 
           <!-- Cột mô phỏng trực quan & mã code xuất ra -->
           <div class="stage-column">
-            
+
             <div class="visual-canvas">
               <!-- Lớp Margin (Màu cam) -->
               <div id="simMarginBox" class="sim-margin-box" title="Mô phỏng khoảng đệm margin bên ngoài border">
@@ -160,8 +170,10 @@
                 </div>
               </div>
             </div>
-            <p class="box-model-note" style="font-size: 0.82rem; color: #94a3b8; margin-top: 8px; text-align: center; font-style: italic;">
-              💡 <strong>Lưu ý kiến trúc:</strong> Vùng màu cam này là mô phỏng trực quan margin; trong CSS thật, margin nằm bên ngoài border và tạo khoảng cách giữa phần tử với các phần tử xung quanh.
+            <p class="box-model-note"
+              style="font-size: 0.82rem; color: #94a3b8; margin-top: 8px; text-align: center; font-style: italic;">
+              💡 <strong>Lưu ý kiến trúc:</strong> Vùng màu cam này là mô phỏng trực quan margin; trong CSS thật, margin
+              nằm bên ngoài border và tạo khoảng cách giữa phần tử với các phần tử xung quanh.
             </p>
 
             <!-- Khung xuất mã CSS -->
@@ -181,13 +193,14 @@
         <header class="lab-header">
           <span class="lab-badge">Phần 2 • Bố Cục Hiện Đại</span>
           <h2 class="lab-title">Flexbox Bố Cục Studio (Dàn Hàng &amp; Căn Giữa)</h2>
-          <p class="lab-desc">Bấm vào các nút bấm để điều khiển cách các khối con sắp xếp, căn giữa hoặc chia đều khoảng cách.</p>
+          <p class="lab-desc">Bấm vào các nút bấm để điều khiển cách các khối con sắp xếp, căn giữa hoặc chia đều khoảng
+            cách.</p>
         </header>
 
         <div class="interactive-studio-grid">
-          
+
           <div class="controls-column">
-            
+
             <div class="control-item">
               <label style="font-weight: 700; margin-bottom: 4px;">Căn ngang (justify-content):</label>
               <div class="flex-buttons-grid">
@@ -228,7 +241,7 @@
           </div>
 
           <div class="stage-column">
-            
+
             <div class="visual-canvas">
               <div id="labFlexContainer" class="flex-live-stage" style="width: 100%;">
                 <div class="flex-item-block">1</div>
@@ -254,11 +267,12 @@
         <header class="lab-header">
           <span class="lab-badge">Phần 3 • Tương Tác JavaScript</span>
           <h2 class="lab-title">JavaScript DOM Tương Tác Studio</h2>
-          <p class="lab-desc">Bấm vào các nút hành động bên dưới để quan sát cách JavaScript thay đổi giao diện HTML &amp; CSS theo thời gian thực.</p>
+          <p class="lab-desc">Bấm vào các nút hành động bên dưới để quan sát cách JavaScript thay đổi giao diện HTML
+            &amp; CSS theo thời gian thực.</p>
         </header>
 
         <div class="dom-interactive-board">
-          
+
           <!-- Bảng nút bấm thao tác -->
           <div class="dom-buttons-panel">
             <button class="dom-action-btn" data-dom-action="changeColor">
@@ -286,7 +300,8 @@
           <div class="dom-target-stage">
             <div id="domTargetBox" class="dom-target-element">
               <h3 id="domTargetTitle" style="margin-bottom: 8px;">Tôi là phần tử HTML</h3>
-              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Đang lắng nghe lệnh JavaScript</p>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Đang lắng nghe lệnh
+                JavaScript</p>
               <div style="font-size: 1.8rem; font-weight: 800; color: #10b981;" id="domTargetCount">0</div>
             </div>
           </div>
@@ -298,7 +313,8 @@
           <div class="code-output-header">
             <span>DÒNG LỆNH JAVASCRIPT VỪA THỰC THI:</span>
           </div>
-          <pre class="code-output-body" id="domCodeLog" style="color: #4ade80;">// Bấm một trong 4 nút ở trên để xem mã JavaScript tương ứng chạy tại đây...</pre>
+          <pre class="code-output-body" id="domCodeLog"
+            style="color: #4ade80;">// Bấm một trong 4 nút ở trên để xem mã JavaScript tương ứng chạy tại đây...</pre>
         </div>
 
       </div>
@@ -306,9 +322,12 @@
       <!-- MODULE 4: CSS GRID 2D BỐ CỤC STUDIO (DÀNH CHO CHỦ ĐỀ KHÓ) -->
       <div class="lab-module-card" id="labGridStudio">
         <header class="lab-header">
-          <span class="lab-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">Phần 4 • CSS Grid 2 Chiều Trực Quan</span>
+          <span class="lab-badge"
+            style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">Phần 4 •
+            CSS Grid 2 Chiều Trực Quan</span>
           <h2 class="lab-title">CSS Grid 2D Studio (Chia Cột Đa Tầng)</h2>
-          <p class="lab-desc">Giải quyết bài toán bố cục 2 chiều phức tạp: Thử nghiệm các chế độ cột <code>1fr 1fr</code>, <code>repeat(3, 1fr)</code>, và <code>auto-fit minmax()</code>.</p>
+          <p class="lab-desc">Giải quyết bài toán bố cục 2 chiều phức tạp: Thử nghiệm các chế độ cột
+            <code>1fr 1fr</code>, <code>repeat(3, 1fr)</code>, và <code>auto-fit minmax()</code>.</p>
         </header>
 
         <div class="interactive-studio-grid">
@@ -319,7 +338,8 @@
                 <button class="choice-btn active" data-grid-cols="repeat(3, 1fr)">3 Cột Đều (3fr)</button>
                 <button class="choice-btn" data-grid-cols="repeat(2, 1fr)">2 Cột Đều (2fr)</button>
                 <button class="choice-btn" data-grid-cols="1fr 2fr 1fr">Sidebar + Main</button>
-                <button class="choice-btn" data-grid-cols="repeat(auto-fit, minmax(120px, 1fr))">Auto-fit Minmax</button>
+                <button class="choice-btn" data-grid-cols="repeat(auto-fit, minmax(120px, 1fr))">Auto-fit
+                  Minmax</button>
               </div>
             </div>
 
@@ -365,9 +385,12 @@
       <!-- MODULE 5: CSS ANIMATION & KEYFRAMES STUDIO -->
       <div class="lab-module-card" id="labAnimStudio">
         <header class="lab-header">
-          <span class="lab-badge" style="background: rgba(217, 70, 239, 0.2); color: #f472b6; border-color: rgba(217, 70, 239, 0.4);">Phần 5 • Chuyển Động &amp; Keyframes</span>
+          <span class="lab-badge"
+            style="background: rgba(217, 70, 239, 0.2); color: #f472b6; border-color: rgba(217, 70, 239, 0.4);">Phần 5 •
+            Chuyển Động &amp; Keyframes</span>
           <h2 class="lab-title">CSS Animation &amp; Keyframes Studio</h2>
-          <p class="lab-desc">Trực quan hóa hoạt họa: Chọn kiểu chuyển động, kéo thanh trượt thời gian và quan sát từng khung hình.</p>
+          <p class="lab-desc">Trực quan hóa hoạt họa: Chọn kiểu chuyển động, kéo thanh trượt thời gian và quan sát từng
+            khung hình.</p>
         </header>
 
         <div class="interactive-studio-grid">
@@ -395,7 +418,8 @@
               <div class="flex-buttons-grid">
                 <button class="choice-btn active" data-timing="ease-in-out">ease-in-out</button>
                 <button class="choice-btn" data-timing="linear">linear (đều)</button>
-                <button class="choice-btn" data-timing="cubic-bezier(0.68, -0.55, 0.265, 1.55)">Nhún nhảy (Bouncy)</button>
+                <button class="choice-btn" data-timing="cubic-bezier(0.68, -0.55, 0.265, 1.55)">Nhún nhảy
+                  (Bouncy)</button>
               </div>
             </div>
           </div>
@@ -420,9 +444,12 @@
       <!-- MODULE 6: JAVASCRIPT ASYNC & FETCH SIMULATOR -->
       <div class="lab-module-card" id="labAsyncStudio">
         <header class="lab-header">
-          <span class="lab-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">Phần 6 • Bất Đồng Bộ Trong Thực Tế</span>
+          <span class="lab-badge"
+            style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">Phần 6 •
+            Bất Đồng Bộ Trong Thực Tế</span>
           <h2 class="lab-title">JavaScript Async/Await &amp; Fetch API Simulator</h2>
-          <p class="lab-desc">Trực quan hóa luồng gọi mạng: Bấm nút để xem gói tin di chuyển từ Client đến Server, trạng thái <strong>Pending (Chờ)</strong> và trả lời <strong>Resolved / Rejected</strong>.</p>
+          <p class="lab-desc">Trực quan hóa luồng gọi mạng: Bấm nút để xem gói tin di chuyển từ Client đến Server, trạng
+            thái <strong>Pending (Chờ)</strong> và trả lời <strong>Resolved / Rejected</strong>.</p>
         </header>
 
         <div class="async-simulator-stage">
@@ -447,9 +474,10 @@
               <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 8px;">Trạng thái Promise:</span>
               <span id="asyncStatePill" class="async-state-pill">IDLE (Sẵn sàng)</span>
             </div>
-            
+
             <div style="display: flex; gap: 10px; align-items: center;">
-              <select id="asyncSimulationMode" style="background: #1e293b; color: white; border: 1px solid var(--border-glass); padding: 8px; border-radius: 6px; font-size: 0.85rem;">
+              <select id="asyncSimulationMode"
+                style="background: #1e293b; color: white; border: 1px solid var(--border-glass); padding: 8px; border-radius: 6px; font-size: 0.85rem;">
                 <option value="success">Giả lập: Thành công (200 OK)</option>
                 <option value="error">Giả lập: Lỗi mạng (500 Error)</option>
               </select>
@@ -462,7 +490,8 @@
             <div class="code-output-header">
               <span>CONSOLE &amp; DỮ LIỆU JSON PHẢN HỒI:</span>
             </div>
-            <pre class="code-output-body" id="asyncConsoleLog" style="color: #38bdf8;">// Bấm nút "Gửi Request fetch()" ở trên để quan sát luồng Async/Await chạy thời gian thực...</pre>
+            <pre class="code-output-body" id="asyncConsoleLog"
+              style="color: #38bdf8;">// Bấm nút "Gửi Request fetch()" ở trên để quan sát luồng Async/Await chạy thời gian thực...</pre>
           </div>
         </div>
       </div>
@@ -475,9 +504,9 @@
   <!-- ========================================================================= -->
   <section id="tabPlayground" class="tab-view-content playground-section">
     <div class="container">
-      
+
       <div class="playground-card">
-        
+
         <!-- Thanh công cụ Playground -->
         <header class="playground-topbar">
           <div class="template-selector-group">
@@ -497,7 +526,7 @@
 
         <!-- Khung chia đôi: Editor bên trái, Preview bên phải -->
         <div class="playground-split">
-          
+
           <!-- Cột Soạn Thảo Code (Editor) -->
           <div class="editor-pane">
             <div class="editor-tabs-bar">
@@ -506,14 +535,18 @@
               <button class="editor-tab-btn" data-lang="js">JavaScript</button>
             </div>
 
-            <textarea id="editorHtml" class="code-textarea active" spellcheck="false" placeholder="Viết HTML tại đây..."></textarea>
-            <textarea id="editorCss" class="code-textarea" spellcheck="false" placeholder="Viết CSS tại đây..."></textarea>
-            <textarea id="editorJs" class="code-textarea" spellcheck="false" placeholder="Viết JavaScript tại đây..."></textarea>
+            <textarea id="editorHtml" class="code-textarea active" spellcheck="false"
+              placeholder="Viết HTML tại đây..."></textarea>
+            <textarea id="editorCss" class="code-textarea" spellcheck="false"
+              placeholder="Viết CSS tại đây..."></textarea>
+            <textarea id="editorJs" class="code-textarea" spellcheck="false"
+              placeholder="Viết JavaScript tại đây..."></textarea>
           </div>
 
           <!-- Cột Xem Kết Quả Chạy (Live Preview) -->
           <div class="preview-pane">
-            <iframe id="playgroundOutput" class="live-output-frame" sandbox="allow-scripts" title="Live Playground Output"></iframe>
+            <iframe id="playgroundOutput" class="live-output-frame" sandbox="allow-scripts"
+              title="Live Playground Output"></iframe>
           </div>
 
         </div>
@@ -527,12 +560,12 @@
   <!-- TAB 3: 📚 KHO BÀI TẬP THỰC CHIẾN (19 BÀI TẬP ĐỘC LẬP TỪ SỐ 0 ĐẾN NÂNG CAO)-->
   <!-- ========================================================================= -->
   <section id="tabExercises" class="tab-view-content">
-    
+
     <!-- Thanh Bộ Lọc & Tìm Kiếm Bài Tập -->
     <section class="controls-section">
       <div class="container">
         <div class="controls-card">
-          
+
           <!-- Hàng 1: Lọc theo Cấp Độ -->
           <div class="filter-group">
             <button class="level-filter-btn active" data-level="all">Tất cả cấp độ (19)</button>
@@ -542,11 +575,13 @@
           </div>
 
           <div class="search-box">
-            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="searchInput" class="search-input" placeholder="Tìm theo tên bài, HTML, CSS Grid, Async API..." autocomplete="off">
+            <input type="text" id="searchInput" class="search-input"
+              placeholder="Tìm theo tên bài, HTML, CSS Grid, Async API..." autocomplete="off">
           </div>
 
         </div>
@@ -575,13 +610,14 @@
   </section>
 
   <!-- ================= LIVE PREVIEW MODAL (DÀNH CHO BÀI TẬP) ================= -->
-  <div id="previewModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="previewModalTitle">
+  <div id="previewModal" class="modal-overlay hidden" role="dialog" aria-modal="true"
+    aria-labelledby="previewModalTitle">
     <div class="preview-container">
-      
+
       <div class="preview-toolbar">
         <div class="preview-title-group">
           <span class="preview-title" id="previewModalTitle">Bài Tập</span>
-          
+
           <div class="mode-switcher">
             <button id="modeSolutionBtn" class="mode-btn active">Lời Giải Chuẩn</button>
             <button id="modeStarterBtn" class="mode-btn">Mã Khung (Starter)</button>
@@ -590,20 +626,34 @@
 
         <div class="device-controls">
           <button class="device-btn active" data-view="desktop" title="Màn hình Desktop">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
           </button>
           <button class="device-btn" data-view="tablet" title="Màn hình Tablet (768px)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
           </button>
           <button class="device-btn" data-view="mobile" title="Màn hình Mobile (390px)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
           </button>
         </div>
 
         <div class="toolbar-actions">
           <a id="btnOpenNewTab" href="#" target="_blank" class="btn-open-tab" title="Mở trang trong tab riêng">
             <span>Mở Tab Riêng</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
           </a>
           <button id="btnClosePreview" class="btn-close-modal" aria-label="Đóng">&times;</button>
         </div>
@@ -630,4 +680,5 @@
   <!-- Script điều khiển -->
   <script src="assets/js/hub-script.js"></script>
 </body>
+
 </html>

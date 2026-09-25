@@ -43,8 +43,20 @@ const productsData = [
   }
 ];
 
-// 2. Trạng thái giỏ hàng
-let cart = JSON.parse(localStorage.getItem('my_shop_cart')) || [];
+// 2. Trạng thái giỏ hàng & nạp an toàn từ LocalStorage
+function loadCart() {
+  try {
+    const raw = localStorage.getItem('my_shop_cart');
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    console.warn('Lỗi đọc LocalStorage:', e);
+    return [];
+  }
+}
+
+let cart = loadCart();
 let discountRate = 0; // 0.1 nếu giảm 10%
 
 // 3. DOM Elements
@@ -106,7 +118,11 @@ function addToCart(productId) {
 
 // TODO 3: Hàm lưu giỏ hàng vào LocalStorage
 function saveCart() {
-  localStorage.setItem('my_shop_cart', JSON.stringify(cart));
+  try {
+    localStorage.setItem('my_shop_cart', JSON.stringify(cart));
+  } catch (e) {
+    console.warn('Lỗi ghi LocalStorage:', e);
+  }
 }
 
 // TODO 4: Hàm tăng/giảm số lượng món đồ
@@ -183,13 +199,13 @@ cartOverlay.addEventListener('click', (e) => {
   if (e.target === cartOverlay) cartOverlay.classList.add('hidden');
 });
 
-// TODO 8: Nút thanh toán
+// TODO 8: Nút thanh toán (Mô phỏng quy trình Checkout)
 checkoutBtn.addEventListener('click', () => {
   if (cart.length === 0) {
     alert('Giỏ hàng trống! Hãy chọn ít nhất 1 sản phẩm.');
     return;
   }
-  alert('Đặt hàng thành công! Cảm ơn bạn đã mua sắm.');
+  alert('Đặt hàng mô phỏng thành công! (Đây là demo giao diện, không thanh toán thực tế). Cảm ơn bạn!');
   cart = [];
   discountRate = 0;
   couponInput.value = '';

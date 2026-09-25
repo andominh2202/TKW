@@ -2,14 +2,28 @@
 // BÀI 05: TO-DO LIST PRO (LỜI GIẢI CHUẨN - JS LOGIC)
 // ======================================================
 
-// 1. Quản lý trạng thái (State)
-let todos = JSON.parse(localStorage.getItem('devcraft_todos_v2')) || [
+// 1. Quản lý trạng thái (State) với hàm nạp an toàn từ LocalStorage
+const DEFAULT_TODOS = [
   { id: 1, text: 'Học cú pháp HTML5 Semantic và SEO', completed: true },
   { id: 2, text: 'Làm chủ CSS Flexbox và Grid Responsive', completed: true },
   { id: 3, text: 'Thực hành JavaScript DOM Events & State', completed: false },
   { id: 4, text: 'Tối ưu trải nghiệm UI/UX và Dark Mode', completed: false }
 ];
 
+function loadTodosFromStorage() {
+  try {
+    const raw = localStorage.getItem('devcraft_todos_v2');
+    if (!raw) return DEFAULT_TODOS;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return DEFAULT_TODOS;
+    return parsed.filter(item => item && typeof item.text === 'string');
+  } catch (e) {
+    console.warn('Lỗi đọc LocalStorage Todo, sử dụng danh sách mặc định:', e);
+    return DEFAULT_TODOS;
+  }
+}
+
+let todos = loadTodosFromStorage();
 let activeFilter = 'all';
 
 // 2. DOM Elements
@@ -37,9 +51,13 @@ function displayTodayDate() {
   }
 }
 
-// 4. Lưu vào LocalStorage
+// 4. Lưu vào LocalStorage an toàn
 function persistData() {
-  localStorage.setItem('devcraft_todos_v2', JSON.stringify(todos));
+  try {
+    localStorage.setItem('devcraft_todos_v2', JSON.stringify(todos));
+  } catch (e) {
+    console.warn('Không thể lưu vào LocalStorage:', e);
+  }
 }
 
 // 5. Cập nhật Thống kê & Tiến độ
@@ -84,36 +102,44 @@ function render() {
     li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
     li.setAttribute('data-id', todo.id);
 
-    li.innerHTML = `
-      <div class="todo-left">
-        <button class="custom-check" aria-label="Toggle completed" data-action="toggle">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </button>
-        <span class="todo-title" title="Nháy đúp chuột để chỉnh sửa">${escapeHtml(todo.text)}</span>
-      </div>
-      <div class="todo-actions">
-        <button class="btn-icon-action" data-action="delete" title="Xóa việc này">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 6 5 6 21 6"></polyline>
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-          </svg>
-        </button>
-      </div>
+    const leftDiv = document.createElement('div');
+    leftDiv.className = 'todo-left';
+
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'custom-check';
+    checkBtn.setAttribute('aria-label', 'Toggle completed');
+    checkBtn.setAttribute('data-action', 'toggle');
+    checkBtn.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
     `;
 
+    const titleSpan = document.createElement('span');
+    titleSpan.className = 'todo-title';
+    titleSpan.title = 'Nháy đúp chuột để chỉnh sửa';
+    titleSpan.textContent = todo.text; // An toàn tuyệt đối chống DOM XSS
+
+    leftDiv.appendChild(checkBtn);
+    leftDiv.appendChild(titleSpan);
+
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'todo-actions';
+    actionsDiv.innerHTML = `
+      <button class="btn-icon-action" data-action="delete" title="Xóa việc này" aria-label="Xóa việc này">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+      </button>
+    `;
+
+    li.appendChild(leftDiv);
+    li.appendChild(actionsDiv);
     todoList.appendChild(li);
   });
 
   updateMetrics();
-}
-
-// 7. Bảo vệ mã hóa ký tự tránh XSS
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
 }
 
 // 8. Xử lý Thêm Việc Mới

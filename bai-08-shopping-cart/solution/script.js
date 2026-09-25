@@ -60,11 +60,25 @@ const catalog = [
   }
 ];
 
-// 2. Trạng thái Giỏ Hàng
-let cart = JSON.parse(localStorage.getItem('devcraft_store_cart_v2')) || [
+// 2. Trạng thái Giỏ Hàng & Khôi phục an toàn từ LocalStorage
+const DEFAULT_CART = [
   { id: 201, title: "Bàn Phím Cơ Custom Không Dây Lumina Pro", price: 1850000, img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80", quantity: 1 }
 ];
 
+function loadCartFromStorage() {
+  try {
+    const raw = localStorage.getItem('devcraft_store_cart_v2');
+    if (!raw) return DEFAULT_CART;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return DEFAULT_CART;
+    return parsed.filter(item => item && typeof item.id === 'number' && typeof item.price === 'number');
+  } catch (e) {
+    console.warn('Lỗi đọc LocalStorage Giỏ hàng, sử dụng mặc định:', e);
+    return DEFAULT_CART;
+  }
+}
+
+let cart = loadCartFromStorage();
 let appliedVoucher = null; // { code: 'GIAM10', percent: 10 } hoặc null
 
 // 3. DOM Elements
@@ -102,9 +116,13 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 3000);
 }
 
-// Lưu LocalStorage
+// Lưu LocalStorage an toàn
 function persistCart() {
-  localStorage.setItem('devcraft_store_cart_v2', JSON.stringify(cart));
+  try {
+    localStorage.setItem('devcraft_store_cart_v2', JSON.stringify(cart));
+  } catch (e) {
+    console.warn('Không thể lưu giỏ hàng vào LocalStorage:', e);
+  }
 }
 
 // 4. Render Danh Mục Sản Phẩm
@@ -221,12 +239,13 @@ function syncCartUI() {
     cart.forEach(item => {
       const itemEl = document.createElement('div');
       itemEl.className = 'cart-item';
+      itemEl.setAttribute('data-id', item.id);
       itemEl.innerHTML = `
         <img src="${item.img}" alt="${item.title}" class="cart-item-img">
         <div class="cart-item-info">
           <div class="cart-item-header">
             <h4 class="cart-item-title">${item.title}</h4>
-            <button class="btn-remove-item" title="Xóa món này" onclick="removeItem(${item.id})">
+            <button class="btn-remove-item" title="Xóa món này" data-action="remove" aria-label="Xóa ${item.title}">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -236,9 +255,9 @@ function syncCartUI() {
           <div class="cart-item-bottom">
             <span class="cart-item-price">${formatCurrency(item.price)}</span>
             <div class="qty-stepper">
-              <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+              <button class="qty-btn" data-action="qty-decrease" aria-label="Giảm số lượng">−</button>
               <span class="qty-val">${item.quantity}</span>
-              <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+              <button class="qty-btn" data-action="qty-increase" aria-label="Tăng số lượng">+</button>
             </div>
           </div>
         </div>
@@ -260,7 +279,26 @@ function syncCartUI() {
   billTotal.textContent = formatCurrency(finalAmount);
 }
 
-// 8. Áp dụng Voucher
+// 8. Event Delegation cho danh sách sản phẩm trong giỏ hàng
+cartItemsContainer.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  const itemEl = btn.closest('.cart-item');
+  if (!itemEl) return;
+
+  const id = Number(itemEl.getAttribute('data-id'));
+  const action = btn.getAttribute('data-action');
+
+  if (action === 'remove') {
+    removeItem(id);
+  } else if (action === 'qty-decrease') {
+    updateQuantity(id, -1);
+  } else if (action === 'qty-increase') {
+    updateQuantity(id, 1);
+  }
+});
+
+// 9. Áp dụng Voucher
 btnApplyVoucher.addEventListener('click', () => {
   const code = voucherInput.value.trim().toUpperCase();
   voucherNotice.className = 'voucher-notice';
@@ -297,7 +335,7 @@ btnApplyVoucher.addEventListener('click', () => {
   syncCartUI();
 });
 
-// 9. Đóng / Mở Drawer Giỏ Hàng
+// 10. Đóng / Mở Drawer Giỏ Hàng
 function openDrawer() {
   cartDrawerBackdrop.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -314,18 +352,21 @@ cartDrawerBackdrop.addEventListener('click', (e) => {
   if (e.target === cartDrawerBackdrop) closeDrawer();
 });
 
-// 10. Thanh toán (Checkout)
+// 11. Thanh toán mô phỏng (Checkout Simulation)
 btnCheckout.addEventListener('click', () => {
   if (cart.length === 0) {
     alert('Giỏ hàng của bạn đang trống! Hãy chọn ít nhất 1 sản phẩm trước khi thanh toán.');
     return;
   }
 
-  const randomId = '#DCG-' + Math.floor(1000 + Math.random() * 9000);
-  orderIdText.textContent = randomId;
+  // Tạo mã đơn demo an toàn bằng Web Crypto API
+  const demoCode = (typeof crypto !== 'undefined' && crypto.randomUUID)
+    ? crypto.randomUUID().slice(0, 8).toUpperCase()
+    : String(Date.now()).slice(-6);
+  orderIdText.textContent = `#DCG-${demoCode}`;
   closeDrawer();
 
-  // Reset giỏ
+  // Reset giỏ hàng sau khi mô phỏng đặt hàng
   cart = [];
   appliedVoucher = null;
   voucherInput.value = '';
@@ -338,6 +379,18 @@ btnCheckout.addEventListener('click', () => {
 
 btnCloseSuccessModal.addEventListener('click', () => {
   orderSuccessModal.classList.add('hidden');
+});
+
+// Đóng drawer và modal khi nhấn phím Escape
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (!cartDrawerBackdrop.classList.contains('hidden')) {
+      closeDrawer();
+    }
+    if (!orderSuccessModal.classList.contains('hidden')) {
+      orderSuccessModal.classList.add('hidden');
+    }
+  }
 });
 
 // Khởi chạy

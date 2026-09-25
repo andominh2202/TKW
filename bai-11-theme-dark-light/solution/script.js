@@ -13,10 +13,16 @@ const tokenText = document.getElementById('tokenText');
 
 // 1. Hàm cập nhật giao diện theo theme
 function applyTheme(theme) {
-  htmlElement.setAttribute('data-theme', theme);
-  localStorage.setItem('lumina_theme', theme);
+  const validTheme = (theme === 'dark') ? 'dark' : 'light';
+  htmlElement.setAttribute('data-theme', validTheme);
+  
+  try {
+    localStorage.setItem('lumina_theme', validTheme);
+  } catch (e) {
+    console.warn('Không thể ghi theme vào LocalStorage:', e);
+  }
 
-  if (theme === 'dark') {
+  if (validTheme === 'dark') {
     if (themeLabelText) themeLabelText.textContent = 'Giao diện: Tối';
     if (tokenBg) tokenBg.textContent = '#0b0f19';
     if (tokenCard) tokenCard.textContent = '#131b2e';
@@ -31,13 +37,18 @@ function applyTheme(theme) {
 
 // 2. Kiểm tra xem người dùng đã từng chọn theme trước đó chưa
 function initTheme() {
-  const savedTheme = localStorage.getItem('lumina_theme');
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('lumina_theme');
+  } catch (e) {
+    console.warn('Không thể đọc theme từ LocalStorage:', e);
+  }
   
-  if (savedTheme) {
+  if (savedTheme === 'dark' || savedTheme === 'light') {
     applyTheme(savedTheme);
   } else {
-    // Nếu chưa từng chọn, kiểm tra thiết lập máy tính của người dùng
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Nếu chưa từng chọn hoặc dữ liệu không hợp lệ, kiểm tra thiết lập máy tính
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(prefersDark ? 'dark' : 'light');
   }
 }

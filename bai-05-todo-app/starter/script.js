@@ -3,13 +3,26 @@
 // Hãy hoàn thành các hàm bên dưới theo chỉ dẫn TODO!
 // ======================================================
 
-// 1. Quản lý State: Lấy danh sách từ LocalStorage hoặc mảng rỗng
-let todos = JSON.parse(localStorage.getItem('my_todos')) || [
+// 1. Quản lý State: Lấy danh sách từ LocalStorage an toàn hoặc dùng mảng mặc định
+const DEFAULT_TODOS = [
   { id: 1, text: 'Học cú pháp HTML5 Semantic', completed: true },
   { id: 2, text: 'Thực hành Flexbox và CSS Grid', completed: false },
   { id: 3, text: 'Lập trình JavaScript DOM Manipulation', completed: false }
 ];
 
+function loadTodos() {
+  try {
+    const data = localStorage.getItem('my_todos');
+    if (!data) return DEFAULT_TODOS;
+    const parsed = JSON.parse(data);
+    return Array.isArray(parsed) ? parsed : DEFAULT_TODOS;
+  } catch (err) {
+    console.warn('Lỗi đọc LocalStorage:', err);
+    return DEFAULT_TODOS;
+  }
+}
+
+let todos = loadTodos();
 let currentFilter = 'all'; // 'all' | 'active' | 'completed'
 
 // 2. DOM Elements
@@ -22,7 +35,11 @@ const filterBtns = document.querySelectorAll('.tab-btn');
 
 // TODO 1: Hàm lưu mảng `todos` vào LocalStorage
 function saveTodos() {
-  localStorage.setItem('my_todos', JSON.stringify(todos));
+  try {
+    localStorage.setItem('my_todos', JSON.stringify(todos));
+  } catch (err) {
+    console.warn('Không thể lưu vào LocalStorage:', err);
+  }
 }
 
 // TODO 2: Hàm render (hiển thị) danh sách công việc ra HTML
@@ -37,17 +54,34 @@ function renderTodos() {
     return true; // 'all'
   });
 
-  // Duyệt qua từng công việc và tạo thẻ <li>
+  // Duyệt qua từng công việc và tạo thẻ <li> an toàn
   filteredTodos.forEach(todo => {
     const li = document.createElement('li');
     li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
-    li.innerHTML = `
-      <div class="todo-item-left">
-        <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''} data-id="${todo.id}">
-        <span class="todo-text">${todo.text}</span>
-      </div>
-      <button class="btn-delete" data-id="${todo.id}">✕</button>
-    `;
+
+    const leftDiv = document.createElement('div');
+    leftDiv.className = 'todo-item-left';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'todo-checkbox';
+    checkbox.checked = !!todo.completed;
+    checkbox.setAttribute('data-id', todo.id);
+
+    const span = document.createElement('span');
+    span.className = 'todo-text';
+    span.textContent = todo.text; // An toàn tuyệt đối chống XSS
+
+    leftDiv.appendChild(checkbox);
+    leftDiv.appendChild(span);
+
+    const btnDelete = document.createElement('button');
+    btnDelete.className = 'btn-delete';
+    btnDelete.setAttribute('data-id', todo.id);
+    btnDelete.textContent = '✕';
+
+    li.appendChild(leftDiv);
+    li.appendChild(btnDelete);
     todoList.appendChild(li);
   });
 

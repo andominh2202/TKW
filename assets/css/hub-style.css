@@ -156,6 +156,20 @@ body {
   transform: translateY(-2px);
 }
 
+.guide-link-btn.active {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="light"] .guide-link-btn.active {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #4338ca;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
 /* ================= MAIN NAVIGATION TABS ================= */
 .main-tabs-wrapper {
   background: rgba(15, 22, 38, 0.8);

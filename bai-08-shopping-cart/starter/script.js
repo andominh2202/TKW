@@ -43,13 +43,29 @@ const productsData = [
   }
 ];
 
-// 2. Trạng thái giỏ hàng & nạp an toàn từ LocalStorage
+// 2. Trạng thái giỏ hàng & nạp an toàn từ LocalStorage (Tra cứu catalog gốc)
 function loadCart() {
   try {
     const raw = localStorage.getItem('my_shop_cart');
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+
+    // Chỉ nhận diện theo ID từ catalog, không tin giá tiền lưu trữ trong LocalStorage
+    return parsed.map(item => {
+      if (!item || typeof item.id !== 'number') return null;
+      const product = productsData.find(p => p.id === item.id);
+      if (!product) return null;
+      const qty = parseInt(item.quantity, 10);
+      const safeQty = (!isNaN(qty) && Number.isFinite(qty) && qty > 0) ? Math.min(qty, 99) : 1;
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        img: product.img,
+        quantity: safeQty
+      };
+    }).filter(Boolean);
   } catch (e) {
     console.warn('Lỗi đọc LocalStorage:', e);
     return [];

@@ -71,7 +71,28 @@ function loadCartFromStorage() {
     if (!raw) return DEFAULT_CART;
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return DEFAULT_CART;
-    return parsed.filter(item => item && typeof item.id === 'number' && typeof item.price === 'number');
+
+    // Không tin giá/tiêu đề từ LocalStorage: tra cứu thông tin gốc từ catalog
+    const validatedCart = [];
+    parsed.forEach(item => {
+      if (!item || typeof item.id !== 'number') return;
+      const catalogItem = catalog.find(p => p.id === item.id);
+      if (!catalogItem) return; // Bỏ qua nếu ID không tồn tại trong danh mục
+
+      const qty = parseInt(item.quantity, 10);
+      if (isNaN(qty) || !Number.isFinite(qty) || qty <= 0) return; // Bỏ qua nếu số lượng không hợp lệ
+      const safeQty = Math.min(Math.max(qty, 1), 99); // Giới hạn số lượng an toàn 1-99
+
+      validatedCart.push({
+        id: catalogItem.id,
+        title: catalogItem.title,
+        price: catalogItem.price,
+        img: catalogItem.img,
+        quantity: safeQty
+      });
+    });
+
+    return validatedCart.length > 0 ? validatedCart : DEFAULT_CART;
   } catch (e) {
     console.warn('Lỗi đọc LocalStorage Giỏ hàng, sử dụng mặc định:', e);
     return DEFAULT_CART;

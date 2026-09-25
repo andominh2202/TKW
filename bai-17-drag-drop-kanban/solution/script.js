@@ -56,17 +56,65 @@ const DEFAULT_KANBAN_STATE = {
 
 let kanbanState = loadKanbanState();
 
-// 1. Hàm đọc trạng thái từ LocalStorage an toàn (chống corrupt data)
+// 1. Hàm đọc trạng thái từ LocalStorage an toàn (chống corrupt data, ID trùng lặp hoặc thẻ rác)
 function loadKanbanState() {
   try {
     const raw = localStorage.getItem('kanban_board_state_v2');
     if (!raw) return JSON.parse(JSON.stringify(DEFAULT_KANBAN_STATE));
     const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === 'object' && parsed.cards && parsed.lanes &&
+    if (parsed && typeof parsed === 'object' && parsed.cards && typeof parsed.cards === 'object' && parsed.lanes &&
         Array.isArray(parsed.lanes.todo) &&
         Array.isArray(parsed.lanes.inprogress) &&
         Array.isArray(parsed.lanes.done)) {
-      return parsed;
+
+      // Lọc và chuẩn hóa cards hợp lệ
+      const validCards = {};
+      Object.keys(parsed.cards).forEach(key => {
+        const c = parsed.cards[key];
+        if (c && typeof c === 'object' && c.id && typeof c.title === 'string' && c.title.trim()) {
+          validCards[c.id] = {
+            id: String(c.id),
+            title: String(c.title).trim(),
+            description: typeof c.description === 'string' ? c.description.trim() : '',
+            tag: typeof c.tag === 'string' ? c.tag : 'General',
+            priority: typeof c.priority === 'string' ? c.priority : 'Vừa',
+            assigneeName: typeof c.assigneeName === 'string' ? c.assigneeName : 'Bạn',
+            assigneeAvatar: typeof c.assigneeAvatar === 'string' ? c.assigneeAvatar : '',
+            dueDate: typeof c.dueDate === 'string' ? c.dueDate : '📅 Hôm nay'
+          };
+        }
+      });
+
+      // Lọc lanes: chỉ giữ thẻ tồn tại trong validCards và loại bỏ hoàn toàn trùng lặp ID giữa các làn
+      const seenIds = new Set();
+      const cleanLane = (arr) => {
+        const res = [];
+        arr.forEach(id => {
+          if (validCards[id] && !seenIds.has(id)) {
+            seenIds.add(id);
+            res.push(id);
+          }
+        });
+        return res;
+      };
+
+      const cleanLanes = {
+        todo: cleanLane(parsed.lanes.todo),
+        inprogress: cleanLane(parsed.lanes.inprogress),
+        done: cleanLane(parsed.lanes.done)
+      };
+
+      // Đưa những thẻ mồ côi (tồn tại trong validCards nhưng chưa nằm trong làn nào) vào làn todo
+      Object.keys(validCards).forEach(id => {
+        if (!seenIds.has(id)) {
+          seenIds.add(id);
+          cleanLanes.todo.push(id);
+        }
+      });
+
+      if (Object.keys(validCards).length > 0) {
+        return { cards: validCards, lanes: cleanLanes };
+      }
     }
   } catch (e) {
     console.warn('LocalStorage data corrupt or unavailable, resetting to default state:', e);

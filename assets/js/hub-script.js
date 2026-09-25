@@ -1199,13 +1199,39 @@ function initExercisesSection() {
     });
   }
 
-  // Lắng nghe phím Escape để đóng Modal
+  // Bẫy tiêu điểm bàn phím (Focus Trap) & phím Escape cho Modal theo chuẩn A11y
+  function trapModalFocus(modalEl, e) {
+    if (e.key !== 'Tab') return;
+    const focusables = modalEl.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (!focusables || focusables.length === 0) return;
+    const firstEl = focusables[0];
+    const lastEl = focusables[focusables.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstEl) {
+        lastEl.focus();
+        e.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastEl) {
+        firstEl.focus();
+        e.preventDefault();
+      }
+    }
+  }
+
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (previewModal && !previewModal.classList.contains('hidden')) {
+    if (previewModal && !previewModal.classList.contains('hidden')) {
+      if (e.key === 'Escape') {
         closePreviewModal();
-      } else if (readmeModal && !readmeModal.classList.contains('hidden')) {
+      } else if (e.key === 'Tab') {
+        trapModalFocus(previewModal, e);
+      }
+    } else if (readmeModal && !readmeModal.classList.contains('hidden')) {
+      if (e.key === 'Escape') {
         closeReadmeModal();
+      } else if (e.key === 'Tab') {
+        trapModalFocus(readmeModal, e);
       }
     }
   });

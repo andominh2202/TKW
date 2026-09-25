@@ -15,10 +15,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    body {
+      overflow-x: hidden;
+    }
+
     .lookup-wrapper {
       max-width: 1240px;
       margin: 0 auto;
       padding: 30px 20px 100px;
+      overflow-x: hidden;
     }
 
     .lookup-hero {
@@ -274,6 +279,8 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(10, 15, 29, 0.6);
       margin-bottom: 24px;
+      max-width: 100%;
+      width: 100%;
     }
 
     .roadmap-table {
@@ -391,6 +398,9 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-width: 0;
+      overflow: hidden;
+      word-break: break-word;
     }
 
     .cheat-card:hover {
@@ -441,6 +451,7 @@
       border-radius: 8px;
       overflow: hidden;
       margin-top: auto;
+      max-width: 100%;
     }
 
     .code-box-topbar {
@@ -482,6 +493,13 @@
       line-height: 1.6;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      white-space: pre;
+      max-width: 100%;
+    }
+
+    .code-content-pre code {
+      font-family: inherit;
+      color: inherit;
     }
 
     /* Interactive Flexbox Mini-Studio */
@@ -637,9 +655,9 @@
   <div class="ambient-glow glow-top-right"></div>
 
   <!-- Thanh Topbar Điều Hướng -->
-  <nav class="hub-nav">
+  <nav class="hub-nav" aria-label="Thanh điều hướng chính">
     <div class="container nav-content">
-      <a href="index.html" class="hub-brand">
+      <a href="index.html" class="hub-brand" aria-label="DevWeb Lab Trang chủ">
         <div class="brand-icon">⚡</div>
         <div>
           <span class="brand-name">DevWeb<span class="brand-tag">Lab</span></span>
@@ -662,7 +680,7 @@
           </svg>
           <span>🌱 Cẩm Nang Trực Quan</span>
         </a>
-        <a href="bang-tra-cuu.html" class="guide-link-btn active" title="Bảng tra cứu cú pháp và lộ trình học" style="background: rgba(99, 102, 241, 0.25); border-color: rgba(99, 102, 241, 0.5); color: #fff;">
+        <a href="bang-tra-cuu.html" class="guide-link-btn active" title="Bảng tra cứu cú pháp và lộ trình học" style="background: rgba(99, 102, 241, 0.25); border-color: rgba(99, 102, 241, 0.5); color: #fff;" aria-current="page">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -696,21 +714,23 @@
         </div>
 
         <!-- Category Jump Pills -->
-        <div class="category-pills">
+        <nav class="category-pills" aria-label="Bộ lọc chuyên mục nhanh">
           <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-right: 4px;">Xem nhanh:</span>
           <a href="#secSteps" class="cat-pill active">🎯 4 Bước Học</a>
           <a href="#secRoadmap" class="cat-pill">🧭 Lộ Trình 19 Bài</a>
           <a href="#secHtml" class="cat-pill">🧱 HTML Toàn Diện</a>
           <a href="#secCss" class="cat-pill">🎨 CSS Toàn Diện</a>
           <a href="#secJs" class="cat-pill">⚡ JavaScript Toàn Diện</a>
-        </div>
+        </nav>
       </div>
     </header>
 
     <!-- THÔNG BÁO KHÔNG TÌM THẤY KẾT QUẢ -->
-    <div id="noResultsAlert" class="no-results-alert">
+    <div id="noResultsAlert" class="no-results-alert" role="alert" aria-live="polite">
       <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
-      <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 6px;">Không tìm thấy cú pháp hoặc bài tập phù hợp</h3>
+      <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 6px;">
+        Không tìm thấy kết quả phù hợp với: "<span id="noResultsQueryText" style="color: var(--primary-light); font-weight: 700;"></span>"
+      </h3>
       <p>Thử tìm với từ khóa khác như <code>input</code>, <code>table</code>, <code>flex</code>, <code>grid</code>, <code>position</code>, <code>map</code>, <code>fetch</code>, <code>localStorage</code>...</p>
     </div>
     <!-- ======================================================== -->
@@ -1121,9 +1141,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<!DOCTYPE html>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;!DOCTYPE html&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;!DOCTYPE html&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;!DOCTYPE html&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;html lang=&quot;vi&quot;&gt; thẻ gốc (root) phần tử gốc bao bọc toàn bộ nội dung trang web. thuộc tính lang xác định ngôn ngữ hiển thị. root ngon ngu lang">
@@ -1135,11 +1155,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<html lang=&quot;vi&quot;>\n  ...\n</html>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;html lang=&quot;vi&quot;&gt;\n  ...\n&lt;/html&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;html lang=&quot;vi&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;html lang=&quot;vi&quot;&gt;
   ...
-&lt;/html&gt;</pre>
+&lt;/html&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;head&gt; phần đầu trang chứa metadata thông tin trang, tiêu đề, liên kết file css, phông chữ (không hiển thị trực tiếp ra màn hình). metadata header thong tin">
@@ -1151,12 +1171,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<head>\n  <meta charset=&quot;UTF-8&quot;>\n  <title>Tiêu Đề Trang</title>\n</head>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;head&gt;\n  &lt;meta charset=&quot;UTF-8&quot;&gt;\n  &lt;title&gt;Tiêu Đề Trang&lt;/title&gt;\n&lt;/head&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;head&gt;
+            <pre class="code-content-pre"><code>&lt;head&gt;
   &lt;meta charset=&quot;UTF-8&quot;&gt;
   &lt;title&gt;Tiêu Đề Trang&lt;/title&gt;
-&lt;/head&gt;</pre>
+&lt;/head&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;title&gt; tiêu đề tab đặt tiêu đề cho trang web, hiển thị trên tab của trình duyệt và kết quả tìm kiếm google (seo). title tieu de tab seo">
@@ -1168,9 +1188,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<title>Học HTML Cơ Bản Đến Nâng Cao</title>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;title&gt;Học HTML Cơ Bản Đến Nâng Cao&lt;/title&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;title&gt;Học HTML Cơ Bản Đến Nâng Cao&lt;/title&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;title&gt;Học HTML Cơ Bản Đến Nâng Cao&lt;/title&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;meta&gt; siêu dữ liệu khai báo bảng mã ký tự utf-8, cấu hình viewport co giãn responsive trên điện thoại, mô tả trang seo. meta utf-8 viewport responsive description">
@@ -1182,11 +1202,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<meta charset=&quot;UTF-8&quot;>\n<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>\n<meta name=&quot;description&quot; content=&quot;Mô tả trang web chuẩn SEO&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;meta charset=&quot;UTF-8&quot;&gt;\n&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;\n&lt;meta name=&quot;description&quot; content=&quot;Mô tả trang web chuẩn SEO&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;meta charset=&quot;UTF-8&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;meta charset=&quot;UTF-8&quot;&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-&lt;meta name=&quot;description&quot; content=&quot;Mô tả trang web chuẩn SEO&quot;&gt;</pre>
+&lt;meta name=&quot;description&quot; content=&quot;Mô tả trang web chuẩn SEO&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;link&gt; liên kết ngoài nhúng file css bên ngoài, favicon, phông chữ từ google fonts vào trang html. link css stylesheet icon font">
@@ -1198,10 +1218,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;>\n<link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;\n&lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
-&lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;script&gt; nhúng javascript nhúng mã javascript thực thi trực tiếp hoặc tải từ file .js bên ngoài (hỗ trợ defer / async). script javascript js defer async">
@@ -1213,9 +1233,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<script src=&quot;app.js&quot; defer></script>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;script src=&quot;app.js&quot; defer&gt;&lt;/script&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;script src=&quot;app.js&quot; defer&gt;&lt;/script&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;script src=&quot;app.js&quot; defer&gt;&lt;/script&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;body&gt; thân trang web chứa toàn bộ nội dung trực quan mà người dùng nhìn thấy và tương tác trên trang web. body than trang noi dung">
@@ -1227,12 +1247,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<body>\n  <h1>Xin chào thế giới!</h1>\n  <p>Nội dung website ở đây.</p>\n</body>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;body&gt;\n  &lt;h1&gt;Xin chào thế giới!&lt;/h1&gt;\n  &lt;p&gt;Nội dung website ở đây.&lt;/p&gt;\n&lt;/body&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;body&gt;
+            <pre class="code-content-pre"><code>&lt;body&gt;
   &lt;h1&gt;Xin chào thế giới!&lt;/h1&gt;
   &lt;p&gt;Nội dung website ở đây.&lt;/p&gt;
-&lt;/body&gt;</pre>
+&lt;/body&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1247,11 +1267,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<h1>Tiêu Đề Cấp 1 (Chính)</h1>\n<h2>Tiêu Đề Cấp 2 (Mục lớn)</h2>\n<h3>Tiêu Đề Cấp 3 (Mục con)</h3>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;h1&gt;Tiêu Đề Cấp 1 (Chính)&lt;/h1&gt;\n&lt;h2&gt;Tiêu Đề Cấp 2 (Mục lớn)&lt;/h2&gt;\n&lt;h3&gt;Tiêu Đề Cấp 3 (Mục con)&lt;/h3&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;h1&gt;Tiêu Đề Cấp 1 (Chính)&lt;/h1&gt;
+            <pre class="code-content-pre"><code>&lt;h1&gt;Tiêu Đề Cấp 1 (Chính)&lt;/h1&gt;
 &lt;h2&gt;Tiêu Đề Cấp 2 (Mục lớn)&lt;/h2&gt;
-&lt;h3&gt;Tiêu Đề Cấp 3 (Mục con)&lt;/h3&gt;</pre>
+&lt;h3&gt;Tiêu Đề Cấp 3 (Mục con)&lt;/h3&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;p&gt; đoạn văn bản định nghĩa một đoạn văn bản (paragraph). tự động có khoảng cách trên và dưới (margin) mặc định. p paragraph doan van">
@@ -1263,9 +1283,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Đây là một đoạn văn bản giới thiệu nội dung bài học.</p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Đây là một đoạn văn bản giới thiệu nội dung bài học.&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Đây là một đoạn văn bản giới thiệu nội dung bài học.&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Đây là một đoạn văn bản giới thiệu nội dung bài học.&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;span&gt; inline container thẻ nội dòng vô ngữ nghĩa, dùng để bọc một cụm từ cần đổi màu sắc, phông chữ hoặc gán hiệu ứng css. span inline van ban chu mau">
@@ -1277,9 +1297,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Giá bán: <span style=&quot;color: red; font-weight: bold;&quot;>299.000đ</span></p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Giá bán: &lt;span style=&quot;color: red; font-weight: bold;&quot;&gt;299.000đ&lt;/span&gt;&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Giá bán: &lt;span style=&quot;color: red; font-weight: bold;&quot;&gt;299.000đ&lt;/span&gt;&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Giá bán: &lt;span style=&quot;color: red; font-weight: bold;&quot;&gt;299.000đ&lt;/span&gt;&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;strong&gt; &amp; &lt;b&gt; in đậm chữ &lt;strong&gt; in đậm chữ với ý nghĩa ngữ nghĩa nhấn mạnh quan trọng. &lt;b&gt; chỉ đơn thuần in đậm thị giác. strong b bold in dam nhan manh">
@@ -1291,9 +1311,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Vui lòng <strong>không chia sẻ mật khẩu</strong> cho bất kỳ ai.</p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Vui lòng &lt;strong&gt;không chia sẻ mật khẩu&lt;/strong&gt; cho bất kỳ ai.&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Vui lòng &lt;strong&gt;không chia sẻ mật khẩu&lt;/strong&gt; cho bất kỳ ai.&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Vui lòng &lt;strong&gt;không chia sẻ mật khẩu&lt;/strong&gt; cho bất kỳ ai.&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;em&gt; &amp; &lt;i&gt; in nghiêng chữ &lt;em&gt; in nghiêng với ngữ nghĩa nhấn giọng. &lt;i&gt; chỉ đơn thuần in nghiêng thị giác (thường dùng cho icon). em i italic in nghieng">
@@ -1305,9 +1325,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Học lập trình cần <em>kiên trì thực hành</em> mỗi ngày.</p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Học lập trình cần &lt;em&gt;kiên trì thực hành&lt;/em&gt; mỗi ngày.&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Học lập trình cần &lt;em&gt;kiên trì thực hành&lt;/em&gt; mỗi ngày.&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Học lập trình cần &lt;em&gt;kiên trì thực hành&lt;/em&gt; mỗi ngày.&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;mark&gt; tô sáng nổi bật tô màu nền vàng dạ quang nổi bật cho một cụm từ tìm kiếm hoặc thông tin quan trọng. mark highlight to sang">
@@ -1319,9 +1339,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Kết quả tìm thấy: <mark>CSS Flexbox</mark> trong bài 00.</p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Kết quả tìm thấy: &lt;mark&gt;CSS Flexbox&lt;/mark&gt; trong bài 00.&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Kết quả tìm thấy: &lt;mark&gt;CSS Flexbox&lt;/mark&gt; trong bài 00.&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Kết quả tìm thấy: &lt;mark&gt;CSS Flexbox&lt;/mark&gt; trong bài 00.&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;del&gt; &amp; &lt;ins&gt; gạch bỏ &amp; thêm mới &lt;del&gt; gạch ngang chữ bị xóa (giá cũ). &lt;ins&gt; gạch chân chữ mới được thêm vào (giá khuyến mãi). del ins gach ngang gia cu moi">
@@ -1333,9 +1353,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Giá gốc: <del>500.000đ</del> - Giảm còn: <ins>350.000đ</ins></p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Giá gốc: &lt;del&gt;500.000đ&lt;/del&gt; - Giảm còn: &lt;ins&gt;350.000đ&lt;/ins&gt;&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Giá gốc: &lt;del&gt;500.000đ&lt;/del&gt; - Giảm còn: &lt;ins&gt;350.000đ&lt;/ins&gt;&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Giá gốc: &lt;del&gt;500.000đ&lt;/del&gt; - Giảm còn: &lt;ins&gt;350.000đ&lt;/ins&gt;&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;sub&gt; &amp; &lt;sup&gt; chỉ số dưới / trên &lt;sub&gt; tạo chỉ số dưới (công thức hóa học h2o). &lt;sup&gt; tạo chỉ số trên (lũy thừa x2, chú thích). sub sup chi so duoi tren luy thua">
@@ -1347,9 +1367,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Nước: H<sub>2</sub>O | Diện tích: 100 m<sup>2</sup></p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Nước: H&lt;sub&gt;2&lt;/sub&gt;O | Diện tích: 100 m&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Nước: H&lt;sub&gt;2&lt;/sub&gt;O | Diện tích: 100 m&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Nước: H&lt;sub&gt;2&lt;/sub&gt;O | Diện tích: 100 m&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;pre&gt; &amp; &lt;code&gt; mã nguồn máy tính &lt;code&gt; biểu thị đoạn mã lập trình. &lt;pre&gt; giữ nguyên khoảng trắng và ký tự xuống dòng gốc. pre code ma nguon lap trinh">
@@ -1361,11 +1381,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<pre><code>function hello() {\n  console.log('Hello World!');\n}</code></pre>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;pre&gt;&lt;code&gt;function hello() {\n  console.log(&#x27;Hello World!&#x27;);\n}&lt;/code&gt;&lt;/pre&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;pre&gt;&lt;code&gt;function hello() {
+            <pre class="code-content-pre"><code>&lt;pre&gt;&lt;code&gt;function hello() {
   console.log(&#x27;Hello World!&#x27;);
-}&lt;/code&gt;&lt;/pre&gt;</pre>
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;blockquote&gt; đoạn trích dẫn khối trích dẫn một câu danh ngôn hay đoạn văn dài từ nguồn khác, thường có thụt lề đầu dòng. blockquote trich dan quote">
@@ -1377,11 +1397,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<blockquote cite=&quot;https://w3schools.com&quot;>\n  <p>Học thiết kế web giúp bạn tạo ra những sản phẩm kỳ diệu.</p>\n</blockquote>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;blockquote cite=&quot;https://w3schools.com&quot;&gt;\n  &lt;p&gt;Học thiết kế web giúp bạn tạo ra những sản phẩm kỳ diệu.&lt;/p&gt;\n&lt;/blockquote&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;blockquote cite=&quot;https://w3schools.com&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;blockquote cite=&quot;https://w3schools.com&quot;&gt;
   &lt;p&gt;Học thiết kế web giúp bạn tạo ra những sản phẩm kỳ diệu.&lt;/p&gt;
-&lt;/blockquote&gt;</pre>
+&lt;/blockquote&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;br&gt; &amp; &lt;hr&gt; xuống dòng &amp; phân cách &lt;br&gt; ngắt dòng trong đoạn văn. &lt;hr&gt; tạo đường kẻ ngang phân tách chủ đề nội dung (thematic break). br hr xuong dong duong ke">
@@ -1393,10 +1413,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Dòng thứ nhất.<br>Dòng thứ hai.</p>\n<hr>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Dòng thứ nhất.&lt;br&gt;Dòng thứ hai.&lt;/p&gt;\n&lt;hr&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Dòng thứ nhất.&lt;br&gt;Dòng thứ hai.&lt;/p&gt;
-&lt;hr&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Dòng thứ nhất.&lt;br&gt;Dòng thứ hai.&lt;/p&gt;
+&lt;hr&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1411,10 +1431,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<a href=&quot;https://google.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;>Mở Google</a>\n<a href=&quot;#secCss&quot;>Xem CSS</a>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;a href=&quot;https://google.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Mở Google&lt;/a&gt;\n&lt;a href=&quot;#secCss&quot;&gt;Xem CSS&lt;/a&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;a href=&quot;https://google.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Mở Google&lt;/a&gt;
-&lt;a href=&quot;#secCss&quot;&gt;Xem CSS&lt;/a&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;a href=&quot;https://google.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Mở Google&lt;/a&gt;
+&lt;a href=&quot;#secCss&quot;&gt;Xem CSS&lt;/a&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt; hình ảnh chèn ảnh vào trang. thuộc tính alt là bắt buộc (mô tả ảnh khi lỗi và hỗ trợ seo/a11y). hỗ trợ loading=&#x27;lazy&#x27;. img image hinh anh src alt lazy">
@@ -1426,9 +1446,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<img src=&quot;avatar.jpg&quot; alt=&quot;Ảnh đại diện cá nhân&quot; width=&quot;200&quot; height=&quot;200&quot; loading=&quot;lazy&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;img src=&quot;avatar.jpg&quot; alt=&quot;Ảnh đại diện cá nhân&quot; width=&quot;200&quot; height=&quot;200&quot; loading=&quot;lazy&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;img src=&quot;avatar.jpg&quot; alt=&quot;Ảnh đại diện cá nhân&quot; width=&quot;200&quot; height=&quot;200&quot; loading=&quot;lazy&quot;&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;img src=&quot;avatar.jpg&quot; alt=&quot;Ảnh đại diện cá nhân&quot; width=&quot;200&quot; height=&quot;200&quot; loading=&quot;lazy&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;audio controls&gt; trình phát âm thanh nhúng file âm thanh (mp3, wav, ogg) trực tiếp với giao diện phát nhạc, tạm dừng, âm lượng native. audio mp3 phat nhac sound controls">
@@ -1440,12 +1460,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<audio controls>\n  <source src=&quot;song.mp3&quot; type=&quot;audio/mpeg&quot;>\n  Trình duyệt của bạn không hỗ trợ thẻ audio.\n</audio>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;audio controls&gt;\n  &lt;source src=&quot;song.mp3&quot; type=&quot;audio/mpeg&quot;&gt;\n  Trình duyệt của bạn không hỗ trợ thẻ audio.\n&lt;/audio&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;audio controls&gt;
+            <pre class="code-content-pre"><code>&lt;audio controls&gt;
   &lt;source src=&quot;song.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
   Trình duyệt của bạn không hỗ trợ thẻ audio.
-&lt;/audio&gt;</pre>
+&lt;/audio&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;video controls&gt; trình phát video nhúng file video (mp4, webm) kèm thanh điều khiển, hình thu nhỏ poster, tự động phát hoặc lặp lại. video mp4 phim controls poster">
@@ -1457,11 +1477,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<video width=&quot;640&quot; height=&quot;360&quot; controls poster=&quot;preview.jpg&quot;>\n  <source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot;>\n</video>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;video width=&quot;640&quot; height=&quot;360&quot; controls poster=&quot;preview.jpg&quot;&gt;\n  &lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot;&gt;\n&lt;/video&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;video width=&quot;640&quot; height=&quot;360&quot; controls poster=&quot;preview.jpg&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;video width=&quot;640&quot; height=&quot;360&quot; controls poster=&quot;preview.jpg&quot;&gt;
   &lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;</pre>
+&lt;/video&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;iframe&gt; khung nhúng trang web nhúng một trang web, bản đồ google maps, hoặc video youtube vào một khung độc lập trên trang. iframe nhung sandbox frame map youtube">
@@ -1473,9 +1493,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<iframe src=&quot;https://example.com&quot; width=&quot;100%&quot; height=&quot;400&quot; sandbox=&quot;allow-scripts&quot; title=&quot;Trang nhúng&quot;></iframe>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;iframe src=&quot;https://example.com&quot; width=&quot;100%&quot; height=&quot;400&quot; sandbox=&quot;allow-scripts&quot; title=&quot;Trang nhúng&quot;&gt;&lt;/iframe&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;iframe src=&quot;https://example.com&quot; width=&quot;100%&quot; height=&quot;400&quot; sandbox=&quot;allow-scripts&quot; title=&quot;Trang nhúng&quot;&gt;&lt;/iframe&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;iframe src=&quot;https://example.com&quot; width=&quot;100%&quot; height=&quot;400&quot; sandbox=&quot;allow-scripts&quot; title=&quot;Trang nhúng&quot;&gt;&lt;/iframe&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;svg&gt; đồ họa vector svg vẽ đồ họa vector sắc nét không bị vỡ hạt ở mọi độ phân giải màn hình, thường dùng cho biểu tượng icon. svg vector icon do hoa">
@@ -1487,11 +1507,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;>\n  <circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/>\n</svg>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;&gt;\n  &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;\n&lt;/svg&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;&gt;
   &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;
-&lt;/svg&gt;</pre>
+&lt;/svg&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1506,13 +1526,13 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<ul class=&quot;nav-menu&quot;>\n  <li>Trang Chủ</li>\n  <li>Khóa Học</li>\n  <li>Liên Hệ</li>\n</ul>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;ul class=&quot;nav-menu&quot;&gt;\n  &lt;li&gt;Trang Chủ&lt;/li&gt;\n  &lt;li&gt;Khóa Học&lt;/li&gt;\n  &lt;li&gt;Liên Hệ&lt;/li&gt;\n&lt;/ul&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;ul class=&quot;nav-menu&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;ul class=&quot;nav-menu&quot;&gt;
   &lt;li&gt;Trang Chủ&lt;/li&gt;
   &lt;li&gt;Khóa Học&lt;/li&gt;
   &lt;li&gt;Liên Hệ&lt;/li&gt;
-&lt;/ul&gt;</pre>
+&lt;/ul&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;ol&gt; &amp; &lt;li&gt; danh sách có thứ tự danh sách đánh số thứ tự tự động (1, 2, 3... hoặc a, b, c). dùng cho các bước làm bài tập, công thức. ol li danh sach co thu tu 1 2 3">
@@ -1524,13 +1544,13 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<ol start=&quot;1&quot;>\n  <li>Đọc kỹ đề bài</li>\n  <li>Code trong starter</li>\n  <li>Đối chiếu solution</li>\n</ol>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;ol start=&quot;1&quot;&gt;\n  &lt;li&gt;Đọc kỹ đề bài&lt;/li&gt;\n  &lt;li&gt;Code trong starter&lt;/li&gt;\n  &lt;li&gt;Đối chiếu solution&lt;/li&gt;\n&lt;/ol&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;ol start=&quot;1&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;ol start=&quot;1&quot;&gt;
   &lt;li&gt;Đọc kỹ đề bài&lt;/li&gt;
   &lt;li&gt;Code trong starter&lt;/li&gt;
   &lt;li&gt;Đối chiếu solution&lt;/li&gt;
-&lt;/ol&gt;</pre>
+&lt;/ol&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;dl&gt;, &lt;dt&gt; &amp; &lt;dd&gt; danh sách mô tả / thuật ngữ danh sách định nghĩa thuật ngữ: &lt;dt&gt; là từ khóa/tên, &lt;dd&gt; là dòng giải thích chi tiết của thuật ngữ đó. dl dt dd danh sach mo ta dinh nghia thiet yeu">
@@ -1542,14 +1562,14 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<dl>\n  <dt>HTML</dt>\n  <dd>Ngôn ngữ đánh dấu siêu văn bản định hình cấu trúc.</dd>\n  <dt>CSS</dt>\n  <dd>Ngôn ngữ tạo phong cách làm đẹp giao diện.</dd>\n</dl>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;dl&gt;\n  &lt;dt&gt;HTML&lt;/dt&gt;\n  &lt;dd&gt;Ngôn ngữ đánh dấu siêu văn bản định hình cấu trúc.&lt;/dd&gt;\n  &lt;dt&gt;CSS&lt;/dt&gt;\n  &lt;dd&gt;Ngôn ngữ tạo phong cách làm đẹp giao diện.&lt;/dd&gt;\n&lt;/dl&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;dl&gt;
+            <pre class="code-content-pre"><code>&lt;dl&gt;
   &lt;dt&gt;HTML&lt;/dt&gt;
   &lt;dd&gt;Ngôn ngữ đánh dấu siêu văn bản định hình cấu trúc.&lt;/dd&gt;
   &lt;dt&gt;CSS&lt;/dt&gt;
   &lt;dd&gt;Ngôn ngữ tạo phong cách làm đẹp giao diện.&lt;/dd&gt;
-&lt;/dl&gt;</pre>
+&lt;/dl&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1564,9 +1584,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<table border=&quot;1&quot;>\n  <caption>Báo Cáo Doanh Thu</caption>\n  <thead>\n    <tr><th>Tháng</th><th>Doanh Thu</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Tháng 1</td><td>10.000.000đ</td></tr>\n  </tbody>\n  <tfoot>\n    <tr><th>Tổng</th><th>10.000.000đ</th></tr>\n  </tfoot>\n</table>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;table border=&quot;1&quot;&gt;\n  &lt;caption&gt;Báo Cáo Doanh Thu&lt;/caption&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;&lt;th&gt;Tháng&lt;/th&gt;&lt;th&gt;Doanh Thu&lt;/th&gt;&lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;&lt;td&gt;Tháng 1&lt;/td&gt;&lt;td&gt;10.000.000đ&lt;/td&gt;&lt;/tr&gt;\n  &lt;/tbody&gt;\n  &lt;tfoot&gt;\n    &lt;tr&gt;&lt;th&gt;Tổng&lt;/th&gt;&lt;th&gt;10.000.000đ&lt;/th&gt;&lt;/tr&gt;\n  &lt;/tfoot&gt;\n&lt;/table&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;table border=&quot;1&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;table border=&quot;1&quot;&gt;
   &lt;caption&gt;Báo Cáo Doanh Thu&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;&lt;th&gt;Tháng&lt;/th&gt;&lt;th&gt;Doanh Thu&lt;/th&gt;&lt;/tr&gt;
@@ -1577,7 +1597,7 @@
   &lt;tfoot&gt;
     &lt;tr&gt;&lt;th&gt;Tổng&lt;/th&gt;&lt;th&gt;10.000.000đ&lt;/th&gt;&lt;/tr&gt;
   &lt;/tfoot&gt;
-&lt;/table&gt;</pre>
+&lt;/table&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="colspan &amp; rowspan gộp ô trong bảng thuộc tính gộp ô: colspan=&#x27;2&#x27; gộp 2 cột nằm ngang; rowspan=&#x27;2&#x27; gộp 2 hàng nằm dọc theo chiều đứng. colspan rowspan gop o cot hang table">
@@ -1589,15 +1609,15 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<tr>\n  <th colspan=&quot;2&quot;>Thông Tin Cá Nhân (Gộp 2 cột)</th>\n</tr>\n<tr>\n  <td rowspan=&quot;2&quot;>Ảnh (Gộp 2 hàng)</td>\n  <td>Họ Tên</td>\n</tr>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;tr&gt;\n  &lt;th colspan=&quot;2&quot;&gt;Thông Tin Cá Nhân (Gộp 2 cột)&lt;/th&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n  &lt;td rowspan=&quot;2&quot;&gt;Ảnh (Gộp 2 hàng)&lt;/td&gt;\n  &lt;td&gt;Họ Tên&lt;/td&gt;\n&lt;/tr&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;tr&gt;
+            <pre class="code-content-pre"><code>&lt;tr&gt;
   &lt;th colspan=&quot;2&quot;&gt;Thông Tin Cá Nhân (Gộp 2 cột)&lt;/th&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td rowspan=&quot;2&quot;&gt;Ảnh (Gộp 2 hàng)&lt;/td&gt;
   &lt;td&gt;Họ Tên&lt;/td&gt;
-&lt;/tr&gt;</pre>
+&lt;/tr&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1612,11 +1632,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<form action=&quot;/api/login&quot; method=&quot;POST&quot;>\n  ...\n</form>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;form action=&quot;/api/login&quot; method=&quot;POST&quot;&gt;\n  ...\n&lt;/form&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;form action=&quot;/api/login&quot; method=&quot;POST&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;form action=&quot;/api/login&quot; method=&quot;POST&quot;&gt;
   ...
-&lt;/form&gt;</pre>
+&lt;/form&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;label for=&quot;...&quot;&gt; nhãn mô tả ô nhập gắn nhãn cho ô input qua thuộc tính for khớp với id của input. bấm vào chữ label sẽ tự động focus vào input! label for input nhan focus a11y">
@@ -1628,10 +1648,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<label for=&quot;userEmail&quot;>Địa Chỉ Email:</label>\n<input type=&quot;email&quot; id=&quot;userEmail&quot; name=&quot;email&quot; required>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;label for=&quot;userEmail&quot;&gt;Địa Chỉ Email:&lt;/label&gt;\n&lt;input type=&quot;email&quot; id=&quot;userEmail&quot; name=&quot;email&quot; required&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;label for=&quot;userEmail&quot;&gt;Địa Chỉ Email:&lt;/label&gt;
-&lt;input type=&quot;email&quot; id=&quot;userEmail&quot; name=&quot;email&quot; required&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;label for=&quot;userEmail&quot;&gt;Địa Chỉ Email:&lt;/label&gt;
+&lt;input type=&quot;email&quot; id=&quot;userEmail&quot; name=&quot;email&quot; required&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;input type=&quot;text | password&quot;&gt; nhập chữ &amp; mật khẩu type=&#x27;text&#x27; nhập văn bản thường. type=&#x27;password&#x27; tự động che dấu hoa thị chấm tròn bảo vệ mật khẩu. input text password mat khau van ban">
@@ -1643,10 +1663,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<input type=&quot;text&quot; placeholder=&quot;Họ và tên&quot; maxlength=&quot;50&quot;>\n<input type=&quot;password&quot; placeholder=&quot;Nhập mật khẩu&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;input type=&quot;text&quot; placeholder=&quot;Họ và tên&quot; maxlength=&quot;50&quot;&gt;\n&lt;input type=&quot;password&quot; placeholder=&quot;Nhập mật khẩu&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;input type=&quot;text&quot; placeholder=&quot;Họ và tên&quot; maxlength=&quot;50&quot;&gt;
-&lt;input type=&quot;password&quot; placeholder=&quot;Nhập mật khẩu&quot;&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;input type=&quot;text&quot; placeholder=&quot;Họ và tên&quot; maxlength=&quot;50&quot;&gt;
+&lt;input type=&quot;password&quot; placeholder=&quot;Nhập mật khẩu&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;input type=&quot;email | number&quot;&gt; email &amp; con số type=&#x27;email&#x27; tự kiểm tra định dạng @. type=&#x27;number&#x27; chỉ cho phép số, có min, max, step. input email number so toi thieu toi da">
@@ -1658,10 +1678,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<input type=&quot;email&quot; placeholder=&quot;name@domain.com&quot; required>\n<input type=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;1&quot; step=&quot;1&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;input type=&quot;email&quot; placeholder=&quot;name@domain.com&quot; required&gt;\n&lt;input type=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;1&quot; step=&quot;1&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;input type=&quot;email&quot; placeholder=&quot;name@domain.com&quot; required&gt;
-&lt;input type=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;1&quot; step=&quot;1&quot;&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;input type=&quot;email&quot; placeholder=&quot;name@domain.com&quot; required&gt;
+&lt;input type=&quot;number&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;1&quot; step=&quot;1&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;input type=&quot;checkbox | radio&quot;&gt; hộp kiểm &amp; nút tròn checkbox cho phép chọn nhiều mục. radio (cùng chung name) chỉ cho phép chọn 1 mục duy nhất. input checkbox radio hop kiem lua chon">
@@ -1673,11 +1693,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<input type=&quot;checkbox&quot; id=&quot;c1&quot;><label for=&quot;c1&quot;>Tôi đồng ý</label>\n<input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;> Nam\n<input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;> Nữ">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;input type=&quot;checkbox&quot; id=&quot;c1&quot;&gt;&lt;label for=&quot;c1&quot;&gt;Tôi đồng ý&lt;/label&gt;\n&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt; Nam\n&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Nữ">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;input type=&quot;checkbox&quot; id=&quot;c1&quot;&gt;&lt;label for=&quot;c1&quot;&gt;Tôi đồng ý&lt;/label&gt;
+            <pre class="code-content-pre"><code>&lt;input type=&quot;checkbox&quot; id=&quot;c1&quot;&gt;&lt;label for=&quot;c1&quot;&gt;Tôi đồng ý&lt;/label&gt;
 &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt; Nam
-&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Nữ</pre>
+&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Nữ</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;input type=&quot;file | date | color&quot;&gt; tập tin, ngày tháng &amp; màu type=&#x27;file&#x27; chọn tệp tải lên (accept). type=&#x27;date&#x27; chọn ngày trong lịch. type=&#x27;color&#x27; mở bảng màu picker. input file date color chon anh lich mau">
@@ -1689,11 +1709,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<input type=&quot;file&quot; accept=&quot;image/*&quot;>\n<input type=&quot;date&quot;>\n<input type=&quot;color&quot; value=&quot;#6366f1&quot;>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;input type=&quot;file&quot; accept=&quot;image/*&quot;&gt;\n&lt;input type=&quot;date&quot;&gt;\n&lt;input type=&quot;color&quot; value=&quot;#6366f1&quot;&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;input type=&quot;file&quot; accept=&quot;image/*&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;input type=&quot;file&quot; accept=&quot;image/*&quot;&gt;
 &lt;input type=&quot;date&quot;&gt;
-&lt;input type=&quot;color&quot; value=&quot;#6366f1&quot;&gt;</pre>
+&lt;input type=&quot;color&quot; value=&quot;#6366f1&quot;&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;textarea&gt; hộp nhập văn bản lớn ô nhập văn bản nhiều dòng dùng cho lời nhắn, nhận xét, mô tả bài viết. tùy chỉnh số hàng (rows) và cột (cols). textarea van ban nhieu dong loi nhan">
@@ -1705,9 +1725,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<textarea rows=&quot;4&quot; cols=&quot;50&quot; placeholder=&quot;Nhập nội dung lời nhắn...&quot;></textarea>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;textarea rows=&quot;4&quot; cols=&quot;50&quot; placeholder=&quot;Nhập nội dung lời nhắn...&quot;&gt;&lt;/textarea&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;textarea rows=&quot;4&quot; cols=&quot;50&quot; placeholder=&quot;Nhập nội dung lời nhắn...&quot;&gt;&lt;/textarea&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;textarea rows=&quot;4&quot; cols=&quot;50&quot; placeholder=&quot;Nhập nội dung lời nhắn...&quot;&gt;&lt;/textarea&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;select&gt; &amp; &lt;option&gt; menu thả xuống (dropdown) tạo danh sách thả xuống cho người dùng chọn một hoặc nhiều lựa chọn trong danh mục. select option dropdown menu tha xuong danh muc">
@@ -1719,13 +1739,13 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<select name=&quot;city&quot;>\n  <option value=&quot;hn&quot;>Hà Nội</option>\n  <option value=&quot;hcm&quot; selected>TP. Hồ Chí Minh</option>\n  <option value=&quot;dn&quot;>Đà Nẵng</option>\n</select>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;select name=&quot;city&quot;&gt;\n  &lt;option value=&quot;hn&quot;&gt;Hà Nội&lt;/option&gt;\n  &lt;option value=&quot;hcm&quot; selected&gt;TP. Hồ Chí Minh&lt;/option&gt;\n  &lt;option value=&quot;dn&quot;&gt;Đà Nẵng&lt;/option&gt;\n&lt;/select&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;select name=&quot;city&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;select name=&quot;city&quot;&gt;
   &lt;option value=&quot;hn&quot;&gt;Hà Nội&lt;/option&gt;
   &lt;option value=&quot;hcm&quot; selected&gt;TP. Hồ Chí Minh&lt;/option&gt;
   &lt;option value=&quot;dn&quot;&gt;Đà Nẵng&lt;/option&gt;
-&lt;/select&gt;</pre>
+&lt;/select&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;button type=&quot;submit | button&quot;&gt; nút bấm trong form type=&#x27;submit&#x27; gửi dữ liệu form. type=&#x27;reset&#x27; xóa trắng form. type=&#x27;button&#x27; nút thường dùng cho js. button submit reset nut bam form">
@@ -1737,10 +1757,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<button type=&quot;submit&quot;>Gửi Biểu Mẫu</button>\n<button type=&quot;button&quot; onclick=&quot;doSomething()&quot;>Nút Tác Vụ</button>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;button type=&quot;submit&quot;&gt;Gửi Biểu Mẫu&lt;/button&gt;\n&lt;button type=&quot;button&quot; onclick=&quot;doSomething()&quot;&gt;Nút Tác Vụ&lt;/button&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;button type=&quot;submit&quot;&gt;Gửi Biểu Mẫu&lt;/button&gt;
-&lt;button type=&quot;button&quot; onclick=&quot;doSomething()&quot;&gt;Nút Tác Vụ&lt;/button&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;button type=&quot;submit&quot;&gt;Gửi Biểu Mẫu&lt;/button&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;doSomething()&quot;&gt;Nút Tác Vụ&lt;/button&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;fieldset&gt; &amp; &lt;legend&gt; nhóm ô nhập có viền khung gom nhóm các ô nhập có liên quan trong form lại kèm theo dòng tiêu đề (&lt;legend&gt;) nổi trên viền khung. fieldset legend nhom form vien khung">
@@ -1752,12 +1772,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<fieldset>\n  <legend>Thông Tin Giao Hàng</legend>\n  <input type=&quot;text&quot; placeholder=&quot;Địa chỉ&quot;>\n</fieldset>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;fieldset&gt;\n  &lt;legend&gt;Thông Tin Giao Hàng&lt;/legend&gt;\n  &lt;input type=&quot;text&quot; placeholder=&quot;Địa chỉ&quot;&gt;\n&lt;/fieldset&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;fieldset&gt;
+            <pre class="code-content-pre"><code>&lt;fieldset&gt;
   &lt;legend&gt;Thông Tin Giao Hàng&lt;/legend&gt;
   &lt;input type=&quot;text&quot; placeholder=&quot;Địa chỉ&quot;&gt;
-&lt;/fieldset&gt;</pre>
+&lt;/fieldset&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;datalist&gt; gợi ý tự động hoàn thành cung cấp danh sách gợi ý tự động (autocomplete) khi người dùng gõ vào ô input nhưng vẫn cho phép gõ tự do. datalist autocomplete goi y lua chon input">
@@ -1769,14 +1789,14 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<input list=&quot;browsers&quot; placeholder=&quot;Chọn trình duyệt...&quot;>\n<datalist id=&quot;browsers&quot;>\n  <option value=&quot;Chrome&quot;>\n  <option value=&quot;Firefox&quot;>\n  <option value=&quot;Safari&quot;>\n</datalist>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;input list=&quot;browsers&quot; placeholder=&quot;Chọn trình duyệt...&quot;&gt;\n&lt;datalist id=&quot;browsers&quot;&gt;\n  &lt;option value=&quot;Chrome&quot;&gt;\n  &lt;option value=&quot;Firefox&quot;&gt;\n  &lt;option value=&quot;Safari&quot;&gt;\n&lt;/datalist&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;input list=&quot;browsers&quot; placeholder=&quot;Chọn trình duyệt...&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;input list=&quot;browsers&quot; placeholder=&quot;Chọn trình duyệt...&quot;&gt;
 &lt;datalist id=&quot;browsers&quot;&gt;
   &lt;option value=&quot;Chrome&quot;&gt;
   &lt;option value=&quot;Firefox&quot;&gt;
   &lt;option value=&quot;Safari&quot;&gt;
-&lt;/datalist&gt;</pre>
+&lt;/datalist&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -1791,12 +1811,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<header class=&quot;site-header&quot;>\n  <a href=&quot;/&quot; class=&quot;logo&quot;>⚡ DevWeb</a>\n  <nav class=&quot;main-nav&quot;>...</nav>\n</header>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;header class=&quot;site-header&quot;&gt;\n  &lt;a href=&quot;/&quot; class=&quot;logo&quot;&gt;⚡ DevWeb&lt;/a&gt;\n  &lt;nav class=&quot;main-nav&quot;&gt;...&lt;/nav&gt;\n&lt;/header&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;header class=&quot;site-header&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;header class=&quot;site-header&quot;&gt;
   &lt;a href=&quot;/&quot; class=&quot;logo&quot;&gt;⚡ DevWeb&lt;/a&gt;
   &lt;nav class=&quot;main-nav&quot;&gt;...&lt;/nav&gt;
-&lt;/header&gt;</pre>
+&lt;/header&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;nav&gt; thanh điều hướng vùng chứa các liên kết điều hướng quan trọng (menu chính, thanh phụ, phân trang). nav menu dieu huong navbar link">
@@ -1808,14 +1828,14 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<nav aria-label=&quot;Menu chính&quot;>\n  <ul>\n    <li><a href=&quot;#home&quot;>Trang Chủ</a></li>\n    <li><a href=&quot;#labs&quot;>Phòng Lab</a></li>\n  </ul>\n</nav>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;nav aria-label=&quot;Menu chính&quot;&gt;\n  &lt;ul&gt;\n    &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Trang Chủ&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#labs&quot;&gt;Phòng Lab&lt;/a&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n&lt;/nav&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;nav aria-label=&quot;Menu chính&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;nav aria-label=&quot;Menu chính&quot;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Trang Chủ&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;#labs&quot;&gt;Phòng Lab&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/nav&gt;</pre>
+&lt;/nav&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;main&gt; nội dung chính khối nội dung chính và độc nhất của trang. mỗi trang html chỉ được có duy nhất 1 thẻ &lt;main&gt;. main noi dung chinh duy nhat">
@@ -1827,12 +1847,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<main id=&quot;main-content&quot;>\n  <h1>Tiêu Đề Bài Viết</h1>\n  <p>Nội dung cốt lõi của trang web...</p>\n</main>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;main id=&quot;main-content&quot;&gt;\n  &lt;h1&gt;Tiêu Đề Bài Viết&lt;/h1&gt;\n  &lt;p&gt;Nội dung cốt lõi của trang web...&lt;/p&gt;\n&lt;/main&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;main id=&quot;main-content&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;main id=&quot;main-content&quot;&gt;
   &lt;h1&gt;Tiêu Đề Bài Viết&lt;/h1&gt;
   &lt;p&gt;Nội dung cốt lõi của trang web...&lt;/p&gt;
-&lt;/main&gt;</pre>
+&lt;/main&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;article&gt; khối bài viết độc lập đại diện cho khối nội dung hoàn chỉnh, có thể trích xuất đứng riêng (bài blog, sản phẩm, bình luận). article bai viet tin tuc san pham doc lap">
@@ -1844,13 +1864,13 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<article class=&quot;blog-post&quot;>\n  <h2>Hướng Dẫn CSS Grid</h2>\n  <time datetime=&quot;2026-09-25&quot;>25/09/2026</time>\n  <p>Tìm hiểu bố cục dạng lưới...</p>\n</article>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;article class=&quot;blog-post&quot;&gt;\n  &lt;h2&gt;Hướng Dẫn CSS Grid&lt;/h2&gt;\n  &lt;time datetime=&quot;2026-09-25&quot;&gt;25/09/2026&lt;/time&gt;\n  &lt;p&gt;Tìm hiểu bố cục dạng lưới...&lt;/p&gt;\n&lt;/article&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;article class=&quot;blog-post&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;article class=&quot;blog-post&quot;&gt;
   &lt;h2&gt;Hướng Dẫn CSS Grid&lt;/h2&gt;
   &lt;time datetime=&quot;2026-09-25&quot;&gt;25/09/2026&lt;/time&gt;
   &lt;p&gt;Tìm hiểu bố cục dạng lưới...&lt;/p&gt;
-&lt;/article&gt;</pre>
+&lt;/article&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;section&gt; phần theo chủ đề gom nhóm nội dung theo một chủ đề cụ thể (thường đi kèm thẻ tiêu đề &lt;h2&gt;-&lt;h6&gt;). section chu de phan noi dung">
@@ -1862,12 +1882,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<section class=&quot;features-section&quot;>\n  <h2>Tính Năng Nổi Bật</h2>\n  <div class=&quot;grid-3&quot;>...</div>\n</section>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;section class=&quot;features-section&quot;&gt;\n  &lt;h2&gt;Tính Năng Nổi Bật&lt;/h2&gt;\n  &lt;div class=&quot;grid-3&quot;&gt;...&lt;/div&gt;\n&lt;/section&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;section class=&quot;features-section&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;section class=&quot;features-section&quot;&gt;
   &lt;h2&gt;Tính Năng Nổi Bật&lt;/h2&gt;
   &lt;div class=&quot;grid-3&quot;&gt;...&lt;/div&gt;
-&lt;/section&gt;</pre>
+&lt;/section&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;aside&gt; thanh bên phụ (sidebar) khu vực bên lề, thanh bên (sidebar), danh sách bài viết liên quan, quảng cáo hoặc ghi chú thêm. aside sidebar thanh ben lien quan quang cao">
@@ -1879,12 +1899,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<aside class=&quot;sidebar&quot;>\n  <h3>Bài Viết Mới Nhất</h3>\n  <ul>...</ul>\n</aside>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;aside class=&quot;sidebar&quot;&gt;\n  &lt;h3&gt;Bài Viết Mới Nhất&lt;/h3&gt;\n  &lt;ul&gt;...&lt;/ul&gt;\n&lt;/aside&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;aside class=&quot;sidebar&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;aside class=&quot;sidebar&quot;&gt;
   &lt;h3&gt;Bài Viết Mới Nhất&lt;/h3&gt;
   &lt;ul&gt;...&lt;/ul&gt;
-&lt;/aside&gt;</pre>
+&lt;/aside&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;footer&gt; chân trang chân trang web hoặc chân một thẻ bài viết (chứa bản quyền, thông tin tác giả, liên kết chính sách). footer chan trang ban quyen copyright">
@@ -1896,11 +1916,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<footer class=&quot;site-footer&quot;>\n  <p>&copy; 2026 DevWeb Lab. All rights reserved.</p>\n</footer>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;footer class=&quot;site-footer&quot;&gt;\n  &lt;p&gt;&amp;copy; 2026 DevWeb Lab. All rights reserved.&lt;/p&gt;\n&lt;/footer&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;footer class=&quot;site-footer&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;footer class=&quot;site-footer&quot;&gt;
   &lt;p&gt;&amp;copy; 2026 DevWeb Lab. All rights reserved.&lt;/p&gt;
-&lt;/footer&gt;</pre>
+&lt;/footer&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;figure&gt; &amp; &lt;figcaption&gt; hình ảnh kèm chú thích gói hình ảnh minh họa, sơ đồ cùng dòng chú thích tiêu đề bên dưới một cách chuẩn ngữ nghĩa. figure figcaption chu thich anh hinh">
@@ -1912,12 +1932,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<figure>\n  <img src=&quot;chart.png&quot; alt=&quot;Biểu đồ tăng trưởng&quot;>\n  <figcaption>Hình 1: Tăng trưởng người dùng 2026</figcaption>\n</figure>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;figure&gt;\n  &lt;img src=&quot;chart.png&quot; alt=&quot;Biểu đồ tăng trưởng&quot;&gt;\n  &lt;figcaption&gt;Hình 1: Tăng trưởng người dùng 2026&lt;/figcaption&gt;\n&lt;/figure&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;figure&gt;
+            <pre class="code-content-pre"><code>&lt;figure&gt;
   &lt;img src=&quot;chart.png&quot; alt=&quot;Biểu đồ tăng trưởng&quot;&gt;
   &lt;figcaption&gt;Hình 1: Tăng trưởng người dùng 2026&lt;/figcaption&gt;
-&lt;/figure&gt;</pre>
+&lt;/figure&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;details&gt; &amp; &lt;summary&gt; đóng / mở nội dung native tạo khối thu gọn / mở rộng nội dung (accordion / faq) thuần túy bằng html không cần viết một dòng js nào. details summary accordion dong mo faq">
@@ -1929,12 +1949,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<details>\n  <summary>Xem gợi ý giải bài tập</summary>\n  <p>Sử dụng display: flex và justify-content: center nhé!</p>\n</details>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;details&gt;\n  &lt;summary&gt;Xem gợi ý giải bài tập&lt;/summary&gt;\n  &lt;p&gt;Sử dụng display: flex và justify-content: center nhé!&lt;/p&gt;\n&lt;/details&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;details&gt;
+            <pre class="code-content-pre"><code>&lt;details&gt;
   &lt;summary&gt;Xem gợi ý giải bài tập&lt;/summary&gt;
   &lt;p&gt;Sử dụng display: flex và justify-content: center nhé!&lt;/p&gt;
-&lt;/details&gt;</pre>
+&lt;/details&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;dialog&gt; hộp thoại modal native thẻ html5 tạo hộp thoại modal native. có sẵn phương thức js: dialog.showmodal() và dialog.close(). dialog modal popup hop thoai showmodal">
@@ -1946,12 +1966,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<dialog id=&quot;myModal&quot;>\n  <p>Xin chào từ Modal Native!</p>\n  <button onclick=&quot;this.closest('dialog').close()&quot;>Đóng</button>\n</dialog>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;dialog id=&quot;myModal&quot;&gt;\n  &lt;p&gt;Xin chào từ Modal Native!&lt;/p&gt;\n  &lt;button onclick=&quot;this.closest(&#x27;dialog&#x27;).close()&quot;&gt;Đóng&lt;/button&gt;\n&lt;/dialog&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;dialog id=&quot;myModal&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;dialog id=&quot;myModal&quot;&gt;
   &lt;p&gt;Xin chào từ Modal Native!&lt;/p&gt;
   &lt;button onclick=&quot;this.closest(&#x27;dialog&#x27;).close()&quot;&gt;Đóng&lt;/button&gt;
-&lt;/dialog&gt;</pre>
+&lt;/dialog&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;progress&gt; &amp; &lt;meter&gt; thanh tiến độ &amp; thước đo &lt;progress&gt; đo tiến độ hoàn thành công việc (0-100%). &lt;meter&gt; đo lường giá trị trong một khoảng (dung lượng ổ đĩa). progress meter tien do thuoc do dung luong">
@@ -1963,10 +1983,10 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<progress value=&quot;75&quot; max=&quot;100&quot;>75%</progress>\n<meter value=&quot;0.6&quot; min=&quot;0&quot; max=&quot;1&quot;>60%</meter>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;progress value=&quot;75&quot; max=&quot;100&quot;&gt;75%&lt;/progress&gt;\n&lt;meter value=&quot;0.6&quot; min=&quot;0&quot; max=&quot;1&quot;&gt;60%&lt;/meter&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;progress value=&quot;75&quot; max=&quot;100&quot;&gt;75%&lt;/progress&gt;
-&lt;meter value=&quot;0.6&quot; min=&quot;0&quot; max=&quot;1&quot;&gt;60%&lt;/meter&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;progress value=&quot;75&quot; max=&quot;100&quot;&gt;75%&lt;/progress&gt;
+&lt;meter value=&quot;0.6&quot; min=&quot;0&quot; max=&quot;1&quot;&gt;60%&lt;/meter&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;time&gt; thời gian chuẩn máy biểu thị ngày giờ đọc được cho máy (search engine, lịch, thiết bị hỗ trợ) thông qua thuộc tính datetime chuẩn iso 8601. time datetime ngay thang gio iso">
@@ -1978,9 +1998,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Đăng ngày <time datetime=&quot;2026-09-25T20:00&quot;>25 Tháng 9, 2026</time></p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Đăng ngày &lt;time datetime=&quot;2026-09-25T20:00&quot;&gt;25 Tháng 9, 2026&lt;/time&gt;&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Đăng ngày &lt;time datetime=&quot;2026-09-25T20:00&quot;&gt;25 Tháng 9, 2026&lt;/time&gt;&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Đăng ngày &lt;time datetime=&quot;2026-09-25T20:00&quot;&gt;25 Tháng 9, 2026&lt;/time&gt;&lt;/p&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;div&gt; khối khung gom nhóm phần tử cấp khối (block-level) không mang ngữ nghĩa, dùng làm container để căn chỉnh bố cục flexbox hoặc css grid. div container khoi block gom nhom">
@@ -1992,11 +2012,11 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<div class=&quot;card-container&quot;>\n  <div class=&quot;card-item&quot;>Nội dung</div>\n</div>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;div class=&quot;card-container&quot;&gt;\n  &lt;div class=&quot;card-item&quot;&gt;Nội dung&lt;/div&gt;\n&lt;/div&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;div class=&quot;card-container&quot;&gt;
+            <pre class="code-content-pre"><code>&lt;div class=&quot;card-container&quot;&gt;
   &lt;div class=&quot;card-item&quot;&gt;Nội dung&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;picture&gt; &amp; &lt;source&gt; hình ảnh co giãn thích ứng cung cấp nhiều phiên bản ảnh cho các kích thước màn hình hoặc định dạng webp / avif hiện đại. picture source responsive avif webp media">
@@ -2008,12 +2028,12 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<picture>\n  <source media=&quot;(min-width: 768px)&quot; srcset=&quot;large.webp&quot;>\n  <img src=&quot;small.jpg&quot; alt=&quot;Ảnh minh họa&quot;>\n</picture>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;picture&gt;\n  &lt;source media=&quot;(min-width: 768px)&quot; srcset=&quot;large.webp&quot;&gt;\n  &lt;img src=&quot;small.jpg&quot; alt=&quot;Ảnh minh họa&quot;&gt;\n&lt;/picture&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;picture&gt;
+            <pre class="code-content-pre"><code>&lt;picture&gt;
   &lt;source media=&quot;(min-width: 768px)&quot; srcset=&quot;large.webp&quot;&gt;
   &lt;img src=&quot;small.jpg&quot; alt=&quot;Ảnh minh họa&quot;&gt;
-&lt;/picture&gt;</pre>
+&lt;/picture&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;canvas&gt; vẽ đồ họa động 2d / 3d vùng vẽ điểm ảnh theo thời gian thực bằng javascript (dùng làm game 2d, đồ thị dữ liệu, hiệu ứng hạt). canvas do hoa game ve 2d context fillrect">
@@ -2025,14 +2045,14 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<canvas id=&quot;gameCanvas&quot; width=&quot;400&quot; height=&quot;300&quot;></canvas>\n<script>\n  const ctx = document.getElementById('gameCanvas').getContext('2d');\n  ctx.fillStyle = '#6366f1';\n  ctx.fillRect(10, 10, 80, 80);\n</script>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;canvas id=&quot;gameCanvas&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;\n&lt;script&gt;\n  const ctx = document.getElementById(&#x27;gameCanvas&#x27;).getContext(&#x27;2d&#x27;);\n  ctx.fillStyle = &#x27;#6366f1&#x27;;\n  ctx.fillRect(10, 10, 80, 80);\n&lt;/script&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;canvas id=&quot;gameCanvas&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+            <pre class="code-content-pre"><code>&lt;canvas id=&quot;gameCanvas&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
 &lt;script&gt;
   const ctx = document.getElementById(&#x27;gameCanvas&#x27;).getContext(&#x27;2d&#x27;);
   ctx.fillStyle = &#x27;#6366f1&#x27;;
   ctx.fillRect(10, 10, 80, 80);
-&lt;/script&gt;</pre>
+&lt;/script&gt;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&lt;abbr title=&quot;...&quot;&gt; chữ viết tắt kèm giải nghĩa định nghĩa một từ viết tắt kèm tooltip hiển thị nghĩa đầy đủ khi người dùng di chuột lên. abbr acronym viet tat tooltip giai nghia">
@@ -2044,9 +2064,9 @@
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>HTML5</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="<p>Học lập trình <abbr title=&quot;HyperText Markup Language&quot;>HTML</abbr> tại DevWeb Lab.</p>">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="&lt;p&gt;Học lập trình &lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt; tại DevWeb Lab.&lt;/p&gt;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">&lt;p&gt;Học lập trình &lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt; tại DevWeb Lab.&lt;/p&gt;</pre>
+            <pre class="code-content-pre"><code>&lt;p&gt;Học lập trình &lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt; tại DevWeb Lab.&lt;/p&gt;</code></pre>
           </div>
         </div>
       </div>
@@ -2075,11 +2095,11 @@
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">* {
+            <pre class="code-content-pre"><code>* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords=".class (class selector) bộ chọn theo lớp chọn tất cả các phần tử có cùng tên class (bắt đầu bằng dấu chấm .). có thể tái sử dụng cho nhiều phần tử. class selector lop card dau cham">
@@ -2093,11 +2113,11 @@
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".card {\n  background: #1e293b;\n  border-radius: 12px;\n  padding: 20px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.card {
+            <pre class="code-content-pre"><code>.card {
   background: #1e293b;
   border-radius: 12px;
   padding: 20px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="#id (id selector) bộ chọn định danh duy nhất chọn một phần tử duy nhất dựa trên thuộc tính id (bắt đầu bằng dấu thăng #). có độ ưu tiên specificity cao hơn class. id selector dinh danh duy nhat dau thang">
@@ -2111,11 +2131,11 @@
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="#main-nav {\n  position: sticky;\n  top: 0;\n  z-index: 100;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">#main-nav {
+            <pre class="code-content-pre"><code>#main-nav {
   position: sticky;
   top: 0;
   z-index: 100;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="element (type selector) bộ chọn tên thẻ chọn tất cả các phần tử html mang tên thẻ tương ứng (ví dụ: p, a, button, h1). element type selector ten the p button">
@@ -2129,13 +2149,13 @@
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="p {\n  line-height: 1.6;\n  color: #94a3b8;\n}\nbutton {\n  cursor: pointer;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">p {
+            <pre class="code-content-pre"><code>p {
   line-height: 1.6;
   color: #94a3b8;
 }
 button {
   cursor: pointer;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="a b vs a &gt; b hậu duệ &amp; con trực tiếp a b (cách nhau khoảng trắng): chọn mọi b nằm bên trong a bất kể cấp. a &gt; b: chỉ chọn b là con trực tiếp cấp 1 của a. descendant child hau due con truc tiep">
@@ -2147,13 +2167,13 @@ button {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>CSS</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="/* Mọi link bên trong nav */\nnav a { color: #fff; }\n\n/* Chỉ thẻ li là con cấp 1 của ul */\nul > li { list-style: none; }">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="/* Mọi link bên trong nav */\nnav a { color: #fff; }\n\n/* Chỉ thẻ li là con cấp 1 của ul */\nul &gt; li { list-style: none; }">Sao chép</button>
             </div>
-            <pre class="code-content-pre">/* Mọi link bên trong nav */
+            <pre class="code-content-pre"><code>/* Mọi link bên trong nav */
 nav a { color: #fff; }
 
 /* Chỉ thẻ li là con cấp 1 của ul */
-ul &gt; li { list-style: none; }</pre>
+ul &gt; li { list-style: none; }</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="a + b vs a ~ b anh em liền kề &amp; chung cha a + b: chọn phần tử b đứng ngay lập tức sau a. a ~ b: chọn mọi phần tử b đứng sau a cùng cha. adjacent general sibling anh em lien ke chung cha">
@@ -2167,14 +2187,14 @@ ul &gt; li { list-style: none; }</pre>
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="/* Đoạn p đứng ngay sau thẻ h2 */\nh2 + p {\n  margin-top: 8px;\n  font-weight: 500;\n}\n\n/* Mọi p đứng sau h2 */\nh2 ~ p { color: #cbd5e1; }">Sao chép</button>
             </div>
-            <pre class="code-content-pre">/* Đoạn p đứng ngay sau thẻ h2 */
+            <pre class="code-content-pre"><code>/* Đoạn p đứng ngay sau thẻ h2 */
 h2 + p {
   margin-top: 8px;
   font-weight: 500;
 }
 
 /* Mọi p đứng sau h2 */
-h2 ~ p { color: #cbd5e1; }</pre>
+h2 ~ p { color: #cbd5e1; }</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="[attribute] (thuộc tính) bộ chọn thuộc tính chọn phần tử dựa theo thuộc tính html hoặc giá trị của thuộc tính (so sánh bằng, bắt đầu, kết thúc hoặc chứa). attribute selector thuoc tinh ngoac vuong">
@@ -2188,7 +2208,7 @@ h2 ~ p { color: #cbd5e1; }</pre>
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="input[type=&quot;email&quot;] {\n  border-color: #6366f1;\n}\na[href^=&quot;https&quot;] {\n  color: #38bdf8;\n}\nimg[src$=&quot;.png&quot;] {\n  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">input[type=&quot;email&quot;] {
+            <pre class="code-content-pre"><code>input[type=&quot;email&quot;] {
   border-color: #6366f1;
 }
 a[href^=&quot;https&quot;] {
@@ -2196,7 +2216,7 @@ a[href^=&quot;https&quot;] {
 }
 img[src$=&quot;.png&quot;] {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2213,7 +2233,7 @@ img[src$=&quot;.png&quot;] {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".btn-primary {\n  transition: all 0.2s ease;\n}\n.btn-primary:hover {\n  background: #4f46e5;\n  transform: translateY(-2px);\n}\n.btn-primary:active {\n  transform: translateY(0);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.btn-primary {
+            <pre class="code-content-pre"><code>.btn-primary {
   transition: all 0.2s ease;
 }
 .btn-primary:hover {
@@ -2222,7 +2242,7 @@ img[src$=&quot;.png&quot;] {
 }
 .btn-primary:active {
   transform: translateY(0);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords=":focus &amp; :focus-visible trạng thái tiêu điểm bàn phím :focus kích hoạt khi ô nhập hoặc nút nhận focus. :focus-visible chỉ hiển thị viền tiêu điểm khi người dùng duyệt bằng bàn phím tab (chuẩn a11y). focus focus-visible tieu diem ban phim outline a11y">
@@ -2236,7 +2256,7 @@ img[src$=&quot;.png&quot;] {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="input:focus {\n  outline: none;\n  border-color: #6366f1;\n  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);\n}\nbutton:focus-visible {\n  outline: 2px solid #38bdf8;\n  outline-offset: 2px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">input:focus {
+            <pre class="code-content-pre"><code>input:focus {
   outline: none;
   border-color: #6366f1;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
@@ -2244,7 +2264,7 @@ img[src$=&quot;.png&quot;] {
 button:focus-visible {
   outline: 2px solid #38bdf8;
   outline-offset: 2px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords=":nth-child(n) &amp; :not() chọn vị trí &amp; loại trừ :nth-child(even / odd / 2n+1) chọn phần tử theo thứ tự số học (kẻ sọc bảng). :not(.active) chọn tất cả ngoại trừ class chỉ định. nth-child not vi tri thu tu loai tru ke soc">
@@ -2258,14 +2278,14 @@ button:focus-visible {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="/* Kẻ sọc hàng chẵn trong bảng */\ntr:nth-child(even) {\n  background: rgba(255, 255, 255, 0.03);\n}\n/* Loại trừ nút đầu tiên */\n.btn:not(:first-child) {\n  margin-left: 8px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">/* Kẻ sọc hàng chẵn trong bảng */
+            <pre class="code-content-pre"><code>/* Kẻ sọc hàng chẵn trong bảng */
 tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.03);
 }
 /* Loại trừ nút đầu tiên */
 .btn:not(:first-child) {
   margin-left: 8px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="::before &amp; ::after chèn nội dung ảo tạo ra một phần tử con ảo đầu tiên hoặc cuối cùng (bắt buộc phải có content: &#x27;&#x27;) dùng làm icon, đường kẻ, ruy-băng trang trí mà không làm bẩn html. before after pseudo-element content trang tri ao">
@@ -2277,9 +2297,9 @@ tr:nth-child(even) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>CSS</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".tag-pro::before {\n  content: '★ ';\n  color: #fbbf24;\n}\n.card::after {\n  content: '';\n  position: absolute;\n  bottom: 0; left: 0;\n  width: 100%; height: 3px;\n  background: linear-gradient(90deg, #6366f1, #ec4899);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".tag-pro::before {\n  content: &#x27;★ &#x27;;\n  color: #fbbf24;\n}\n.card::after {\n  content: &#x27;&#x27;;\n  position: absolute;\n  bottom: 0; left: 0;\n  width: 100%; height: 3px;\n  background: linear-gradient(90deg, #6366f1, #ec4899);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.tag-pro::before {
+            <pre class="code-content-pre"><code>.tag-pro::before {
   content: &#x27;★ &#x27;;
   color: #fbbf24;
 }
@@ -2289,7 +2309,7 @@ tr:nth-child(even) {
   bottom: 0; left: 0;
   width: 100%; height: 3px;
   background: linear-gradient(90deg, #6366f1, #ec4899);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="::placeholder &amp; ::selection chữ gợi ý &amp; bôi đen văn bản ::placeholder tùy chỉnh màu và kiểu chữ cho dòng gợi ý ô input. ::selection đổi màu nền và màu chữ khi người dùng bôi đen văn bản. placeholder selection goi y boi den">
@@ -2303,14 +2323,14 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="input::placeholder {\n  color: #64748b;\n  font-style: italic;\n}\n::selection {\n  background: #6366f1;\n  color: #ffffff;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">input::placeholder {
+            <pre class="code-content-pre"><code>input::placeholder {
   color: #64748b;
   font-style: italic;
 }
 ::selection {
   background: #6366f1;
   color: #ffffff;
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2327,11 +2347,11 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">*,
+            <pre class="code-content-pre"><code>*,
 *::before,
 *::after {
   box-sizing: border-box;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="margin (margin collapsing) khoảng cách bên ngoài tạo khoảng trống bao quanh phần tử. margin: auto giúp căn giữa theo chiều ngang trong block có width cụ thể. margin auto can giua khoang cach ngoai collapsing">
@@ -2345,14 +2365,14 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".container {\n  width: 90%;\n  max-width: 1200px;\n  margin: 0 auto; /* Căn giữa */\n}\n.card {\n  margin-bottom: 24px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.container {
+            <pre class="code-content-pre"><code>.container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto; /* Căn giữa */
 }
 .card {
   margin-bottom: 24px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="padding khoảng đệm bên trong tạo khoảng cách giữa nội dung của phần tử và đường viền (border) của nó. cú pháp tắt: top-bottom right-left. padding khoang dem ben trong noi dung">
@@ -2366,12 +2386,12 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".button {\n  padding: 12px 24px; /* 12px trên/dưới, 24px trái/phải */\n}\n.card-body {\n  padding: 20px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.button {
+            <pre class="code-content-pre"><code>.button {
   padding: 12px 24px; /* 12px trên/dưới, 24px trái/phải */
 }
 .card-body {
   padding: 20px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="border &amp; border-radius đường viền &amp; bo tròn góc border định nghĩa độ dày, kiểu dáng và màu sắc viền. border-radius: 50% tạo hình tròn avatar hoàn hảo. border border-radius bo tron vien avatar pill">
@@ -2385,7 +2405,7 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".avatar {\n  width: 80px;\n  height: 80px;\n  border: 2px solid #6366f1;\n  border-radius: 50%; /* Hình tròn */\n  object-fit: cover;\n}\n.badge {\n  border-radius: 9999px; /* Viên thuốc pill */\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.avatar {
+            <pre class="code-content-pre"><code>.avatar {
   width: 80px;
   height: 80px;
   border: 2px solid #6366f1;
@@ -2394,7 +2414,7 @@ tr:nth-child(even) {
 }
 .badge {
   border-radius: 9999px; /* Viên thuốc pill */
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="width / min-width / max-width chiều rộng an toàn co giãn sử dụng max-width kết hợp width: 100% giúp giao diện tự động co dãn hoàn hảo trên mọi kích thước màn hình điện thoại. width min-width max-width co gian responsive">
@@ -2408,11 +2428,11 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".hero-card {\n  width: 100%;\n  max-width: 600px;\n  min-height: 350px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.hero-card {
+            <pre class="code-content-pre"><code>.hero-card {
   width: 100%;
   max-width: 600px;
   min-height: 350px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="đơn vị: rem, em, %, vh, vw đơn vị đo hiện đại rem: tỷ lệ theo font gốc html (1rem = 16px). vw/vh: tỷ lệ theo chiều rộng/cao khung nhìn viewport (100vh = toàn màn hình). rem em vh vw don vi ti le viewport font">
@@ -2426,10 +2446,10 @@ tr:nth-child(even) {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="body { font-size: 1rem; }\nh1 { font-size: 2.25rem; } /* 36px */\n.hero-full { min-height: 100vh; }\n.half-screen { width: 50vw; }">Sao chép</button>
             </div>
-            <pre class="code-content-pre">body { font-size: 1rem; }
+            <pre class="code-content-pre"><code>body { font-size: 1rem; }
 h1 { font-size: 2.25rem; } /* 36px */
 .hero-full { min-height: 100vh; }
-.half-screen { width: 50vw; }</pre>
+.half-screen { width: 50vw; }</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="clamp() &amp; calc() hàm tính toán kích thước calc() cho phép cộng trừ đơn vị khác nhau (100% - 40px). clamp(min, val, max) tạo cỡ chữ co giãn mượt mà theo màn hình. clamp calc ham tinh toan co gian fluid typography">
@@ -2443,12 +2463,12 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".responsive-heading {\n  font-size: clamp(1.8rem, 4vw, 3rem);\n}\n.sidebar-content {\n  width: calc(100% - 280px);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.responsive-heading {
+            <pre class="code-content-pre"><code>.responsive-heading {
   font-size: clamp(1.8rem, 4vw, 3rem);
 }
 .sidebar-content {
   width: calc(100% - 280px);
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2465,13 +2485,13 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".block-box { display: block; }\n.inline-link { display: inline; }\n.btn-tag {\n  display: inline-block;\n  width: 120px;\n  padding: 8px 12px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.block-box { display: block; }
+            <pre class="code-content-pre"><code>.block-box { display: block; }
 .inline-link { display: inline; }
 .btn-tag {
   display: inline-block;
   width: 120px;
   padding: 8px 12px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="display: none vs visibility: hidden ẩn phần tử trên trang display: none ẩn hoàn toàn và loại bỏ phần tử khỏi dòng chảy (không chiếm diện tích). visibility: hidden chỉ làm tàng hình (vẫn giữ chỗ trống). display none visibility hidden an tang hinh giu cho">
@@ -2485,12 +2505,12 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".modal.is-closed {\n  display: none;\n}\n.invisible-placeholder {\n  visibility: hidden;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.modal.is-closed {
+            <pre class="code-content-pre"><code>.modal.is-closed {
   display: none;
 }
 .invisible-placeholder {
   visibility: hidden;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="position: relative &amp; absolute định vị tương đối &amp; tuyệt đối position: relative giữ nguyên vị trí ban đầu và làm gốc tọa độ cho con mang position: absolute định vị tự do theo top, right, bottom, left. position relative absolute dinh vi toa do top right bottom left">
@@ -2504,14 +2524,14 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".card {\n  position: relative; /* Gốc tọa độ */\n}\n.badge-hot {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.card {
+            <pre class="code-content-pre"><code>.card {
   position: relative; /* Gốc tọa độ */
 }
 .badge-hot {
   position: absolute;
   top: 10px;
   right: 10px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="position: fixed vs sticky cố định khung nhìn &amp; ghim cuộn fixed: luôn cố định tại một tọa độ trên màn hình ngay cả khi cuộn trang. sticky: cuộn bình thường tới khi chạm ngưỡng top thì tự động dính lại. position fixed sticky co dinh ghim cuon navbar z-index">
@@ -2525,7 +2545,7 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".chat-bubble {\n  position: fixed;\n  bottom: 20px; right: 20px;\n  z-index: 999;\n}\n.navbar-sticky {\n  position: sticky;\n  top: 0;\n  z-index: 100;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.chat-bubble {
+            <pre class="code-content-pre"><code>.chat-bubble {
   position: fixed;
   bottom: 20px; right: 20px;
   z-index: 999;
@@ -2534,7 +2554,7 @@ h1 { font-size: 2.25rem; } /* 36px */
   position: sticky;
   top: 0;
   z-index: 100;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="z-index &amp; stacking context thứ tự xếp lớp hiển thị điều khiển phần tử nào nằm đè lên phần tử nào theo trục z. chỉ có tác dụng khi phần tử có position khác static. z-index stacking context lop de len truc z">
@@ -2548,14 +2568,14 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".dropdown-menu {\n  position: absolute;\n  z-index: 50; /* Nổi lên trên card */\n}\n.modal-backdrop {\n  position: fixed;\n  z-index: 1000;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.dropdown-menu {
+            <pre class="code-content-pre"><code>.dropdown-menu {
   position: absolute;
   z-index: 50; /* Nổi lên trên card */
 }
 .modal-backdrop {
   position: fixed;
   z-index: 1000;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="overflow &amp; text-overflow xử lý tràn nội dung overflow: hidden cắt bỏ nội dung thừa tràn ra ngoài. text-overflow: ellipsis tự động thêm dấu ba chấm (...) khi chữ dài tràn ô. overflow hidden text-overflow ellipsis cat chu dau ba cham scroll">
@@ -2569,7 +2589,7 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".truncate-text {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 250px;\n}\n.scrollable-box {\n  overflow-y: auto;\n  max-height: 400px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.truncate-text {
+            <pre class="code-content-pre"><code>.truncate-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2578,7 +2598,7 @@ h1 { font-size: 2.25rem; } /* 36px */
 .scrollable-box {
   overflow-y: auto;
   max-height: 400px;
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2595,11 +2615,11 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".container {\n  display: flex;\n  flex-direction: row; /* hoặc column */\n  gap: 16px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.container {
+            <pre class="code-content-pre"><code>.container {
   display: flex;
   flex-direction: row; /* hoặc column */
   gap: 16px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="justify-content căn chỉnh trục chính (main axis) căn chỉnh các phần tử con dọc theo trục chính: center, space-between (đẩy đều sang 2 bên), space-around, flex-start, flex-end. justify-content center space-between space-around main axis">
@@ -2613,11 +2633,11 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".nav-bar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.nav-bar {
+            <pre class="code-content-pre"><code>.nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="align-items &amp; align-self căn chỉnh trục phụ (cross axis) align-items căn chỉnh tất cả con theo trục vuông góc: center, flex-start, flex-end, stretch. align-self ghi đè cho 1 con riêng lẻ. align-items align-self cross axis center stretch">
@@ -2631,14 +2651,14 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".center-all {\n  display: flex;\n  justify-content: center;\n  align-items: center; /* Căn giữa cả 2 trục */\n}\n.special-item {\n  align-self: flex-end;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.center-all {
+            <pre class="code-content-pre"><code>.center-all {
   display: flex;
   justify-content: center;
   align-items: center; /* Căn giữa cả 2 trục */
 }
 .special-item {
   align-self: flex-end;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="flex-wrap &amp; gap tự động xuống dòng &amp; khoảng cách flex-wrap: wrap cho phép các phần tử tự động xuống hàng mới khi hết chỗ. gap tạo khoảng cách đều giữa các phần tử mà không cần margin âm. flex-wrap wrap gap xuong dong khoang cach deu">
@@ -2652,11 +2672,11 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".cards-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 20px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.cards-row {
+            <pre class="code-content-pre"><code>.cards-row {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="flex: 1 (flex-grow, shrink, basis) tỷ lệ co giãn của item flex: 1 viết tắt của flex-grow: 1 (chiếm toàn bộ không gian còn trống), flex-shrink: 1 (cho phép co lại), flex-basis: 0%. flex 1 flex-grow flex-shrink flex-basis ty le co gian">
@@ -2670,12 +2690,12 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".content-main {\n  flex: 1; /* Chiếm trọn không gian trống */\n}\n.sidebar {\n  flex: 0 0 280px; /* Cố định 280px */\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.content-main {
+            <pre class="code-content-pre"><code>.content-main {
   flex: 1; /* Chiếm trọn không gian trống */
 }
 .sidebar {
   flex: 0 0 280px; /* Cố định 280px */
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2725,11 +2745,11 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".grid-auto-layout {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 24px;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.grid-auto-layout {
+            <pre class="code-content-pre"><code>.grid-auto-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="grid-column &amp; grid-row mở rộng ô trong lưới grid quy định một phần tử con bắt đầu và kết thúc ở đường kẻ nào, hoặc gộp bao nhiêu ô (span). grid-column: 1 / -1 chiếm trọn bề ngang. grid-column grid-row span trai dai o luoi">
@@ -2743,12 +2763,12 @@ h1 { font-size: 2.25rem; } /* 36px */
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".featured-banner {\n  grid-column: 1 / -1; /* Trải dài toàn bộ hàng */\n}\n.tall-card {\n  grid-row: span 2; /* Chiếm 2 hàng cao */\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.featured-banner {
+            <pre class="code-content-pre"><code>.featured-banner {
   grid-column: 1 / -1; /* Trải dài toàn bộ hàng */
 }
 .tall-card {
   grid-row: span 2; /* Chiếm 2 hàng cao */
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="grid-template-areas bố cục vẽ sơ đồ trực quan vẽ cấu trúc toàn bộ trang web (header, sidebar, content, footer) bằng các chuỗi tên chữ trực quan dễ đọc. grid-template-areas grid-area ve so do truc quan layout">
@@ -2760,9 +2780,9 @@ h1 { font-size: 2.25rem; } /* 36px */
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>CSS</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".app-layout {\n  display: grid;\n  grid-template-areas:\n    'header header'\n    'sidebar content'\n    'footer  footer';\n  grid-template-columns: 260px 1fr;\n}\n.site-header { grid-area: header; }\n.site-sidebar { grid-area: sidebar; }">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".app-layout {\n  display: grid;\n  grid-template-areas:\n    &#x27;header header&#x27;\n    &#x27;sidebar content&#x27;\n    &#x27;footer  footer&#x27;;\n  grid-template-columns: 260px 1fr;\n}\n.site-header { grid-area: header; }\n.site-sidebar { grid-area: sidebar; }">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.app-layout {
+            <pre class="code-content-pre"><code>.app-layout {
   display: grid;
   grid-template-areas:
     &#x27;header header&#x27;
@@ -2771,7 +2791,7 @@ h1 { font-size: 2.25rem; } /* 36px */
   grid-template-columns: 260px 1fr;
 }
 .site-header { grid-area: header; }
-.site-sidebar { grid-area: sidebar; }</pre>
+.site-sidebar { grid-area: sidebar; }</code></pre>
           </div>
         </div>
       </div>
@@ -2786,14 +2806,14 @@ h1 { font-size: 2.25rem; } /* 36px */
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>CSS</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="body {\n  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;\n}\ncode, pre {\n  font-family: 'Fira Code', monospace;\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="body {\n  font-family: &#x27;Plus Jakarta Sans&#x27;, system-ui, -apple-system, sans-serif;\n}\ncode, pre {\n  font-family: &#x27;Fira Code&#x27;, monospace;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">body {
+            <pre class="code-content-pre"><code>body {
   font-family: &#x27;Plus Jakarta Sans&#x27;, system-ui, -apple-system, sans-serif;
 }
 code, pre {
   font-family: &#x27;Fira Code&#x27;, monospace;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="font-size, font-weight &amp; line-height cỡ chữ, độ đậm &amp; giãn dòng font-weight từ 100 đến 900 (400: thường, 600: semi-bold, 700: bold). line-height tỷ lệ lý tưởng cho đoạn văn là 1.5 đến 1.7. font-size font-weight line-height do dam gian dong co chu">
@@ -2807,7 +2827,7 @@ code, pre {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="h1 {\n  font-size: 2.5rem;\n  font-weight: 800;\n  line-height: 1.2;\n}\np {\n  font-size: 1rem;\n  line-height: 1.6;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">h1 {
+            <pre class="code-content-pre"><code>h1 {
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 1.2;
@@ -2815,7 +2835,7 @@ code, pre {
 p {
   font-size: 1rem;
   line-height: 1.6;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="text-align &amp; text-transform căn lề &amp; chuyển đổi chữ hoa text-align: left, center, right, justify. text-transform: uppercase (chữ hoa toàn bộ), capitalize (viết hoa chữ cái đầu từng từ). text-align text-transform uppercase capitalize can le">
@@ -2829,13 +2849,13 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".section-header {\n  text-align: center;\n}\n.badge-caps {\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.section-header {
+            <pre class="code-content-pre"><code>.section-header {
   text-align: center;
 }
 .badge-caps {
   text-transform: uppercase;
   letter-spacing: 0.05em;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="-webkit-line-clamp cắt chữ nhiều dòng kèm dấu ... giới hạn hiển thị số dòng tối đa cho đoạn văn bản mô tả (ví dụ: tối đa 2 dòng hoặc 3 dòng) rồi tự động thêm dấu ba chấm. line-clamp cat chu nhieu dong dau ba cham">
@@ -2849,12 +2869,12 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".card-excerpt {\n  display: -webkit-box;\n  -webkit-line-clamp: 2; /* Tối đa 2 dòng */\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.card-excerpt {
+            <pre class="code-content-pre"><code>.card-excerpt {
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Tối đa 2 dòng */
   -webkit-box-orient: vertical;
   overflow: hidden;
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2871,12 +2891,12 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".hero-bg {\n  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);\n}\n.glow-spot {\n  background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.hero-bg {
+            <pre class="code-content-pre"><code>.hero-bg {
   background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
 }
 .glow-spot {
   background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="background-size: cover &amp; center căn ảnh nền toàn diện cover đảm bảo ảnh phủ kín toàn bộ khung mà không bị méo tỷ lệ; center giữ trọng tâm bức ảnh luôn ở giữa. background-size cover center background-image anh nen">
@@ -2888,14 +2908,14 @@ p {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>CSS</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".banner-hero {\n  background-image: url('banner.webp');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".banner-hero {\n  background-image: url(&#x27;banner.webp&#x27;);\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.banner-hero {
+            <pre class="code-content-pre"><code>.banner-hero {
   background-image: url(&#x27;banner.webp&#x27;);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="box-shadow (đổ bóng đa tầng) đổ bóng mềm mại chuyên nghiệp đổ bóng nhiều lớp (multi-layer shadow) tạo cảm giác bề mặt nổi khối chân thực, tránh vệt bóng đen bẩn thô kệch. box-shadow do bong mem mai multi-layer glow neon">
@@ -2909,14 +2929,14 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".card-elevated {\n  box-shadow:\n    0 4px 6px -1px rgba(0, 0, 0, 0.2),\n    0 10px 25px -3px rgba(0, 0, 0, 0.4);\n}\n.glow-neon {\n  box-shadow: 0 0 25px rgba(99, 102, 241, 0.45);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.card-elevated {
+            <pre class="code-content-pre"><code>.card-elevated {
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.2),
     0 10px 25px -3px rgba(0, 0, 0, 0.4);
 }
 .glow-neon {
   box-shadow: 0 0 25px rgba(99, 102, 241, 0.45);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="backdrop-filter: blur() hiệu ứng kính mờ (glassmorphism) tạo hiệu ứng làm mờ nội dung phía sau như tấm kính sương mờ sang trọng cho thanh navbar hoặc modal popup. backdrop-filter blur glassmorphism kinh mo frosted glass">
@@ -2930,12 +2950,12 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".glass-nav {\n  background: rgba(17, 24, 39, 0.75);\n  backdrop-filter: blur(14px);\n  -webkit-backdrop-filter: blur(14px);\n  border: 1px solid rgba(255, 255, 255, 0.1);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.glass-nav {
+            <pre class="code-content-pre"><code>.glass-nav {
   background: rgba(17, 24, 39, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="filter: blur, grayscale, drop-shadow bộ lọc hiệu ứng đồ họa áp dụng bộ lọc hình ảnh trực tiếp: grayscale(100%) biến ảnh trắng đen, drop-shadow() đổ bóng theo đường viền xuyên thấu của svg/png. filter blur grayscale drop-shadow bo loc hieu ung">
@@ -2949,7 +2969,7 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".img-bw {\n  filter: grayscale(100%);\n  transition: filter 0.3s ease;\n}\n.img-bw:hover {\n  filter: grayscale(0%);\n}\n.icon-svg {\n  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.img-bw {
+            <pre class="code-content-pre"><code>.img-bw {
   filter: grayscale(100%);
   transition: filter 0.3s ease;
 }
@@ -2958,7 +2978,7 @@ p {
 }
 .icon-svg {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -2975,14 +2995,14 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".button {\n  background: #6366f1;\n  transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);\n}\n.button:hover {\n  background: #4f46e5;\n  transform: translateY(-2px);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.button {
+            <pre class="code-content-pre"><code>.button {
   background: #6366f1;
   transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .button:hover {
   background: #4f46e5;
   transform: translateY(-2px);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="transform (translate, rotate, scale) biến đổi không gian 2d &amp; 3d translate(x, y) di chuyển vị trí. scale() phóng to/thu nhỏ. rotate() xoay góc. transform không gây kích hoạt render lại reflow layout. transform translate scale rotate bien doi phong to xoay">
@@ -2996,12 +3016,12 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=".card-zoom:hover {\n  transform: scale(1.04) translateY(-4px);\n}\n.icon-spin:hover {\n  transform: rotate(180deg);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">.card-zoom:hover {
+            <pre class="code-content-pre"><code>.card-zoom:hover {
   transform: scale(1.04) translateY(-4px);
 }
 .icon-spin:hover {
   transform: rotate(180deg);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="@keyframes &amp; animation khai báo hoạt họa tùy biến định nghĩa chuỗi chuyển động phức tạp nhiều bước bằng tỷ lệ phần trăm (0% -&gt; 50% -&gt; 100%) và gọi bằng thuộc tính animation. keyframes animation pulse hoat hoa tu do">
@@ -3015,13 +3035,13 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="@keyframes pulseNeon {\n  0%, 100% { opacity: 1; transform: scale(1); }\n  50% { opacity: 0.6; transform: scale(1.05); }\n}\n.badge-pulse {\n  animation: pulseNeon 2s infinite ease-in-out;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">@keyframes pulseNeon {
+            <pre class="code-content-pre"><code>@keyframes pulseNeon {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.05); }
 }
 .badge-pulse {
   animation: pulseNeon 2s infinite ease-in-out;
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -3038,7 +3058,7 @@ p {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy=":root {\n  --primary: #6366f1;\n  --bg-main: #0a0f1d;\n  --text-main: #f8fafc;\n}\n\n[data-theme=&quot;light&quot;] {\n  --bg-main: #ffffff;\n  --text-main: #0f172a;\n}\n\nbody {\n  background: var(--bg-main);\n  color: var(--text-main);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">:root {
+            <pre class="code-content-pre"><code>:root {
   --primary: #6366f1;
   --bg-main: #0a0f1d;
   --text-main: #f8fafc;
@@ -3052,7 +3072,7 @@ p {
 body {
   background: var(--bg-main);
   color: var(--text-main);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="@media (max-width: 768px) media queries responsive màn hình kích hoạt định dạng css riêng biệt khi màn hình co lại nhỏ hơn hoặc bằng một kích thước chỉ định (mobile / tablet). media queries responsive max-width mobile tablet 768px">
@@ -3066,7 +3086,7 @@ body {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="/* Giao diện Desktop mặc định */\n.main-grid { display: grid; grid-template-columns: 2fr 1fr; }\n\n/* Khi xem trên điện thoại (Mobile) */\n@media (max-width: 768px) {\n  .main-grid {\n    grid-template-columns: 1fr; /* Chuyển thành 1 cột */\n  }\n  .site-nav { display: none; }\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">/* Giao diện Desktop mặc định */
+            <pre class="code-content-pre"><code>/* Giao diện Desktop mặc định */
 .main-grid { display: grid; grid-template-columns: 2fr 1fr; }
 
 /* Khi xem trên điện thoại (Mobile) */
@@ -3075,7 +3095,7 @@ body {
     grid-template-columns: 1fr; /* Chuyển thành 1 cột */
   }
   .site-nav { display: none; }
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="@media (prefers-color-scheme) nhận diện dark mode hệ thống tự động kích hoạt bảng màu giao diện tối theo thiết lập hệ điều hành của người dùng máy tính / điện thoại. prefers-color-scheme dark mode he thong he dieu hanh">
@@ -3089,12 +3109,12 @@ body {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="@media (prefers-color-scheme: dark) {\n  :root {\n    --bg-main: #0b0f19;\n    --text-main: #f1f5f9;\n  }\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">@media (prefers-color-scheme: dark) {
+            <pre class="code-content-pre"><code>@media (prefers-color-scheme: dark) {
   :root {
     --bg-main: #0b0f19;
     --text-main: #f1f5f9;
   }
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="@media (prefers-reduced-motion) giảm chuyển động cho trợ năng tắt toàn bộ animation và transition đối với những người dùng nhạy cảm với tiền đình hoặc chóng mặt (chuẩn accessibility quốc tế). prefers-reduced-motion a11y tro nang chong mat motion">
@@ -3108,7 +3128,7 @@ body {
               <span>CSS</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="@media (prefers-reduced-motion: reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms !important;\n    transition-duration: 0.01ms !important;\n    scroll-behavior: auto !important;\n  }\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">@media (prefers-reduced-motion: reduce) {
+            <pre class="code-content-pre"><code>@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -3116,7 +3136,7 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -3143,11 +3163,11 @@ body {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const API_KEY = 'secret_123'; // Không thể gán lại\nlet counter = 0;\ncounter += 1; // Hợp lệ">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const API_KEY = &#x27;secret_123&#x27;; // Không thể gán lại\nlet counter = 0;\ncounter += 1; // Hợp lệ">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const API_KEY = &#x27;secret_123&#x27;; // Không thể gán lại
+            <pre class="code-content-pre"><code>const API_KEY = &#x27;secret_123&#x27;; // Không thể gán lại
 let counter = 0;
-counter += 1; // Hợp lệ</pre>
+counter += 1; // Hợp lệ</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="typeof &amp; 8 kiểu dữ liệu kiểm tra kiểu dữ liệu nguyên bản 7 kiểu nguyên thủy: string, number, boolean, null, undefined, symbol, bigint và kiểu phức hợp: object (bao gồm cả mảng array). typeof kieu du lieu string number boolean null undefined array object">
@@ -3159,14 +3179,14 @@ counter += 1; // Hợp lệ</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="typeof 'DevWeb'   // 'string'\ntypeof 42         // 'number'\ntypeof true       // 'boolean'\ntypeof undefined  // 'undefined'\ntypeof null       // 'object' (lỗi lịch sử JS)\ntypeof [1, 2, 3]  // 'object' (kiểm tra Array.isArray())">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="typeof &#x27;DevWeb&#x27;   // &#x27;string&#x27;\ntypeof 42         // &#x27;number&#x27;\ntypeof true       // &#x27;boolean&#x27;\ntypeof undefined  // &#x27;undefined&#x27;\ntypeof null       // &#x27;object&#x27; (lỗi lịch sử JS)\ntypeof [1, 2, 3]  // &#x27;object&#x27; (kiểm tra Array.isArray())">Sao chép</button>
             </div>
-            <pre class="code-content-pre">typeof &#x27;DevWeb&#x27;   // &#x27;string&#x27;
+            <pre class="code-content-pre"><code>typeof &#x27;DevWeb&#x27;   // &#x27;string&#x27;
 typeof 42         // &#x27;number&#x27;
 typeof true       // &#x27;boolean&#x27;
 typeof undefined  // &#x27;undefined&#x27;
 typeof null       // &#x27;object&#x27; (lỗi lịch sử JS)
-typeof [1, 2, 3]  // &#x27;object&#x27; (kiểm tra Array.isArray())</pre>
+typeof [1, 2, 3]  // &#x27;object&#x27; (kiểm tra Array.isArray())</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="=== vs == (toán tử so sánh) so sánh nghiêm ngặt luôn dùng === và !== để so sánh cả giá trị lẫn kiểu dữ liệu, tránh lỗi ép kiểu ngầm nguy hiểm của toán tử ==. so sanh === == strict equality ep kieu">
@@ -3178,11 +3198,11 @@ typeof [1, 2, 3]  // &#x27;object&#x27; (kiểm tra Array.isArray())</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="5 === '5' // false (number khác string)\n5 == '5'  // true (ép kiểu ngầm - NGUY HIỂM)\n0 === false // false">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="5 === &#x27;5&#x27; // false (number khác string)\n5 == &#x27;5&#x27;  // true (ép kiểu ngầm - NGUY HIỂM)\n0 === false // false">Sao chép</button>
             </div>
-            <pre class="code-content-pre">5 === &#x27;5&#x27; // false (number khác string)
+            <pre class="code-content-pre"><code>5 === &#x27;5&#x27; // false (number khác string)
 5 == &#x27;5&#x27;  // true (ép kiểu ngầm - NGUY HIỂM)
-0 === false // false</pre>
+0 === false // false</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="&amp;&amp;, ||, ?? (toán tử logic) toán tử điều kiện rút gọn &amp;&amp; (and), || (or nhận giá trị đầu tiên truthy), ?? (nullish coalescing chỉ lấy mặc định nếu giá trị là null hoặc undefined). toan tu logic and or nullish coalescing default value">
@@ -3194,10 +3214,10 @@ typeof [1, 2, 3]  // &#x27;object&#x27; (kiểm tra Array.isArray())</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const title = user.name || 'Khách'; // Nếu '' vẫn lấy 'Khách'\nconst count = user.score ?? 0;   // Nếu 0 vẫn giữ nguyên 0!">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const title = user.name || &#x27;Khách&#x27;; // Nếu &#x27;&#x27; vẫn lấy &#x27;Khách&#x27;\nconst count = user.score ?? 0;   // Nếu 0 vẫn giữ nguyên 0!">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const title = user.name || &#x27;Khách&#x27;; // Nếu &#x27;&#x27; vẫn lấy &#x27;Khách&#x27;
-const count = user.score ?? 0;   // Nếu 0 vẫn giữ nguyên 0!</pre>
+            <pre class="code-content-pre"><code>const title = user.name || &#x27;Khách&#x27;; // Nếu &#x27;&#x27; vẫn lấy &#x27;Khách&#x27;
+const count = user.score ?? 0;   // Nếu 0 vẫn giữ nguyên 0!</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="template literals (``) chuỗi nội suy hiện đại sử dụng dấu backtick (`) để nhúng biến ${tenbien}, biểu thức tính toán và viết chuỗi nhiều dòng mà không cần dấu cộng nối chuỗi. template literals backtick chuoi noi suy">
@@ -3209,11 +3229,11 @@ const count = user.score ?? 0;   // Nếu 0 vẫn giữ nguyên 0!</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const name = 'An';\nconst score = 95;\nconst msg = `Chúc mừng ${name}! Điểm số: ${score + 5}/100.`;">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const name = &#x27;An&#x27;;\nconst score = 95;\nconst msg = `Chúc mừng ${name}! Điểm số: ${score + 5}/100.`;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const name = &#x27;An&#x27;;
+            <pre class="code-content-pre"><code>const name = &#x27;An&#x27;;
 const score = 95;
-const msg = `Chúc mừng ${name}! Điểm số: ${score + 5}/100.`;</pre>
+const msg = `Chúc mừng ${name}! Điểm số: ${score + 5}/100.`;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="ternary operator ( ? : ) toán tử 3 ngôi rút gọn if-else cú pháp ngắn gọn thay thế if-else cho các phép gán biến hoặc điều kiện nội dòng: dieukien ? khidung : khisai. ternary toan tu 3 ngoi if else rut gon">
@@ -3225,10 +3245,10 @@ const msg = `Chúc mừng ${name}! Điểm số: ${score + 5}/100.`;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const isLoggedIn = true;\nconst statusText = isLoggedIn ? 'Đã đăng nhập' : 'Khách vãng lai';">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const isLoggedIn = true;\nconst statusText = isLoggedIn ? &#x27;Đã đăng nhập&#x27; : &#x27;Khách vãng lai&#x27;;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const isLoggedIn = true;
-const statusText = isLoggedIn ? &#x27;Đã đăng nhập&#x27; : &#x27;Khách vãng lai&#x27;;</pre>
+            <pre class="code-content-pre"><code>const isLoggedIn = true;
+const statusText = isLoggedIn ? &#x27;Đã đăng nhập&#x27; : &#x27;Khách vãng lai&#x27;;</code></pre>
           </div>
         </div>
       </div>
@@ -3243,16 +3263,16 @@ const statusText = isLoggedIn ? &#x27;Đã đăng nhập&#x27; : &#x27;Khách v�
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const score = 85;\nif (score >= 90) {\n  console.log('Xuất sắc');\n} else if (score >= 70) {\n  console.log('Khá tốt');\n} else {\n  console.log('Cần cố gắng');\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const score = 85;\nif (score &gt;= 90) {\n  console.log(&#x27;Xuất sắc&#x27;);\n} else if (score &gt;= 70) {\n  console.log(&#x27;Khá tốt&#x27;);\n} else {\n  console.log(&#x27;Cần cố gắng&#x27;);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const score = 85;
+            <pre class="code-content-pre"><code>const score = 85;
 if (score &gt;= 90) {
   console.log(&#x27;Xuất sắc&#x27;);
 } else if (score &gt;= 70) {
   console.log(&#x27;Khá tốt&#x27;);
 } else {
   console.log(&#x27;Cần cố gắng&#x27;);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="switch ... case ... default rẽ nhánh theo nhiều trường hợp so sánh một giá trị với nhiều trường hợp (case). luôn có câu lệnh break ở cuối mỗi case và khối default xử lý ngoại lệ. switch case default break re nhanh nhieu truong hop">
@@ -3264,9 +3284,9 @@ if (score &gt;= 90) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="switch (role) {\n  case 'admin':\n    grantAllAccess();\n    break;\n  case 'editor':\n    grantEditAccess();\n    break;\n  default:\n    grantReadAccess();\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="switch (role) {\n  case &#x27;admin&#x27;:\n    grantAllAccess();\n    break;\n  case &#x27;editor&#x27;:\n    grantEditAccess();\n    break;\n  default:\n    grantReadAccess();\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">switch (role) {
+            <pre class="code-content-pre"><code>switch (role) {
   case &#x27;admin&#x27;:
     grantAllAccess();
     break;
@@ -3275,7 +3295,7 @@ if (score &gt;= 90) {
     break;
   default:
     grantReadAccess();
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="for (let i = 0; i &lt; n; i++) vòng lặp truyền thống lặp qua một khoảng số nguyên với biến đếm i, thường dùng khi cần biết chính xác chỉ số lặp index. for loop vong lap truyen thong index">
@@ -3287,12 +3307,12 @@ if (score &gt;= 90) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const items = ['HTML', 'CSS', 'JavaScript'];\nfor (let i = 0; i < items.length; i++) {\n  console.log(`${i + 1}. ${items[i]}`);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const items = [&#x27;HTML&#x27;, &#x27;CSS&#x27;, &#x27;JavaScript&#x27;];\nfor (let i = 0; i &lt; items.length; i++) {\n  console.log(`${i + 1}. ${items[i]}`);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const items = [&#x27;HTML&#x27;, &#x27;CSS&#x27;, &#x27;JavaScript&#x27;];
+            <pre class="code-content-pre"><code>const items = [&#x27;HTML&#x27;, &#x27;CSS&#x27;, &#x27;JavaScript&#x27;];
 for (let i = 0; i &lt; items.length; i++) {
   console.log(`${i + 1}. ${items[i]}`);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="for ... of (mảng &amp; chuỗi) duyệt giá trị mảng tiện lợi cú pháp lặp hiện đại và gọn gàng nhất để duyệt qua từng giá trị (value) của mảng hoặc từng ký tự trong chuỗi. for of vong lap mang chuoi gia tri value">
@@ -3304,12 +3324,12 @@ for (let i = 0; i &lt; items.length; i++) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const fruits = ['Táo', 'Cam', 'Xoài'];\nfor (const fruit of fruits) {\n  console.log(fruit);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const fruits = [&#x27;Táo&#x27;, &#x27;Cam&#x27;, &#x27;Xoài&#x27;];\nfor (const fruit of fruits) {\n  console.log(fruit);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const fruits = [&#x27;Táo&#x27;, &#x27;Cam&#x27;, &#x27;Xoài&#x27;];
+            <pre class="code-content-pre"><code>const fruits = [&#x27;Táo&#x27;, &#x27;Cam&#x27;, &#x27;Xoài&#x27;];
 for (const fruit of fruits) {
   console.log(fruit);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="for ... in (thuộc tính object) duyệt tên thuộc tính khóa duyệt qua tất cả các tên khóa (keys) của một object thuần túy. for in duyet key thuoc tinh object">
@@ -3321,12 +3341,12 @@ for (const fruit of fruits) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { name: 'Nam', age: 22, city: 'Hà Nội' };\nfor (const key in user) {\n  console.log(`${key}: ${user[key]}`);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { name: &#x27;Nam&#x27;, age: 22, city: &#x27;Hà Nội&#x27; };\nfor (const key in user) {\n  console.log(`${key}: ${user[key]}`);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const user = { name: &#x27;Nam&#x27;, age: 22, city: &#x27;Hà Nội&#x27; };
+            <pre class="code-content-pre"><code>const user = { name: &#x27;Nam&#x27;, age: 22, city: &#x27;Hà Nội&#x27; };
 for (const key in user) {
   console.log(`${key}: ${user[key]}`);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="while &amp; do ... while vòng lặp dựa trên điều kiện while: kiểm tra điều kiện trước khi lặp. do...while: luôn thực thi khối lệnh ít nhất 1 lần trước khi kiểm tra điều kiện. while do while vong lap dieu kien">
@@ -3338,13 +3358,13 @@ for (const key in user) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="let count = 3;\nwhile (count > 0) {\n  console.log(count);\n  count--;\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="let count = 3;\nwhile (count &gt; 0) {\n  console.log(count);\n  count--;\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">let count = 3;
+            <pre class="code-content-pre"><code>let count = 3;
 while (count &gt; 0) {
   console.log(count);
   count--;
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -3359,15 +3379,15 @@ while (count &gt; 0) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Khai báo truyền thống\nfunction add(a, b) {\n  return a + b;\n}\n\n// Arrow Function ngắn gọn (return ngầm định)\nconst multiply = (a, b) => a * b;">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Khai báo truyền thống\nfunction add(a, b) {\n  return a + b;\n}\n\n// Arrow Function ngắn gọn (return ngầm định)\nconst multiply = (a, b) =&gt; a * b;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">// Khai báo truyền thống
+            <pre class="code-content-pre"><code>// Khai báo truyền thống
 function add(a, b) {
   return a + b;
 }
 
 // Arrow Function ngắn gọn (return ngầm định)
-const multiply = (a, b) =&gt; a * b;</pre>
+const multiply = (a, b) =&gt; a * b;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="default parameters &amp; rest (...args) tham số mặc định &amp; gom tham số gán giá trị mặc định cho tham số nếu không được truyền vào; dùng cú pháp rest (...args) để nhận vô số đối số dưới dạng mảng. default parameters rest parameters tham so mac dinh args">
@@ -3379,9 +3399,9 @@ const multiply = (a, b) =&gt; a * b;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Tham số mặc định\nfunction greet(name = 'Bạn') {\n  return `Xin chào ${name}!`;\n}\n\n// Rest parameters nhận nhiều tham số\nfunction sumAll(...numbers) {\n  return numbers.reduce((sum, n) => sum + n, 0);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Tham số mặc định\nfunction greet(name = &#x27;Bạn&#x27;) {\n  return `Xin chào ${name}!`;\n}\n\n// Rest parameters nhận nhiều tham số\nfunction sumAll(...numbers) {\n  return numbers.reduce((sum, n) =&gt; sum + n, 0);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">// Tham số mặc định
+            <pre class="code-content-pre"><code>// Tham số mặc định
 function greet(name = &#x27;Bạn&#x27;) {
   return `Xin chào ${name}!`;
 }
@@ -3389,7 +3409,7 @@ function greet(name = &#x27;Bạn&#x27;) {
 // Rest parameters nhận nhiều tham số
 function sumAll(...numbers) {
   return numbers.reduce((sum, n) =&gt; sum + n, 0);
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="closures &amp; block scope phạm vi khối &amp; đóng gói biến hàm con bên trong luôn có quyền truy cập vào các biến của hàm cha bao bọc nó ngay cả khi hàm cha đã kết thúc thực thi. closure scope dong goi bien private encapsulate">
@@ -3401,9 +3421,9 @@ function sumAll(...numbers) {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="function createCounter() {\n  let count = 0; // Biến private đóng gói\n  return {\n    increment: () => ++count,\n    getCount: () => count\n  };\n}\nconst c = createCounter();\nc.increment(); // 1">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="function createCounter() {\n  let count = 0; // Biến private đóng gói\n  return {\n    increment: () =&gt; ++count,\n    getCount: () =&gt; count\n  };\n}\nconst c = createCounter();\nc.increment(); // 1">Sao chép</button>
             </div>
-            <pre class="code-content-pre">function createCounter() {
+            <pre class="code-content-pre"><code>function createCounter() {
   let count = 0; // Biến private đóng gói
   return {
     increment: () =&gt; ++count,
@@ -3411,7 +3431,7 @@ function sumAll(...numbers) {
   };
 }
 const c = createCounter();
-c.increment(); // 1</pre>
+c.increment(); // 1</code></pre>
           </div>
         </div>
       </div>
@@ -3428,11 +3448,11 @@ c.increment(); // 1</pre>
               <span>JavaScript</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const arr = [1, 2, 3];\narr.push(4);    // [1, 2, 3, 4]\narr.pop();       // [1, 2, 3] (trả về 4)\narr.unshift(0);  // [0, 1, 2, 3]\narr.shift();     // [1, 2, 3] (trả về 0)">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const arr = [1, 2, 3];
+            <pre class="code-content-pre"><code>const arr = [1, 2, 3];
 arr.push(4);    // [1, 2, 3, 4]
 arr.pop();       // [1, 2, 3] (trả về 4)
 arr.unshift(0);  // [0, 1, 2, 3]
-arr.shift();     // [1, 2, 3] (trả về 0)</pre>
+arr.shift();     // [1, 2, 3] (trả về 0)</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="map() biến đổi từng phần tử mảng tạo ra một mảng mới bằng cách áp dụng hàm biến đổi cho từng phần tử của mảng gốc mà không làm thay đổi mảng cũ. map bien doi mang array transform">
@@ -3444,12 +3464,12 @@ arr.shift();     // [1, 2, 3] (trả về 0)</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n => n * 2); // [2, 4, 6, 8]\n\nconst names = users.map(u => u.name);">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n =&gt; n * 2); // [2, 4, 6, 8]\n\nconst names = users.map(u =&gt; u.name);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const numbers = [1, 2, 3, 4];
+            <pre class="code-content-pre"><code>const numbers = [1, 2, 3, 4];
 const doubled = numbers.map(n =&gt; n * 2); // [2, 4, 6, 8]
 
-const names = users.map(u =&gt; u.name);</pre>
+const names = users.map(u =&gt; u.name);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="filter() lọc phần tử thỏa mãn điều kiện tạo ra một mảng mới chỉ chứa các phần tử trả về kết quả true khi đi qua hàm kiểm tra điều kiện. filter loc phan tu dieu kien mang">
@@ -3461,10 +3481,10 @@ const names = users.map(u =&gt; u.name);</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const scores = [45, 88, 72, 95, 60];\nconst passed = scores.filter(score => score >= 70); // [88, 72, 95]">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const scores = [45, 88, 72, 95, 60];\nconst passed = scores.filter(score =&gt; score &gt;= 70); // [88, 72, 95]">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const scores = [45, 88, 72, 95, 60];
-const passed = scores.filter(score =&gt; score &gt;= 70); // [88, 72, 95]</pre>
+            <pre class="code-content-pre"><code>const scores = [45, 88, 72, 95, 60];
+const passed = scores.filter(score =&gt; score &gt;= 70); // [88, 72, 95]</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="reduce() tích lũy giá trị toàn bộ mảng thu gọn toàn bộ các phần tử trong mảng về duy nhất một giá trị (tính tổng tiền giỏ hàng, đếm số lần xuất hiện). reduce tich luy tinh tong gio hang summarize">
@@ -3476,10 +3496,10 @@ const passed = scores.filter(score =&gt; score &gt;= 70); // [88, 72, 95]</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const cart = [{ price: 100 }, { price: 200 }, { price: 50 }];\nconst total = cart.reduce((sum, item) => sum + item.price, 0); // 350">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const cart = [{ price: 100 }, { price: 200 }, { price: 50 }];\nconst total = cart.reduce((sum, item) =&gt; sum + item.price, 0); // 350">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const cart = [{ price: 100 }, { price: 200 }, { price: 50 }];
-const total = cart.reduce((sum, item) =&gt; sum + item.price, 0); // 350</pre>
+            <pre class="code-content-pre"><code>const cart = [{ price: 100 }, { price: 200 }, { price: 50 }];
+const total = cart.reduce((sum, item) =&gt; sum + item.price, 0); // 350</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="find() &amp; findindex() tìm kiếm phần tử đầu tiên find() trả về giá trị của phần tử đầu tiên thỏa điều kiện (hoặc undefined). findindex() trả về vị trí index (hoặc -1). find findindex tim kiem phan tu vi tri">
@@ -3491,10 +3511,10 @@ const total = cart.reduce((sum, item) =&gt; sum + item.price, 0); // 350</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const users = [{ id: 1, name: 'An' }, { id: 2, name: 'Bình' }];\nconst user = users.find(u => u.id === 2); // { id: 2, name: 'Bình' }">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const users = [{ id: 1, name: &#x27;An&#x27; }, { id: 2, name: &#x27;Bình&#x27; }];\nconst user = users.find(u =&gt; u.id === 2); // { id: 2, name: &#x27;Bình&#x27; }">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const users = [{ id: 1, name: &#x27;An&#x27; }, { id: 2, name: &#x27;Bình&#x27; }];
-const user = users.find(u =&gt; u.id === 2); // { id: 2, name: &#x27;Bình&#x27; }</pre>
+            <pre class="code-content-pre"><code>const users = [{ id: 1, name: &#x27;An&#x27; }, { id: 2, name: &#x27;Bình&#x27; }];
+const user = users.find(u =&gt; u.id === 2); // { id: 2, name: &#x27;Bình&#x27; }</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="includes(), some() &amp; every() kiểm tra sự tồn tại includes() kiểm tra giá trị có trong mảng. some() kiểm tra có ít nhất 1 phần tử thỏa mãn. every() kiểm tra tất cả phần tử đều thỏa. includes some every kiem tra ton tai">
@@ -3506,13 +3526,13 @@ const user = users.find(u =&gt; u.id === 2); // { id: 2, name: &#x27;Bình&#x27;
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const roles = ['user', 'editor'];\nroles.includes('admin'); // false\n\nconst nums = [2, 4, 6];\nnums.every(n => n % 2 === 0); // true (tất cả là chẵn)">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const roles = [&#x27;user&#x27;, &#x27;editor&#x27;];\nroles.includes(&#x27;admin&#x27;); // false\n\nconst nums = [2, 4, 6];\nnums.every(n =&gt; n % 2 === 0); // true (tất cả là chẵn)">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const roles = [&#x27;user&#x27;, &#x27;editor&#x27;];
+            <pre class="code-content-pre"><code>const roles = [&#x27;user&#x27;, &#x27;editor&#x27;];
 roles.includes(&#x27;admin&#x27;); // false
 
 const nums = [2, 4, 6];
-nums.every(n =&gt; n % 2 === 0); // true (tất cả là chẵn)</pre>
+nums.every(n =&gt; n % 2 === 0); // true (tất cả là chẵn)</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="slice() vs splice() cắt sao chép &amp; sửa xóa mảng gốc slice(start, end): sao chép một đoạn mảng con (an toàn, không đổi mảng gốc). splice(start, count, items): xóa hoặc chèn trực tiếp làm đổi mảng gốc. slice splice cat sao chep chen xoa mang">
@@ -3524,12 +3544,12 @@ nums.every(n =&gt; n % 2 === 0); // true (tất cả là chẵn)</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const letters = ['a', 'b', 'c', 'd'];\nconst sub = letters.slice(1, 3); // ['b', 'c'] (letters giữ nguyên)\n\nletters.splice(1, 1, 'Z'); // Thay 'b' bằng 'Z'">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const letters = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;];\nconst sub = letters.slice(1, 3); // [&#x27;b&#x27;, &#x27;c&#x27;] (letters giữ nguyên)\n\nletters.splice(1, 1, &#x27;Z&#x27;); // Thay &#x27;b&#x27; bằng &#x27;Z&#x27;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const letters = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;];
+            <pre class="code-content-pre"><code>const letters = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;];
 const sub = letters.slice(1, 3); // [&#x27;b&#x27;, &#x27;c&#x27;] (letters giữ nguyên)
 
-letters.splice(1, 1, &#x27;Z&#x27;); // Thay &#x27;b&#x27; bằng &#x27;Z&#x27;</pre>
+letters.splice(1, 1, &#x27;Z&#x27;); // Thay &#x27;b&#x27; bằng &#x27;Z&#x27;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="spread operator: [...arr] nhân bản &amp; gộp mảng nhanh chóng trải rộng các phần tử để nhân bản bản sao (shallow copy) hoặc gộp nhiều mảng lại với nhau cực kỳ ngắn gọn. spread operator ...arr nhan ban gop mang copy">
@@ -3543,10 +3563,10 @@ letters.splice(1, 1, &#x27;Z&#x27;); // Thay &#x27;b&#x27; bằng &#x27;Z&#x27;<
               <span>JavaScript</span>
               <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const a = [1, 2];\nconst b = [3, 4];\nconst combined = [...a, ...b, 5]; // [1, 2, 3, 4, 5]\nconst clone = [...a]; // Sao chép không tham chiếu">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const a = [1, 2];
+            <pre class="code-content-pre"><code>const a = [1, 2];
 const b = [3, 4];
 const combined = [...a, ...b, 5]; // [1, 2, 3, 4, 5]
-const clone = [...a]; // Sao chép không tham chiếu</pre>
+const clone = [...a]; // Sao chép không tham chiếu</code></pre>
           </div>
         </div>
       </div>
@@ -3561,10 +3581,10 @@ const clone = [...a]; // Sao chép không tham chiếu</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const raw = '   Admin@DevWebLab.com   ';\nconst clean = raw.trim().toLowerCase(); // 'admin@devweblab.com'">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const raw = &#x27;   Admin@DevWebLab.com   &#x27;;\nconst clean = raw.trim().toLowerCase(); // &#x27;admin@devweblab.com&#x27;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const raw = &#x27;   Admin@DevWebLab.com   &#x27;;
-const clean = raw.trim().toLowerCase(); // &#x27;admin@devweblab.com&#x27;</pre>
+            <pre class="code-content-pre"><code>const raw = &#x27;   Admin@DevWebLab.com   &#x27;;
+const clean = raw.trim().toLowerCase(); // &#x27;admin@devweblab.com&#x27;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="includes(), startswith() &amp; endswith() kiểm tra khớp mẫu chuỗi kiểm tra chuỗi có chứa từ khóa, bắt đầu bằng tiền tố hoặc kết thúc bằng phần mở rộng chỉ định. includes startswith endswith kiem tra chuoi">
@@ -3576,12 +3596,12 @@ const clean = raw.trim().toLowerCase(); // &#x27;admin@devweblab.com&#x27;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const url = 'https://devweblab.com/avatar.png';\nurl.startsWith('https://'); // true\nurl.endsWith('.png');      // true\nurl.includes('devweb');    // true">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const url = &#x27;https://devweblab.com/avatar.png&#x27;;\nurl.startsWith(&#x27;https://&#x27;); // true\nurl.endsWith(&#x27;.png&#x27;);      // true\nurl.includes(&#x27;devweb&#x27;);    // true">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const url = &#x27;https://devweblab.com/avatar.png&#x27;;
+            <pre class="code-content-pre"><code>const url = &#x27;https://devweblab.com/avatar.png&#x27;;
 url.startsWith(&#x27;https://&#x27;); // true
 url.endsWith(&#x27;.png&#x27;);      // true
-url.includes(&#x27;devweb&#x27;);    // true</pre>
+url.includes(&#x27;devweb&#x27;);    // true</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="split() &amp; join() chuyển đổi giữa chuỗi &amp; mảng split(delimiter) cắt chuỗi thành mảng theo ký tự phân tách. join(separator) nối mảng các phần tử lại thành một chuỗi. split join tach ghep chuoi mang">
@@ -3593,11 +3613,11 @@ url.includes(&#x27;devweb&#x27;);    // true</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const tagString = 'html,css,javascript,react';\nconst tags = tagString.split(','); // ['html', 'css', 'javascript', 'react']\nconst reassembled = tags.join(' • ');">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const tagString = &#x27;html,css,javascript,react&#x27;;\nconst tags = tagString.split(&#x27;,&#x27;); // [&#x27;html&#x27;, &#x27;css&#x27;, &#x27;javascript&#x27;, &#x27;react&#x27;]\nconst reassembled = tags.join(&#x27; • &#x27;);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const tagString = &#x27;html,css,javascript,react&#x27;;
+            <pre class="code-content-pre"><code>const tagString = &#x27;html,css,javascript,react&#x27;;
 const tags = tagString.split(&#x27;,&#x27;); // [&#x27;html&#x27;, &#x27;css&#x27;, &#x27;javascript&#x27;, &#x27;react&#x27;]
-const reassembled = tags.join(&#x27; • &#x27;);</pre>
+const reassembled = tags.join(&#x27; • &#x27;);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="replace() &amp; replaceall() tìm kiếm &amp; thay thế ký tự replace() thay thế từ đầu tiên tìm thấy hoặc theo regex. replaceall() thay thế toàn bộ mọi vị trí xuất hiện. replace replaceall thay the ky tu chuoi">
@@ -3609,10 +3629,10 @@ const reassembled = tags.join(&#x27; • &#x27;);</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const str = 'apple, banana, apple';\nconst fixed = str.replaceAll('apple', 'orange'); // 'orange, banana, orange'">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const str = &#x27;apple, banana, apple&#x27;;\nconst fixed = str.replaceAll(&#x27;apple&#x27;, &#x27;orange&#x27;); // &#x27;orange, banana, orange&#x27;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const str = &#x27;apple, banana, apple&#x27;;
-const fixed = str.replaceAll(&#x27;apple&#x27;, &#x27;orange&#x27;); // &#x27;orange, banana, orange&#x27;</pre>
+            <pre class="code-content-pre"><code>const str = &#x27;apple, banana, apple&#x27;;
+const fixed = str.replaceAll(&#x27;apple&#x27;, &#x27;orange&#x27;); // &#x27;orange, banana, orange&#x27;</code></pre>
           </div>
         </div>
       </div>
@@ -3627,11 +3647,11 @@ const fixed = str.replaceAll(&#x27;apple&#x27;, &#x27;orange&#x27;); // &#x27;or
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { id: 101, username: 'an_dev', role: 'admin' };\nconst { username, role, status = 'active' } = user;\nconsole.log(username, role); // 'an_dev', 'admin'">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { id: 101, username: &#x27;an_dev&#x27;, role: &#x27;admin&#x27; };\nconst { username, role, status = &#x27;active&#x27; } = user;\nconsole.log(username, role); // &#x27;an_dev&#x27;, &#x27;admin&#x27;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const user = { id: 101, username: &#x27;an_dev&#x27;, role: &#x27;admin&#x27; };
+            <pre class="code-content-pre"><code>const user = { id: 101, username: &#x27;an_dev&#x27;, role: &#x27;admin&#x27; };
 const { username, role, status = &#x27;active&#x27; } = user;
-console.log(username, role); // &#x27;an_dev&#x27;, &#x27;admin&#x27;</pre>
+console.log(username, role); // &#x27;an_dev&#x27;, &#x27;admin&#x27;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="object spread: { ...obj } sao chép &amp; ghi đè thuộc tính tạo bản sao object mới hoặc cập nhật một vài trường dữ liệu theo tư duy bất biến (immutable state). spread object ...obj sao chep ghi de bat bien immutable">
@@ -3643,13 +3663,13 @@ console.log(username, role); // &#x27;an_dev&#x27;, &#x27;admin&#x27;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const prevSettings = { theme: 'dark', sound: true };\nconst newSettings = {\n  ...prevSettings,\n  sound: false // Ghi đè giá trị\n};">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const prevSettings = { theme: &#x27;dark&#x27;, sound: true };\nconst newSettings = {\n  ...prevSettings,\n  sound: false // Ghi đè giá trị\n};">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const prevSettings = { theme: &#x27;dark&#x27;, sound: true };
+            <pre class="code-content-pre"><code>const prevSettings = { theme: &#x27;dark&#x27;, sound: true };
 const newSettings = {
   ...prevSettings,
   sound: false // Ghi đè giá trị
-};</pre>
+};</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="object.keys(), values(), entries() trích xuất dữ liệu đối tượng lấy toàn bộ danh sách tên khóa (keys), mảng giá trị (values), hoặc mảng các cặp [key, value] để duyệt lặp. object.keys values entries trich xuat khoa gia tri duyet">
@@ -3661,12 +3681,12 @@ const newSettings = {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const stats = { views: 120, likes: 45, shares: 12 };\nObject.keys(stats);   // ['views', 'likes', 'shares']\nObject.values(stats); // [120, 45, 12]\nObject.entries(stats).forEach(([k, v]) => console.log(k, v));">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const stats = { views: 120, likes: 45, shares: 12 };\nObject.keys(stats);   // [&#x27;views&#x27;, &#x27;likes&#x27;, &#x27;shares&#x27;]\nObject.values(stats); // [120, 45, 12]\nObject.entries(stats).forEach(([k, v]) =&gt; console.log(k, v));">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const stats = { views: 120, likes: 45, shares: 12 };
+            <pre class="code-content-pre"><code>const stats = { views: 120, likes: 45, shares: 12 };
 Object.keys(stats);   // [&#x27;views&#x27;, &#x27;likes&#x27;, &#x27;shares&#x27;]
 Object.values(stats); // [120, 45, 12]
-Object.entries(stats).forEach(([k, v]) =&gt; console.log(k, v));</pre>
+Object.entries(stats).forEach(([k, v]) =&gt; console.log(k, v));</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="optional chaining (?.) truy cập an toàn thuộc tính sâu ngăn chặn lỗi sập trang web kinh điển &#x27;cannot read property of undefined&#x27; khi đọc dữ liệu lồng sâu chưa kịp tải từ api. optional chaining ?. an toan truy cap null undefined">
@@ -3678,11 +3698,11 @@ Object.entries(stats).forEach(([k, v]) =&gt; console.log(k, v));</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { profile: null };\n// Không bị ném lỗi TypeError!\nconst city = user.profile?.address?.city ?? 'Chưa cập nhật';">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const user = { profile: null };\n// Không bị ném lỗi TypeError!\nconst city = user.profile?.address?.city ?? &#x27;Chưa cập nhật&#x27;;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const user = { profile: null };
+            <pre class="code-content-pre"><code>const user = { profile: null };
 // Không bị ném lỗi TypeError!
-const city = user.profile?.address?.city ?? &#x27;Chưa cập nhật&#x27;;</pre>
+const city = user.profile?.address?.city ?? &#x27;Chưa cập nhật&#x27;;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="json.stringify() &amp; json.parse() chuyển đổi dữ liệu json chuẩn stringify chuyển đối tượng js thành chuỗi json lưu vào localstorage/gửi api; parse dịch ngược chuỗi thành object (kèm try-catch an toàn). json json.stringify json.parse chuyen doi du lieu try catch">
@@ -3694,16 +3714,16 @@ const city = user.profile?.address?.city ?? &#x27;Chưa cập nhật&#x27;;</pre
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const data = { id: 1, name: 'WebLab' };\nconst jsonStr = JSON.stringify(data);\n\ntry {\n  const parsed = JSON.parse(jsonStr);\n} catch (err) {\n  console.error('Lỗi định dạng JSON:', err);\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const data = { id: 1, name: &#x27;WebLab&#x27; };\nconst jsonStr = JSON.stringify(data);\n\ntry {\n  const parsed = JSON.parse(jsonStr);\n} catch (err) {\n  console.error(&#x27;Lỗi định dạng JSON:&#x27;, err);\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const data = { id: 1, name: &#x27;WebLab&#x27; };
+            <pre class="code-content-pre"><code>const data = { id: 1, name: &#x27;WebLab&#x27; };
 const jsonStr = JSON.stringify(data);
 
 try {
   const parsed = JSON.parse(jsonStr);
 } catch (err) {
   console.error(&#x27;Lỗi định dạng JSON:&#x27;, err);
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -3718,10 +3738,10 @@ try {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const heading = document.querySelector('.main-title');\nconst submitBtn = document.querySelector('button[type=&quot;submit&quot;]');">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const heading = document.querySelector(&#x27;.main-title&#x27;);\nconst submitBtn = document.querySelector(&#x27;button[type=&quot;submit&quot;]&#x27;);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const heading = document.querySelector(&#x27;.main-title&#x27;);
-const submitBtn = document.querySelector(&#x27;button[type=&quot;submit&quot;]&#x27;);</pre>
+            <pre class="code-content-pre"><code>const heading = document.querySelector(&#x27;.main-title&#x27;);
+const submitBtn = document.querySelector(&#x27;button[type=&quot;submit&quot;]&#x27;);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="document.queryselectorall() chọn tất cả phần tử (nodelist) truy xuất danh sách tĩnh nodelist chứa tất cả các phần tử khớp css selector. có sẵn phương thức foreach() để duyệt lặp. queryselectorall chon tat ca nodelist foreach">
@@ -3733,12 +3753,12 @@ const submitBtn = document.querySelector(&#x27;button[type=&quot;submit&quot;]&#
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const cards = document.querySelectorAll('.card');\ncards.forEach((card, index) => {\n  card.style.animationDelay = `${index * 100}ms`;\n});">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const cards = document.querySelectorAll(&#x27;.card&#x27;);\ncards.forEach((card, index) =&gt; {\n  card.style.animationDelay = `${index * 100}ms`;\n});">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const cards = document.querySelectorAll(&#x27;.card&#x27;);
+            <pre class="code-content-pre"><code>const cards = document.querySelectorAll(&#x27;.card&#x27;);
 cards.forEach((card, index) =&gt; {
   card.style.animationDelay = `${index * 100}ms`;
-});</pre>
+});</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="closest() &amp; parentelement duyệt lên phần tử cha gần nhất closest(selector) tìm ngược lên tổ tiên phần tử gần nhất khớp css (cực kỳ hữu ích khi bắt sự kiện bấm icon con bên trong nút bấm). closest parentelement tim to tien cha gan nhat dom">
@@ -3750,12 +3770,12 @@ cards.forEach((card, index) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="button.addEventListener('click', (e) => {\n  const card = e.target.closest('.card-item');\n  const cardId = card.getAttribute('data-id');\n});">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="button.addEventListener(&#x27;click&#x27;, (e) =&gt; {\n  const card = e.target.closest(&#x27;.card-item&#x27;);\n  const cardId = card.getAttribute(&#x27;data-id&#x27;);\n});">Sao chép</button>
             </div>
-            <pre class="code-content-pre">button.addEventListener(&#x27;click&#x27;, (e) =&gt; {
+            <pre class="code-content-pre"><code>button.addEventListener(&#x27;click&#x27;, (e) =&gt; {
   const card = e.target.closest(&#x27;.card-item&#x27;);
   const cardId = card.getAttribute(&#x27;data-id&#x27;);
-});</pre>
+});</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="children &amp; firstelementchild duyệt xuống các phần tử con children: trả về htmlcollection các phần tử con trực tiếp. firstelementchild: lấy phần tử con hợp lệ đầu tiên. children firstelementchild duyet con dom">
@@ -3767,11 +3787,11 @@ cards.forEach((card, index) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const list = document.querySelector('.task-list');\nconst totalTasks = list.children.length;\nconst firstTask = list.firstElementChild;">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const list = document.querySelector(&#x27;.task-list&#x27;);\nconst totalTasks = list.children.length;\nconst firstTask = list.firstElementChild;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const list = document.querySelector(&#x27;.task-list&#x27;);
+            <pre class="code-content-pre"><code>const list = document.querySelector(&#x27;.task-list&#x27;);
 const totalTasks = list.children.length;
-const firstTask = list.firstElementChild;</pre>
+const firstTask = list.firstElementChild;</code></pre>
           </div>
         </div>
       </div>
@@ -3786,13 +3806,13 @@ const firstTask = list.firstElementChild;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// AN TOÀN TUYỆT ĐỐI (tự động escape ký tự):\nmessageEl.textContent = userInput;\n\n// CHỈ dùng innerHTML khi chèn HTML tĩnh đã được xác thực an toàn:\ncontainer.innerHTML = '<span class=&quot;badge&quot;>Mới</span>';">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// AN TOÀN TUYỆT ĐỐI (tự động escape ký tự):\nmessageEl.textContent = userInput;\n\n// CHỈ dùng innerHTML khi chèn HTML tĩnh đã được xác thực an toàn:\ncontainer.innerHTML = &#x27;&lt;span class=&quot;badge&quot;&gt;Mới&lt;/span&gt;&#x27;;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">// AN TOÀN TUYỆT ĐỐI (tự động escape ký tự):
+            <pre class="code-content-pre"><code>// AN TOÀN TUYỆT ĐỐI (tự động escape ký tự):
 messageEl.textContent = userInput;
 
 // CHỈ dùng innerHTML khi chèn HTML tĩnh đã được xác thực an toàn:
-container.innerHTML = &#x27;&lt;span class=&quot;badge&quot;&gt;Mới&lt;/span&gt;&#x27;;</pre>
+container.innerHTML = &#x27;&lt;span class=&quot;badge&quot;&gt;Mới&lt;/span&gt;&#x27;;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="classlist (add, remove, toggle) quản lý lớp css cực kỳ dễ dàng thêm, xóa hoặc đảo trạng thái (toggle) class css mà không làm ghi đè mất các class hiện có của phần tử. classlist add remove toggle contains quan ly lop css">
@@ -3804,13 +3824,13 @@ container.innerHTML = &#x27;&lt;span class=&quot;badge&quot;&gt;Mới&lt;/span&g
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const modal = document.querySelector('.modal');\nmodal.classList.add('is-open');\nmodal.classList.remove('is-open');\nmodal.classList.toggle('active'); // Nếu có thì xóa, chưa có thì thêm\nconst isOpen = modal.classList.contains('active');">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const modal = document.querySelector(&#x27;.modal&#x27;);\nmodal.classList.add(&#x27;is-open&#x27;);\nmodal.classList.remove(&#x27;is-open&#x27;);\nmodal.classList.toggle(&#x27;active&#x27;); // Nếu có thì xóa, chưa có thì thêm\nconst isOpen = modal.classList.contains(&#x27;active&#x27;);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const modal = document.querySelector(&#x27;.modal&#x27;);
+            <pre class="code-content-pre"><code>const modal = document.querySelector(&#x27;.modal&#x27;);
 modal.classList.add(&#x27;is-open&#x27;);
 modal.classList.remove(&#x27;is-open&#x27;);
 modal.classList.toggle(&#x27;active&#x27;); // Nếu có thì xóa, chưa có thì thêm
-const isOpen = modal.classList.contains(&#x27;active&#x27;);</pre>
+const isOpen = modal.classList.contains(&#x27;active&#x27;);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="setattribute() &amp; dataset (data-*) thuộc tính html &amp; thuộc tính tùy biến đọc/ghi thuộc tính html chuẩn hoặc sử dụng dataset để lưu trữ dữ liệu nghiệp vụ tùy biến gắn trực tiếp trên thẻ html. setattribute getattribute dataset data-* thuoc tinh tuy bien">
@@ -3822,13 +3842,13 @@ const isOpen = modal.classList.contains(&#x27;active&#x27;);</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const btn = document.querySelector('.btn-buy');\nbtn.setAttribute('aria-expanded', 'true');\n\n// Đọc thẻ có data-product-id=&quot;45&quot;\nconst productId = btn.dataset.productId; // '45'">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const btn = document.querySelector(&#x27;.btn-buy&#x27;);\nbtn.setAttribute(&#x27;aria-expanded&#x27;, &#x27;true&#x27;);\n\n// Đọc thẻ có data-product-id=&quot;45&quot;\nconst productId = btn.dataset.productId; // &#x27;45&#x27;">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const btn = document.querySelector(&#x27;.btn-buy&#x27;);
+            <pre class="code-content-pre"><code>const btn = document.querySelector(&#x27;.btn-buy&#x27;);
 btn.setAttribute(&#x27;aria-expanded&#x27;, &#x27;true&#x27;);
 
 // Đọc thẻ có data-product-id=&quot;45&quot;
-const productId = btn.dataset.productId; // &#x27;45&#x27;</pre>
+const productId = btn.dataset.productId; // &#x27;45&#x27;</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="createelement() &amp; append() tạo mới &amp; chèn phần tử vào dom tạo một phần tử html mới hoàn toàn trong bộ nhớ bằng js và gắn vào trang web bằng appendchild() hoặc append(). createelement appendchild append tao moi chen phan tu dom">
@@ -3840,12 +3860,12 @@ const productId = btn.dataset.productId; // &#x27;45&#x27;</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const li = document.createElement('li');\nli.className = 'task-item';\nli.textContent = 'Học xong JavaScript DOM';\ndocument.getElementById('todoList').appendChild(li);">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const li = document.createElement(&#x27;li&#x27;);\nli.className = &#x27;task-item&#x27;;\nli.textContent = &#x27;Học xong JavaScript DOM&#x27;;\ndocument.getElementById(&#x27;todoList&#x27;).appendChild(li);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const li = document.createElement(&#x27;li&#x27;);
+            <pre class="code-content-pre"><code>const li = document.createElement(&#x27;li&#x27;);
 li.className = &#x27;task-item&#x27;;
 li.textContent = &#x27;Học xong JavaScript DOM&#x27;;
-document.getElementById(&#x27;todoList&#x27;).appendChild(li);</pre>
+document.getElementById(&#x27;todoList&#x27;).appendChild(li);</code></pre>
           </div>
         </div>
       </div>
@@ -3860,12 +3880,12 @@ document.getElementById(&#x27;todoList&#x27;).appendChild(li);</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const btn = document.getElementById('saveBtn');\nbtn.addEventListener('click', (event) => {\n  console.log('Nút đã được bấm!', event);\n});">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const btn = document.getElementById(&#x27;saveBtn&#x27;);\nbtn.addEventListener(&#x27;click&#x27;, (event) =&gt; {\n  console.log(&#x27;Nút đã được bấm!&#x27;, event);\n});">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const btn = document.getElementById(&#x27;saveBtn&#x27;);
+            <pre class="code-content-pre"><code>const btn = document.getElementById(&#x27;saveBtn&#x27;);
 btn.addEventListener(&#x27;click&#x27;, (event) =&gt; {
   console.log(&#x27;Nút đã được bấm!&#x27;, event);
-});</pre>
+});</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="e.preventdefault() &amp; e.stoppropagation() chặn mặc định &amp; chặn nổi bọt e.preventdefault(): ngăn hành vi mặc định (chặn reload trang khi submit form, chặn chuyển trang thẻ link). e.stoppropagation(): ngăn nổi bọt lên cha. preventdefault stoppropagation chan mac dinh reload noi bot event">
@@ -3877,13 +3897,13 @@ btn.addEventListener(&#x27;click&#x27;, (event) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const form = document.querySelector('form');\nform.addEventListener('submit', (e) => {\n  e.preventDefault(); // Ngăn trình duyệt reload lại trang\n  // Xử lý gửi API bằng JS...\n});">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const form = document.querySelector(&#x27;form&#x27;);\nform.addEventListener(&#x27;submit&#x27;, (e) =&gt; {\n  e.preventDefault(); // Ngăn trình duyệt reload lại trang\n  // Xử lý gửi API bằng JS...\n});">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const form = document.querySelector(&#x27;form&#x27;);
+            <pre class="code-content-pre"><code>const form = document.querySelector(&#x27;form&#x27;);
 form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
   e.preventDefault(); // Ngăn trình duyệt reload lại trang
   // Xử lý gửi API bằng JS...
-});</pre>
+});</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="event delegation (ủy quyền sự kiện) tối ưu hiệu năng cho danh sách động gắn 1 sự kiện duy nhất lên phần tử cha để quản lý hàng trăm phần tử con bên trong (ngay cả các phần tử mới được thêm sau này). event delegation uy quyen su kien toi uu hieu nang danh sach dong">
@@ -3895,14 +3915,14 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="document.getElementById('taskList').addEventListener('click', (e) => {\n  const deleteBtn = e.target.closest('.btn-delete');\n  if (deleteBtn) {\n    deleteBtn.closest('.task-item').remove();\n  }\n});">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="document.getElementById(&#x27;taskList&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {\n  const deleteBtn = e.target.closest(&#x27;.btn-delete&#x27;);\n  if (deleteBtn) {\n    deleteBtn.closest(&#x27;.task-item&#x27;).remove();\n  }\n});">Sao chép</button>
             </div>
-            <pre class="code-content-pre">document.getElementById(&#x27;taskList&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+            <pre class="code-content-pre"><code>document.getElementById(&#x27;taskList&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
   const deleteBtn = e.target.closest(&#x27;.btn-delete&#x27;);
   if (deleteBtn) {
     deleteBtn.closest(&#x27;.task-item&#x27;).remove();
   }
-});</pre>
+});</code></pre>
           </div>
         </div>
       </div>
@@ -3917,13 +3937,13 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const timerId = setTimeout(() => {\n  console.log('Chạy sau 2 giây');\n}, 2000);\n\n// Hủy hẹn giờ nếu cần: clearTimeout(timerId);">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="const timerId = setTimeout(() =&gt; {\n  console.log(&#x27;Chạy sau 2 giây&#x27;);\n}, 2000);\n\n// Hủy hẹn giờ nếu cần: clearTimeout(timerId);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">const timerId = setTimeout(() =&gt; {
+            <pre class="code-content-pre"><code>const timerId = setTimeout(() =&gt; {
   console.log(&#x27;Chạy sau 2 giây&#x27;);
 }, 2000);
 
-// Hủy hẹn giờ nếu cần: clearTimeout(timerId);</pre>
+// Hủy hẹn giờ nếu cần: clearTimeout(timerId);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="async / await &amp; try ... catch lập trình bất đồng bộ hiện đại viết mã bất đồng bộ phẳng và tự nhiên như mã đồng bộ tuần tự, dễ dàng bắt lỗi toàn diện với khối try ... catch. async await try catch bat dong bo promise handle error">
@@ -3935,9 +3955,9 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="async function loadWeather(city) {\n  try {\n    const res = await fetch(`https://api.example.com/weather?city=${city}`);\n    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);\n    const data = await res.json();\n    return data;\n  } catch (err) {\n    console.error('Lỗi khi tải thời tiết:', err);\n  }\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="async function loadWeather(city) {\n  try {\n    const res = await fetch(`https://api.example.com/weather?city=${city}`);\n    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);\n    const data = await res.json();\n    return data;\n  } catch (err) {\n    console.error(&#x27;Lỗi khi tải thời tiết:&#x27;, err);\n  }\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">async function loadWeather(city) {
+            <pre class="code-content-pre"><code>async function loadWeather(city) {
   try {
     const res = await fetch(`https://api.example.com/weather?city=${city}`);
     if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
@@ -3946,7 +3966,7 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
   } catch (err) {
     console.error(&#x27;Lỗi khi tải thời tiết:&#x27;, err);
   }
-}</pre>
+}</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="fetch() rest api &amp; res.json() gọi dữ liệu máy chủ chuẩn web phương thức native gọi api không cần cài thêm thư viện. luôn kiểm tra res.ok trước khi đọc nội dung res.json(). fetch rest api get post json headers">
@@ -3958,15 +3978,15 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="fetch('/api/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ name: 'DevWeb' })\n})\n.then(res => res.json())\n.then(data => console.log(data));">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="fetch(&#x27;/api/users&#x27;, {\n  method: &#x27;POST&#x27;,\n  headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },\n  body: JSON.stringify({ name: &#x27;DevWeb&#x27; })\n})\n.then(res =&gt; res.json())\n.then(data =&gt; console.log(data));">Sao chép</button>
             </div>
-            <pre class="code-content-pre">fetch(&#x27;/api/users&#x27;, {
+            <pre class="code-content-pre"><code>fetch(&#x27;/api/users&#x27;, {
   method: &#x27;POST&#x27;,
   headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
   body: JSON.stringify({ name: &#x27;DevWeb&#x27; })
 })
 .then(res =&gt; res.json())
-.then(data =&gt; console.log(data));</pre>
+.then(data =&gt; console.log(data));</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="localstorage &amp; sessionstorage lưu trữ dữ liệu phía client offline lưu trữ dữ liệu dạng cặp key-value trong trình duyệt. localstorage lưu vĩnh viễn, sessionstorage tự xóa khi đóng tab. localstorage sessionstorage luu tru offline storage getitem setitem">
@@ -3978,16 +3998,16 @@ form.addEventListener(&#x27;submit&#x27;, (e) =&gt; {
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Lưu chuỗi vào LocalStorage\nlocalStorage.setItem('theme', 'dark');\n\n// Đọc giá trị\nconst theme = localStorage.getItem('theme') || 'light';\n\n// Xóa mục\nlocalStorage.removeItem('theme');">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="// Lưu chuỗi vào LocalStorage\nlocalStorage.setItem(&#x27;theme&#x27;, &#x27;dark&#x27;);\n\n// Đọc giá trị\nconst theme = localStorage.getItem(&#x27;theme&#x27;) || &#x27;light&#x27;;\n\n// Xóa mục\nlocalStorage.removeItem(&#x27;theme&#x27;);">Sao chép</button>
             </div>
-            <pre class="code-content-pre">// Lưu chuỗi vào LocalStorage
+            <pre class="code-content-pre"><code>// Lưu chuỗi vào LocalStorage
 localStorage.setItem(&#x27;theme&#x27;, &#x27;dark&#x27;);
 
 // Đọc giá trị
 const theme = localStorage.getItem(&#x27;theme&#x27;) || &#x27;light&#x27;;
 
 // Xóa mục
-localStorage.removeItem(&#x27;theme&#x27;);</pre>
+localStorage.removeItem(&#x27;theme&#x27;);</code></pre>
           </div>
         </div>
         <div class="cheat-card searchable-item" data-keywords="navigator.clipboard.writetext() sao chép vào bộ nhớ tạm api hiện đại cho phép sao chép văn bản vào clipboard của máy người dùng kèm cơ chế xử lý lỗi an toàn. clipboard writetext sao chep bo nho tam">
@@ -3999,16 +4019,16 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
           <div class="code-box-wrapper">
             <div class="code-box-topbar">
               <span>JavaScript</span>
-              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="async function copyCode(text) {\n  try {\n    await navigator.clipboard.writeText(text);\n    console.log('Đã sao chép thành công!');\n  } catch (err) {\n    console.warn('Sao chép thất bại:', err);\n  }\n}">Sao chép</button>
+              <button class="btn-copy-code" aria-label="Sao chép đoạn mã này" data-copy="async function copyCode(text) {\n  try {\n    await navigator.clipboard.writeText(text);\n    console.log(&#x27;Đã sao chép thành công!&#x27;);\n  } catch (err) {\n    console.warn(&#x27;Sao chép thất bại:&#x27;, err);\n  }\n}">Sao chép</button>
             </div>
-            <pre class="code-content-pre">async function copyCode(text) {
+            <pre class="code-content-pre"><code>async function copyCode(text) {
   try {
     await navigator.clipboard.writeText(text);
     console.log(&#x27;Đã sao chép thành công!&#x27;);
   } catch (err) {
     console.warn(&#x27;Sao chép thất bại:&#x27;, err);
   }
-}</pre>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -4033,7 +4053,7 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
   <!-- JAVASCRIPT ĐIỀU KHIỂN & BỘ LỌC TÌM KIẾM TỨC THỜI -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Sao chép Code Snippet 1-chạm (Event Delegation & Fallback an toàn)
+      // 1. Sao chép Code Snippet 1-chạm (Event Delegation, Multiline Text Extraction & Resilient Fallback)
       const copyToast = document.getElementById('copyToast');
       const copyToastMsg = document.getElementById('copyToastMsg');
       let toastTimer = null;
@@ -4052,18 +4072,26 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
       document.addEventListener('click', async (e) => {
         const btn = e.target.closest('.btn-copy-code');
         if (!btn) return;
-        const codeText = btn.getAttribute('data-copy');
+
+        // Trích xuất chuỗi code: ưu tiên lấy từ pre/code để giữ nguyên chính xác từng ký tự và ngắt dòng
+        const codeBox = btn.closest('.code-box-wrapper');
+        const pre = codeBox ? codeBox.querySelector('.code-content-pre') : null;
+        let codeText = pre ? pre.textContent : (btn.getAttribute('data-copy') || '');
+        if (codeText.includes('\\n') && !codeText.includes('\n')) {
+          codeText = codeText.replace(/\\n/g, '\n');
+        }
         if (!codeText) return;
 
         let success = false;
 
-        // 1.1 Thử Clipboard API tiêu chuẩn
-        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        // 1.1 Thử Clipboard API nếu context an toàn và API hỗ trợ
+        if (window.isSecureContext && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
           try {
             await navigator.clipboard.writeText(codeText);
             success = true;
           } catch (err) {
-            console.warn('Clipboard writeText failed, trying execCommand fallback:', err);
+            console.warn('Clipboard writeText failed or permission denied, trying execCommand fallback:', err);
+            success = false;
           }
         }
 
@@ -4072,22 +4100,24 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
           try {
             const ta = document.createElement('textarea');
             ta.value = codeText;
-            ta.style.position = 'fixed';
-            ta.style.left = '-9999px';
-            ta.style.top = '-9999px';
-            ta.style.opacity = '0';
             ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.top = '0';
+            ta.style.left = '-9999px';
+            ta.style.opacity = '0';
             document.body.appendChild(ta);
             ta.focus();
             ta.select();
+            ta.setSelectionRange(0, ta.value.length);
             success = document.execCommand('copy');
             document.body.removeChild(ta);
           } catch (err) {
-            console.error('Fallback execCommand failed:', err);
+            console.error('Fallback execCommand copy failed:', err);
             success = false;
           }
         }
 
+        // 1.3 Phản hồi trực quan và trợ năng bàn phím
         if (success) {
           const origText = btn.textContent;
           btn.textContent = '✓ Đã chép';
@@ -4103,7 +4133,19 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
             btn.setAttribute('aria-label', 'Sao chép đoạn mã này');
           }, 1800);
         } else {
-          showToast('Không thể sao chép tự động do quyền bị chặn.', true);
+          const origText = btn.textContent;
+          btn.textContent = '✕ Lỗi';
+          btn.style.background = '#ef4444';
+          btn.style.color = '#fff';
+          btn.setAttribute('aria-label', 'Lỗi khi sao chép mã');
+          showToast('Không thể sao chép tự động do quyền bị chặn. Vui lòng chọn và sao chép thủ công.', true);
+
+          setTimeout(() => {
+            btn.textContent = origText;
+            btn.style.background = '';
+            btn.style.color = '';
+            btn.setAttribute('aria-label', 'Sao chép đoạn mã này');
+          }, 2500);
         }
       });
 
@@ -4111,6 +4153,7 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
       const searchInput = document.getElementById('lookupSearchInput');
       const searchableItems = document.querySelectorAll('.searchable-item');
       const noResultsAlert = document.getElementById('noResultsAlert');
+      const noResultsQueryText = document.getElementById('noResultsQueryText');
       let searchDebounceTimer = null;
 
       if (searchInput) {
@@ -4123,7 +4166,11 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
               searchableItems.forEach(el => {
                 el.style.display = '';
               });
+              document.querySelectorAll('.section-card').forEach(sec => {
+                sec.style.display = '';
+              });
               if (noResultsAlert) noResultsAlert.classList.remove('show');
+              if (noResultsQueryText) noResultsQueryText.textContent = '';
               return;
             }
 
@@ -4142,13 +4189,15 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
               }
             });
 
-            // Hiển thị lại các section cha nếu có con bên trong khớp
+            // Ẩn/hiện section cha dựa theo các card hoặc hàng con hiển thị bên trong
             document.querySelectorAll('.section-card').forEach(sec => {
-              const visibleChildren = sec.querySelectorAll('.searchable-item:not([style*="display: none"])');
+              const visibleCards = sec.querySelectorAll('.cheat-card:not([style*="display: none"]), .step-card:not([style*="display: none"]), .roadmap-table tr:not([style*="display: none"])');
               const secKeywords = (sec.getAttribute('data-keywords') || '').toLowerCase();
-              if (visibleChildren.length > 0 || secKeywords.includes(query)) {
+              if (visibleCards.length > 0 || secKeywords.includes(query)) {
                 sec.style.display = '';
                 hasVisible = true;
+              } else {
+                sec.style.display = 'none';
               }
             });
 
@@ -4156,6 +4205,9 @@ localStorage.removeItem(&#x27;theme&#x27;);</pre>
               if (hasVisible) {
                 noResultsAlert.classList.remove('show');
               } else {
+                if (noResultsQueryText) {
+                  noResultsQueryText.textContent = query; // SAFE DOM textContent!
+                }
                 noResultsAlert.classList.add('show');
               }
             }

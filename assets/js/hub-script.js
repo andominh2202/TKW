@@ -1240,8 +1240,63 @@ function initExercisesSection() {
   renderCards();
 }
 
+// ======================================================
+// 6. CHUYỂN ĐỔI GIAO DIỆN SÁNG / TỐI (DARK / LIGHT THEME)
+// ======================================================
+function initThemeSystem() {
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+  const htmlEl = document.documentElement;
+
+  function applyTheme(theme, persist = true) {
+    const targetTheme = (theme === 'light') ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', targetTheme);
+
+    if (persist) {
+      try {
+        localStorage.setItem('devweb_theme', targetTheme);
+      } catch (err) {
+        console.warn('Không thể lưu theme vào LocalStorage:', err);
+      }
+    }
+
+    if (themeToggleIcon) {
+      themeToggleIcon.textContent = targetTheme === 'dark' ? '☀️' : '🌙';
+    }
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute(
+        'aria-label',
+        targetTheme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'
+      );
+    }
+  }
+
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('devweb_theme');
+  } catch (err) {
+    console.warn('Không thể đọc theme từ LocalStorage:', err);
+  }
+
+  if (savedTheme === 'dark' || savedTheme === 'light') {
+    applyTheme(savedTheme, false);
+  } else {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    applyTheme(prefersLight ? 'light' : 'dark', false);
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme, true);
+    });
+  }
+}
+
 // Khởi chạy khi tải trang
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeSystem();
   initMainTabs();
   initInteractiveLabs();
   initLivePlayground();

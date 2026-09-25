@@ -1397,6 +1397,118 @@ body {
 }
 
 /* ==========================================================
+   HỆ THỐNG GIAO DIỆN SÁNG (LIGHT THEME DESIGN SYSTEM)
+   ========================================================== */
+[data-theme="light"] {
+  --bg-dark: #f8fafc;
+  --panel-bg: rgba(255, 255, 255, 0.92);
+  --panel-hover: rgba(241, 245, 249, 0.98);
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.5);
+  --text-white: #0f172a;
+  --text-muted: #64748b;
+  --shadow-glow: 0 10px 30px rgba(99, 102, 241, 0.12);
+}
+
+[data-theme="light"] body {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+}
+
+[data-theme="light"] .ambient-glow {
+  opacity: 0.1;
+}
+
+[data-theme="light"] .hub-nav {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .main-tabs-wrapper {
+  background: rgba(248, 250, 252, 0.92);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .guide-link-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+}
+
+[data-theme="light"] .guide-link-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .main-tab-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #475569;
+}
+
+[data-theme="light"] .main-tab-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #0f172a;
+}
+
+[data-theme="light"] .main-tab-btn.active {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+[data-theme="light"] .lab-module-card,
+[data-theme="light"] .code-box,
+[data-theme="light"] .preview-box,
+[data-theme="light"] .exercise-item-card,
+[data-theme="light"] .hero-stat-card,
+[data-theme="light"] .modal-sheet {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .control-item {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .live-preview-box {
+  background: #f1f5f9;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Nút Chuyển Đổi Theme */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: var(--text-white);
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: all 0.25s ease;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: var(--primary);
+  transform: rotate(15deg) scale(1.05);
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+}
+
+/* ==========================================================
    HỖ TRỢ GIẢM CHUYỂN ĐỘNG (PREFERS-REDUCED-MOTION)
    ========================================================== */
 @media (prefers-reduced-motion: reduce) {

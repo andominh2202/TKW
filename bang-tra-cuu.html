@@ -640,6 +640,151 @@
       display: block;
     }
 
+    /* Tùy Biến Giao Diện Sáng (Light Theme) Cho Bảng Tra Cứu */
+    [data-theme="light"] .section-card,
+    [data-theme="light"] .search-filter-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .search-input-field {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .search-input-field:focus {
+      background: #ffffff;
+      border-color: var(--primary);
+    }
+
+    [data-theme="light"] .cat-pill {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #64748b;
+    }
+
+    [data-theme="light"] .cat-pill:hover,
+    [data-theme="light"] .cat-pill.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.4);
+      color: var(--primary-dark);
+    }
+
+    [data-theme="light"] .section-title,
+    [data-theme="light"] .step-title,
+    [data-theme="light"] .exercise-name-cell {
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .subgroup-title {
+      color: #1e293b;
+    }
+
+    [data-theme="light"] .step-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .step-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
+    }
+
+    [data-theme="light"] .step-desc strong {
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .roadmap-table-wrap {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .roadmap-table th {
+      background: #f1f5f9;
+      color: #475569;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .roadmap-table td {
+      color: #334155;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="light"] .roadmap-table tr:hover td {
+      background: rgba(99, 102, 241, 0.04);
+    }
+
+    [data-theme="light"] .btn-starter {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #475569;
+    }
+
+    [data-theme="light"] .btn-starter:hover {
+      background: rgba(0, 0, 0, 0.08);
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .cheat-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .cheat-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
+    }
+
+    [data-theme="light"] .cheat-tag-name {
+      color: #0284c7;
+      background: rgba(2, 132, 199, 0.08);
+    }
+
+    [data-theme="light"] .code-box-wrapper {
+      background: #0f172a;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="light"] .btn-back-top {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .mini-flex-studio {
+      background: #ffffff;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    [data-theme="light"] .mini-flex-studio h4 {
+      color: #0f172a !important;
+    }
+
+    [data-theme="light"] .mini-select {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="light"] .flex-live-stage {
+      background: #f1f5f9;
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    [data-theme="light"] .tag-pill {
+      background: rgba(0, 0, 0, 0.05);
+      color: #475569;
+    }
+
+    [data-theme="light"] .no-results-alert h3 {
+      color: #0f172a !important;
+    }
+
     @media (max-width: 768px) {
       .section-card { padding: 20px 16px; }
       .steps-grid { grid-template-columns: 1fr; }
@@ -687,6 +832,11 @@
           </svg>
           <span>📖 Bảng Tra Cứu Toàn Diện</span>
         </a>
+
+        <!-- Nút Chuyển Đổi Sáng / Tối -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Chuyển sang giao diện sáng" title="Chuyển đổi giao diện Sáng / Tối">
+          <span id="themeToggleIcon" aria-hidden="true">☀️</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -4042,7 +4192,7 @@ localStorage.removeItem(&#x27;theme&#x27;);</code></pre>
     </svg>
   </button>
 
-  <!-- TOAST THÔNG BÁO SAO CHÉP -->
+  <!-- TOAST THÔNG BÁO SAO CHÉP & THEME -->
   <div id="copyToast" class="toast-popup" role="status" aria-live="polite">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="20 6 9 17 4 12"></polyline>
@@ -4256,6 +4406,62 @@ localStorage.removeItem(&#x27;theme&#x27;);</code></pre>
           }
         });
       });
+
+      // 6. Chuyển đổi giao diện Sáng / Tối (Dark / Light Theme Toggle & Safe LocalStorage)
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeToggleIcon = document.getElementById('themeToggleIcon');
+      const htmlEl = document.documentElement;
+
+      function applyTheme(theme, showFeedback = false) {
+        const targetTheme = (theme === 'light') ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', targetTheme);
+
+        try {
+          localStorage.setItem('devweb_theme', targetTheme);
+        } catch (err) {
+          console.warn('Không thể lưu theme vào LocalStorage:', err);
+        }
+
+        if (themeToggleIcon) {
+          themeToggleIcon.textContent = targetTheme === 'dark' ? '☀️' : '🌙';
+        }
+        if (themeToggleBtn) {
+          themeToggleBtn.setAttribute(
+            'aria-label',
+            targetTheme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'
+          );
+        }
+
+        if (showFeedback && typeof showToast === 'function') {
+          showToast(targetTheme === 'dark' ? 'Đã bật giao diện Tối 🌙' : 'Đã bật giao diện Sáng ☀️');
+        }
+      }
+
+      function initTheme() {
+        let savedTheme = null;
+        try {
+          savedTheme = localStorage.getItem('devweb_theme');
+        } catch (err) {
+          console.warn('Không thể đọc theme từ LocalStorage:', err);
+        }
+
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+          applyTheme(savedTheme, false);
+        } else {
+          const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+          applyTheme(prefersLight ? 'light' : 'dark', false);
+        }
+      }
+
+      initTheme();
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+          const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          applyTheme(nextTheme, true);
+        });
+      }
     });
   </script>
 </body>

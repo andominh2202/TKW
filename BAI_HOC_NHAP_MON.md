@@ -235,7 +235,7 @@ p { color: black; }           /* Yếu nhất (Tên thẻ) */
 .chu-xanh { color: blue; }     /* Mạnh hơn tên thẻ */
 #tieu-de { color: red; }       /* Mạnh hơn Class */
 ```
-👉 Kết quả: Chữ sẽ có màu **vàng** vì style trực tiếp trên thẻ (`style="color: yellow;"`) mạnh hơn `#id`. Nhưng nếu trong CSS viết `#tieu-de { color: red !important; }` thì nó sẽ biến thành màu đỏ vì `!important` là tối thượng.
+👉 Kết quả: Chữ sẽ có màu **vàng** vì style trực tiếp trên thẻ (`style="color: yellow;"`) mạnh hơn `#id`. Nếu trong CSS viết `#tieu-de { color: red !important; }` thì nó sẽ biến thành màu đỏ vì `!important` có mức ưu tiên rất cao trong CSS cascade (tuy nhiên thứ tự ưu tiên chuẩn còn phụ thuộc vào nguồn gốc style, cascade layer, specificity và source order, vì vậy lập trình viên chuyên nghiệp hạn chế lạm dụng `!important`).
 
 ---
 

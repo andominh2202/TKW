@@ -1,20 +1,168 @@
 // ==========================================================
 // BÀI 17: JAVASCRIPT HTML5 DRAG & DROP API KANBAN BOARD
+// Hỗ Trợ Lưu Trữ Đầy Đủ (Persistence) & Chống XSS Tuyệt Đối
 // ==========================================================
 
-const columns = document.querySelectorAll('.kanban-column');
-const cards = document.querySelectorAll('.kanban-card');
-const lanes = document.querySelectorAll('.cards-lane');
+// Cấu trúc dữ liệu mặc định ban đầu
+const DEFAULT_KANBAN_STATE = {
+  cards: {
+    "card-1": {
+      id: "card-1",
+      title: "Thiết kế mẫu màu Dark Mode cho Landing Page",
+      description: "Tạo bộ biến CSS Custom Properties :root đồng bộ toàn trang.",
+      tag: "UI Design",
+      priority: "Cao",
+      assigneeName: "Minh Anh",
+      assigneeAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80",
+      dueDate: "📅 28 Th9"
+    },
+    "card-2": {
+      id: "card-2",
+      title: "Viết bài học Semantic Blog với thẻ <article>",
+      description: "Bổ sung thẻ audio podcast và details/summary cho mục FAQ.",
+      tag: "Frontend",
+      priority: "Vừa",
+      assigneeName: "Tuấn Kiệt",
+      assigneeAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80",
+      dueDate: "📅 30 Th9"
+    },
+    "card-3": {
+      id: "card-3",
+      title: "Tích hợp Open-Meteo API cho App Thời Tiết",
+      description: "Xử lý async/await, khối try catch và màn hình loading spinner.",
+      tag: "JavaScript",
+      priority: "Cao",
+      assigneeName: "Hoàng Yến",
+      assigneeAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80",
+      dueDate: "🔥 Hôm nay"
+    },
+    "card-4": {
+      id: "card-4",
+      title: "Xây dựng Bảng Doanh Thu Tài Chính",
+      description: "Hoàn tất Sticky table header và cuộn ngang responsive trên di động.",
+      tag: "CSS Grid",
+      priority: "Thấp",
+      assigneeName: "Bảo Long",
+      assigneeAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80",
+      dueDate: "✅ Đã duyệt"
+    }
+  },
+  lanes: {
+    todo: ["card-1", "card-2"],
+    inprogress: ["card-3"],
+    done: ["card-4"]
+  }
+};
 
-// Modal & Form
-const addModal = document.getElementById('addModal');
-const addCardForm = document.getElementById('addCardForm');
-const btnCloseModal = document.getElementById('btnCloseModal');
-const btnCancelModal = document.getElementById('btnCancelModal');
-const btnQuickAdd = document.getElementById('btnQuickAdd');
-const targetColumnStatus = document.getElementById('targetColumnStatus');
+let kanbanState = loadKanbanState();
 
-// 1. GÁN SỰ KIỆN KÉO THẢ CHO MỖI THẺ (DRAGGABLE CARD)
+// 1. Hàm đọc trạng thái từ LocalStorage an toàn (chống corrupt data)
+function loadKanbanState() {
+  try {
+    const raw = localStorage.getItem('kanban_board_state_v2');
+    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_KANBAN_STATE));
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object' && parsed.cards && parsed.lanes &&
+        Array.isArray(parsed.lanes.todo) &&
+        Array.isArray(parsed.lanes.inprogress) &&
+        Array.isArray(parsed.lanes.done)) {
+      return parsed;
+    }
+  } catch (e) {
+    console.warn('LocalStorage data corrupt or unavailable, resetting to default state:', e);
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_KANBAN_STATE));
+}
+
+// 2. Hàm lưu trạng thái vào LocalStorage
+function saveKanbanState() {
+  try {
+    localStorage.setItem('kanban_board_state_v2', JSON.stringify(kanbanState));
+  } catch (e) {
+    console.warn('Failed to save kanban state to localStorage:', e);
+  }
+}
+
+// 3. Helper lấy class CSS
+function getTagClass(tag) {
+  if (tag === 'UI Design') return 'tag-design';
+  if (tag === 'JavaScript') return 'tag-js';
+  if (tag === 'CSS Grid') return 'tag-css';
+  return 'tag-frontend';
+}
+
+function getPriorityClass(prio) {
+  if (prio === 'Cao') return 'high';
+  if (prio === 'Thấp') return 'low';
+  return 'medium';
+}
+
+// 4. Tạo phần tử DOM Card AN TOÀN TUYỆT ĐỐI (Dùng textContent chống XSS)
+function createCardElement(cardData) {
+  const card = document.createElement('div');
+  card.className = 'kanban-card';
+  card.draggable = true;
+  card.id = cardData.id;
+
+  // Header tags
+  const tagsDiv = document.createElement('div');
+  tagsDiv.className = 'card-tags';
+
+  const tagSpan = document.createElement('span');
+  tagSpan.className = `tag ${getTagClass(cardData.tag)}`;
+  tagSpan.textContent = cardData.tag || 'General';
+
+  const prioSpan = document.createElement('span');
+  prioSpan.className = `priority ${getPriorityClass(cardData.priority)}`;
+  prioSpan.textContent = cardData.priority || 'Vừa';
+
+  tagsDiv.appendChild(tagSpan);
+  tagsDiv.appendChild(prioSpan);
+
+  // Title & Description (textContent)
+  const titleH4 = document.createElement('h4');
+  titleH4.className = 'card-title';
+  titleH4.textContent = cardData.title;
+
+  const descP = document.createElement('p');
+  descP.className = 'card-desc';
+  descP.textContent = cardData.description || 'Chưa có mô tả chi tiết.';
+
+  // Footer & Assignee
+  const footerDiv = document.createElement('div');
+  footerDiv.className = 'card-footer';
+
+  const assigneeDiv = document.createElement('div');
+  assigneeDiv.className = 'assignee';
+
+  const avatarImg = document.createElement('img');
+  avatarImg.src = cardData.assigneeAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80';
+  avatarImg.alt = 'Avatar';
+
+  const nameSpan = document.createElement('span');
+  nameSpan.textContent = cardData.assigneeName || 'Bạn';
+
+  assigneeDiv.appendChild(avatarImg);
+  assigneeDiv.appendChild(nameSpan);
+
+  const dateSpan = document.createElement('span');
+  dateSpan.className = 'due-date';
+  dateSpan.textContent = cardData.dueDate || '📅 Hôm nay';
+
+  footerDiv.appendChild(assigneeDiv);
+  footerDiv.appendChild(dateSpan);
+
+  // Ghép nối phần tử
+  card.appendChild(tagsDiv);
+  card.appendChild(titleH4);
+  card.appendChild(descP);
+  card.appendChild(footerDiv);
+
+  attachCardDragEvents(card);
+  return card;
+}
+
+// 5. Gán sự kiện Drag & Drop cho thẻ
 function attachCardDragEvents(card) {
   card.addEventListener('dragstart', (e) => {
     card.classList.add('is-dragging');
@@ -24,24 +172,31 @@ function attachCardDragEvents(card) {
 
   card.addEventListener('dragend', () => {
     card.classList.remove('is-dragging');
+    syncLanesFromDOM();
     updateColumnCounts();
-    saveKanbanToStorage();
+    saveKanbanState();
   });
 }
 
-// 2. GÁN SỰ KIỆN NHẬN THẢ CHO CÁC LÀN CỘT (DROP ZONES)
-lanes.forEach(lane => {
+// 6. Gán sự kiện Drop Zones cho 3 làn
+const lanes = [
+  { el: document.getElementById('laneTodo'), status: 'todo' },
+  { el: document.getElementById('laneProgress'), status: 'inprogress' },
+  { el: document.getElementById('laneDone'), status: 'done' }
+];
+
+lanes.forEach(({ el: lane }) => {
+  if (!lane) return;
   const column = lane.closest('.kanban-column');
 
   lane.addEventListener('dragover', (e) => {
-    e.preventDefault(); // Bắt buộc để cho phép drop
+    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    column.classList.add('drag-over');
+    if (column) column.classList.add('drag-over');
 
     const draggingCard = document.querySelector('.is-dragging');
     if (!draggingCard) return;
 
-    // Tính toán vị trí chèn giữa các thẻ
     const afterElement = getDragAfterElement(lane, e.clientY);
     if (afterElement == null) {
       lane.appendChild(draggingCard);
@@ -51,18 +206,18 @@ lanes.forEach(lane => {
   });
 
   lane.addEventListener('dragleave', () => {
-    column.classList.remove('drag-over');
+    if (column) column.classList.remove('drag-over');
   });
 
   lane.addEventListener('drop', (e) => {
     e.preventDefault();
-    column.classList.remove('drag-over');
+    if (column) column.classList.remove('drag-over');
+    syncLanesFromDOM();
     updateColumnCounts();
-    saveKanbanToStorage();
+    saveKanbanState();
   });
 });
 
-// Hàm hỗ trợ tìm vị trí chèn chuột mượt mà
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('.kanban-card:not(.is-dragging)')];
 
@@ -77,7 +232,39 @@ function getDragAfterElement(container, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-// 3. ĐẾM SỐ LƯỢNG THẺ TRONG MỖI CỘT
+// Đồng bộ thứ tự ID thẻ từ DOM vào kanbanState.lanes
+function syncLanesFromDOM() {
+  kanbanState.lanes.todo = [...document.querySelectorAll('#laneTodo .kanban-card')].map(c => c.id);
+  kanbanState.lanes.inprogress = [...document.querySelectorAll('#laneProgress .kanban-card')].map(c => c.id);
+  kanbanState.lanes.done = [...document.querySelectorAll('#laneDone .kanban-card')].map(c => c.id);
+}
+
+// 7. Render toàn bộ bảng từ kanbanState
+function renderBoard() {
+  const laneMap = {
+    todo: document.getElementById('laneTodo'),
+    inprogress: document.getElementById('laneProgress'),
+    done: document.getElementById('laneDone')
+  };
+
+  Object.keys(laneMap).forEach(key => {
+    const laneEl = laneMap[key];
+    if (!laneEl) return;
+    laneEl.innerHTML = '';
+
+    const cardIds = kanbanState.lanes[key] || [];
+    cardIds.forEach(id => {
+      const cardData = kanbanState.cards[id];
+      if (cardData) {
+        const cardEl = createCardElement(cardData);
+        laneEl.appendChild(cardEl);
+      }
+    });
+  });
+
+  updateColumnCounts();
+}
+
 function updateColumnCounts() {
   const countTodo = document.getElementById('countTodo');
   const countProgress = document.getElementById('countProgress');
@@ -88,37 +275,40 @@ function updateColumnCounts() {
   if (countDone) countDone.textContent = document.querySelectorAll('#laneDone .kanban-card').length;
 }
 
-// 4. LƯU VÀ TẢI TỪ LOCALSTORAGE
-function saveKanbanToStorage() {
-  const data = {
-    todo: getLaneCardIds('laneTodo'),
-    inprogress: getLaneCardIds('laneProgress'),
-    done: getLaneCardIds('laneDone')
-  };
-  localStorage.setItem('kanban_board_state', JSON.stringify(data));
-}
+// 8. Modal Thêm Công Việc
+const addModal = document.getElementById('addModal');
+const addCardForm = document.getElementById('addCardForm');
+const btnCloseModal = document.getElementById('btnCloseModal');
+const btnCancelModal = document.getElementById('btnCancelModal');
+const btnQuickAdd = document.getElementById('btnQuickAdd');
+const targetColumnStatus = document.getElementById('targetColumnStatus');
 
-function getLaneCardIds(laneId) {
-  const lane = document.getElementById(laneId);
-  if (!lane) return [];
-  return [...lane.querySelectorAll('.kanban-card')].map(c => c.id);
-}
-
-// 5. MODAL THÊM CÔNG VIỆC
 window.openAddTaskModal = function(colStatus = 'todo') {
-  targetColumnStatus.value = colStatus;
-  addModal.classList.remove('hidden');
-  document.getElementById('taskTitle').focus();
+  if (targetColumnStatus) targetColumnStatus.value = colStatus;
+  if (addModal) {
+    addModal.classList.remove('hidden');
+    addModal.setAttribute('aria-modal', 'true');
+    addModal.setAttribute('role', 'dialog');
+  }
+  const taskTitleInput = document.getElementById('taskTitle');
+  if (taskTitleInput) taskTitleInput.focus();
 };
 
 function closeModal() {
-  addModal.classList.add('hidden');
-  addCardForm.reset();
+  if (addModal) addModal.classList.add('hidden');
+  if (addCardForm) addCardForm.reset();
 }
 
 if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
 if (btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
 if (btnQuickAdd) btnQuickAdd.addEventListener('click', () => openAddTaskModal('todo'));
+
+// Đóng modal khi bấm Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && addModal && !addModal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
 
 if (addCardForm) {
   addCardForm.addEventListener('submit', (e) => {
@@ -127,54 +317,32 @@ if (addCardForm) {
     const desc = document.getElementById('taskDesc').value.trim() || 'Chưa có mô tả chi tiết.';
     const tag = document.getElementById('taskTag').value;
     const priority = document.getElementById('taskPriority').value;
-    const status = targetColumnStatus.value;
+    const status = targetColumnStatus.value || 'todo';
 
-    let targetLaneId = 'laneTodo';
-    if (status === 'inprogress') targetLaneId = 'laneProgress';
-    if (status === 'done') targetLaneId = 'laneDone';
+    if (!title) return;
 
-    const targetLane = document.getElementById(targetLaneId);
+    const newId = `card-${Date.now()}`;
+    const newCardData = {
+      id: newId,
+      title: title,
+      description: desc,
+      tag: tag,
+      priority: priority,
+      assigneeName: "Bạn",
+      assigneeAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80",
+      dueDate: "📅 Hôm nay"
+    };
 
-    // Tạo thẻ mới
-    const newCard = document.createElement('div');
-    newCard.className = 'kanban-card';
-    newCard.draggable = true;
-    newCard.id = `card-${Date.now()}`;
+    // Cập nhật State
+    kanbanState.cards[newId] = newCardData;
+    if (!kanbanState.lanes[status]) kanbanState.lanes[status] = [];
+    kanbanState.lanes[status].push(newId);
 
-    let tagClass = 'tag-frontend';
-    if (tag === 'UI Design') tagClass = 'tag-design';
-    if (tag === 'JavaScript') tagClass = 'tag-js';
-    if (tag === 'CSS Grid') tagClass = 'tag-css';
-
-    let prioClass = 'medium';
-    if (priority === 'Cao') prioClass = 'high';
-    if (priority === 'Thấp') prioClass = 'low';
-
-    newCard.innerHTML = `
-      <div class="card-tags">
-        <span class="tag ${tagClass}">${tag}</span>
-        <span class="priority ${prioClass}">${priority}</span>
-      </div>
-      <h4 class="card-title">${title}</h4>
-      <p class="card-desc">${desc}</p>
-      <div class="card-footer">
-        <div class="assignee">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Avatar">
-          <span>Bạn</span>
-        </div>
-        <span class="due-date">📅 Hôm nay</span>
-      </div>
-    `;
-
-    attachCardDragEvents(newCard);
-    targetLane.appendChild(newCard);
-
-    updateColumnCounts();
-    saveKanbanToStorage();
+    saveKanbanState();
+    renderBoard();
     closeModal();
   });
 }
 
-// Khởi chạy gắn sự kiện kéo thả ban đầu
-cards.forEach(card => attachCardDragEvents(card));
-updateColumnCounts();
+// Khởi chạy khi nạp trang
+renderBoard();

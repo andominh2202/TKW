@@ -1,5 +1,5 @@
 // ======================================================
-// DEVCRAFT WEBLAB - NỀN TẢNG HỌC THIẾT KẾ WEB TƯƠNG TÁC
+// DEVWEB LAB - NỀN TẢNG HỌC THIẾT KẾ WEB TƯƠNG TÁC
 // Hệ Thống 19 Bài Tập Toàn Diện (HTML • CSS • JavaScript)
 // & 6 Phòng Thí Nghiệm Trực Quan Chuyên Sâu
 // ======================================================

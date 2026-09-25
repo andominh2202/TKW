@@ -678,311 +678,265 @@ document.getElementById('counter').textContent = count;`;
   }
   updateAnimStudio();
 
-  // F. MODULE 6: JAVASCRIPT ASYNC & FETCH API SIMULATOR (WITH LIVE IMAGE RENDERING)
+  // F. MODULE 6: JAVASCRIPT ASYNC & FETCH API SIMULATOR (2-WAY NETWORK HIGHWAY)
   const btnTriggerAsync = document.getElementById('btnTriggerAsync');
   const asyncSimulationMode = document.getElementById('asyncSimulationMode');
   const asyncStatePill = document.getElementById('asyncStatePill');
   const asyncConsoleLog = document.getElementById('asyncConsoleLog');
 
-  const asyncStateIdle = document.getElementById('asyncStateIdle');
-  const asyncStateLoading = document.getElementById('asyncStateLoading');
-  const asyncStateResolved = document.getElementById('asyncStateResolved');
-  const asyncStateRejected = document.getElementById('asyncStateRejected');
+  // Gói tin & Đèn LED & Trạng thái Server
+  const packetReq = document.getElementById('packetReq');
+  const packetRes = document.getElementById('packetRes');
+  const packetResText = document.getElementById('packetResText');
+  const serverLed = document.getElementById('serverLed');
+  const serverDbCard = document.getElementById('serverDbCard');
+  const serverDbPill = document.getElementById('serverDbPill');
+  const serverDbMsg = document.getElementById('serverDbMsg');
+  const serverEndpointTag = document.getElementById('serverEndpointTag');
 
-  const asyncResultImg = document.getElementById('asyncResultImg');
-  const asyncImgTitle = document.getElementById('asyncImgTitle');
-  const asyncImgSubtitle = document.getElementById('asyncImgSubtitle');
-  const asyncImgBadge = document.getElementById('asyncImgBadge');
-  const asyncImgDim = document.getElementById('asyncImgDim');
+  // Client Elements
+  const clientLiveImg = document.getElementById('clientLiveImg');
+  const clientImgPlaceholder = document.getElementById('clientImgPlaceholder');
+  const clientDomBadge = document.getElementById('clientDomBadge');
 
-  const asyncPacketOutbound = document.getElementById('asyncPacketOutbound');
-  const asyncPacketInbound = document.getElementById('asyncPacketInbound');
-  const serverLedLight = document.getElementById('serverLedLight');
-  const serverStatusLabel = document.getElementById('serverStatusLabel');
-  const serverEndpointBadge = document.getElementById('serverEndpointBadge');
-  const clientDomStatus = document.getElementById('clientDomStatus');
-
-  const asyncApiScenarios = {
+  const asyncScenarios = {
     avatar: {
-      endpoint: 'GET /v1/photos/user-avatar',
-      title: 'Lê Minh Anh',
-      subtitle: 'Senior Frontend Engineer • Hà Nội',
-      dimensions: '400 × 400px (JPEG)',
-      badge: '200 OK • 18KB',
+      endpoint: 'GET /api/users/profile-avatar',
+      title: 'Lê Minh Anh (Senior Frontend Dev)',
       imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%236366f1'/><circle cx='200' cy='150' r='70' fill='%23ffffff'/><ellipse cx='200' cy='320' rx='110' ry='70' fill='%23ffffff'/><text x='200' y='375' font-family='sans-serif' font-weight='bold' font-size='22' fill='%23ffffff' text-anchor='middle'>Lê Minh Anh</text></svg>",
-      json: {
-        status: 200,
-        ok: true,
-        data: {
-          id: "usr_9981",
-          name: "Lê Minh Anh",
-          role: "Senior Frontend Engineer",
-          avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
-          format: "image/jpeg",
-          dimensions: "400x400"
-        }
-      },
-      code: `// 1. Gửi request bất đồng bộ lấy ảnh Avatar người dùng
-async function fetchUserAvatar() {
-  try {
-    console.log('📡 Đang gọi API: GET /v1/photos/user-avatar...');
-    const response = await fetch('/api/users/profile-avatar');
-    if (!response.ok) throw new Error('Lỗi HTTP ' + response.status);
-    
-    // 2. Nhận kết quả JSON
-    const res = await response.json();
-    console.log('✅ Đã nhận dữ liệu người dùng:', res);
-    
-    // 3. Render hình ảnh trực tiếp vào giao diện HTML DOM:
-    const imgElement = document.getElementById('asyncResultImg');
-    imgElement.src = res.data.avatarUrl; // Trình duyệt tự động vẽ ảnh lên màn hình!
-    document.getElementById('asyncImgTitle').textContent = res.data.name;
-  } catch (error) {
-    console.error('❌ Lỗi tải ảnh:', error.message);
-  }
-}`
+      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%236366f1'/><circle cx='200' cy='80' r='45' fill='%23ffffff'/><ellipse cx='200' cy='180' rx='80' ry='50' fill='%23ffffff'/><text x='200' y='190' font-family='sans-serif' font-weight='bold' font-size='16' fill='%236366f1' text-anchor='middle'>Avatar 200 OK</text></svg>",
+      code: `// 1. Client gửi Request lấy ảnh avatar:
+const response = await fetch('/api/users/profile-avatar');
+
+// 2. Server phản hồi thành công 200 OK:
+const data = await response.json();
+console.log('✅ Kết quả nhận về:', data);
+
+// 3. Nạp link ảnh vào thẻ <img> của Client:
+const img = document.getElementById('clientLiveImg');
+img.src = data.avatarUrl; // Trình duyệt render ảnh ngay lập tức!`
     },
     pet: {
-      endpoint: 'GET /v1/photos/cute-corgi',
+      endpoint: 'GET /api/pets/cute-corgi',
       title: 'Pikachu Corgi 🐾',
-      subtitle: 'Welsh Corgi Pembroke • 2 Tuổi',
-      dimensions: '400 × 400px (JPEG)',
-      badge: '200 OK • 24KB',
       imageUrl: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=400&q=80',
-      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23f59e0b'/><circle cx='200' cy='200' r='90' fill='%23ffffff'/><text x='200' y='215' font-size='60' text-anchor='middle'>🐶</text><text x='200' y='330' font-family='sans-serif' font-weight='bold' font-size='22' fill='%23ffffff' text-anchor='middle'>Pikachu Corgi</text></svg>",
-      json: {
-        status: 200,
-        ok: true,
-        pet: {
-          id: "pet_corgi_07",
-          name: "Pikachu Corgi",
-          breed: "Welsh Corgi Pembroke",
-          age: "2 years",
-          photoUrl: "https://images.unsplash.com/photo-1543466835-00a7907e9de1",
-          likes: 1420
-        }
-      },
-      code: `// 1. Tải ảnh thú cưng ngẫu nhiên từ API
-async function fetchPetPhoto() {
-  const response = await fetch('/api/pets/random-dog');
-  const data = await response.json();
-  
-  // 2. Gán link ảnh nhận được vào thẻ <img>
-  const img = document.getElementById('asyncResultImg');
-  img.src = data.pet.photoUrl;
-  console.log('🐶 Đã nạp ảnh thú cưng thành công:', data.pet.name);
-}`
+      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%23f59e0b'/><circle cx='200' cy='95' r='50' fill='%23ffffff'/><text x='200' y='110' font-size='40' text-anchor='middle'>🐶</text><text x='200' y='175' font-family='sans-serif' font-weight='bold' font-size='16' fill='%23ffffff' text-anchor='middle'>Corgi Photo 200 OK</text></svg>",
+      code: `// 1. Client gửi Request lấy ảnh thú cưng:
+const res = await fetch('/api/pets/cute-corgi');
+
+// 2. Server phản hồi thành công 200 OK:
+const pet = await res.json();
+
+// 3. Nạp vào thẻ <img> của Client:
+document.getElementById('clientLiveImg').src = pet.photoUrl;`
     },
     product: {
-      endpoint: 'GET /v1/photos/headphones-pro',
-      title: 'Studio Pro Wireless',
-      subtitle: 'Tai nghe Bluetooth ANC • 2.490.000₫',
-      dimensions: '400 × 400px (JPEG)',
-      badge: '200 OK • 32KB',
+      endpoint: 'GET /api/products/headphones-pro',
+      title: 'Tai Nghe Studio Pro ANC',
       imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80',
-      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%230284c7'/><circle cx='200' cy='200' r='90' fill='%23ffffff'/><text x='200' y='220' font-size='70' text-anchor='middle'>🎧</text><text x='200' y='330' font-family='sans-serif' font-weight='bold' font-size='20' fill='%23ffffff' text-anchor='middle'>Studio Pro Audio</text></svg>",
-      json: {
-        status: 200,
-        ok: true,
-        product: {
-          id: "prod_audio_01",
-          title: "Studio Pro Wireless",
-          price: "2.490.000₫",
-          rating: 4.9,
-          imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
-        }
-      },
-      code: `// 1. Lấy dữ liệu và hình ảnh sản phẩm từ server
-async function fetchProductCard() {
-  const response = await fetch('/api/products/headphones-pro');
-  const { product } = await response.json();
-  
-  // 2. Gán ảnh và giá tiền vào HTML DOM
-  document.getElementById('asyncResultImg').src = product.imageUrl;
-  document.getElementById('asyncImgTitle').textContent = product.title;
-}`
+      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%230ea5e9'/><text x='200' y='105' font-size='45' text-anchor='middle'>🎧</text><text x='200' y='170' font-family='sans-serif' font-weight='bold' font-size='16' fill='%23ffffff' text-anchor='middle'>Headphones 200 OK</text></svg>",
+      code: `// 1. Client gửi Request:
+const res = await fetch('/api/products/headphones-pro');
+const product = await res.json();
+
+// 2. Nạp ảnh sản phẩm vào thẻ <img>:
+document.getElementById('clientLiveImg').src = product.image;`
     },
     nature: {
-      endpoint: 'GET /v1/photos/yosemite-valley',
-      title: 'Thung Lũng Yosemite',
-      subtitle: 'Hồ nước & vách đá • California, USA',
-      dimensions: '400 × 400px (JPEG)',
-      badge: '200 OK • 45KB',
+      endpoint: 'GET /api/wallpapers/aurora',
+      title: 'Bắc Cực Quang (Aurora Borealis)',
       imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23059669'/><circle cx='200' cy='200' r='90' fill='%23ffffff'/><text x='200' y='220' font-size='70' text-anchor='middle'>🌄</text><text x='200' y='330' font-family='sans-serif' font-weight='bold' font-size='20' fill='%23ffffff' text-anchor='middle'>Yosemite Valley</text></svg>",
-      json: {
-        status: 200,
-        ok: true,
-        wallpaper: {
-          id: "wall_nat_99",
-          title: "Thung Lũng Yosemite",
-          location: "California, USA",
-          photoUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
-        }
-      },
-      code: `// 1. Tải ảnh phong cảnh độ phân giải cao
-async function fetchWallpaper() {
-  const response = await fetch('/api/wallpapers/yosemite');
-  const data = await response.json();
-  
-  // 2. Cập nhật ảnh vào giao diện
-  document.getElementById('asyncResultImg').src = data.wallpaper.photoUrl;
-  console.log('🌄 Đã tải hình ảnh:', data.wallpaper.title);
-}`
+      fallbackSvg: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%2310b981'/><text x='200' y='105' font-size='45' text-anchor='middle'>🌄</text><text x='200' y='170' font-family='sans-serif' font-weight='bold' font-size='16' fill='%23ffffff' text-anchor='middle'>Nature 200 OK</text></svg>",
+      code: `// 1. Client gửi Request:
+const res = await fetch('/api/wallpapers/aurora');
+const wallpaper = await res.json();
+
+// 2. Nạp vào thẻ <img>:
+document.getElementById('clientLiveImg').src = wallpaper.url;`
     },
     error: {
-      endpoint: 'GET /v1/fail-endpoint (500)',
-      title: 'Lỗi 500 Server Error',
-      subtitle: 'Internal Server Error • Mất kết nối',
-      code: `// 1. Bắt lỗi khi máy chủ bị sự cố (500 Error / Network Timeout)
-async function fetchWithCatch() {
-  try {
-    console.log('📡 Gửi request đến server bị lỗi...');
-    const response = await fetch('/api/fail-endpoint');
-    
-    // Nếu status code >= 400, ném lỗi sang catch
-    if (!response.ok) {
-      throw new Error('Máy chủ gặp sự cố HTTP ' + response.status + ' - Không thể tải ảnh!');
-    }
-  } catch (error) {
-    // 2. Khối catch bắt lỗi và hiển thị giao diện báo lỗi an toàn (không sập web)
-    console.error('⚠️ Đã bắt được lỗi an toàn:', error.message);
-    document.getElementById('asyncStateRejected').classList.add('active');
+      endpoint: 'GET /api/photos/corrupted-id',
+      title: 'Lỗi máy chủ (500 Error)',
+      imageUrl: '',
+      code: `try {
+  // 1. Gửi request đến server:
+  const response = await fetch('/api/photos/corrupted-id');
+  if (!response.ok) {
+    throw new Error('Server Error 500: Database disconnected');
   }
+} catch (error) {
+  // 2. Khối catch bắt lỗi ngăn sập ứng dụng:
+  console.error('❌ Bắt được lỗi mạng:', error.message);
+  alert('Không thể tải ảnh từ máy chủ!');
 }`
     }
   };
 
-  function switchAsyncScreen(screenId) {
-    const screens = [asyncStateIdle, asyncStateLoading, asyncStateResolved, asyncStateRejected];
-    screens.forEach(s => {
-      if (s) {
-        s.classList.remove('active');
-        s.style.display = 'none';
-      }
-    });
-    const target = document.getElementById(screenId);
-    if (target) {
-      target.classList.add('active');
-      target.style.display = 'flex';
-    }
-  }
-
-  // Cập nhật endpoint badge khi người dùng chọn kịch bản
-  if (asyncSimulationMode && serverEndpointBadge) {
+  if (asyncSimulationMode && serverEndpointTag) {
     asyncSimulationMode.addEventListener('change', () => {
       const mode = asyncSimulationMode.value;
-      const scenario = asyncApiScenarios[mode] || asyncApiScenarios.avatar;
-      serverEndpointBadge.innerHTML = `<code>${scenario.endpoint}</code>`;
-      if (mode === 'error') {
-        if (serverLedLight) serverLedLight.className = 'led-dot error';
-        if (serverStatusLabel) serverStatusLabel.textContent = '500 Server Err';
-      } else {
-        if (serverLedLight) serverLedLight.className = 'led-dot online';
-        if (serverStatusLabel) serverStatusLabel.textContent = 'Cloud API Online';
-      }
+      const scenario = asyncScenarios[mode] || asyncScenarios.avatar;
+      const codeEl = serverEndpointTag.querySelector('code');
+      if (codeEl) codeEl.textContent = scenario.endpoint;
     });
   }
 
   if (btnTriggerAsync) {
     btnTriggerAsync.addEventListener('click', () => {
       const mode = asyncSimulationMode ? asyncSimulationMode.value : 'avatar';
-      const scenario = asyncApiScenarios[mode] || asyncApiScenarios.avatar;
+      const scenario = asyncScenarios[mode] || asyncScenarios.avatar;
 
+      // Khóa nút trong quá trình mô phỏng
       btnTriggerAsync.disabled = true;
 
-      // 1. Chuyển sang trạng thái PENDING
-      switchAsyncScreen('asyncStateLoading');
+      // 1. Trạng thái PENDING (Chờ)
       if (asyncStatePill) {
         asyncStatePill.className = 'async-state-pill pending';
-        asyncStatePill.textContent = '⏳ PENDING (Đang gửi request & tải ảnh...)';
-      }
-
-      if (clientDomStatus) {
-        clientDomStatus.textContent = 'Fetching data...';
+        asyncStatePill.textContent = '⏳ PENDING (Đang gửi request & chờ server...)';
       }
 
       if (asyncConsoleLog) {
-        asyncConsoleLog.textContent = `// 1. Đang khởi tạo kết nối bất đồng bộ:\nconsole.log('Sending GET request to ${scenario.endpoint}...');\nconst promise = fetch('${scenario.endpoint}'); // [Pending...]`;
+        asyncConsoleLog.textContent = `// 1. Client đang gửi Request fetch()...\nconsole.log('Sending Request to: ${scenario.endpoint}');\nconst promise = fetch('${scenario.endpoint}'); // Trạng thái: Pending...`;
       }
 
-      // 2. Kích hoạt gói tin đi (Outbound: Client -> Server)
-      if (asyncPacketOutbound) {
-        asyncPacketOutbound.classList.remove('active');
-        void asyncPacketOutbound.offsetWidth;
-        asyncPacketOutbound.classList.add('active');
+      if (clientDomBadge) {
+        clientDomBadge.className = 'client-dom-badge';
+        clientDomBadge.innerHTML = '<code>&lt;img id="clientLiveImg"&gt; [Đang chờ...]</code>';
       }
 
-      // 3. Server nhận gói tin sau 700ms và gửi phản hồi lại (Inbound: Server -> Client)
+      if (serverDbPill) {
+        serverDbPill.className = 'db-status-pill idle';
+        serverDbPill.textContent = 'Sẵn sàng (Idle)';
+      }
+      if (serverDbMsg) {
+        serverDbMsg.textContent = 'Gói tin request đang bay tới server...';
+      }
+
+      // 2. CHIỀU ĐI (Request): Gói tin màu xanh neon [📦 req ➔] bay từ Client sang Server
+      if (packetReq) {
+        packetReq.classList.remove('flying');
+        void packetReq.offsetWidth;
+        packetReq.classList.add('flying');
+      }
+
+      // 3. XỬ LÝ TẠI SERVER (sau 750ms khi gói tin tới server)
       setTimeout(() => {
-        if (asyncPacketInbound) {
-          asyncPacketInbound.classList.remove('active');
-          void asyncPacketInbound.offsetWidth;
-          asyncPacketInbound.classList.add('active');
+        if (packetReq) packetReq.classList.remove('flying');
+
+        // Đèn LED máy chủ nhấp nháy liên tục!
+        if (serverLed) {
+          serverLed.classList.add('blinking');
         }
 
-        if (mode === 'error') {
-          if (serverLedLight) serverLedLight.className = 'led-dot error';
-          if (serverStatusLabel) serverStatusLabel.textContent = '500 Error';
-        } else {
-          if (serverLedLight) serverLedLight.className = 'led-dot online';
-          if (serverStatusLabel) serverStatusLabel.textContent = '200 OK Sending';
+        // Kiểm tra cơ sở dữ liệu kho ảnh
+        if (serverDbCard) serverDbCard.classList.add('scanning');
+        if (serverDbPill) {
+          serverDbPill.className = 'db-status-pill scanning';
+          serverDbPill.textContent = '🔍 Đang quét CSDL...';
         }
-      }, 700);
-
-      // 4. Nhận kết quả và render hình ảnh lên màn hình Client sau 1500ms
-      setTimeout(() => {
-        btnTriggerAsync.disabled = false;
-        if (asyncPacketOutbound) asyncPacketOutbound.classList.remove('active');
-        if (asyncPacketInbound) asyncPacketInbound.classList.remove('active');
-
-        if (mode !== 'error') {
-          // Thành công: Nạp ảnh vào <img> và cập nhật DOM
-          if (asyncResultImg) {
-            asyncResultImg.onerror = () => {
-              asyncResultImg.src = scenario.fallbackSvg;
-            };
-            asyncResultImg.src = scenario.imageUrl;
-          }
-
-          if (asyncImgTitle) asyncImgTitle.textContent = scenario.title;
-          if (asyncImgSubtitle) asyncImgSubtitle.textContent = scenario.subtitle;
-          if (asyncImgBadge) asyncImgBadge.textContent = scenario.badge;
-          if (asyncImgDim) asyncImgDim.textContent = scenario.dimensions;
-
-          if (asyncStatePill) {
-            asyncStatePill.className = 'async-state-pill resolved';
-            asyncStatePill.textContent = '✅ RESOLVED (200 OK - Đã render ảnh vào DOM)';
-          }
-
-          if (clientDomStatus) {
-            clientDomStatus.textContent = '✅ img.src = "' + scenario.title + '"';
-          }
-
-          switchAsyncScreen('asyncStateResolved');
-
-          if (asyncConsoleLog) {
-            asyncConsoleLog.textContent = `${scenario.code}\n\n// 4. Dữ liệu JSON phản hồi từ Server:\nconsole.log('Response Payload:', ${JSON.stringify(scenario.json, null, 2)});`;
-          }
-        } else {
-          // Thất bại: Giả lập lỗi 500
-          if (asyncStatePill) {
-            asyncStatePill.className = 'async-state-pill rejected';
-            asyncStatePill.textContent = '❌ REJECTED (500 Error - Bắt lỗi trong catch)';
-          }
-
-          if (clientDomStatus) {
-            clientDomStatus.textContent = '⚠️ catch(err) handled';
-          }
-
-          switchAsyncScreen('asyncStateRejected');
-
-          if (asyncConsoleLog) {
-            asyncConsoleLog.textContent = `${scenario.code}\n\n// 3. Chi tiết lỗi Server:\nconsole.error('Network Error:', {\n  status: 500,\n  error: "Internal Server Error",\n  message: "Failed to fetch image stream from storage cluster."\n});`;
-          }
+        if (serverDbMsg) {
+          serverDbMsg.textContent = 'Kiểm tra cơ sở dữ liệu kho ảnh (Database query)...';
         }
-      }, 1500);
+
+        if (asyncConsoleLog) {
+          asyncConsoleLog.textContent += `\n\n// 2. Server đã nhận request. Đèn LED nhấp nháy & kiểm tra cơ sở dữ liệu kho ảnh...`;
+        }
+
+        // Sau 800ms xử lý tại Server -> phát gói tin phản hồi về
+        setTimeout(() => {
+          // Dừng nhấp nháy đèn LED
+          if (serverLed) {
+            serverLed.classList.remove('blinking');
+            if (mode === 'error') {
+              serverLed.className = 'server-led-indicator error';
+            } else {
+              serverLed.className = 'server-led-indicator';
+            }
+          }
+          if (serverDbCard) serverDbCard.classList.remove('scanning');
+
+          if (mode === 'error') {
+            if (serverDbPill) {
+              serverDbPill.className = 'db-status-pill error';
+              serverDbPill.textContent = '❌ Lỗi 500';
+            }
+            if (serverDbMsg) {
+              serverDbMsg.textContent = 'Không tìm thấy tài nguyên ảnh trong cơ sở dữ liệu!';
+            }
+            if (packetResText) packetResText.textContent = '⬅ ❌ 500';
+            if (packetRes) packetRes.classList.add('error-packet');
+          } else {
+            if (serverDbPill) {
+              serverDbPill.className = 'db-status-pill success';
+              serverDbPill.textContent = '✅ Đã tìm thấy ảnh';
+            }
+            if (serverDbMsg) {
+              serverDbMsg.textContent = 'Đã đóng gói Payload ảnh, gửi phản hồi 200 OK!';
+            }
+            if (packetResText) packetResText.textContent = '⬅ 🖼️ 200';
+            if (packetRes) packetRes.classList.remove('error-packet');
+          }
+
+          // 4. CHIỀU VỀ (Response): Gói tin xanh lục [⬅ 🖼️ 200] bay từ Server quay về
+          if (packetRes) {
+            packetRes.classList.remove('flying');
+            void packetRes.offsetWidth;
+            packetRes.classList.add('flying');
+          }
+
+          // Sau 800ms khi gói tin về tới Client -> Nạp vào thẻ <img>
+          setTimeout(() => {
+            if (packetRes) packetRes.classList.remove('flying');
+            btnTriggerAsync.disabled = false;
+
+            if (mode === 'error') {
+              // Xử lý lỗi
+              if (asyncStatePill) {
+                asyncStatePill.className = 'async-state-pill rejected';
+                asyncStatePill.textContent = '❌ REJECTED (500 Error - Khối catch() bắt lỗi)';
+              }
+              if (clientDomBadge) {
+                clientDomBadge.className = 'client-dom-badge';
+                clientDomBadge.innerHTML = '<code style="color:#ef4444;">⚠️ catch(err): Không thể nạp ảnh</code>';
+              }
+              if (clientLiveImg) clientLiveImg.classList.add('hidden');
+              if (clientImgPlaceholder) {
+                clientImgPlaceholder.classList.remove('hidden');
+                clientImgPlaceholder.innerHTML = '<span class="placeholder-icon" style="color:#ef4444;">⚠️</span><span class="placeholder-text" style="color:#ef4444;">Lỗi Server 500</span><small class="placeholder-hint">Không nhận được link ảnh từ server</small>';
+              }
+              if (asyncConsoleLog) {
+                asyncConsoleLog.textContent = scenario.code;
+              }
+            } else {
+              // Thành công 200 OK: Gói tin xanh lục nạp thẳng vào thẻ <img> của Client!
+              if (clientLiveImg) {
+                clientLiveImg.onerror = () => {
+                  clientLiveImg.src = scenario.fallbackSvg;
+                };
+                clientLiveImg.src = scenario.imageUrl;
+                clientLiveImg.alt = scenario.title;
+                clientLiveImg.classList.remove('hidden');
+              }
+              if (clientImgPlaceholder) {
+                clientImgPlaceholder.classList.add('hidden');
+              }
+              if (clientDomBadge) {
+                clientDomBadge.className = 'client-dom-badge loaded';
+                clientDomBadge.innerHTML = '<code>✅ &lt;img src="..."&gt; đã nạp ảnh!</code>';
+              }
+              if (asyncStatePill) {
+                asyncStatePill.className = 'async-state-pill resolved';
+                asyncStatePill.textContent = '✅ RESOLVED (200 OK - Đã nạp ảnh vào thẻ <img>)';
+              }
+              if (asyncConsoleLog) {
+                asyncConsoleLog.textContent = scenario.code;
+              }
+            }
+          }, 800);
+
+        }, 800);
+
+      }, 750);
     });
   }
 }

@@ -9,7 +9,7 @@
   <title>DevWeb Lab | Học Thiết Kế Web Tương Tác (HTML • CSS • JS)</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/hub-style.css">
+  <link rel="stylesheet" href="assets/css/hub-style.css?v=2.3">
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -465,133 +465,100 @@
 
         <div class="async-simulator-stage">
           
-          <!-- Sơ đồ mạng 3 phần: Client Display | Network Highway | Cloud Server -->
+          <!-- Sơ đồ mạng 3 phần: Client | Network Highway | Cloud Server -->
           <div class="async-pipeline-grid">
             
-            <!-- Cột 1: Màn hình Client Browser (Giao diện hiển thị hình ảnh tải về) -->
+            <!-- 1. Client (Browser): Giao diện người dùng có thẻ <img> -->
             <div class="async-device-node async-client-node">
-              <div class="device-bar">
-                <div class="device-window-dots">
-                  <span class="dot dot-r"></span>
-                  <span class="dot dot-y"></span>
-                  <span class="dot dot-g"></span>
-                </div>
-                <div class="device-url-pill">
-                  <span class="url-lock">🔒</span>
-                  <span class="url-text">https://client.app/gallery</span>
+              <div class="async-node-header">
+                <div class="node-title-group">
+                  <h4 class="node-title">💻 Client (Browser)</h4>
+                  <span class="node-subtitle">Giao diện người dùng</span>
                 </div>
               </div>
 
-              <div class="client-screen-viewport" id="clientScreenViewport">
-                <!-- Trạng thái 1: Chưa có ảnh (IDLE) -->
-                <div id="asyncStateIdle" class="async-screen-view active">
-                  <div class="idle-illustration">
-                    <span class="idle-icon">🖼️</span>
-                    <h5 class="screen-title">Chưa nhận hình ảnh</h5>
-                    <p class="screen-subtitle">Chọn loại ảnh và bấm "Gửi Request fetch()" bên dưới để nạp ảnh từ API về trình duyệt</p>
+              <div class="client-screen-body">
+                <div class="client-img-viewport" id="clientImgViewport">
+                  <img id="clientLiveImg" class="client-live-img hidden" alt="Ảnh tải về từ API" />
+                  <div id="clientImgPlaceholder" class="client-img-placeholder">
+                    <span class="placeholder-icon">🖼️</span>
+                    <span class="placeholder-text">Chưa nhận hình ảnh</span>
+                    <small class="placeholder-hint">Chờ gói tin nạp vào thẻ &lt;img&gt;</small>
                   </div>
                 </div>
 
-                <!-- Trạng thái 2: Đang tải (PENDING Skeleton) -->
-                <div id="asyncStateLoading" class="async-screen-view">
-                  <div class="skeleton-shimmer-card">
-                    <div class="skeleton-img-box">
-                      <div class="skeleton-spinner"></div>
-                    </div>
-                    <div class="skeleton-text-line l1"></div>
-                    <div class="skeleton-text-line l2"></div>
-                    <span class="skeleton-caption">⏳ Đang tải hình ảnh từ API Server...</span>
-                  </div>
+                <div class="client-dom-badge" id="clientDomBadge">
+                  <code>&lt;img id="clientLiveImg"&gt;</code>
                 </div>
-
-                <!-- Trạng thái 3: Tải ảnh thành công (RESOLVED Image Display) -->
-                <div id="asyncStateResolved" class="async-screen-view">
-                  <div class="resolved-image-card">
-                    <div class="img-frame">
-                      <img id="asyncResultImg" src="" alt="Hình ảnh API tải về" class="live-api-img">
-                      <span id="asyncImgBadge" class="img-status-tag">200 OK</span>
-                    </div>
-                    <div class="img-info-box">
-                      <h5 id="asyncImgTitle" class="img-title">Tiêu đề ảnh</h5>
-                      <p id="asyncImgSubtitle" class="img-sub">Thông tin chi tiết</p>
-                      <div class="img-meta-tags">
-                        <span id="asyncImgDim" class="meta-tag">400 × 400px</span>
-                        <span class="meta-tag green">⚡ DOM: img.src updated</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Trạng thái 4: Lỗi tải ảnh (REJECTED Error) -->
-                <div id="asyncStateRejected" class="async-screen-view">
-                  <div class="error-illustration">
-                    <span class="error-icon">⚠️ 500</span>
-                    <h5 class="screen-title error-text">Không Thể Tải Hình Ảnh!</h5>
-                    <p class="screen-subtitle">Server API phản hồi mã lỗi 500 hoặc mất mạng. Khối <code>catch(err)</code> đã ngăn ứng dụng bị crash.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="device-footer">
-                <span class="device-label">💻 CLIENT VIEWPORT</span>
-                <span id="clientDomStatus" class="client-dom-pill">document.getElementById('asyncResultImg')</span>
               </div>
             </div>
 
-            <!-- Cột 2: Đường truyền mạng & Gói tin di chuyển 2 chiều -->
+            <!-- 2. Đường Truyền Mạng 2 Chiều Có Gói Tin Chuyển Động (.async-network-highway) -->
             <div class="async-network-highway">
-              <div class="highway-track-wrapper">
-                <div class="highway-label outbound">
-                  <span>📤 Request: GET /api/images</span>
-                  <span class="arrow-right">➔</span>
-                </div>
-                
-                <div class="highway-wire">
-                  <div id="asyncPacketOutbound" class="async-packet outbound">
-                    <span class="packet-label">📦 req</span>
+              <div class="highway-lanes-container">
+                <!-- Chiều đi (Request): Gói tin màu xanh neon [📦 req ➔] bay từ Client sang Server -->
+                <div class="highway-lane outbound-lane">
+                  <div class="lane-header">
+                    <span class="lane-title">Chiều đi (Request)</span>
+                    <span class="lane-dir">Client ➔ Server</span>
                   </div>
-                  <div id="asyncPacketInbound" class="async-packet inbound">
-                    <span class="packet-label">🖼️ 200</span>
+                  <div class="highway-track track-outbound">
+                    <div id="packetReq" class="async-packet packet-req-neon">
+                      <span class="packet-text">📦 req ➔</span>
+                    </div>
                   </div>
                 </div>
 
-                <div class="highway-label inbound">
-                  <span class="arrow-left">⬅</span>
-                  <span>📥 Response: 200 OK (Image Payload)</span>
+                <!-- Trục cáp quang trung gian -->
+                <div class="highway-midline">
+                  <span class="midline-wire"></span>
+                  <span class="midline-badge" id="networkLatencyBadge">⚡ Đường Truyền Mạng 2 Chiều (Async / Await)</span>
+                  <span class="midline-wire"></span>
                 </div>
-              </div>
-              
-              <div class="network-latency-badge" id="networkLatencyBadge">
-                <span>⏱️ Độ trễ mạng: ~450ms</span>
+
+                <!-- Chiều về (Response): Gói tin xanh lục [⬅ 🖼️ 200] bay từ Server quay về nạp vào thẻ <img> của Client -->
+                <div class="highway-lane inbound-lane">
+                  <div class="lane-header">
+                    <span class="lane-title green">Chiều về (Response)</span>
+                    <span class="lane-dir">Server ➔ Client</span>
+                  </div>
+                  <div class="highway-track track-inbound">
+                    <div id="packetRes" class="async-packet packet-res-green">
+                      <span id="packetResText" class="packet-text">⬅ 🖼️ 200</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Cột 3: Máy chủ Cloud Server API -->
+            <!-- 3. Máy Chủ Cloud Server API: Đèn LED nhấp nháy, kiểm tra CSDL kho ảnh -->
             <div class="async-device-node async-server-node">
-              <div class="server-top-panel">
-                <div class="server-indicator">
-                  <span id="serverLedLight" class="led-dot online"></span>
-                  <span id="serverStatusLabel" class="server-status-text">Cloud API Online</span>
+              <div class="async-node-header">
+                <div class="node-title-group">
+                  <div class="server-title-row">
+                    <h4 class="node-title">☁️ Cloud Server API</h4>
+                    <span id="serverLed" class="server-led-indicator" title="Đèn LED trạng thái máy chủ"></span>
+                  </div>
+                  <span class="node-subtitle">Máy chủ dữ liệu</span>
                 </div>
-                <span class="server-port-tag">HTTPS: 443</span>
               </div>
 
-              <div class="server-body">
-                <div class="server-rack-icon">☁️</div>
-                <h4 class="server-title">Unsplash Cloud API</h4>
-                <div class="server-endpoint-badge" id="serverEndpointBadge">
-                  <code>GET /v1/photos/user-avatar</code>
+              <div class="server-screen-body">
+                <div class="server-db-card" id="serverDbCard">
+                  <div class="db-header-row">
+                    <span class="db-icon">🗄️</span>
+                    <span class="db-name">Cơ sở dữ liệu kho ảnh</span>
+                  </div>
+                  <div class="db-status-row" id="serverDbStatus">
+                    <span class="db-status-pill idle" id="serverDbPill">Sẵn sàng (Idle)</span>
+                  </div>
+                  <div class="db-detail-msg" id="serverDbMsg">
+                    Chờ gói tin request từ client...
+                  </div>
                 </div>
 
-                <div class="server-db-card">
-                  <div class="db-title-row">
-                    <span>🗄️ Database Kho Ảnh:</span>
-                    <span class="db-status-green">Sẵn sàng</span>
-                  </div>
-                  <div class="db-stats">
-                    <div class="db-stat-item">📸 4.5M+ Ảnh HD</div>
-                    <div class="db-stat-item">🚀 CDN Edge Cache</div>
-                  </div>
+                <div class="server-endpoint-tag" id="serverEndpointTag">
+                  <code>GET /api/photos/random</code>
                 </div>
               </div>
             </div>
@@ -608,11 +575,11 @@
             <div class="async-controls-row">
               <label for="asyncSimulationMode" class="sr-only">Chọn kịch bản tải ảnh:</label>
               <select id="asyncSimulationMode" class="async-select-mode">
-                <option value="avatar">👤 1. Tải Ảnh Avatar Người Dùng (Profile Avatar API)</option>
-                <option value="pet">🐶 2. Tải Ảnh Thú Cưng Dễ Thương (Cute Dog Photo API)</option>
-                <option value="product">🎧 3. Tải Ảnh Sản Phẩm Công Nghệ (Tech Product API)</option>
-                <option value="nature">🌄 4. Tải Ảnh Phong Cảnh Thiên Nhiên (Nature Wallpaper API)</option>
-                <option value="error">❌ 5. Giả lập: Lỗi Mạng Máy Chủ (500 Server Error)</option>
+                <option value="avatar">👤 1. Tải Ảnh Avatar (200 OK)</option>
+                <option value="pet">🐶 2. Tải Ảnh Thú Cưng Corgi (200 OK)</option>
+                <option value="product">🎧 3. Tải Ảnh Công Nghệ (200 OK)</option>
+                <option value="nature">🌄 4. Tải Ảnh Thiên Nhiên (200 OK)</option>
+                <option value="error">❌ 5. Giả lập: Lỗi Mạng Máy Chủ (500 Error)</option>
               </select>
 
               <button id="btnTriggerAsync" class="btn-async-trigger">Gửi Request fetch() ⚡</button>
@@ -813,7 +780,7 @@
   </div>
 
   <!-- Script điều khiển -->
-  <script src="assets/js/hub-script.js"></script>
+  <script src="assets/js/hub-script.js?v=2.3"></script>
 </body>
 
 </html>

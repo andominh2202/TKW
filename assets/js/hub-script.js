@@ -895,10 +895,8 @@ function initLivePlayground() {
       </html>
     `;
 
-    const doc = outputFrame.contentDocument || outputFrame.contentWindow.document;
-    doc.open();
-    doc.write(combined);
-    doc.close();
+    // Gán trực tiếp qua srcdoc chuẩn sandbox HTML5
+    outputFrame.srcdoc = combined;
   }
 
   // Chuyển tab HTML / CSS / JS trong Editor
@@ -1040,8 +1038,30 @@ function initExercisesSection() {
     });
   }
 
+  let lastModalTrigger = null;
+
+  function closePreviewModal() {
+    if (!previewModal) return;
+    previewModal.classList.add('hidden');
+    if (previewIframe) previewIframe.src = 'about:blank';
+    document.body.style.overflow = '';
+    if (lastModalTrigger && typeof lastModalTrigger.focus === 'function') {
+      lastModalTrigger.focus();
+    }
+  }
+
+  function closeReadmeModal() {
+    if (!readmeModal) return;
+    readmeModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (lastModalTrigger && typeof lastModalTrigger.focus === 'function') {
+      lastModalTrigger.focus();
+    }
+  }
+
   // Mở Live Preview Modal
   window.openLivePreview = function(exerciseId, mode = 'solution') {
+    lastModalTrigger = document.activeElement;
     activeModalExercise = exercises.find(e => e.id === exerciseId);
     if (!activeModalExercise) return;
 
@@ -1050,6 +1070,7 @@ function initExercisesSection() {
 
     previewModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    if (btnClosePreview) btnClosePreview.focus();
   };
 
   function updatePreviewIframe() {
@@ -1084,15 +1105,18 @@ function initExercisesSection() {
   });
 
   if (btnClosePreview) {
-    btnClosePreview.addEventListener('click', () => {
-      previewModal.classList.add('hidden');
-      previewIframe.src = 'about:blank';
-      document.body.style.overflow = '';
+    btnClosePreview.addEventListener('click', closePreviewModal);
+  }
+
+  if (previewModal) {
+    previewModal.addEventListener('click', (e) => {
+      if (e.target === previewModal) closePreviewModal();
     });
   }
 
   // Readme Modal
   window.openReadmeModal = function(exerciseId) {
+    lastModalTrigger = document.activeElement;
     const ex = exercises.find(e => e.id === exerciseId);
     if (!ex) return;
     readmeModalTitle.textContent = `${ex.num}: ${ex.title}`;
@@ -1115,14 +1139,29 @@ function initExercisesSection() {
     readmeModalBody.innerHTML = visualLabBanner + ex.readmeContent;
     readmeModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    if (btnCloseReadme) btnCloseReadme.focus();
   };
 
   if (btnCloseReadme) {
-    btnCloseReadme.addEventListener('click', () => {
-      readmeModal.classList.add('hidden');
-      document.body.style.overflow = '';
+    btnCloseReadme.addEventListener('click', closeReadmeModal);
+  }
+
+  if (readmeModal) {
+    readmeModal.addEventListener('click', (e) => {
+      if (e.target === readmeModal) closeReadmeModal();
     });
   }
+
+  // Lắng nghe phím Escape để đóng Modal
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (previewModal && !previewModal.classList.contains('hidden')) {
+        closePreviewModal();
+      } else if (readmeModal && !readmeModal.classList.contains('hidden')) {
+        closeReadmeModal();
+      }
+    }
+  });
 
   // Lọc theo Cấp Độ
   levelFilterBtns.forEach(btn => {

@@ -150,7 +150,7 @@
             
             <div class="visual-canvas">
               <!-- Lớp Margin (Màu cam) -->
-              <div id="simMarginBox" class="sim-margin-box">
+              <div id="simMarginBox" class="sim-margin-box" title="Mô phỏng khoảng đệm margin bên ngoài border">
                 <!-- Lớp Padding & Border (Màu vàng & xanh) -->
                 <div id="simPaddingBox" class="sim-padding-box">
                   <!-- Lớp Content (Màu trắng) -->
@@ -160,6 +160,9 @@
                 </div>
               </div>
             </div>
+            <p class="box-model-note" style="font-size: 0.82rem; color: #94a3b8; margin-top: 8px; text-align: center; font-style: italic;">
+              💡 <strong>Lưu ý kiến trúc:</strong> Vùng màu cam này là mô phỏng trực quan margin; trong CSS thật, margin nằm bên ngoài border và tạo khoảng cách giữa phần tử với các phần tử xung quanh.
+            </p>
 
             <!-- Khung xuất mã CSS -->
             <div class="code-output-card">
@@ -510,7 +513,7 @@
 
           <!-- Cột Xem Kết Quả Chạy (Live Preview) -->
           <div class="preview-pane">
-            <iframe id="playgroundOutput" class="live-output-frame" title="Live Playground Output"></iframe>
+            <iframe id="playgroundOutput" class="live-output-frame" sandbox="allow-scripts" title="Live Playground Output"></iframe>
           </div>
 
         </div>
@@ -572,7 +575,7 @@
   </section>
 
   <!-- ================= LIVE PREVIEW MODAL (DÀNH CHO BÀI TẬP) ================= -->
-  <div id="previewModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+  <div id="previewModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="previewModalTitle">
     <div class="preview-container">
       
       <div class="preview-toolbar">
@@ -614,7 +617,7 @@
   </div>
 
   <!-- ================= README MODAL ================= -->
-  <div id="readmeModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+  <div id="readmeModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="readmeModalTitle">
     <div class="readme-modal-card">
       <div class="readme-header">
         <h3 id="readmeModalTitle" class="readme-title">Đề Bài Chi Tiết</h3>

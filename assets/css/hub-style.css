@@ -1414,84 +1414,615 @@ body {
 
 /* ==========================================================
    HỆ THỐNG GIAO DIỆN SÁNG (LIGHT THEME DESIGN SYSTEM)
+   Tương phản cao, chuẩn WCAG AAA, sắc nét, không bị lẫn màu
    ========================================================== */
 [data-theme="light"] {
   --bg-dark: #f8fafc;
-  --panel-bg: rgba(255, 255, 255, 0.92);
-  --panel-hover: rgba(241, 245, 249, 0.98);
-  --border-glass: rgba(0, 0, 0, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.5);
+  --panel-bg: #ffffff;
+  --panel-hover: #f1f5f9;
+  --border-glass: #e2e8f0;
+  --border-focus: rgba(79, 70, 229, 0.4);
   --text-white: #0f172a;
-  --text-muted: #64748b;
-  --shadow-glow: 0 10px 30px rgba(99, 102, 241, 0.12);
+  --text-muted: #475569;
+  --shadow-glow: 0 10px 30px rgba(79, 70, 229, 0.12);
 }
 
 [data-theme="light"] body {
-  background-color: var(--bg-dark);
-  color: var(--text-white);
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
 [data-theme="light"] .ambient-glow {
-  opacity: 0.1;
+  opacity: 0.12;
 }
 
+/* 1. Header & Navigation */
 [data-theme="light"] .hub-nav {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
 }
 
-[data-theme="light"] .main-tabs-wrapper {
-  background: rgba(248, 250, 252, 0.92);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+[data-theme="light"] .hub-brand {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .brand-name {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .brand-tag {
+  background: #ede9fe !important;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe !important;
 }
 
 [data-theme="light"] .guide-link-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1e293b;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
 [data-theme="light"] .guide-link-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.15);
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .guide-link-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+/* 2. Main Navigation Tabs */
+[data-theme="light"] .main-tabs-wrapper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 
 [data-theme="light"] .main-tab-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #475569;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 600 !important;
 }
 
 [data-theme="light"] .main-tab-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
-  color: #0f172a;
+  background: #f8fafc !important;
+  border-color: #818cf8 !important;
+  color: #4338ca !important;
 }
 
 [data-theme="light"] .main-tab-btn.active {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: var(--primary);
-  color: var(--primary-dark);
+  background: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+  font-weight: 700 !important;
 }
 
-[data-theme="light"] .lab-module-card,
-[data-theme="light"] .code-box,
-[data-theme="light"] .preview-box,
-[data-theme="light"] .exercise-item-card,
-[data-theme="light"] .hero-stat-card,
-[data-theme="light"] .modal-sheet {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+/* 3. Hero Section */
+[data-theme="light"] .hero-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hero-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .hero-pill {
+  background: #ede9fe !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+}
+
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #4338ca 0%, #7c3aed 50%, #db2777 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 4. Lab Cards & Containers */
+[data-theme="light"] .lab-module-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .lab-header {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .lab-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .lab-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .lab-badge {
+  background: #ede9fe !important;
+  color: #4338ca !important;
+  border: 1px solid #ddd6fe !important;
+}
+
+[data-theme="light"] .controls-column {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
 }
 
 [data-theme="light"] .control-item {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px;
+  padding: 12px 14px;
 }
 
-[data-theme="light"] .live-preview-box {
-  background: #f1f5f9;
-  border-color: rgba(0, 0, 0, 0.08);
+[data-theme="light"] .control-item label {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .control-val {
+  background: #ede9fe !important;
+  color: #4338ca !important;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .choice-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .choice-btn:hover {
+  background: #f1f5f9 !important;
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+}
+
+[data-theme="light"] .choice-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3) !important;
+}
+
+/* 5. Stages & Visual Canvases */
+[data-theme="light"] .visual-canvas {
+  background: #f8fafc !important;
+  border: 2px dashed #cbd5e1 !important;
+}
+
+/* Module 1: Box Model Studio */
+[data-theme="light"] .box-model-stage {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .sim-margin-box {
+  background: #ffedd5 !important;
+  border-color: #ea580c !important;
+}
+
+[data-theme="light"] .sim-margin-box::before {
+  color: #c2410c !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .sim-border-box {
+  background: #f0fdf4 !important;
+  border-color: #16a34a !important;
+}
+
+[data-theme="light"] .sim-padding-box {
+  background: #fef9c3 !important;
+  border-color: #2563eb !important;
+}
+
+[data-theme="light"] .sim-content-box {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .box-model-note {
+  color: #475569 !important;
+}
+
+/* Module 2: Flexbox Playground */
+[data-theme="light"] .flex-stage-preview {
+  background: #f8fafc !important;
+  border: 2px dashed #818cf8 !important;
+}
+
+[data-theme="light"] .flex-item-box {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25) !important;
+}
+
+/* Module 3: JavaScript DOM Studio */
+[data-theme="light"] .dom-action-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .dom-action-btn span {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .dom-action-btn code {
+  background: #ede9fe !important;
+  border: 1px solid #ddd6fe !important;
+  color: #4338ca !important;
+  font-weight: 700 !important;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+[data-theme="light"] .dom-action-btn:hover {
+  background: #f8fafc !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.16) !important;
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .dom-target-stage {
+  background: #f8fafc !important;
+  border: 2px dashed #059669 !important;
+}
+
+[data-theme="light"] .dom-target-element {
+  background: #ffffff !important;
+  border: 2px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .dom-target-element h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dom-target-element p {
+  color: #475569 !important;
+}
+
+/* Module 4: Grid 2D Studio */
+[data-theme="light"] .grid-live-stage {
+  background: #f8fafc !important;
+  border: 1.5px dashed #38bdf8 !important;
+}
+
+[data-theme="light"] .grid-item-cell {
+  background: #ffffff !important;
+  border: 1.5px solid #818cf8 !important;
+  color: #3730a3 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Module 5: Animation Studio */
+[data-theme="light"] .anim-live-stage {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Module 6: Async & Fetch Simulator */
+[data-theme="light"] .async-simulator-stage {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .async-node {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .async-node h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .async-node span {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .async-wire {
+  background: #cbd5e1 !important;
+}
+
+[data-theme="light"] .async-status-bar {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .async-state-pill {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] #asyncSimulationMode {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Khung Code Console (Terminal màu đen tương phản tuyệt đối trên nền sáng) */
+[data-theme="light"] .code-output-card {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .code-output-header {
+  background: #1e293b !important;
+  border-bottom: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .code-output-body {
+  color: #38bdf8 !important;
+}
+
+[data-theme="light"] #domCodeLog {
+  color: #4ade80 !important;
+}
+
+/* Tab 2: Live Code Playground */
+[data-theme="light"] .playground-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .playground-topbar {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .template-select {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .editor-pane {
+  background: #090d16 !important;
+}
+
+[data-theme="light"] .btn-pg-reset {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .btn-pg-reset:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Tab 3: Controls & Exercise Cards */
+[data-theme="light"] .controls-section {
+  background: transparent !important;
+}
+
+[data-theme="light"] .controls-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .level-filter-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .level-filter-btn:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .level-filter-btn.active {
+  background: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35) !important;
+}
+
+[data-theme="light"] .search-box {
+  background: transparent !important;
+}
+
+[data-theme="light"] .search-input {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .search-input:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-theme="light"] .filter-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .filter-btn.active {
+  background: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .tech-filter-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .tech-filter-btn.active {
+  background: #ede9fe !important;
+  border-color: #818cf8 !important;
+  color: #4f46e5 !important;
+}
+
+[data-theme="light"] .exercise-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .exercise-card:hover {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .card-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .card-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .tech-tag {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .btn-action.demo {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .btn-action.demo:hover {
+  background: #4338ca !important;
+}
+
+[data-theme="light"] .btn-action.starter {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="light"] .btn-action.starter:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+[data-theme="light"] .btn-action[data-action="lab"] {
+  background: #e0f2fe !important;
+  border: 1px solid #7dd3fc !important;
+  color: #0369a1 !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Modals & Overlays */
+[data-theme="light"] .preview-container,
+[data-theme="light"] .readme-modal-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .preview-toolbar,
+[data-theme="light"] .readme-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .preview-title,
+[data-theme="light"] .readme-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .mode-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .mode-btn.active {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border-color: #4338ca !important;
+}
+
+[data-theme="light"] .device-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .device-btn.active {
+  background: #e0e7ff !important;
+  border-color: #818cf8 !important;
+  color: #4338ca !important;
+}
+
+[data-theme="light"] .btn-open-tab {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .btn-close-modal {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .btn-close-modal:hover {
+  background: #fee2e2 !important;
+  color: #ef4444 !important;
+}
+
+[data-theme="light"] .readme-body {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .readme-body h1,
+[data-theme="light"] .readme-body h2,
+[data-theme="light"] .readme-body h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .readme-body p,
+[data-theme="light"] .readme-body li {
+  color: #475569 !important;
 }
 
 /* Nút Chuyển Đổi Theme */
@@ -1519,9 +2050,9 @@ body {
 }
 
 [data-theme="light"] .theme-toggle-btn {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: #0f172a;
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
 }
 
 /* ==========================================================

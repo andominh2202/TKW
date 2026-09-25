@@ -459,51 +459,175 @@
             style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">Phần 6 •
             Bất Đồng Bộ Trong Thực Tế</span>
           <h2 class="lab-title">JavaScript Async/Await &amp; Fetch API Simulator</h2>
-          <p class="lab-desc">Trực quan hóa luồng gọi mạng: Bấm nút để xem gói tin di chuyển từ Client đến Server, trạng
-            thái <strong>Pending (Chờ)</strong> và trả lời <strong>Resolved / Rejected</strong>.</p>
+          <p class="lab-desc">Trực quan hóa luồng gọi mạng tải dữ liệu &amp; hình ảnh: Quan sát gói tin gửi đi, trạng thái
+            <strong>Pending</strong> và hình ảnh thực tế được tải render động vào thẻ <code>&lt;img&gt;</code>.</p>
         </header>
 
         <div class="async-simulator-stage">
-          <div class="async-pipeline">
-            <div class="async-node">
-              <h4>💻 Client (Browser)</h4>
-              <span>Giao diện người dùng</span>
+          
+          <!-- Sơ đồ mạng 3 phần: Client Display | Network Highway | Cloud Server -->
+          <div class="async-pipeline-grid">
+            
+            <!-- Cột 1: Màn hình Client Browser (Giao diện hiển thị hình ảnh tải về) -->
+            <div class="async-device-node async-client-node">
+              <div class="device-bar">
+                <div class="device-window-dots">
+                  <span class="dot dot-r"></span>
+                  <span class="dot dot-y"></span>
+                  <span class="dot dot-g"></span>
+                </div>
+                <div class="device-url-pill">
+                  <span class="url-lock">🔒</span>
+                  <span class="url-text">https://client.app/gallery</span>
+                </div>
+              </div>
+
+              <div class="client-screen-viewport" id="clientScreenViewport">
+                <!-- Trạng thái 1: Chưa có ảnh (IDLE) -->
+                <div id="asyncStateIdle" class="async-screen-view active">
+                  <div class="idle-illustration">
+                    <span class="idle-icon">🖼️</span>
+                    <h5 class="screen-title">Chưa nhận hình ảnh</h5>
+                    <p class="screen-subtitle">Chọn loại ảnh và bấm "Gửi Request fetch()" bên dưới để nạp ảnh từ API về trình duyệt</p>
+                  </div>
+                </div>
+
+                <!-- Trạng thái 2: Đang tải (PENDING Skeleton) -->
+                <div id="asyncStateLoading" class="async-screen-view">
+                  <div class="skeleton-shimmer-card">
+                    <div class="skeleton-img-box">
+                      <div class="skeleton-spinner"></div>
+                    </div>
+                    <div class="skeleton-text-line l1"></div>
+                    <div class="skeleton-text-line l2"></div>
+                    <span class="skeleton-caption">⏳ Đang tải hình ảnh từ API Server...</span>
+                  </div>
+                </div>
+
+                <!-- Trạng thái 3: Tải ảnh thành công (RESOLVED Image Display) -->
+                <div id="asyncStateResolved" class="async-screen-view">
+                  <div class="resolved-image-card">
+                    <div class="img-frame">
+                      <img id="asyncResultImg" src="" alt="Hình ảnh API tải về" class="live-api-img">
+                      <span id="asyncImgBadge" class="img-status-tag">200 OK</span>
+                    </div>
+                    <div class="img-info-box">
+                      <h5 id="asyncImgTitle" class="img-title">Tiêu đề ảnh</h5>
+                      <p id="asyncImgSubtitle" class="img-sub">Thông tin chi tiết</p>
+                      <div class="img-meta-tags">
+                        <span id="asyncImgDim" class="meta-tag">400 × 400px</span>
+                        <span class="meta-tag green">⚡ DOM: img.src updated</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Trạng thái 4: Lỗi tải ảnh (REJECTED Error) -->
+                <div id="asyncStateRejected" class="async-screen-view">
+                  <div class="error-illustration">
+                    <span class="error-icon">⚠️ 500</span>
+                    <h5 class="screen-title error-text">Không Thể Tải Hình Ảnh!</h5>
+                    <p class="screen-subtitle">Server API phản hồi mã lỗi 500 hoặc mất mạng. Khối <code>catch(err)</code> đã ngăn ứng dụng bị crash.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="device-footer">
+                <span class="device-label">💻 CLIENT VIEWPORT</span>
+                <span id="clientDomStatus" class="client-dom-pill">document.getElementById('asyncResultImg')</span>
+              </div>
             </div>
 
-            <div class="async-wire">
-              <div id="asyncPacket" class="async-packet"></div>
+            <!-- Cột 2: Đường truyền mạng & Gói tin di chuyển 2 chiều -->
+            <div class="async-network-highway">
+              <div class="highway-track-wrapper">
+                <div class="highway-label outbound">
+                  <span>📤 Request: GET /api/images</span>
+                  <span class="arrow-right">➔</span>
+                </div>
+                
+                <div class="highway-wire">
+                  <div id="asyncPacketOutbound" class="async-packet outbound">
+                    <span class="packet-label">📦 req</span>
+                  </div>
+                  <div id="asyncPacketInbound" class="async-packet inbound">
+                    <span class="packet-label">🖼️ 200</span>
+                  </div>
+                </div>
+
+                <div class="highway-label inbound">
+                  <span class="arrow-left">⬅</span>
+                  <span>📥 Response: 200 OK (Image Payload)</span>
+                </div>
+              </div>
+              
+              <div class="network-latency-badge" id="networkLatencyBadge">
+                <span>⏱️ Độ trễ mạng: ~450ms</span>
+              </div>
             </div>
 
-            <div class="async-node">
-              <h4>☁️ Cloud Server API</h4>
-              <span>Máy chủ dữ liệu</span>
+            <!-- Cột 3: Máy chủ Cloud Server API -->
+            <div class="async-device-node async-server-node">
+              <div class="server-top-panel">
+                <div class="server-indicator">
+                  <span id="serverLedLight" class="led-dot online"></span>
+                  <span id="serverStatusLabel" class="server-status-text">Cloud API Online</span>
+                </div>
+                <span class="server-port-tag">HTTPS: 443</span>
+              </div>
+
+              <div class="server-body">
+                <div class="server-rack-icon">☁️</div>
+                <h4 class="server-title">Unsplash Cloud API</h4>
+                <div class="server-endpoint-badge" id="serverEndpointBadge">
+                  <code>GET /v1/photos/user-avatar</code>
+                </div>
+
+                <div class="server-db-card">
+                  <div class="db-title-row">
+                    <span>🗄️ Database Kho Ảnh:</span>
+                    <span class="db-status-green">Sẵn sàng</span>
+                  </div>
+                  <div class="db-stats">
+                    <div class="db-stat-item">📸 4.5M+ Ảnh HD</div>
+                    <div class="db-stat-item">🚀 CDN Edge Cache</div>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
 
+          <!-- Thanh điều khiển trạng thái & Nút kích hoạt -->
           <div class="async-status-bar">
-            <div>
-              <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 8px;">Trạng thái Promise:</span>
+            <div class="promise-status-wrap">
+              <span class="promise-label">Trạng thái Promise:</span>
               <span id="asyncStatePill" class="async-state-pill">IDLE (Sẵn sàng)</span>
             </div>
 
-            <div style="display: flex; gap: 10px; align-items: center;">
-              <select id="asyncSimulationMode"
-                style="background: #1e293b; color: white; border: 1px solid var(--border-glass); padding: 8px; border-radius: 6px; font-size: 0.85rem;">
-                <option value="success">Giả lập: Thành công (200 OK)</option>
-                <option value="error">Giả lập: Lỗi mạng (500 Error)</option>
+            <div class="async-controls-row">
+              <label for="asyncSimulationMode" class="sr-only">Chọn kịch bản tải ảnh:</label>
+              <select id="asyncSimulationMode" class="async-select-mode">
+                <option value="avatar">👤 1. Tải Ảnh Avatar Người Dùng (Profile Avatar API)</option>
+                <option value="pet">🐶 2. Tải Ảnh Thú Cưng Dễ Thương (Cute Dog Photo API)</option>
+                <option value="product">🎧 3. Tải Ảnh Sản Phẩm Công Nghệ (Tech Product API)</option>
+                <option value="nature">🌄 4. Tải Ảnh Phong Cảnh Thiên Nhiên (Nature Wallpaper API)</option>
+                <option value="error">❌ 5. Giả lập: Lỗi Mạng Máy Chủ (500 Server Error)</option>
               </select>
 
               <button id="btnTriggerAsync" class="btn-async-trigger">Gửi Request fetch() ⚡</button>
             </div>
           </div>
 
+          <!-- Khung giải thích dòng code và JSON response -->
           <div class="code-output-card" style="margin-top: 16px;">
             <div class="code-output-header">
-              <span>CONSOLE &amp; DỮ LIỆU JSON PHẢN HỒI:</span>
+              <span>CONSOLE &amp; DỮ LIỆU JSON PHẢN HỒI THỜI GIAN THỰC:</span>
             </div>
             <pre class="code-output-body" id="asyncConsoleLog"
-              style="color: #38bdf8;">// Bấm nút "Gửi Request fetch()" ở trên để quan sát luồng Async/Await chạy thời gian thực...</pre>
+              style="color: #38bdf8;">// Bấm nút "Gửi Request fetch()" ở trên để quan sát luồng Async/Await chạy và nạp ảnh thời gian thực...</pre>
           </div>
+
         </div>
       </div>
 

@@ -1320,8 +1320,31 @@ function initThemeSystem() {
   }
 }
 
+// Tự động đồng bộ và làm sáng nút tương ứng trên thanh điều hướng chính
+function syncNavActiveState() {
+  const currentPath = window.location.pathname.toLowerCase();
+  const navLinks = document.querySelectorAll('.nav-links .guide-link-btn');
+  if (!navLinks || navLinks.length === 0) return;
+
+  navLinks.forEach(link => {
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    const isCheatsheet = (currentPath.includes('bang-tra-cuu') || currentPath.endsWith('bang-tra-cuu.html')) && href.includes('bang-tra-cuu');
+    const isHandbook = (currentPath.includes('bai-hoc-nhap-mon') || currentPath.endsWith('bai-hoc-nhap-mon.html')) && href.includes('bai-hoc-nhap-mon');
+    const isHome = (!currentPath.includes('bang-tra-cuu') && !currentPath.includes('bai-hoc-nhap-mon')) && (href.includes('index.html') || href === './' || href === '/');
+
+    if (isCheatsheet || isHandbook || isHome) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.classList.remove('active');
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
 // Khởi chạy khi tải trang
 document.addEventListener('DOMContentLoaded', () => {
+  syncNavActiveState();
   initThemeSystem();
   initMainTabs();
   initInteractiveLabs();

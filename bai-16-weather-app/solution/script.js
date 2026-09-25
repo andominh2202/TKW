@@ -44,9 +44,20 @@ function decodeWindDirection(deg) {
   return `${directions[index]} (${deg}°)`;
 }
 
+// Quản lý AbortController để ngăn ngừa race condition khi người dùng tìm kiếm liên tục
+let weatherAbortController = null;
+
 // 1. HÀM CHÍNH GỌI API THỜI TIẾT BẰNG ASYNC / AWAIT
 async function fetchWeatherData(cityQuery) {
-  if (!cityQuery.trim()) return;
+  const query = (cityQuery || '').trim();
+  if (!query) return;
+
+  // Hủy request đang chạy trước đó nếu người dùng nhập thành phố mới (Latest request wins)
+  if (weatherAbortController) {
+    weatherAbortController.abort();
+  }
+  weatherAbortController = new AbortController();
+  const { signal } = weatherAbortController;
 
   // Bật loading và ẩn kết quả cũ
   loadingCard.classList.remove('hidden');
@@ -55,55 +66,82 @@ async function fetchWeatherData(cityQuery) {
 
   try {
     // BƯỚC 1: Geocoding API tìm vĩ độ & kinh độ theo tên thành phố
-    const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityQuery)}&count=1&language=vi`;
-    apiLogUrlEl.textContent = geoUrl;
+    const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=vi`;
+    if (apiLogUrlEl) apiLogUrlEl.textContent = geoUrl;
 
-    const geoResponse = await fetch(geoUrl);
-    if (!geoResponse.ok) throw new Error('Không thể kết nối tới máy chủ định vị.');
+    const geoResponse = await fetch(geoUrl, { signal });
+    if (!geoResponse.ok) {
+      throw new Error(`Máy chủ định vị trả về mã lỗi HTTP ${geoResponse.status}.`);
+    }
     
     const geoData = await geoResponse.json();
-    if (!geoData.results || geoData.results.length === 0) {
-      throw new Error(`Không tìm thấy thành phố "${cityQuery}". Vui lòng thử lại với tên tiếng Anh hoặc không dấu.`);
+    if (!geoData || !Array.isArray(geoData.results) || geoData.results.length === 0) {
+      throw new Error(`Không tìm thấy thành phố "${query}". Vui lòng kiểm tra lại tên tiếng Anh hoặc không dấu.`);
     }
 
     const targetCity = geoData.results[0];
     const { latitude, longitude, name, country } = targetCity;
+    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+      throw new Error('Dữ liệu tọa độ địa lý không hợp lệ từ máy chủ.');
+    }
 
     // BƯỚC 2: Gọi Weather Forecast API
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m&timezone=auto`;
-    apiLogUrlEl.textContent = weatherUrl;
+    if (apiLogUrlEl) apiLogUrlEl.textContent = weatherUrl;
 
-    const weatherResponse = await fetch(weatherUrl);
-    if (!weatherResponse.ok) throw new Error('Không thể tải thông số thời tiết.');
-
-    const weatherData = await weatherResponse.json();
-    const current = weatherData.current_weather;
-
-    // Lấy độ ẩm tương đối từ mảng hourly
-    let humidity = 70;
-    if (weatherData.hourly && weatherData.hourly.relativehumidity_2m) {
-      humidity = weatherData.hourly.relativehumidity_2m[0] || 70;
+    const weatherResponse = await fetch(weatherUrl, { signal });
+    if (!weatherResponse.ok) {
+      throw new Error(`Máy chủ thời tiết trả về mã lỗi HTTP ${weatherResponse.status}.`);
     }
 
-    // BƯỚC 3: Cập nhật giao diện
+    const weatherData = await weatherResponse.json();
+    if (!weatherData || !weatherData.current_weather) {
+      throw new Error('Không nhận được dữ liệu thời tiết hiện tại từ máy chủ.');
+    }
+    const current = weatherData.current_weather;
+
+    // Lấy độ ẩm tương đối từ mảng hourly tương ứng với mốc thời gian hiện tại
+    let humidity = 70;
+    if (weatherData.hourly && Array.isArray(weatherData.hourly.time) && Array.isArray(weatherData.hourly.relativehumidity_2m)) {
+      const times = weatherData.hourly.time;
+      const humidities = weatherData.hourly.relativehumidity_2m;
+      // current.time có định dạng 'YYYY-MM-DDTHH:00'
+      let hourIndex = times.indexOf(current.time);
+      if (hourIndex === -1 && current.time) {
+        const hourPrefix = current.time.slice(0, 13);
+        hourIndex = times.findIndex(t => typeof t === 'string' && t.startsWith(hourPrefix));
+      }
+      if (hourIndex !== -1 && typeof humidities[hourIndex] === 'number') {
+        humidity = Math.round(humidities[hourIndex]);
+      } else if (typeof humidities[0] === 'number') {
+        humidity = Math.round(humidities[0]);
+      }
+    }
+
+    // BƯỚC 3: Cập nhật giao diện an toàn
     renderWeather({
-      cityName: name,
+      cityName: name || query,
       country: country || 'Quốc tế',
-      temp: Math.round(current.temperature),
-      windspeed: current.windspeed,
-      winddirection: current.winddirection,
-      weathercode: current.weathercode,
+      temp: typeof current.temperature === 'number' ? Math.round(current.temperature) : 0,
+      windspeed: typeof current.windspeed === 'number' ? current.windspeed : 0,
+      winddirection: typeof current.winddirection === 'number' ? current.winddirection : 0,
+      weathercode: typeof current.weathercode === 'number' ? current.weathercode : 0,
       humidity: humidity
     });
 
   } catch (error) {
-    // Xử lý lỗi trong Catch
+    if (error.name === 'AbortError') {
+      // Yêu cầu cũ bị hủy do người dùng tìm kiếm yêu cầu mới - không xem là lỗi
+      return;
+    }
     console.error('Fetch Error:', error);
     errorDesc.textContent = error.message || 'Đã có lỗi xảy ra trong quá trình truyền dữ liệu.';
     errorCard.classList.remove('hidden');
+    weatherCard.classList.add('hidden');
   } finally {
-    // Tắt loading trong Finally
-    loadingCard.classList.add('hidden');
+    if (!signal.aborted) {
+      loadingCard.classList.add('hidden');
+    }
   }
 }
 

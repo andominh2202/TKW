@@ -1,5 +1,6 @@
 // ==========================================================
 // BÀI 15: JAVASCRIPT SINH MẬT KHẨU & ĐO ĐỘ MẠNH (STRENGTH)
+// Sử dụng Cryptographically Secure Pseudo-Random (Web Crypto API)
 // ==========================================================
 
 const passwordOutput = document.getElementById('passwordOutput');
@@ -25,53 +26,78 @@ const LOWERCASE_CHARS = 'abcdefghijklmnopqrstuvwxyz';
 const NUMBER_CHARS = '0123456789';
 const SYMBOL_CHARS = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
-// 1. Cập nhật số hiển thị slider
+// 1. Hàm sinh số nguyên ngẫu nhiên bảo mật cao (CSPRNG, không modulo bias)
+function getCryptoRandomInt(max) {
+  if (max <= 0) return 0;
+  const cryptoObj = (typeof window !== 'undefined' && window.crypto) || (typeof crypto !== 'undefined' ? crypto : null);
+  if (!cryptoObj || !cryptoObj.getRandomValues) {
+    throw new Error('Môi trường trình duyệt không hỗ trợ Web Crypto API (crypto.getRandomValues).');
+  }
+  const range = 0x100000000; // 2^32
+  const limit = range - (range % max);
+  const array = new Uint32Array(1);
+  let rand;
+  do {
+    cryptoObj.getRandomValues(array);
+    rand = array[0];
+  } while (rand >= limit);
+  return rand % max;
+}
+
+// 2. Cập nhật số hiển thị slider
 if (lengthSlider) {
   lengthSlider.addEventListener('input', (e) => {
-    lengthVal.textContent = e.target.value;
+    let len = parseInt(e.target.value, 10);
+    if (isNaN(len)) len = 16;
+    if (len < 6) len = 6;
+    if (len > 32) len = 32;
+    lengthVal.textContent = len;
     generatePassword();
   });
 }
 
-// 2. Hàm sinh mật khẩu ngẫu nhiên
+// 3. Hàm sinh mật khẩu ngẫu nhiên
 function generatePassword() {
-  const length = parseInt(lengthSlider.value, 10);
+  let length = parseInt(lengthSlider.value, 10);
+  if (isNaN(length) || length < 6) length = 6;
+  if (length > 32) length = 32;
+
   let availableChars = '';
   let guaranteedChars = [];
 
   if (chkUpper.checked) {
     availableChars += UPPERCASE_CHARS;
-    guaranteedChars.push(UPPERCASE_CHARS[Math.floor(Math.random() * UPPERCASE_CHARS.length)]);
+    guaranteedChars.push(UPPERCASE_CHARS[getCryptoRandomInt(UPPERCASE_CHARS.length)]);
   }
   if (chkLower.checked) {
     availableChars += LOWERCASE_CHARS;
-    guaranteedChars.push(LOWERCASE_CHARS[Math.floor(Math.random() * LOWERCASE_CHARS.length)]);
+    guaranteedChars.push(LOWERCASE_CHARS[getCryptoRandomInt(LOWERCASE_CHARS.length)]);
   }
   if (chkNumbers.checked) {
     availableChars += NUMBER_CHARS;
-    guaranteedChars.push(NUMBER_CHARS[Math.floor(Math.random() * NUMBER_CHARS.length)]);
+    guaranteedChars.push(NUMBER_CHARS[getCryptoRandomInt(NUMBER_CHARS.length)]);
   }
   if (chkSymbols.checked) {
     availableChars += SYMBOL_CHARS;
-    guaranteedChars.push(SYMBOL_CHARS[Math.floor(Math.random() * SYMBOL_CHARS.length)]);
+    guaranteedChars.push(SYMBOL_CHARS[getCryptoRandomInt(SYMBOL_CHARS.length)]);
   }
 
   // Nếu người dùng bỏ tick hết, tự động bật chkLower
   if (availableChars === '') {
     chkLower.checked = true;
     availableChars = LOWERCASE_CHARS;
-    guaranteedChars.push(LOWERCASE_CHARS[Math.floor(Math.random() * LOWERCASE_CHARS.length)]);
+    guaranteedChars.push(LOWERCASE_CHARS[getCryptoRandomInt(LOWERCASE_CHARS.length)]);
   }
 
   let generatedPassword = [...guaranteedChars];
   for (let i = guaranteedChars.length; i < length; i++) {
-    const randomChar = availableChars[Math.floor(Math.random() * availableChars.length)];
+    const randomChar = availableChars[getCryptoRandomInt(availableChars.length)];
     generatedPassword.push(randomChar);
   }
 
-  // Xáo trộn ngẫu nhiên (Fisher-Yates Shuffle)
+  // Xáo trộn ngẫu nhiên bảo mật (Fisher-Yates Shuffle với CSPRNG)
   for (let i = generatedPassword.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = getCryptoRandomInt(i + 1);
     [generatedPassword[i], generatedPassword[j]] = [generatedPassword[j], generatedPassword[i]];
   }
 
@@ -80,7 +106,7 @@ function generatePassword() {
   evaluateStrength(finalPassword);
 }
 
-// 3. Hàm đánh giá độ mạnh của mật khẩu
+// 4. Hàm đánh giá độ mạnh của mật khẩu (Heuristic Evaluation)
 function evaluateStrength(pwd) {
   let score = 0;
   
@@ -91,41 +117,45 @@ function evaluateStrength(pwd) {
   if (/[^A-Za-z0-9]/.test(pwd)) score++;
 
   if (score <= 2) {
-    strengthText.textContent = '🔴 Yếu (Dễ bị bẻ khóa)';
+    strengthText.textContent = '🔴 Yếu (Chưa đủ tiêu chí bảo mật)';
     strengthText.style.color = '#ef4444';
     meterBarFill.style.width = '25%';
     meterBarFill.style.backgroundColor = '#ef4444';
   } else if (score === 3) {
-    strengthText.textContent = '🟡 Trung Bình (Khá an toàn)';
+    strengthText.textContent = '🟡 Trung Bình (Khá an toàn cho tài khoản thường)';
     strengthText.style.color = '#f59e0b';
     meterBarFill.style.width = '55%';
     meterBarFill.style.backgroundColor = '#f59e0b';
   } else if (score === 4) {
-    strengthText.textContent = '🟢 Mạnh (An toàn cao)';
+    strengthText.textContent = '🟢 Mạnh (Đạt chuẩn bảo mật khuyến nghị)';
     strengthText.style.color = '#10b981';
     meterBarFill.style.width = '80%';
     meterBarFill.style.backgroundColor = '#10b981';
   } else {
-    strengthText.textContent = '💎 Cực Mạnh (Chuẩn quân đội)';
+    strengthText.textContent = '💎 Rất Mạnh (theo các tiêu chí hiện tại)';
     strengthText.style.color = '#38bdf8';
     meterBarFill.style.width = '100%';
     meterBarFill.style.backgroundColor = '#38bdf8';
   }
 }
 
-// 4. Sao chép vào Clipboard kèm Toast
+// 5. Sao chép vào Clipboard kèm Toast
 async function copyToClipboard() {
   const text = passwordOutput.value;
   if (!text) return;
 
   try {
-    await navigator.clipboard.writeText(text);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      passwordOutput.select();
+      document.execCommand('copy');
+    }
     copyToast.classList.add('show');
     setTimeout(() => {
       copyToast.classList.remove('show');
     }, 2000);
   } catch (err) {
-    // Fallback cho trình duyệt cũ
     passwordOutput.select();
     document.execCommand('copy');
     copyToast.classList.add('show');
